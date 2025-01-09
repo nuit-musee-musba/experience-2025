@@ -55,8 +55,25 @@ pnpm dev
 - Si vous avez une remarque a apporté, laisser une réponse dans la conversation 
 
 
-### Nommer les branches 
-[G"numéro du groupe"]/`feature/*` (fonctionnalité) ou `fix/*` (correction de bug)/ expliquatif 
+## Les branches
+
+### Nommage
+
+
+[g-"numéro du groupe"]/`feature/*` (fonctionnalité) ou `fix/*` (correction de bug)/ expliquatif 
+
+exemple : g-1/feature/dragAndDrop
+
+### créer une branche depuis VsCode
+
+- assurez vous d'être dans `develop``
+- lancer un `git pull`pour être sur d'avoir la dernière version
+- git checkout -b nom_de_la_branche
+
+exemple : git checkout -b g1/feature/dragAndDrop
+
+vous pouvez vérifier que vous êtes bien sur la bonne branch en regardant en bas à gauche de VsCode ou en faisant un `git branch`
+
 
 
 
