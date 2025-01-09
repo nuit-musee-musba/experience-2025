@@ -21,7 +21,7 @@ Tuto vidéo: [tuto-custom-screen.mp4](https://drive.google.com/file/d/13nn7Nf9MT
 ## Développement
 
 ```bash
-# 1. Installer yarn si vous ne l'avez pas, un meilleur package manager que npm
+# 1. Installer pnpm si vous ne l'avez pas, un meilleur package manager que npm
 npm i -g pnpm
 
 # 2. Installer les dépendances (à faire régulièrement car les packages peuvent êtres mis à jour)
