@@ -1,4 +1,4 @@
-import { DIALOGUES } from '../data/dialogues.js'
+import  DIALOGUES  from '../data/dialogues.js'
 
 export default class Dialogue{
     constructor(){
@@ -6,30 +6,25 @@ export default class Dialogue{
     }
     listDialogue(arrayDialoguesId, dialogueElementSelector) {
       let currentIndex = 0;
-      const conteneurDialogue = document.querySelector(dialogueElementSelector);
-      console.log('arrayDialoguesId', arrayDialoguesId);
-      console.log('conteneurDialogue', conteneurDialogue);
-      conteneurDialogue.addEventListener("click", () => {
+      const dialogueContainer = document.querySelector(dialogueElementSelector);
+      dialogueContainer.addEventListener("click", () => {
+        
           if (currentIndex < arrayDialoguesId.length) {
-              console.log('Boucle !');
               const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
               if (dialogue) {
-                  conteneurDialogue.innerText = dialogue.text;
+                  dialogueContainer.innerText = dialogue.text;
                   currentIndex++; 
-              } else {
-                  console.error(`Dialogue non trouvé pour l'ID : ${arrayDialoguesId[currentIndex]}`);
               }
           } else {
-              console.log("Tous les dialogues ont été affichés.");
               this.closeDialogue(dialogueElementSelector); 
           }
       });
     }
 
     showDialogue( dialogue, dialogueElementSelector) {
-        const conteneurDialogue = document.querySelector(dialogueElementSelector);
-        conteneurDialogue.innerText = dialogue.text; 
-        conteneurDialogue.style.display = 'block'; 
+        const dialogueContainer = document.querySelector(dialogueElementSelector);
+        dialogueContainer.innerText = dialogue.text; 
+        dialogueContainer.style.display = 'block'; 
 
       }
 
@@ -39,6 +34,9 @@ export default class Dialogue{
     }
 
     findDialogue(dialogueId){
+        if (DIALOGUES[dialogueId] == undefined){
+            return null
+        }
       return  DIALOGUES[dialogueId];
   }
 }

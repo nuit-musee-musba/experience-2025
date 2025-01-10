@@ -1,4 +1,4 @@
-const SCENES = [
+export default[
     {
         src: "",
         thematic: 0,
