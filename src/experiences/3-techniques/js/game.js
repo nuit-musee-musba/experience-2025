@@ -7,11 +7,17 @@ let activePlayer = 1;
 let startingPlayer = 1;
 let hasAnswered = false;
 let showingAnswer = false;
+let selectedDifficulty = null;
+let HaveselectedDifficulty = 0;
+let HaveFinishQuestions = 0;
 
 export function showAnswer(
     questionEl,
     mediaContainerDiv,
-    answersContainer,
+    btnA,
+    btnB,
+    btnC,
+    btnD,
     nextButton,
     timerEl
 ) {
@@ -42,15 +48,40 @@ export function showAnswer(
         }
     }
 
-    answersContainer.style.display = "none";
-    nextButton.style.display = "block";
+    const answersContainer = document.getElementById("answers-container");
+    
+    answersContainer.style.display = "none"; 
 
+    nextButton.style.display = "block";
 
     stopTimer();
     timerEl.textContent = "";
 }
+function askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
+
+    document.getElementById('difficulty-selector').style.display = 'block';
+
+    document.getElementById('easy-btn').addEventListener("click", () => {
+        selectedDifficulty = "easy";
+        document.getElementById('difficulty-selector').style.display = 'none';
+        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+    });
+
+    document.getElementById('medium-btn').addEventListener("click", () => {
+        selectedDifficulty = "medium";
+        document.getElementById('difficulty-selector').style.display = 'none';
+        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+    });
+
+    document.getElementById('hard-btn').addEventListener("click", () => {
+        selectedDifficulty = "hard";
+        document.getElementById('difficulty-selector').style.display = 'none';
+        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+    });
+}
 
 export function loadQuestion(
+   
     questionEl,
     btnA,
     btnB,
@@ -63,9 +94,20 @@ export function loadQuestion(
     score2El,
     nextButton
 ) {
+    if(HaveFinishQuestions === 0){
+        HaveFinishQuestions = 1 ;
+        HaveselectedDifficulty = 0 ;
+    }
+    
     const q = questions[currentQuestion];
+    if (HaveselectedDifficulty === 0) {
+        askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+        HaveselectedDifficulty = 1;
+    }
+
+    const selectedDiff = q.difficulties[selectedDifficulty];
     questionEl.textContent = q.question;
-    const choices = q.choices;
+    const choices = selectedDiff.choices;
     btnA.textContent = choices[0];
     btnB.textContent = choices[1];
     btnC.textContent = choices[2];
@@ -118,7 +160,8 @@ export function handleAnswer(
     score2El,
     nextButton
 ) {
-    const correct = questions[currentQuestion].correct;
+    // Utilisation correcte de 'selectedDifficulty'
+    const correct = questions[currentQuestion].difficulties[selectedDifficulty].correct;
 
     if (choice === correct) {
         incrementScore(activePlayer);
@@ -131,13 +174,14 @@ export function handleAnswer(
             activePlayerEl.textContent = activePlayer;
             startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
         } else {
+            showingAnswer = false;
             nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
         }
     }
 }
 
-export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
 
+export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
     if (!showingAnswer) {
         showAnswer(
             questionEl,
@@ -154,7 +198,12 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
 
     showingAnswer = false;
     currentQuestion++;
+    const answersContainer = document.getElementById("answers-container");
+    answersContainer.style.display = "flex";
+    nextButton.style.display = "none";
+
     if (currentQuestion < questions.length) {
+        HaveFinishQuestions = 0;
         loadQuestion(
             questionEl,
             btnA,
@@ -165,13 +214,13 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
             mediaContainerDiv,
             timerEl,
             score1El,
-            score2El,
-            nextButton
+            score2El
         );
     } else {
         endGame(score1El, score2El);
     }
 }
+
 
 function endGame(score1El, score2El) {
     alert(`Fin du jeu ! Joueur 1: ${score1} points, Joueur 2: ${score2} points`);

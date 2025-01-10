@@ -11,7 +11,7 @@ const score2El = document.getElementById("score2");
 const activePlayerEl = document.getElementById("activePlayer");
 const mediaContainerDiv = document.getElementById("mediaContainerDiv");
 const nextButton = document.getElementById("nextButton");
-const answersContainer = document.getElementById("answers-container");
+
 
 
 nextButton.addEventListener("click", () => {
@@ -27,8 +27,7 @@ nextButton.addEventListener("click", () => {
         timerEl,
         score1El,
         score2El,
-        nextButton,
-        answersContainer
+        nextButton
     );
 });
 
@@ -46,8 +45,7 @@ btnA.addEventListener("click", () =>
         timerEl,
         score1El,
         score2El,
-        nextButton,
-        answersContainer
+        nextButton
     )
 );
 btnB.addEventListener("click", () =>
@@ -63,8 +61,7 @@ btnB.addEventListener("click", () =>
         timerEl,
         score1El,
         score2El,
-        nextButton,
-        answersContainer
+        nextButton
     )
 );
 
@@ -82,8 +79,7 @@ btnC.addEventListener("click", () =>
         timerEl,
         score1El,
         score2El,
-        nextButton,
-        answersContainer
+        nextButton
     )
 );
 btnD.addEventListener("click", () =>
@@ -99,8 +95,7 @@ btnD.addEventListener("click", () =>
         timerEl,
         score1El,
         score2El,
-        nextButton,
-        answersContainer
+        nextButton
     )
 );
 
@@ -115,5 +110,5 @@ loadQuestion(
     timerEl,
     score1El,
     score2El,
-    answersContainer
+    nextButton
 );
