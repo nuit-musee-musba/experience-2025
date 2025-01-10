@@ -4,9 +4,6 @@ export default class Dialogue{
     constructor(){
        
     }
-
-
-    
     listDialogue(arrayDialoguesId, dialogueElementSelector) {
       let currentIndex = 0;
       const conteneurDialogue = document.querySelector(dialogueElementSelector);
@@ -28,7 +25,6 @@ export default class Dialogue{
           }
       });
     }
-  
 
     showDialogue( dialogue, dialogueElementSelector) {
         const conteneurDialogue = document.querySelector(dialogueElementSelector);
