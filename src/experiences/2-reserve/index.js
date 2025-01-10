@@ -23,6 +23,7 @@ document.getElementById("change-scene").addEventListener("click", () => {
     AudioManager.getInstance().canPlaySound = false;
 });
 
+//Loading scene welcome
 Game.getInstance().loadScene("scene-welcome");
 
 reserveScene.loadPainting('#conteneur-paintings')

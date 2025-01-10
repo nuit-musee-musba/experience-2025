@@ -11,7 +11,6 @@ export default class AudioManager extends EventEmitter {
         this.waitingSound = null;
     }
 
-
     static getInstance() {
         if (!AudioManager._instance) {
             AudioManager._instance = new AudioManager();
