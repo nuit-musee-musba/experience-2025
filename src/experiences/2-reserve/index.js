@@ -3,7 +3,8 @@ import ExhibitionScene from "./js/exhibitionScene.js"
 import ReserveScene from "./js/reserveScene.js"
 import Scene from "./js/scene.js";
 import AudioManager from "./js/audioManager.js";
-
+import Dialogue from "./js/dialogue.js";
+var game = new Game();
 const welcomeScene = new Scene("scene-welcome", null)
 const exhibitionScene = new ExhibitionScene();
 const reserveScene = new ReserveScene();
@@ -23,4 +24,9 @@ document.getElementById("change-scene").addEventListener("click", () => {
 });
 
 Game.getInstance().loadScene("scene-welcome");
+
+reserveScene.loadPainting('#conteneurPaintings')
+var dialogue = new Dialogue();
+dialogue.listDialogue( [0,1],'#dialogueElement')
+
 
