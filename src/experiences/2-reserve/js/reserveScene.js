@@ -3,8 +3,9 @@ import { PAINTINGS } from "/data/paintings.js"
 
 export default class ReserveScene extends Scene {
     constructor() {
-        super();
+        super(null, null);
         this.name = "scene-reserve"
+        this.sound = null;
     }
 
 

@@ -1,19 +1,31 @@
 import Game from "./js/Game.js"
 import ExhibitionScene from "./js/exhibitionScene.js"
 import ReserveScene from "./js/reserveScene.js"
-import Dialogue from "./js/dialogue.js";
+import Scene from "./js/scene.js";
+import AudioManager from "./js/audioManager.js";
 
 var game = new Game();
 var exhibitionScene = new ExhibitionScene();
 var reserveScene = new ReserveScene();
+const welcomeScene = new Scene("scene-welcome", null)
+const exhibitionScene = new ExhibitionScene();
+const reserveScene = new ReserveScene();
 
-// subscribe to events
-exhibitionScene.onSceneLoaded(game);
-reserveScene.onSceneLoaded(game);
-exhibitionScene.onSceneUnloaded(game);
-reserveScene.onSceneUnloaded(game);
+document.getElementById("start-button").addEventListener("click", () => {
+    AudioManager.getInstance().canPlaySound = true;
+    Game.getInstance().unloadScene("scene-welcome");
+    Game.getInstance().loadScene("scene-exhibition");
+    AudioManager.getInstance().canPlaySound = false;
+});
 
-game.loadScene("scene-exhibition");
+document.getElementById("change-scene").addEventListener("click", () => {
+    AudioManager.getInstance().canPlaySound = true;
+    Game.getInstance().unloadScene("scene-exhibition");
+    Game.getInstance().loadScene("scene-reserve");
+    AudioManager.getInstance().canPlaySound = false;
+});
+
+Game.getInstance().loadScene("scene-welcome");
 
 reserveScene.loadPainting('#conteneurPaintings')
 var dialogue = new Dialogue();
