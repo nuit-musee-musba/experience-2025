@@ -1,5 +1,5 @@
 import Scene from "./scene.js"
-import { PAINTINGS } from "../data/paintings.js"
+import paintings from "../data/paintings.js"
 
 export default class ReserveScene extends Scene {
     constructor() {
@@ -11,7 +11,7 @@ export default class ReserveScene extends Scene {
 
     loadPainting(conteneurPaintings) {
         const conteneurPainting = document.querySelector(conteneurPaintings);
-        PAINTINGS.forEach((painting) => {
+        paintings.forEach((painting) => {
             const img = document.createElement("img");
             img.src = painting.src;
             img.alt = painting.description || "Image sans description";

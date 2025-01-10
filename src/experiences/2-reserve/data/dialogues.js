@@ -1,4 +1,4 @@
-export const DIALOGUES = [
+export default [
     {
         id : 0,
         emotion : 0,
