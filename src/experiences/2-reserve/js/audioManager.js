@@ -3,7 +3,17 @@ import EventEmitter from "./eventEmitter.js";
 export default class AudioManager extends EventEmitter {
     constructor() {
         super();
+        if (AudioManager._instance) {
+            throw new Error("An audio manager is a singleton. Please use getInstance() instead.");
+        }
         this.audioElem = document.querySelector('#background-music')
+    }
+
+    static getInstance() {
+        if (!AudioManager._instance) {
+            AudioManager._instance = new AudioManager();
+        }
+        return AudioManager._instance;
     }
 
     playMusic(soundPath) {
