@@ -48,7 +48,6 @@ export default class Scene {
         scene.style.display = "block";
 
         if (this.sound != null) {
-            console.log("playing sound : " + this.sound)
             AudioManager.getInstance().playMusic(this.sound);
         }
     }

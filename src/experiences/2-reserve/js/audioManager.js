@@ -7,7 +7,10 @@ export default class AudioManager extends EventEmitter {
             throw new Error("An audio manager is a singleton. Please use getInstance() instead.");
         }
         this.audioElem = document.querySelector('#background-music')
+        this.canPlaySound = false;
+        this.waitingSound = null;
     }
+
 
     static getInstance() {
         if (!AudioManager._instance) {
@@ -17,11 +20,15 @@ export default class AudioManager extends EventEmitter {
     }
 
     playMusic(soundPath) {
+        if (!this.canPlaySound) {
+            this.waitingSound = soundPath;
+            console.log('Changing ' + soundPath + ' to waiting sound')
+            return;
+        }
         if (this.audioElem != null && !this.audioElem.paused) {
             this.stopMusic();
-            // Si il y a déjà une musique de fond, l'arrêter.
         }
-        this.audioElem.src = "soundPath";
+        this.audioElem.src = soundPath;
         this.audioElem.play();
     }
 
@@ -31,7 +38,15 @@ export default class AudioManager extends EventEmitter {
         }
     }
 
-    playSound(sound) {
-        
+    playWaitingSound() {
+        if (this.audioElem == null) {
+            console.error("audio elem is null, can't play song")
+            return;
+        }
+        if (!this.canPlaySound) {
+            this.canPlaySound = true;
+        }
+        this.audioElem.src = this.waitingSound;
+        this.audioElem.play();
     }
 }
