@@ -9,4 +9,5 @@ export const PAINTINGS = [
         thematic: "---",
         description: "---",
     },
+    
 ]
