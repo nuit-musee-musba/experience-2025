@@ -1,4 +1,4 @@
-import { DIALOGUES } from '/data/dialogues.js'
+import { DIALOGUES } from '../data/dialogues.js'
 
 export default class Dialogue{
     constructor(){

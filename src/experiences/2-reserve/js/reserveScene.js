@@ -1,5 +1,5 @@
 import Scene from "./scene.js"
-import { PAINTINGS } from "/data/paintings.js"
+import { PAINTINGS } from "../data/paintings.js"
 
 export default class ReserveScene extends Scene {
     constructor() {

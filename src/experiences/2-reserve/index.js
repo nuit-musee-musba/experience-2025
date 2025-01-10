@@ -3,10 +3,8 @@ import ExhibitionScene from "./js/exhibitionScene.js"
 import ReserveScene from "./js/reserveScene.js"
 import Scene from "./js/scene.js";
 import AudioManager from "./js/audioManager.js";
-
+import Dialogue from "./js/dialogue.js";
 var game = new Game();
-var exhibitionScene = new ExhibitionScene();
-var reserveScene = new ReserveScene();
 const welcomeScene = new Scene("scene-welcome", null)
 const exhibitionScene = new ExhibitionScene();
 const reserveScene = new ReserveScene();
