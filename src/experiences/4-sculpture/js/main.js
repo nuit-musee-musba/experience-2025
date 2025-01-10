@@ -1,0 +1,24 @@
+import DragDrop from './DragDrop.js';
+import Item from './Item.js';
+
+// Initialisation des items
+const inventorySlots = document.querySelector('.inventory-slots');
+const itemsData = [
+    { step: 1, name: 'Objet 1' },
+    { step: 2, name: 'Objet 2' },
+    { step: 3, name: 'Objet 3' },
+    { step: 4, name: 'Objet 4' },
+    { step: 5, name: 'Objet 5' },
+    { step: 6, name: 'Objet 6' },
+    { step: 7, name: 'Objet 7' },
+    { step: 8, name: 'Objet 8' },
+];
+
+itemsData.forEach(data => {
+    const item = new Item(data.step, data.name);
+    const itemElement = item.createHTMLElement();
+    inventorySlots.appendChild(itemElement);
+});
+
+// Initialisation du Drag & Drop
+new DragDrop('#work-area', '.item');
