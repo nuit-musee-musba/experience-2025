@@ -1,4 +1,4 @@
-const PAINTINGS = [
+export const PAINTINGS = [
     {
         src : "./assets/img/image_2.jpg",
         thematic: "---",

@@ -1,12 +1,12 @@
-const DIALOGUES = [
+export const DIALOGUES = [
     {
         id : 0,
         emotion : 0,
-        text : "sLorem Ipsum",
+        text : "Voici la reserve ...",
     },
     {
         id: 1,
         emotion : 0,
-        text : "Lorem Ipsum",
+        text : "Choisisez un tableau",
     },
 ]

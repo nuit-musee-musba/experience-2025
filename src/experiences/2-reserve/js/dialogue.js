@@ -1,22 +1,20 @@
-import { dialogue } from 'data/dialogues.js'
+import { DIALOGUES } from '/data/dialogues.js'
 
 export default class Dialogue{
-    constructor(dialogueId){
-        if (dialogue.hasOwnProperty(dialogueId)) {
-            this.dialogue = dialogue[dialogueId];
-          } else {
-            throw new Error(`Dialogue ID "${dialogueId}" non trouvé dans les données.`);
-          }
+    constructor(){
+       
     }
 
-    showDialogue(dialogueText, dialogueElementSelector) {
-        const textDialogue = document.querySelector(dialogueElementSelector);
-        if (textDialogue) {
-          textDialogue.innerText = dialogueText; 
-          textDialogue.style.display = 'block'; 
-        } else {
-          console.error(`Élément non trouvé : ${dialogueElementSelector}`);
-        }
+    findDialogue(dialogueId){
+        return  DIALOGUES[dialogueId];
+    }
+
+    showDialogue( dialogueId, dialogueElementSelector) {
+        var dialogue = this.findDialogue(dialogueId)
+        const conteneurDialogue = document.querySelector(dialogueElementSelector);
+        conteneurDialogue.innerText = dialogue.text; 
+        conteneurDialogue.style.display = 'block'; 
+       
       }
 
       continuationDialogue(dialogueElementSelector, dialogueText) {

@@ -48,6 +48,6 @@ export default class Scene {
         }
         scene.style.display = "block";
 
-        var music = document.querySelector('#' + this.)
+        //var music = document.querySelector('#' + this.)
     }
 }
