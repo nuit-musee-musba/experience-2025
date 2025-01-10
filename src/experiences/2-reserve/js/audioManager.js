@@ -28,25 +28,30 @@ export default class AudioManager extends EventEmitter {
         if (this.audioElem != null && !this.audioElem.paused) {
             this.stopMusic();
         }
+        console.log('audio playing')
         this.audioElem.src = soundPath;
         this.audioElem.play();
     }
 
     stopMusic() {
         if (this.audioElem != null) {
+            console.log('audio stopped')
             this.audioElem.pause();
+            this.audioElem.src = null;
         }
     }
 
     playWaitingSound() {
-        if (this.audioElem == null) {
-            console.error("audio elem is null, can't play song")
+        if (this.audioElem == null || this.waitingSound == null) {
+            console.error("audio elem or waiting sound is null, can't play song")
             return;
         }
         if (!this.canPlaySound) {
             this.canPlaySound = true;
         }
+        console.log('audio playing')
         this.audioElem.src = this.waitingSound;
+        this.waitingSound = null;
         this.audioElem.play();
     }
 }

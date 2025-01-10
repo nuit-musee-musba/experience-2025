@@ -30,12 +30,14 @@ export default class Scene {
 
     unloadScene() {
         console.log(`Unloading ${this.name}`);
-        var scene = document.querySelector('#' + this.name);
+        let scene = document.querySelector('#' + this.name);
         if (scene == null) {
             console.error("No scene were found for " + this.name)
             return;
         }
         scene.style.display = "none";
+
+        AudioManager.getInstance().stopMusic();
     }
 
     initScene() {
@@ -47,7 +49,7 @@ export default class Scene {
         }
         scene.style.display = "block";
 
-        if (this.sound != null) {
+        if (this.sound !== null) {
             AudioManager.getInstance().playMusic(this.sound);
         }
     }
