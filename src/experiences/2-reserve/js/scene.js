@@ -23,10 +23,7 @@ export default class Scene {
     }
 
     checkScene(sceneName) {
-        if (sceneName === this.name) {
-            return true;
-        }
-        return false;
+        return sceneName === this.name;
     }
 
     unloadScene() {
@@ -41,13 +38,13 @@ export default class Scene {
 
     initScene() {
         console.log(`Loading ${this.name}`);
-        var scene = document.querySelector('#' + this.name);
+        let scene = document.querySelector('#' + this.name);
         if (scene == null) {
             console.error("No scene were found for " + this.name)
             return;
         }
         scene.style.display = "block";
 
-        var music = document.querySelector('#' + this.)
+        //let music = document.querySelector('#' + this.);
     }
 }
