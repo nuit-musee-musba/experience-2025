@@ -15,7 +15,7 @@ export default class Game extends EventEmitter {
         super();
         this.chosenPaintings = [];
         if (Game._instance) {
-            throw new Error("An audio manager is a singleton. Please use getInstance() instead.");
+            console.error("An audio manager is a singleton. Please use getInstance() instead.");
         }
         this.audioElem = document.querySelector('#background-music')
     }
