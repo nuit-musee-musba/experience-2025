@@ -8,7 +8,6 @@ export default class EventEmitter {
             this.events[event] = [];
         }
         this.events[event].push(callback);
-        console.log(this.events);
     }
 
     off(event, callback) {

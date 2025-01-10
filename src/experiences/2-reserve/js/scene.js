@@ -2,9 +2,9 @@ import AudioManager from "./audioManager.js";
 import Game from "./Game.js";
 
 export default class Scene {
-    constructor() {
-        this.sound = null;
-        this.name = null;
+    constructor(name, sound) {
+        this.sound = sound;
+        this.name = name;
         this.start();
     }
 
@@ -46,7 +46,10 @@ export default class Scene {
             return;
         }
         scene.style.display = "block";
-        console.log("playing sound : " + this.sound)
-        AudioManager.getInstance().playMusic(this.sound);
+
+        if (this.sound != null) {
+            console.log("playing sound : " + this.sound)
+            AudioManager.getInstance().playMusic(this.sound);
+        }
     }
 }
