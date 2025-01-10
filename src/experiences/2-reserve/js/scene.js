@@ -1,20 +1,22 @@
+import AudioManager from "./audioManager.js";
+import Game from "./Game.js";
+
 export default class Scene {
-    constructor() {
-        this.sound = null;
-        this.name = null;
+    constructor(name, sound) {
+        this.sound = sound;
+        this.name = name;
+        this.start();
     }
 
-    onSceneLoaded(game) {
-        game.on("scene:loaded", (sceneName) => {
+    start() {
+        Game.getInstance().on("scene:loaded", (sceneName) => {
             if (!this.checkScene(sceneName)) {
                 return;
             }
             this.initScene();
         });
-    }
 
-    onSceneUnloaded(game) {
-        game.on("scene:unloaded", (sceneName) => {
+        Game.getInstance().on("scene:unloaded", (sceneName) => {
             if (!this.checkScene(sceneName)) {
                 return;
             }
@@ -28,12 +30,14 @@ export default class Scene {
 
     unloadScene() {
         console.log(`Unloading ${this.name}`);
-        var scene = document.querySelector('#' + this.name);
+        let scene = document.querySelector('#' + this.name);
         if (scene == null) {
             console.error("No scene were found for " + this.name)
             return;
         }
         scene.style.display = "none";
+
+        AudioManager.getInstance().stopMusic();
     }
 
     initScene() {
@@ -45,6 +49,8 @@ export default class Scene {
         }
         scene.style.display = "block";
 
-        //let music = document.querySelector('#' + this.);
+        if (this.sound !== null) {
+            AudioManager.getInstance().playMusic(this.sound);
+        }
     }
 }
