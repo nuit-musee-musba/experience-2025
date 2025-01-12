@@ -4,6 +4,7 @@ import ReserveScene from "./js/reserveScene.js"
 import Scene from "./js/scene.js";
 import AudioManager from "./js/audioManager.js";
 import Dialogue from "./js/dialogue.js";
+
 var game = new Game();
 const welcomeScene = new Scene("scene-welcome", null)
 const exhibitionScene = new ExhibitionScene();
@@ -11,7 +12,7 @@ const reserveScene = new ReserveScene();
 
 document.getElementById("start-button").addEventListener("click", () => {
     AudioManager.getInstance().canPlaySound = true;
-    Game.getInstance().unloadScene("scene-welcome");
+    //Game.getInstance().unloadScene("scene-welcome");
     Game.getInstance().loadScene("scene-exhibition");
     AudioManager.getInstance().canPlaySound = false;
 });
