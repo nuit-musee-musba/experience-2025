@@ -1,6 +1,7 @@
 import { questions } from './questions.js';
 import { score1, score2, incrementScore, updateScores } from './scores.js';
 import { startTimer, stopTimer } from './timer.js';
+import { setTotalQuestions, initializeProgressBar, updateProgressBar } from './progress.js';
 
 let currentQuestion = 0;
 let activePlayer = 1;
@@ -22,7 +23,11 @@ function shuffleArray(array) {
 function initializeGame() {
     shuffledQuestions = [...questions];
     shuffleArray(shuffledQuestions);
+    setTotalQuestions(questions.length);
+    initializeProgressBar('progress-bar-container');
+    updateProgressBar('progress-bar-container', 0);
 }
+
 
 export function showAnswer(
     questionEl,
@@ -157,17 +162,25 @@ export function loadQuestion(
     startingPlayer = startingPlayer === 1 ? 2 : 1;
     hasAnswered = false;
     activePlayerEl.textContent = activePlayer;
-}
+    const event = new CustomEvent('questionLoaded', {
+        detail: { currentQuestionIndex: currentQuestion },
+    });
+    document.dispatchEvent(event);
 
-function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
-    if (!hasAnswered) {
-        activePlayer = activePlayer === 1 ? 2 : 1;
-        activePlayerEl.textContent = activePlayer;
-        startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
-    } else {
-        nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-    }
+
+    document.addEventListener('questionLoaded', (event) => {
+        updateProgressBar('progress-bar-container', event.detail.currentQuestionIndex);
+    });
 }
+    function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
+        if (!hasAnswered) {
+            activePlayer = activePlayer === 1 ? 2 : 1;
+            activePlayerEl.textContent = activePlayer;
+            startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
+        } else {
+            nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+        }
+    }
 
 export function handleAnswer(
     choice,
