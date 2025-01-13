@@ -20,7 +20,7 @@ export default class DragDrop {
 
     onDragOver(event) {
         event.preventDefault();
-    } 
+    }
 
   onDrop(event) {
       event.preventDefault();
@@ -29,7 +29,6 @@ export default class DragDrop {
       if (item) {
           // Vérifier si l'item a déjà été utilisé
           if (item.classList.contains('used')) {
-              alert("Cet objet a déjà été utilisé !");
               return;
           }
 
