@@ -12,28 +12,33 @@ export default class ExhibitionScene extends Scene {
             {
                 x: 3104,
                 y: 864,
+                isOccupied: false,
             },
             {
                 x: 2618,
                 y: 578,
+                isOccupied: false,
             },
             {
                 x: 2044,
                 y: 533,
+                isOccupied: false,
             }
         ]
     }
 
     fetchPaintings() {
-        let SelectedPaintingsCopy = SelectedPaintings;
-        this.lastSelectedPainting = SelectedPaintingsCopy.pop();
-        SelectedPaintingsCopy.forEach((painting) => {
-            new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
-        });
-        new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 500, 500, "selected-painting");
-        let painting = document.querySelector("#selected-painting").children[0];
-        if (painting) {
-            painting.classList.add("selected");
+        this.lastSelectedPainting = SelectedPaintings[SelectedPaintings.length - 1]
+        for (let i = 0; i < SelectedPaintings.length - 1; i++) {
+            let painting = SelectedPaintings[i];
+
+            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
+            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
+            this.rotatePainting(sprite.element);
+        }
+        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 500, 500, "selected-painting");
+        if (painting.element) {
+            painting.element.classList.add("selected");
         }
     }
 
@@ -78,7 +83,26 @@ export default class ExhibitionScene extends Scene {
         document.addEventListener("click", (event) => {
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
         });
-        document.querySelector("#change-scene").disabled = true;
+        let nextButton = document.querySelector("#change-scene")
+        nextButton.disabled = true;
+        nextButton.addEventListener("click", () => {
+            console.log(SelectedPaintings);
+            SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
+            SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
+            console.log(SelectedPaintings);
+        });
+    }
+
+    fixPaintingPosition(elem, pos) {
+
+        const paintingWidth = elem.offsetWidth;
+        const paintingHeight = elem.offsetHeight;
+
+        const centeredLeft = pos.x - paintingWidth / 2;
+        const centeredTop = pos.y - paintingHeight / 2;
+
+        elem.style.left = `${centeredLeft}px`;
+        elem.style.top = `${centeredTop}px`;
     }
 
     setPaintingPosition(pos) {
@@ -86,19 +110,13 @@ export default class ExhibitionScene extends Scene {
 
         const isPositionChanged = this.tryGetClosestPos(pos)
 
-        const paintingWidth = painting.offsetWidth;
-        const paintingHeight = painting.offsetHeight;
-
-        const centeredLeft = pos.x - paintingWidth / 2;
-        const centeredTop = pos.y - paintingHeight / 2;
-
-        painting.style.left = `${centeredLeft}px`;
-        painting.style.top = `${centeredTop}px`;
-
+        this.fixPaintingPosition(painting, pos);
         this.rotatePainting(painting);
 
         if (isPositionChanged) {
             document.querySelector("#change-scene").disabled = false;
+            this.lastSelectedPainting.x = pos.x;
+            this.lastSelectedPainting.y = pos.y;
         }
         else {
             document.querySelector("#change-scene").disabled = true;
