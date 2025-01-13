@@ -1,7 +1,6 @@
 import DragDrop from './DragDrop.js';
 import Item from './Item.js';
 
-// Initialisation des items
 const inventorySlots = document.querySelector('.inventory-slots');
 const itemsData = [
     { step: 1, name: 'Objet 1' },
@@ -20,5 +19,4 @@ itemsData.forEach(data => {
     inventorySlots.appendChild(itemElement);
 });
 
-// Initialisation du Drag & Drop
 new DragDrop('#work-area', '.item');
