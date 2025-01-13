@@ -61,14 +61,15 @@ export default class ExhibitionScene extends Scene {
     }
 
     //Change the inPos to a default one if close enough
-    GetClosestPos(inPos) {
+    tryGetClosestPos(inPos) {
         for (const pos of this.paintingPositions) {
             if (this.calculateDistance(inPos.x, inPos.y, pos.x, pos.y) < 300) {
                 inPos.x = pos.x;
                 inPos.y = pos.y;
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     initScene() {
@@ -77,12 +78,14 @@ export default class ExhibitionScene extends Scene {
         document.addEventListener("click", (event) => {
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
         });
+        document.querySelector("#change-scene").disabled = true;
     }
 
     setPaintingPosition(pos) {
-        let painting = document.querySelector("#selected-painting").children[0];
-        
-        this.GetClosestPos(pos)
+        const painting = document.querySelector("#selected-painting").children[0];
+
+        const isPositionChanged = this.tryGetClosestPos(pos)
+
         const paintingWidth = painting.offsetWidth;
         const paintingHeight = painting.offsetHeight;
 
@@ -93,6 +96,13 @@ export default class ExhibitionScene extends Scene {
         painting.style.top = `${centeredTop}px`;
 
         this.rotatePainting(painting);
+
+        if (isPositionChanged) {
+            document.querySelector("#change-scene").disabled = false;
+        }
+        else {
+            document.querySelector("#change-scene").disabled = true;
+        }
     }
 
     unloadScene() {
