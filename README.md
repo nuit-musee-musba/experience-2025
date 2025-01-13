@@ -89,6 +89,7 @@ C'est le hub qui amène aux expériences (accessible sur http://localhost:5173/)
 
 Les expériences, chacune dans son dossier. Vous pouvez gérer ce qu'il y a dedans comme vous le souhaitez.
 **Pensez à ajouter vos fichiers index.html dans la config `vite.config.js` pour qu'ils soient dans le build**
+**Pensez également à ajouter le fichier style.scss dans vos fichier html**
 
 ### Dans `/public`
 
