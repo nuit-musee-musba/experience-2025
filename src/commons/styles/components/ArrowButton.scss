@@ -1,0 +1,16 @@
+.arrow-button{
+    background-color: black;
+    width: fit-content;
+    padding: 44px;
+    border: 1px solid black;
+    display: flex;
+    &.white{
+        background-color: white;
+    }
+
+    &.right{
+        img{
+            transform: rotate(180deg);
+        }
+    }
+}
