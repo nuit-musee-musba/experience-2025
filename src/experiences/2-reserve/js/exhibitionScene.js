@@ -12,7 +12,7 @@ export default class ExhibitionScene extends Scene {
             {
                 x: 3104,
                 y: 864,
-                isOccupied: false,
+                isOccupied: true,
             },
             {
                 x: 2618,
@@ -65,9 +65,9 @@ export default class ExhibitionScene extends Scene {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    //Change the inPos to a default one if close enough
+    //Change the inPos to a default one if close enough. Return true if it succeeded.
     tryGetClosestPos(inPos) {
-        for (const pos of this.paintingPositions) {
+        for (const pos of this.paintingPositions.filter(e => !e.isOccupied)) {
             if (this.calculateDistance(inPos.x, inPos.y, pos.x, pos.y) < 300) {
                 inPos.x = pos.x;
                 inPos.y = pos.y;
@@ -86,11 +86,18 @@ export default class ExhibitionScene extends Scene {
         let nextButton = document.querySelector("#change-scene")
         nextButton.disabled = true;
         nextButton.addEventListener("click", () => {
-            console.log(SelectedPaintings);
             SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
             SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
-            console.log(SelectedPaintings);
+            this.updateOccupiedPos();
+            console.log(this.paintingPositions);
         });
+    }
+
+    updateOccupiedPos() {
+        let newOccupiedPainting = this.paintingPositions.find((p) => {
+            return this.lastSelectedPainting.x === p.x && this.lastSelectedPainting.y === p.y;
+        })
+        newOccupiedPainting.isOccupied = true;
     }
 
     fixPaintingPosition(elem, pos) {
