@@ -6,8 +6,9 @@ export default class Dialogue{
     }
     listDialogue(arrayDialoguesId, dialogueElementSelector) {
       let currentIndex = 0;
+      const nextButton = document.querySelector('.nextButton')
       const dialogueContainer = document.querySelector(dialogueElementSelector);
-      dialogueContainer.addEventListener("click", () => {
+      nextButton.addEventListener("click", () => {
         
           if (currentIndex < arrayDialoguesId.length) {
               const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
@@ -21,6 +22,8 @@ export default class Dialogue{
       });
     }
 
+    
+
     showDialogue( dialogue, dialogueElementSelector) {
         const dialogueContainer = document.querySelector(dialogueElementSelector);
         dialogueContainer.innerText = dialogue.text; 
@@ -30,6 +33,8 @@ export default class Dialogue{
 
     closeDialogue(dialogueElementSelector) {
         const textDialogue = document.querySelector(dialogueElementSelector);
+        const dialogueNameContent = document.querySelector('.dialogueNameContent');
+        dialogueNameContent.style.display = "none";
         textDialogue.style.display = 'none'; 
     }
 
