@@ -8,6 +8,16 @@ export default class ExhibitionScene extends Scene {
         super("scene-exhibition", "./assets/sound/song.mp3");
         this.lastSelectedPainting = null;
         this.perspectiveRotation = 1920;
+        this.paintingPositions = [
+            {
+                x: 0,
+                y: 0,
+            },
+            {
+                x: 1,
+                y: 0,
+            }
+        ]
     }
 
     fetchPaintings() {
@@ -17,6 +27,10 @@ export default class ExhibitionScene extends Scene {
             new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
         });
         new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 500, 500, "selected-painting");
+        let painting = document.querySelector("#selected-painting").children[0];
+        if (painting) {
+            painting.classList.add("selected");
+        }
     }
 
     cleanPaintings() {
