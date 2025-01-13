@@ -42,10 +42,18 @@ export default class ExhibitionScene extends Scene {
         this.fetchPaintings();
         document.addEventListener("click", (event) => {
             let painting = document.querySelector("#selected-painting").children[0];
-            painting.style.left = event.clientX.toString();
-            painting.style.top = event.clientY.toString();
+
+            const paintingWidth = painting.offsetWidth;
+            const paintingHeight = painting.offsetHeight;
+
+            const centeredLeft = event.clientX - paintingWidth / 2;
+            const centeredTop = event.clientY - paintingHeight / 2;
+
+            painting.style.left = `${centeredLeft}px`;
+            painting.style.top = `${centeredTop}px`;
+
             this.rotatePainting(painting);
-        })
+        });
     }
 
     unloadScene() {
