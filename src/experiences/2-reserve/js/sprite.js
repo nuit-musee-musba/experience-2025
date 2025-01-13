@@ -14,11 +14,9 @@ export default class Sprite {
       this.element = document.createElement('img');
       let container = document.querySelector("#" + this.containerName);
       if (!container) {
-          //console.error("Could not find container with id '" + this.containerName + "'");
           return;
       }
       container.append(this.element);
-      console.log(this.element)
       this.element.src = this.src;
       this.element.style.position = 'absolute';
       this.element.style.left = this.x + "px";
