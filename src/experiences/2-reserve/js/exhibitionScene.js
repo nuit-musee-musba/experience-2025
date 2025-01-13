@@ -7,6 +7,7 @@ export default class ExhibitionScene extends Scene {
     constructor() {
         super("scene-exhibition", "./assets/sound/song.mp3");
         this.lastSelectedPainting = null;
+        this.perspectiveRotation = 1920;
     }
 
     fetchPaintings() {
@@ -27,9 +28,24 @@ export default class ExhibitionScene extends Scene {
         paintingsContainer.innerHTML = "";
     }
 
+    rotatePainting(painting) {
+        if (parseInt(painting.style.left, 10) > this.perspectiveRotation) {
+            painting.style.transform = "skew(0deg, 30deg)";
+        }
+        else {
+            painting.style.transform = "skew(0deg, -30deg)";
+        }
+    }
+
     initScene() {
         super.initScene();
         this.fetchPaintings();
+        document.addEventListener("click", (event) => {
+            let painting = document.querySelector("#selected-painting").children[0];
+            painting.style.left = event.clientX.toString();
+            painting.style.top = event.clientY.toString();
+            this.rotatePainting(painting);
+        })
     }
 
     unloadScene() {
