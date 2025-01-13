@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Squiz Game</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>G3</h1>
+    <div id="progress-bar-container"></div>
+
+    <div class="game-container">
+        <header>
+            <h1>Squiz Game</h1>
+            <div id="mediaContainerDiv"></div>
+        </header>
     
+        <div class="question-container">
+            <h2 id="question">Question s'affiche ici</h2>
+        </div>
+        <div id="difficulty-selector" style="display: flex;">
+            <button id="easy-btn">Facile</button>
+            <button id="medium-btn">Moyen</button>
+            <button id="hard-btn">Difficile</button>
+        </div>
+        
+        <div class="player-info">
+            <p>Joueur Actif: <span id="activePlayer">1</span></p>
+            <p>Score Joueur 1: <span id="score1">0</span></p>
+            <p>Score Joueur 2: <span id="score2">0</span></p>
+            <p>Temps restant: <span id="timer">20</span></p>
+        </div>
+        <button id="nextButton" style="display:none;">Suivant</button>
+        <div class="answers-container" id="answers-container">
+            <button class="answer-btn" id="btnA" data-choice="A">A</button>
+            <button class="answer-btn" id="btnB" data-choice="B">B</button>
+            <button class="answer-btn" id="btnC" data-choice="C">C</button>
+            <button class="answer-btn" id="btnD" data-choice="D">D</button>
+        </div>
+    </div>
+
+
+    <script type="module" src="js/index.js"></script>
 </body>
+
 </html>
