@@ -4,6 +4,8 @@ import ReserveScene from "./js/reserveScene.js"
 import Scene from "./js/scene.js";
 import AudioManager from "./js/audioManager.js";
 import Dialogue from "./js/dialogue.js";
+import   "./js/paintingChoice.js";
+
 var game = new Game();
 const welcomeScene = new Scene("scene-welcome", null)
 const exhibitionScene = new ExhibitionScene();

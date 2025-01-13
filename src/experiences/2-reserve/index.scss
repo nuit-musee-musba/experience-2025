@@ -1,3 +1,17 @@
 #scene-exhibition, #scene-reserve {
     display: none;
 }
+
+
+
+#conteneur-paintings{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    width: 80%;
+}
+
+#conteneur-paintings img{
+    width: 400px;
+    transition: all 0.5ms;
+}
