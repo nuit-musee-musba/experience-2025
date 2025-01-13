@@ -1,5 +1,6 @@
 import DragDrop from './DragDrop.js';
 import Item from './Item.js';
+import Dialogue from './Dialogue.js';
 
 // Initialisation des items
 const inventorySlots = document.querySelector('.inventory-slots');
@@ -22,3 +23,6 @@ itemsData.forEach(data => {
 
 // Initialisation du Drag & Drop
 new DragDrop('#work-area', '.item');
+
+var dialogue = new Dialogue();
+dialogue.listDialogue(Array.from({ length: 30 }, (_, i) => i), '#dialogue-element');
