@@ -12,7 +12,7 @@ const reserveScene = new ReserveScene();
 
 document.getElementById("start-button").addEventListener("click", () => {
     AudioManager.getInstance().canPlaySound = true;
-    //Game.getInstance().unloadScene("scene-welcome");
+    Game.getInstance().unloadScene("scene-welcome");
     Game.getInstance().loadScene("scene-exhibition");
     AudioManager.getInstance().canPlaySound = false;
 });

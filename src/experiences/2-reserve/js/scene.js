@@ -4,7 +4,7 @@ import Sprite from "./sprite.js";
 
 export default class Scene extends Sprite {
     constructor(name, sound) {
-        super("src", "size", "x", "y")
+        super("src", "width", "height", "x", "y")
         this.sound = sound;
         this.name = name;
     }

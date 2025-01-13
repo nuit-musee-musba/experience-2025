@@ -11,13 +11,26 @@ export default class ExhibitionScene extends Scene {
 
     fetchPaintings() {
         SelectedPaintings.forEach((painting) => {
-            console.log(painting.thematic);
-            new Sprite(painting.src, painting.size, painting.x, painting.y);
+            new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
         });
+    }
+
+    cleanPaintings() {
+        let paintingsContainer = document.querySelector("#paintings-container");
+        if (!paintingsContainer) {
+            console.error("No paintings container found");
+            return;
+        }
+        paintingsContainer.innerHTML = "";
     }
 
     initScene() {
         super.initScene();
         this.fetchPaintings();
+    }
+
+    unloadScene() {
+        super.unloadScene();
+        this.cleanPaintings()
     }
 }
