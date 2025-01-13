@@ -4,7 +4,7 @@ export default class Character {
 
     showCharacter(emotion){
         let character = document.querySelector('#character');
-        this.changeFaceCharacter(emotion);
+        this.changeCharacterFace(emotion);
         character.style.display = "block"
     }
 
@@ -13,17 +13,21 @@ export default class Character {
         character.style.display = "none"
     }
 
-    changeFaceCharacter(emotion){
+    changeCharacterFace(emotion){
         let character = document.querySelector('#character');
+        
 
-        if (emotion == 0) {
-            character.src = `./assets/img/tristan.png`;
-        }
-        if (emotion == 1) {
-            character.src = `./assets/img/tristan-triste.webp`;
-        }
-        else{
-            this.hideCharacter()
+        switch (emotion) {
+            case  0:
+                character.src = `./assets/img/tristan.png`;
+                break;
+        
+            case 1 :
+                character.src = `./assets/img/tristan-triste.webp`;
+                break;
+            default:
+                this.hideCharacter()
+                break;
         }
     }
 }
