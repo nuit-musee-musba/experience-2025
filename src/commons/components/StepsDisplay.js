@@ -1,5 +1,8 @@
-export class StepsDisplay{
+import EventEmitter from "./EventEmitter";
+
+export class StepsDisplay extends EventEmitter{
     constructor(currentStep, stepsTarget, className){
+        super();
         this.currentStep = currentStep;
         this.stepsTarget = stepsTarget;
         this.className = className;
@@ -31,8 +34,10 @@ export class StepsDisplay{
     }
 
     increment(number){
-        if(parseInt(this.CurrentStep.textContent) + number > this.stepsTarget){
+        if(parseInt(this.CurrentStep.textContent) + number == this.stepsTarget){
             this.CurrentStep.textContent = this.stepsTarget;
+            this.emit('stepsReached');
+            
         }
         else{
             this.CurrentStep.textContent = parseInt(this.CurrentStep.textContent) + number;

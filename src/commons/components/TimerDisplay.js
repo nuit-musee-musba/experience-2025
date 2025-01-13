@@ -1,6 +1,9 @@
-export class TimerDisplay {
+import EventEmitter from "./EventEmitter";
+
+export class TimerDisplay extends EventEmitter {
     constructor(time, className) {
-        this.time = time * 60; // Initial time in seconds
+        super()
+        this.time = time * 60; 
         this.className = className;
 
         this.timerDisplay = document.createElement('div');
@@ -49,10 +52,12 @@ export class TimerDisplay {
                 this.stop();
                 console.log("Timer finished!");
             }
+
         }, 1000);
     }
 
     stop() {
+        this.emit('timerFinished');
         if (this.intervalId) {
             clearInterval(this.intervalId);
             this.intervalId = null;

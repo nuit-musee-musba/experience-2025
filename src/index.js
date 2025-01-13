@@ -19,7 +19,11 @@ const TextButton = new Button('le Boutton', 'https://www.google.com', 'small', '
 
 
 
+stepsDisplay.on('stepsReached', ()=>{
+    console.log('Steps reached');
 
+    
+})
 
 
 const incrementButton = document.createElement('button');

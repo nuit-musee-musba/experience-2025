@@ -1,7 +1,11 @@
-export class ScoreDisplay {
-    constructor(startValue, className) {
+import EventEmitter from "./EventEmitter";
+
+export class ScoreDisplay extends EventEmitter{
+    constructor(startValue, className, targetValue) {
+        super();
         this.className = className;
         this.startValue = startValue;
+        this.targetValue = targetValue;
 
         this.scoreDisplay = document.createElement('div');
         this.scoreDisplay.className = `stats-display ${this.className}`;
@@ -28,6 +32,10 @@ export class ScoreDisplay {
 
     increment(number) {
         this.score.textContent = parseInt(this.score.textContent) + number;
+
+        if(parseInt(this.score.textContent) == this.targetValue){
+            this.emit('scoreReached');
+        }
     }
 
     decrement(number) {
