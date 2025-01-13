@@ -10,6 +10,19 @@ let showingAnswer = false;
 let selectedDifficulty = null;
 let HaveselectedDifficulty = 0;
 let HaveFinishQuestions = 0;
+let shuffledQuestions = [];
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+        console.log(shuffledQuestions)
+    }
+}
+function initializeGame() {
+    shuffledQuestions = [...questions];
+    shuffleArray(shuffledQuestions);
+}
 
 export function showAnswer(
     questionEl,
@@ -21,7 +34,7 @@ export function showAnswer(
     nextButton,
     timerEl
 ) {
-    const question = questions[currentQuestion];
+    const question = shuffledQuestions[currentQuestion];
     showingAnswer = true;
 
     questionEl.textContent = question.responseDetails.text;
@@ -49,8 +62,8 @@ export function showAnswer(
     }
 
     const answersContainer = document.getElementById("answers-container");
-    
-    answersContainer.style.display = "none"; 
+
+    answersContainer.style.display = "none";
 
     nextButton.style.display = "block";
 
@@ -60,28 +73,35 @@ export function showAnswer(
 function askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
 
     document.getElementById('difficulty-selector').style.display = 'block';
+    document.getElementById('answers-container').style.display = 'none';
 
     document.getElementById('easy-btn').addEventListener("click", () => {
         selectedDifficulty = "easy";
+        document.getElementById('answers-container').style.display = 'flex';
         document.getElementById('difficulty-selector').style.display = 'none';
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+        startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
     });
 
     document.getElementById('medium-btn').addEventListener("click", () => {
         selectedDifficulty = "medium";
+        document.getElementById('answers-container').style.display = 'flex';
         document.getElementById('difficulty-selector').style.display = 'none';
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+        startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
     });
 
     document.getElementById('hard-btn').addEventListener("click", () => {
         selectedDifficulty = "hard";
+        document.getElementById('answers-container').style.display = 'flex';
         document.getElementById('difficulty-selector').style.display = 'none';
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+        startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
     });
 }
 
 export function loadQuestion(
-   
+
     questionEl,
     btnA,
     btnB,
@@ -94,12 +114,17 @@ export function loadQuestion(
     score2El,
     nextButton
 ) {
-    if(HaveFinishQuestions === 0){
-        HaveFinishQuestions = 1 ;
-        HaveselectedDifficulty = 0 ;
+    btnA.style.display = "block";
+    btnB.style.display = "block";
+    btnC.style.display = "block";
+    btnD.style.display = "block";
+
+    if (HaveFinishQuestions === 0) {
+        HaveFinishQuestions = 1;
+        HaveselectedDifficulty = 0;
     }
-    
-    const q = questions[currentQuestion];
+
+    const q = shuffledQuestions[currentQuestion];
     if (HaveselectedDifficulty === 0) {
         askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
         HaveselectedDifficulty = 1;
@@ -132,8 +157,6 @@ export function loadQuestion(
     startingPlayer = startingPlayer === 1 ? 2 : 1;
     hasAnswered = false;
     activePlayerEl.textContent = activePlayer;
-
-    startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
 }
 
 function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
@@ -160,14 +183,24 @@ export function handleAnswer(
     score2El,
     nextButton
 ) {
-    // Utilisation correcte de 'selectedDifficulty'
     const correct = questions[currentQuestion].difficulties[selectedDifficulty].correct;
 
     if (choice === correct) {
-        incrementScore(activePlayer);
+        incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
         nextTurn(true, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     } else {
+        // Désactiver ou masquer le bouton de la réponse incorrecte
+        if (choice === "A") {
+            btnA.style.display = "none";
+        } else if (choice === "B") {
+            btnB.style.display = "none";
+        } else if (choice === "C") {
+            btnC.style.display = "none";
+        } else if (choice === "D") {
+            btnD.style.display = "none";
+        }
+
         if (!hasAnswered) {
             hasAnswered = true;
             activePlayer = activePlayer === 1 ? 2 : 1;
@@ -225,3 +258,5 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
 function endGame(score1El, score2El) {
     alert(`Fin du jeu ! Joueur 1: ${score1} points, Joueur 2: ${score2} points`);
 }
+
+initializeGame();
