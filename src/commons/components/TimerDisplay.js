@@ -1,7 +1,7 @@
 import EventEmitter from "./EventEmitter";
 
 export class TimerDisplay extends EventEmitter {
-    constructor(time, className) {
+    constructor(time, className = '') {
         super()
         this.time = time * 60; 
         this.className = className;

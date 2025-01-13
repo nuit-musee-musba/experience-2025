@@ -1,7 +1,7 @@
 
 
 export class Modal {
-    constructor(className, title, content) {
+    constructor( title, content, className = '') {
       this.className = className;
       this.title = title;
       this.content = content;

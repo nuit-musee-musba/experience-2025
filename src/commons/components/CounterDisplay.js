@@ -1,5 +1,5 @@
 export class CounterDisplay {
-    constructor(startValue, className) {
+    constructor(startValue, className = '') {
         this.className = className;
         this.startValue = startValue;
 

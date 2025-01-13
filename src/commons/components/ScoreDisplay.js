@@ -1,7 +1,7 @@
 import EventEmitter from "./EventEmitter";
 
 export class ScoreDisplay extends EventEmitter{
-    constructor(startValue, className, targetValue) {
+    constructor(startValue, targetValue, className = '') {
         super();
         this.className = className;
         this.startValue = startValue;

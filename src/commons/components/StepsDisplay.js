@@ -1,7 +1,7 @@
 import EventEmitter from "./EventEmitter";
 
 export class StepsDisplay extends EventEmitter{
-    constructor(currentStep, stepsTarget, className){
+    constructor(currentStep, stepsTarget, className = ''){
         super();
         this.currentStep = currentStep;
         this.stepsTarget = stepsTarget;

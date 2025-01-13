@@ -1,5 +1,5 @@
 export class Button {
-    constructor(text, link, size, color, className) {
+    constructor(text, link, size, color, className = '') {
         this.text = text;
         this.link = link;
         this.color = color;
