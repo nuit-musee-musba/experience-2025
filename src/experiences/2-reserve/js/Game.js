@@ -1,10 +1,10 @@
-import EventEmitter from "./eventEmitter.js"
-
 var thematicEnum = {
     0: "happy",
     1: "Sad",
     2: ""
 };
+
+import EventEmitter from "./eventEmitter.js"
 
 Object.keys(thematicEnum).forEach(key => {
     thematicEnum[thematicEnum[key]] = parseInt(key);

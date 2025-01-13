@@ -1,8 +1,9 @@
 import  DIALOGUES  from '../data/dialogues.js'
+import Character from './character.js';
 
 export default class Dialogue{
     constructor(){
-       
+        this.character = new Character();
     }
     listDialogue(arrayDialoguesId, dialogueElementSelector) {
       let currentIndex = 0;
@@ -14,6 +15,7 @@ export default class Dialogue{
               const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
               if (dialogue) {
                   dialogueContainer.innerText = dialogue.text;
+                  this.character.showCharacter(dialogue.emotion);
                   currentIndex++; 
               }
           } else {
@@ -21,8 +23,6 @@ export default class Dialogue{
           }
       });
     }
-
-    
 
     showDialogue( dialogue, dialogueElementSelector) {
         const dialogueContainer = document.querySelector(dialogueElementSelector);
@@ -36,6 +36,7 @@ export default class Dialogue{
         const dialogueNameContent = document.querySelector('.dialogueNameContent');
         dialogueNameContent.style.display = "none";
         textDialogue.style.display = 'none'; 
+        this.character.hideCharacter();
     }
 
     findDialogue(dialogueId){
