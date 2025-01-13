@@ -10,3 +10,7 @@
     top: 800px;
     left: 200px;
 }
+
+.selected {
+    transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
+}
