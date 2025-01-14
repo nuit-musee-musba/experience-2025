@@ -1,0 +1,430 @@
+@use "../../../commons/styles/style.scss";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+*/
+/* Reset CSS */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	//font-size: 100%;
+	//font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* General SCSS */
+
+body, html {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+#app-exp-6{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+canvas{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.main-container{
+    position: relative;
+    padding: 8rem;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background:url(
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAADdJREFUKFNjZCASMCKre/fu3X9kvpCQEFwezkBXBNMAUwxWiEsRsuKBVojPnSiegTmaqOAhFO4A3z8gCxD/Cf8AAAAASUVORK5CYII=
+   ) repeat;
+}
+
+h1{
+    color: black;
+    font-family: NyghtSerif;
+    font-size: 144px;
+    font-weight: 400;
+}
+/* h2{
+    color: black;
+    font-size: 92px;
+    font-family: ;
+} */
+
+/* Home */
+.home-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+}
+
+.button-start-container{
+    .button-start{
+        width: auto;
+        height: auto;
+        background-color: #000;
+        padding: 2rem 4rem;
+    
+        h2{
+            color: #fff;
+        }
+    }
+}
+
+.home-text.exit-animation-home {
+    animation: fade-out 1s ease forwards;
+}
+/* Entry Animation */
+.home-text.entry-animation-home {
+    animation: fade-in 1s ease forwards;
+}
+
+.button-start.exit-animation-home {
+    animation: fade-out 1s ease forwards;
+}
+/* Entry Animation */
+.button-start.entry-animation-home {
+    opacity: 0;
+    animation: fade-in 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+
+
+
+/* Header Component */
+
+.header{
+    div{
+        overflow: hidden;
+    }
+}
+
+/* Exit Animation */
+.title.exit-animation-header {
+    animation: fade-out 1s ease forwards;
+}
+/* Entry Animation */
+.title.entry-animation-header {
+    animation: fade-in 1s ease forwards;
+}
+
+.subtitle.exit-animation-header {
+    animation: fade-out 1s ease forwards;
+    animation-delay: 0.3s;
+}
+/* Entry Animation */
+.subtitle.entry-animation-header {
+    opacity: 0;
+    animation: fade-in 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* Intro */
+.intro-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6rem;
+}
+
+.char{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    gap: 6rem;
+}
+
+.char-container{
+
+}
+
+.char-img{
+
+}
+
+.char-dialog{
+    padding: 2rem;
+    width: 36%;
+    height: fit-content;
+    border: 1px solid #000;
+}
+
+.char-dialog-text{
+
+}
+
+.button-container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    .button-suivant{
+        width: auto;
+        height: auto;
+        background-color: #000;
+        padding: 2rem 4rem;
+    
+        h2{
+            color: #fff;
+        }
+    }
+}
+
+.char-container.exit-animation {
+    animation: fade-out 0.5s ease forwards;
+    animation-delay: 0.4s;
+}
+/* Entry Animation */
+.char-container.entry-animation {
+    animation: fade-in 0.5s ease forwards;
+}
+
+.char-dialog.exit-animation {
+    animation: fade-out 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+/* Entry Animation */
+.char-dialog.entry-animation {
+    opacity: 0;
+    animation: fade-in 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.button-suivant.exit-animation {
+    animation: fade-out 0.5s ease forwards;
+}
+/* Entry Animation */
+.button-suivant.entry-animation {
+    opacity: 0;
+    animation: fade-in 0.5s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* Steps */
+
+.step-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.exp-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.exp-right,.exp-left{
+    width: 25%;
+    height: 100%;
+    h1,h2{
+        letter-spacing: 0.1em;
+        line-height: 120%;
+    }
+}
+.exp-left{
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
+}
+.exp-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.steps{
+    display: flex;
+    flex-direction: row;
+
+    .step-text{
+        padding: 2rem;
+        border: 1px solid #000;
+    }
+    .step-count{
+        padding: 2rem;
+        background: #000;
+        h3{
+            color: #fff;
+            line-height: 100%;
+        }
+    }
+}
+
+.exp-header,.exp-consigne,.exp-explication{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 4rem;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid #000;
+    background: #fff;
+}
+
+.exp-char-img{
+    width: 50%;
+    margin-bottom: -6rem;
+}
+
+/* const headerElement = this.element.querySelector(".exp-header-container") as HTMLElement;
+        const consigneElement = this.element.querySelector(".exp-consigne") as HTMLElement;
+        const rightElement = this.element.querySelector(".exp-right") as HTMLElement;
+        const buttonElement = this.element.querySelector(".button-suivant") as HTMLElement; */
+
+.exp-header-container.exit-animation {
+    //animation: fade-out 0.5s ease forwards;
+    animation: scale-out 0.5s ease forwards;
+    animation-delay: 0.6s;
+}
+.exp-header-container.entry-animation {
+    //animation: fade-in 0.5s ease forwards;
+    opacity: 0;
+    transform: scale(0);
+    animation: scale-in 0.5s ease forwards;
+}
+
+.exp-consigne.exit-animation {
+    //animation: fade-out 0.5s ease forwards;
+    animation: scale-out 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+.exp-consigne.entry-animation {
+    //animation: fade-in 0.5s ease forwards;
+    opacity: 0;
+    transform: scale(0);
+    animation: scale-in 0.5s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.exp-right.exit-animation {
+    //animation: fade-out 0.5s ease forwards;
+    animation: scale-out 0.5s ease forwards;
+    animation-delay: 0.4s;
+}
+.exp-right.entry-animation {
+    //animation: fade-in 0.5s ease forwards;
+    opacity: 0;
+    transform: scale(0);
+    animation: scale-in 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.step-container{
+    .button-suivant.exit-animation {
+        //animation: fade-out 0.5s ease forwards;
+        animation: scale-out 0.5s ease forwards;
+    }
+    .button-suivant.entry-animation {
+        //animation: fade-in 0.5s ease forwards;
+        animation: scale-in 0.5s ease forwards;
+        animation-delay: 0.6s;
+    }
+}
+
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes scale-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes scale-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

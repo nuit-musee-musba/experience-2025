@@ -1,3 +1,16 @@
 #scene-exhibition, #scene-reserve {
     display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.exhibition-info {
+    position: absolute;
+    top: 800px;
+    left: 200px;
+}
+
+.selected {
+    transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
 }

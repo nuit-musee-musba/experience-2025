@@ -1,18 +1,21 @@
 import  DIALOGUES  from '../data/dialogues.js'
+import Character from './character.js';
 
 export default class Dialogue{
     constructor(){
-       
+        this.character = new Character();
     }
     listDialogue(arrayDialoguesId, dialogueElementSelector) {
       let currentIndex = 0;
+      const nextButton = document.querySelector('.nextButton')
       const dialogueContainer = document.querySelector(dialogueElementSelector);
-      dialogueContainer.addEventListener("click", () => {
+      nextButton.addEventListener("click", () => {
         
           if (currentIndex < arrayDialoguesId.length) {
               const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
               if (dialogue) {
                   dialogueContainer.innerText = dialogue.text;
+                  this.character.showCharacter(dialogue.emotion);
                   currentIndex++; 
               }
           } else {
@@ -30,7 +33,10 @@ export default class Dialogue{
 
     closeDialogue(dialogueElementSelector) {
         const textDialogue = document.querySelector(dialogueElementSelector);
+        const dialogueNameContent = document.querySelector('.dialogueNameContent');
+        dialogueNameContent.style.display = "none";
         textDialogue.style.display = 'none'; 
+        this.character.hideCharacter();
     }
 
     findDialogue(dialogueId){

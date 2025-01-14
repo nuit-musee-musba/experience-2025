@@ -6,17 +6,17 @@ export default [
     },
     {
         id: 1,
-        emotion : 0,
+        emotion : 1,
         text : "Choisisez un tableau",
     },
     {
         id: 2,
-        emotion : 0,
+        emotion : 1,
         text : "Ce tableau est ...",
     },
     {
         id: 3,
-        emotion : 0,
+        emotion : 1,
         text : "Bravo vous pouvez le placer",
     },
     {
