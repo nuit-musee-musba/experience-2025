@@ -3,7 +3,7 @@ export default class Item {
       this.step = step;
       this.name = name;
       this.element = this.createHTMLElement();
-  }
+    }
 
   createHTMLElement() {
       const itemElement = document.createElement('div');
