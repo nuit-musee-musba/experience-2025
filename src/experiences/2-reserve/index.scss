@@ -15,14 +15,14 @@
     transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
 }
 
-#conteneur-paintings{
+#container-paintings{
     display: flex;
     gap: 2rem;
     flex-wrap: nowrap;
     width: 80%;
 }
 
-#conteneur-paintings img{
+#container-paintings img{
     width: 400px;
     height: fit-content ;
 

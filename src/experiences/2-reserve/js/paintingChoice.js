@@ -5,7 +5,7 @@ import AudioManager from "./audioManager";
 
 
 
-let containeurPaintings = document.querySelector('#containeur-paintings');
+let containeurPaintings = document.querySelector('#container-paintings');
 let sceneReserve = document.querySelector('#scene-reserve');
 
 containeurPaintings.addEventListener("click", (e) => {

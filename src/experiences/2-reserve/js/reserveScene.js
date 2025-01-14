@@ -12,13 +12,13 @@ export default class ReserveScene extends Scene {
 
     unloadScene(){
         let filteredPaintings = []
-        this.unloadPainting('#containeur-paintings')
+        this.unloadPainting('#container-paintings')
 
     }
 
     initScene(){
         super.initScene()
-        this.loadPaintings("#containeur-paintings")
+        this.loadPaintings("#container-paintings")
     }
 
     loadPaintings(conteneurPaintings, filteredPaintings) {
