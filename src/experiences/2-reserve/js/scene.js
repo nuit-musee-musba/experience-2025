@@ -1,14 +1,16 @@
 import AudioManager from "./audioManager.js";
 import Game from "./Game.js";
+import Sprite from "./sprite.js";
 
-export default class Scene {
+export default class Scene extends Sprite {
     constructor(name, sound) {
+        super("src", "width", "height", "x", "y")
         this.sound = sound;
         this.name = name;
-        this.start();
     }
 
     start() {
+        super.start();
         Game.getInstance().on("scene:loaded", (sceneName) => {
             if (!this.checkScene(sceneName)) {
                 return;
