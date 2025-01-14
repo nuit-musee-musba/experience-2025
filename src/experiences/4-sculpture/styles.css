@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh; /* Assure que la hauteur de l'écran est utilisée */
+}
+
+.zone-de-travail {
+  flex: 2;
+  background-color: #ffffff;
+  border-right: 2px solid #ccc;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop-zone {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.inventaire-et-tutoriel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Place le tutoriel en haut et l'inventaire en bas */
+}
+
+.tutoriel {
+  padding: 20px;
+  border-bottom: 2px solid #ccc;
+  flex-shrink: 0; /* Empêche le tutoriel de grandir */
+}
+
+.inventaire {
+  padding: 20px;
+  flex-shrink: 0; /* Fixe la taille de l'inventaire en bas */
+}
+
+.inventory-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.item {
+  background-color: #fff;
+  border: 2px solid #bbb;
+  text-align: center;
+  cursor: grab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item.used {
+  background-color: #ddd;
+  border-color: #999;
+  color: #666;
+  cursor: not-allowed;
+}
