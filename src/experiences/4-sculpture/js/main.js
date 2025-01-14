@@ -12,7 +12,7 @@ const itemsData = [
     { step: 6, name: 'Objet 6' },
     { step: 7, name: 'Objet 7' },
     { step: 8, name: 'Objet 8' },
-    { step: 8, name: 'Objet 9' },
+    { step: 9, name: 'Objet 9' },
 ];
 
 itemsData.forEach(data => {
