@@ -135,3 +135,42 @@ html, body {
   color: #666;
   cursor: not-allowed;
 }
+
+img {
+    transition: all 0.3s ease;
+    width: auto; /* Laisse l'image ajuster sa largeur automatiquement */
+    height: auto; /* Laisse l'image ajuster sa hauteur automatiquement */
+    max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
+    max-height: 100%; /* Empêche l'image de dépasser la hauteur de son conteneur */
+    display: block; /* Supprime les espaces blancs autour de l'image */
+    margin: auto; /* Centre l'image horizontalement */
+    transition: all 0.3s ease;
+}
+
+.item {
+  display: flex;
+  flex-direction: column; /* Dispose l'image et le texte en colonne */
+  align-items: center; /* Centre les éléments horizontalement */
+  justify-content: center; /* Centre les éléments verticalement */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  width: 100px; /* Taille ajustable */
+  height: 120px; /* Taille ajustable */
+  background-color: #f9f9f9;
+  text-align: center; /* Centre le texte */
+}
+
+.item img {
+  transition: transform 0.2s ease; /* Animation pour le survol */
+}
+
+.item:hover img {
+  transform: scale(1.2); /* Zoom sur l'image au survol */
+}
+
+.item p {
+  font-size: 14px; /* Taille du texte */
+  color: #333; /* Couleur du texte */
+}
+
