@@ -1,4 +1,5 @@
 import EventEmitter from "./eventEmitter.js"
+import Dialogue from "./dialogue.js";
 
 var thematicEnum = {
     0: "happy",
@@ -14,10 +15,12 @@ export default class Game extends EventEmitter {
     constructor() {
         super();
         this.chosenPaintings = [];
+        this.gameProgression = 0;
+        this.endGameThreshold = 2;
         if (Game._instance) {
             console.error("An audio manager is a singleton. Please use getInstance() instead.");
         }
-        this.audioElem = document.querySelector('#background-music')
+        this.dialogue = new Dialogue();
     }
 
     static getInstance() {
@@ -33,5 +36,14 @@ export default class Game extends EventEmitter {
 
     unloadScene(sceneName) {
         this.emit("scene:unloaded", sceneName);
+    }
+
+    updateGameProgression() {
+        this.gameProgression++;
+        if (this.gameProgression >= this.endGameThreshold) {
+            this.loadScene("end-scene");
+            return;
+        }
+        this.loadScene("scene-exhibition")
     }
 }

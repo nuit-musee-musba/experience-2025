@@ -1,48 +1,48 @@
-import  DIALOGUES  from '../data/dialogues.js'
+import DIALOGUES from '../data/dialogues.js'
 import Character from './character.js';
+import {Modal} from "../../../commons/components/Modal.js";
 
-export default class Dialogue{
-    constructor(){
+export default class Dialogue extends Modal {
+    constructor() {
+        super("Tristan le conservateur", "TestContent", "dialogue")
         this.character = new Character();
-    }
-    listDialogue(arrayDialoguesId, dialogueElementSelector) {
-      let currentIndex = 0;
-      const nextButton = document.querySelector('.nextButton')
-      const dialogueContainer = document.querySelector(dialogueElementSelector);
-      nextButton.addEventListener("click", () => {
-        
-          if (currentIndex < arrayDialoguesId.length) {
-              const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
-              if (dialogue) {
-                  dialogueContainer.innerText = dialogue.text;
-                  this.character.showCharacter(dialogue.emotion);
-                  currentIndex++; 
-              }
-          } else {
-              this.closeDialogue(dialogueElementSelector); 
-          }
-      });
+
+        this.buttonElement = document.createElement('p');
+        this.contentElement.textContent = this.content;
     }
 
-    showDialogue( dialogue, dialogueElementSelector) {
-        const dialogueContainer = document.querySelector(dialogueElementSelector);
-        dialogueContainer.innerText = dialogue.text; 
-        dialogueContainer.style.display = 'block'; 
+    listDialogue(arrayDialoguesId) {
+        this.show()
+        let currentIndex = 0;
+        const nextButton = document.querySelector('.nextButton')
+        this.changeContent("", this.findDialogue(arrayDialoguesId[0]).text);
 
-      }
+        nextButton.addEventListener("click", () => {
+            if (currentIndex < arrayDialoguesId.length) {
+                const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
+                console.log(dialogue);
+                if (dialogue) {
+                    this.content = dialogue.text;
+                    this.character.showCharacter(dialogue.emotion);
+                    currentIndex++;
+                }
+            } else {
+                console.error("can't find dialogue with id " + arrayDialoguesId[currentIndex]);
+                this.close();
+            }
+        });
+    }
 
-    closeDialogue(dialogueElementSelector) {
-        const textDialogue = document.querySelector(dialogueElementSelector);
-        const dialogueNameContent = document.querySelector('.dialogueNameContent');
-        dialogueNameContent.style.display = "none";
-        textDialogue.style.display = 'none'; 
+    close() {
+        super.close();
         this.character.hideCharacter();
     }
 
-    findDialogue(dialogueId){
-        if (DIALOGUES[dialogueId] == undefined){
-            return null
-        }
-      return  DIALOGUES[dialogueId];
-  }
+    findDialogue(dialogueId) {
+        return DIALOGUES.find((dialogue) => dialogue.id === dialogueId);
+    }
+
+    changeContent(title, content) {
+        this.contentElement.textContent = content;
+    }
 }
