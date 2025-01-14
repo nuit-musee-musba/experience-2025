@@ -1,14 +1,14 @@
 import paintings from "../data/paintings";
-import selectedPainting from "../data/selectedPainting";
+import selectedPaintings from "../data/selectedPaintings";
 import Game from "./Game";
 import AudioManager from "./audioManager";
 
 
 
-let conteneurPaintings = document.querySelector('#conteneur-paintings');
+let containeurPaintings = document.querySelector('#containeur-paintings');
 let sceneReserve = document.querySelector('#scene-reserve');
 
-conteneurPaintings.addEventListener("click", (e) => {
+containeurPaintings.addEventListener("click", (e) => {
     if (e.target.tagName !== "IMG") {
         return;
     }
@@ -80,9 +80,8 @@ function createPushLink(paintingData, parentImg, img) {
     pushLink.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (!selectedPainting.includes(paintingData)) {
-            selectedPainting.push(paintingData);
-            console.log('paintings', paintings)
+        if (!selectedPaintings.includes(paintingData)) {
+            selectedPaintings.push(paintingData);
             const index = paintings.findIndex(painting => painting.id === paintingData.id);
             if (index !== -1) {
                 paintings.splice(index, 1); 
