@@ -90,26 +90,26 @@ html, body {
 }
 
 /* Inventaire */
+/* Inventaire */
 .inventaire {
   flex: 1;
   border: 2px solid #ccc;
   background-color: #e6ffe6;
   padding: 10px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; /* Inclut le padding et les bordures dans les dimensions */
+  box-sizing: border-box;
 }
 
 .inventory-slots {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
-  grid-template-rows: repeat(3, 1fr);   /* Trois lignes */
-  gap: 10px; /* Espacement entre les items */
+  grid-template-columns: repeat(3, 1fr); /* Grille 3x3 */
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px; /* Espacement entre les carrés */
   width: 100%;
   height: 100%;
-  box-sizing: border-box; /* Gère mieux les dimensions */
+  box-sizing: border-box;
 }
 
 .item {
@@ -120,11 +120,10 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1; /* Assure que chaque item reste carré */
-  max-width: calc(100% / 3 - 10px); /* Ajuste la largeur des items en fonction de l'écran */
-  max-height: calc(100% / 3 - 10px); /* Ajuste la hauteur des items */
-  box-sizing: border-box; /* Inclut les bordures dans les dimensions */
+  aspect-ratio: 1; /* Assure une forme carrée */
+  box-sizing: border-box;
 }
+
 
 .item:active {
   cursor: grabbing;
