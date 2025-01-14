@@ -26,8 +26,6 @@ document.getElementById("change-scene").addEventListener("click", () => {
 });
 
 Game.getInstance().loadScene("scene-welcome");
-
-reserveScene.loadPainting('#conteneur-paintings')
 var dialogue = new Dialogue();
 dialogue.listDialogue( [0,1],'#dialogue-element')
 
