@@ -57,7 +57,8 @@ export function showAnswer(
             mediaContainerDiv.appendChild(img);
         } else if (
             question.responseDetails.media.endsWith('.mp4') ||
-            question.responseDetails.media.endsWith('.webm')
+            question.responseDetails.media.endsWith('.webm') ||
+            question.responseDetails.media.endsWith('.mov')
         ) {
             const video = document.createElement('video');
             video.src = question.responseDetails.media;
@@ -150,7 +151,7 @@ export function loadQuestion(
             const img = document.createElement('img');
             img.src = q.media;
             mediaContainerDiv.appendChild(img);
-        } else if (q.media.endsWith('.mp4') || q.media.endsWith('.webm')) {
+        } else if (q.media.endsWith('.mp4') || q.media.endsWith('.mov') || q.media.endsWith('.webm')) {
             const video = document.createElement('video');
             video.src = q.media;
             video.controls = true;
@@ -172,15 +173,15 @@ export function loadQuestion(
         updateProgressBar('progress-bar-container', event.detail.currentQuestionIndex);
     });
 }
-    function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
-        if (!hasAnswered) {
-            activePlayer = activePlayer === 1 ? 2 : 1;
-            activePlayerEl.textContent = activePlayer;
-            startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
-        } else {
-            nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-        }
+function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
+    if (!hasAnswered) {
+        activePlayer = activePlayer === 1 ? 2 : 1;
+        activePlayerEl.textContent = activePlayer;
+        startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
+    } else {
+        nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
+}
 
 export function handleAnswer(
     choice,

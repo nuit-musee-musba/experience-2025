@@ -3,9 +3,9 @@ export const questions = [
         question: "Quelle est la capitale de la France ?",
         responseDetails: {
             text: "Paris est la capitale de la France, célèbre pour la Tour Eiffel et sa gastronomie.",
-            media: "/../src/img/paris.png"
+            media: "video/placeolder.mov"
         },
-        media: "experience-2025/public/3-techniques/Sloumez.png",
+        media: "img/placeolder.png",
         difficulties: {
             easy: {
                 choices: ["Paris", "Londres", "Berlin", "Madrid"],
@@ -25,7 +25,7 @@ export const questions = [
         question: "Combien font 5 + 7 ?",
         responseDetails: {
             text: "5 + 7 font 12. Un simple calcul mental !",
-            media: "/../src/img/calcul.png"
+            media: "video/placeolder.mov"
         },
         media: "/../src/img/julie.png",
         difficulties: {
@@ -49,7 +49,7 @@ export const questions = [
             text: "Le ciel apparaît bleu en raison de la diffusion de la lumière par l’atmosphère.",
             media: "/../src/img/sky.png"
         },
-        media: "/../src/video/OaaaoaoaoaoaoaoaaaaaAAAAOOO.mp4",
+        media: "video/placeolder.mov",
         difficulties: {
             easy: {
                 choices: ["Rouge", "Bleu", "Vert", "Jaune"],
