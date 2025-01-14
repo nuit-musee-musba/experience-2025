@@ -1,7 +1,7 @@
 import EventEmitter from "./EventEmitter";
 
 export class StepsDisplay extends EventEmitter{
-    constructor(currentStep, stepsTarget, className = ''){
+    constructor(currentStep, stepsTarget, className = '', parentElement = null){
         super();
         this.currentStep = currentStep;
         this.stepsTarget = stepsTarget;
@@ -30,7 +30,11 @@ export class StepsDisplay extends EventEmitter{
         this.stepsContainer.appendChild(this.StepsTarget);
         this.stepsDisplay.appendChild(this.stepsContainer);
 
-        document.body.appendChild(this.stepsDisplay);
+        if (parentElement instanceof HTMLElement) {
+            parentElement.appendChild(this.stepsDisplay);
+        } else {
+            document.body.appendChild(this.stepsDisplay);
+        }
     }
 
     increment(number){

@@ -1,5 +1,5 @@
 export class Button {
-    constructor(text, link, size, color, className = '') {
+    constructor(text, link, size, color, className = '', parentElement = null) {
         this.text = text;
         this.link = link;
         this.color = color;
@@ -24,6 +24,11 @@ export class Button {
         this.button.textContent = this.text;
         this.button.href = this.link;
         this.button.appendChild(this.btnText);
-        document.body.appendChild(this.button);
+
+        if (parentElement instanceof HTMLElement) {
+            parentElement.appendChild(this.button);
+        } else {
+            document.body.appendChild(this.button);
+        }
     }
 }
