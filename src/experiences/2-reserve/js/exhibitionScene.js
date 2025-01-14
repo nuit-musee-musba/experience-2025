@@ -29,10 +29,11 @@ export default class ExhibitionScene extends Scene {
 
     fetchPaintings() {
         this.lastSelectedPainting = SelectedPaintings[SelectedPaintings.length - 1]
+
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-
             let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
+
             this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
