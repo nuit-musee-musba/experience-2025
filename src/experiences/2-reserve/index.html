@@ -1,12 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Reserve</title>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="../../commons/styles/reset.css">
+    <link rel="stylesheet" href="../../commons/styles/fonts.scss">
+    <link rel="stylesheet" href="../../commons/styles/style.scss">
+    <link rel="stylesheet" href="index.scss">
 </head>
 <body>
-    <h1>G2</h1>
-    
+<!-- Welcome scene -->
+    <div id="scene-welcome">
+        <h1>Hello</h1>
+        <button id="start-button">Start Game</button>
+    </div>
+
+<!-- Scene 1 -->
+    <div id="scene-exhibition">
+        <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition">
+        <div class="exhibition-info">
+            <h1>scene-exhibition</h1>
+            <button id="change-scene">Next</button>
+        </div>
+        <div id="paintings-container"></div>
+        <div id="selected-painting"></div>
+    </div>
+
+<!-- Scène 2 -->
+<div id="scene-reserve">
+    <h1>scene-reserve</h1>
+    <div class="dialogueNameContent">
+        <h3 >Tristan le conservateur</h3>
+        <div class="dialogueContainer">
+            <p id="dialogue-element">
+                Bienvenue au MusBa
+            </p>
+        </div>
+    <div class="nextButton">
+        <p>Suivant</p>
+        <img src="#" alt="Flèche">
+    </div>
+</div>
+<img id="character"  src="#" alt="#">
+    <div id="conteneur-paintings">
+    </div>
+</div>
+
+<!-- Music -->
+    <audio id="background-music" src="" loop></audio>
 </body>
 </html>

@@ -12,8 +12,8 @@ Réalisé par la promotion 2025 du MMI Bordeaux.
 ## Simulation de l'écran tactile du MusBA
 
 Vous n'avez peut-être pas d'écran 4k de 1m50 x 1m.
-Vous pouvez simuler cette qualité sur chrome en ouvrant l'inspecteur d'élément et en définissant une taille d'écran personnalisée: 3840 x 2160 pixels
-Tuto vidéo: [tuto-custom-screen.mp4](https://drive.google.com/file/d/13nn7Nf9MTph6T_OHQdIMjQydiNKbts94/view?usp=sharing)
+Vous pouvez simuler cette qualité sur chrome en ouvrant l'inspecteur d'élément et en définissant une taille d'écran personnalisée : 3840 x 2160 pixels
+Tuto vidéo : [tuto-custom-screen.mp4](https://drive.google.com/file/d/13nn7Nf9MTph6T_OHQdIMjQydiNKbts94/view?usp=sharing)
 
 ## Développement
 
@@ -43,13 +43,13 @@ pnpm dev
 
 ### Review une pull request
 
-- Pour review une PR vous avez juste à cliquer sur une d'entre elle, regarder le code ajouté ou supprimer et laisser des commentaires si besoin (oubli, erreur...)
-- Si rien ne vous semble problématique vous pouvez lancer le merge vers develop
-- Si vous avez laisser des commentaires c'est à l'auteur de la PR de les corriger 
+- Pour review une PR, vous avez juste à cliquer sur une d'entre elle, regarder le code ajouté ou supprimer et laisser des commentaires si besoin (oubli, erreur...)
+- Si rien ne vous semble problématique, vous pouvez lancer le merge vers develop
+- Si vous avez laissé des commentaires, c'est à l'auteur de la PR de les corriger 
 
 ### Corriger une pull request
 - Vous avez reçu des commentaires sur votre PR, si ils sont pertinents, corriger votre code et faites un nouveau commit sur la branche concernée
-- Si vous avez une remarque a apporté, laisser une réponse dans la conversation 
+- Si vous avez une remarque à apporter, laisser une réponse dans la conversation 
 
 
 ## Les branches
@@ -63,8 +63,8 @@ exemple : g-1/feature/dragAndDrop
 
 ### créer une branche depuis VsCode
 
-- assurez vous d'être dans `develop``
-- lancer un `git pull`pour être sur d'avoir la dernière version
+- assurez-vous d'être dans `develop`
+- lancer un `git pull`pour être sûr d'avoir la dernière version
 - git checkout -b nom_de_la_branche
 
 exemple : git checkout -b g1/feature/dragAndDrop
@@ -89,6 +89,7 @@ C'est le hub qui amène aux expériences (accessible sur http://localhost:5173/)
 
 Les expériences, chacune dans son dossier. Vous pouvez gérer ce qu'il y a dedans comme vous le souhaitez.
 **Pensez à ajouter vos fichiers index.html dans la config `vite.config.js` pour qu'ils soient dans le build**
+**Pensez également à ajouter le fichier style.scss dans vos fichiers html**
 
 ### Dans `/public`
 
