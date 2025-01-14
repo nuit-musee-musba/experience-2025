@@ -4,6 +4,7 @@ import ReserveScene from "./js/reserveScene.js"
 import Scene from "./js/scene.js";
 import AudioManager from "./js/audioManager.js";
 import Dialogue from "./js/dialogue.js";
+import   "./js/paintingChoice.js";
 
 let game = new Game();
 const welcomeScene = new Scene("scene-welcome", null)
@@ -26,8 +27,6 @@ document.getElementById("change-scene").addEventListener("click", () => {
 
 //Loading scene welcome
 Game.getInstance().loadScene("scene-welcome");
-
-reserveScene.loadPainting('#conteneur-paintings')
 let dialogue = new Dialogue();
 dialogue.listDialogue( [0,1],'#dialogue-element')
 

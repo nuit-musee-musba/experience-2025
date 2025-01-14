@@ -1,7 +1,7 @@
 
 
 export class Modal {
-    constructor( title, content, className = '') {
+    constructor( title, content, className = '', parentElement = null) {
       this.className = className;
       this.title = title;
       this.content = content;
@@ -27,7 +27,11 @@ export class Modal {
       this.modal.appendChild(this.line);
       this.modal.appendChild(this.contentElement);
 
-      document.body.appendChild(this.modal);
+      if (parentElement instanceof HTMLElement) {
+        parentElement.appendChild(this.modal);
+    } else {
+        document.body.appendChild(this.modal);
+    }
     }
 
 
