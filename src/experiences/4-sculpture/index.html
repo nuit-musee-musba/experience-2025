@@ -5,38 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Jeu de Drag and Drop</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../commons/styles/style.scss">
 </head>
 <body>
     <div class="container">
+        <!-- Zone de travail -->
         <div class="zone-de-travail">
             <h2>Zone de travail</h2>
             <div id="work-area" class="drop-zone"></div>
         </div>
 
-        <div class="inventaire-et-tutoriel">
-            <div class="tutoriel">
-                <h1>Dialogue</h1>
-                <div class="dialogueNameContent">
-                    <h3 >Ernest le sculpteur</h3>
-                    <div class="dialogueContainer">
-                        <p id="dialogue-element">
-                            Bienvenue, Apprenti ! Aujourd'hui, je vais t'enseigner les bases de l'art délicat de la sculpture en bronze. Crois-moi, c'est un savoir-faire bien plus complexe qu'il n'y paraît !
-                        </p>
-                    </div>
+        <!-- Zone de dialogue -->
+        <div class="tutoriel">
+            <h1>Dialogue</h1>
+            <div class="dialogueNameContent">
+                <h3>Ernest le sculpteur</h3>
+                <div class="dialogueContainer">
+                    <p id="dialogue-element">
+                        Bienvenue, Apprenti ! Aujourd'hui, je vais t'enseigner les bases de l'art délicat de la sculpture en bronze.
+                    </p>
+                </div>
                 <div class="nextButton">
                     <p>Suivant</p>
                     <img src="#" alt="Flèche">
                 </div>
+            </div>
+        </div>
+
+        <!-- Partie droite -->
+        <div class="inventaire-et-tutoriel">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <h2>Progression</h2>
+                <div class="progress">
+                    <div class="progress-inner" style="width: 0%;"></div>
                 </div>
             </div>
 
+            <!-- Inventaire -->
             <div class="inventaire">
                 <h2>Inventaire</h2>
-                <div class="inventory-slots">
-                </div>
+                <div class="inventory-slots"></div> <!-- Les items seront ajoutés par le JS -->
             </div>
         </div>
     </div>
+
     <script type="module" src="js/main.js"></script>
 </body>
-</html>
+</html> 

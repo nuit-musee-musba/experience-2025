@@ -12,11 +12,13 @@ const itemsData = [
     { step: 6, name: 'Objet 6' },
     { step: 7, name: 'Objet 7' },
     { step: 8, name: 'Objet 8' },
+    { step: 8, name: 'Objet 9' },
 ];
 
 itemsData.forEach(data => {
     const item = new Item(data.step, data.name);
-    inventorySlots.appendChild(item.element);
+    const itemElement = item.createHTMLElement();
+    inventorySlots.appendChild(itemElement);
 });
 
 new DragDrop('#work-area', '.item');
