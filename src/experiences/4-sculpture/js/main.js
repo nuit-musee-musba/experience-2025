@@ -16,7 +16,6 @@ const itemsData = [
 
 itemsData.forEach(data => {
     const item = new Item(data.step, data.name);
-    const itemElement = item.createHTMLElement();
     inventorySlots.appendChild(itemElement);
 });
 

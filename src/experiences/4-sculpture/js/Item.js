@@ -2,6 +2,7 @@ export default class Item {
   constructor(step, name) {
       this.step = step;
       this.name = name;
+      this.element = this.createHTMLElement();
   }
 
   createHTMLElement() {
