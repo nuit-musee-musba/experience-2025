@@ -16,7 +16,7 @@ const itemsData = [
 
 itemsData.forEach(data => {
     const item = new Item(data.step, data.name);
-    inventorySlots.appendChild(itemElement);
+    inventorySlots.appendChild(item.element);
 });
 
 new DragDrop('#work-area', '.item');
