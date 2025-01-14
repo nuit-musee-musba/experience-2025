@@ -101,7 +101,6 @@ export default class ExhibitionScene extends Scene {
     }
 
     fixPaintingPosition(elem, pos) {
-
         const paintingWidth = elem.offsetWidth;
         const paintingHeight = elem.offsetHeight;
 
@@ -114,7 +113,6 @@ export default class ExhibitionScene extends Scene {
 
     setPaintingPosition(pos) {
         const painting = document.querySelector("#selected-painting").children[0];
-
         const isPositionChanged = this.tryGetClosestPos(pos)
 
         this.fixPaintingPosition(painting, pos);
