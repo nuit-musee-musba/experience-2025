@@ -5,10 +5,10 @@ import AudioManager from "./audioManager";
 
 
 
-let containeurPaintings = document.querySelector('#container-paintings');
+let containerPaintings = document.querySelector('#container-paintings');
 let sceneReserve = document.querySelector('#scene-reserve');
 
-containeurPaintings.addEventListener("click", (e) => {
+containerPaintings.addEventListener("click", (e) => {
     if (e.target.tagName !== "IMG") {
         return;
     }
@@ -93,7 +93,7 @@ function createPushLink(paintingData, parentImg, img) {
             Game.getInstance().loadScene("scene-exhibition");
             AudioManager.getInstance().canPlaySound = false;
         } else {
-            console.log('Cette peinture est déjà sélectionnée.');
+            console.error ('Cette peinture est déjà sélectionnée.');
         }
     });
     return pushLink;
