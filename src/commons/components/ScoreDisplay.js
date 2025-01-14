@@ -1,7 +1,7 @@
 import EventEmitter from "./EventEmitter";
 
 export class ScoreDisplay extends EventEmitter{
-    constructor(startValue, targetValue, className = '') {
+    constructor(startValue, targetValue, className = '', parentElement = null){
         super();
         this.className = className;
         this.startValue = startValue;
@@ -26,7 +26,11 @@ export class ScoreDisplay extends EventEmitter{
         this.scoreDisplay.appendChild(this.titleContainer);
         this.scoreDisplay.appendChild(this.scoreContainer);
 
-        document.body.appendChild(this.scoreDisplay);
+        if (parentElement instanceof HTMLElement) {
+            parentElement.appendChild(this.scoreDisplay);
+        } else {
+            document.body.appendChild(this.scoreDisplay);
+        }
     
     }
 
