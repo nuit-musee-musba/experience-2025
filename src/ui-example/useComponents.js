@@ -1,3 +1,4 @@
+import { ArrowButton } from "../commons/components/ArrowButton";
 import { Button } from "../commons/components/Button";
 import { CounterDisplay } from "../commons/components/CounterDisplay";
 import { Modal } from "../commons/components/Modal";
@@ -28,11 +29,14 @@ const TextButton = new Button('le Boutton', 'https://www.google.com', 'small', '
 //La couleur doit être black ou white
 
 
+const arrowButton = new ArrowButton('right', 'white',"https://www.google.com", 'test-css');
+//parametres = direction, couleur, classe css
+//La direction doit être right ou left
+//La couleur doit être white ou black
+
 
 stepsDisplay.on('stepsReached', ()=>{
     console.log('Steps reached');
-
-    
 })
 
 
