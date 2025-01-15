@@ -84,13 +84,12 @@ export default class ExhibitionScene extends Scene {
         document.addEventListener("click", (event) => {
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
         });
-        let nextButton = document.querySelector("#change-scene")
+        let nextButton = document.querySelector("#end-exhibition-scene")
         nextButton.disabled = true;
         nextButton.addEventListener("click", () => {
             SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
             SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
             this.updateOccupiedPos();
-            console.log(this.paintingPositions);
         });
     }
 
@@ -120,12 +119,12 @@ export default class ExhibitionScene extends Scene {
         this.rotatePainting(painting);
 
         if (isPositionChanged) {
-            document.querySelector("#change-scene").disabled = false;
+            document.querySelector("#end-exhibition-scene").disabled = false;
             this.lastSelectedPainting.x = pos.x;
             this.lastSelectedPainting.y = pos.y;
         }
         else {
-            document.querySelector("#change-scene").disabled = true;
+            document.querySelector("#end-exhibition-scene").disabled = true;
         }
     }
 
