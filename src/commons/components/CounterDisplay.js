@@ -9,7 +9,7 @@ export class CounterDisplay {
         this.titleContainer = document.createElement('div');
         this.titleContainer.className = 'title-container';
         this.titleElement = document.createElement('h3');
-        this.titleElement.className = 'h3-title-serif';
+        this.titleElement.className = 'text-xl';
         this.titleElement.textContent = 'Compteur';
         this.titleContainer.appendChild(this.titleElement);
 
