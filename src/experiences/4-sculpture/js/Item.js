@@ -38,7 +38,7 @@ export default class Item {
       const textElement = document.createElement('p');
         textElement.textContent = this.name;
         textElement.style.textAlign = 'center';
-        textElement.style.marginTop = '-20px'; // Texte positionné plus haut
+        textElement.style.transform = 'translateY(-20px)';
         textElement.style.fontSize = '20px'; // Texte plus gros
         textElement.style.color = '#333'; // Couleur du texte
 

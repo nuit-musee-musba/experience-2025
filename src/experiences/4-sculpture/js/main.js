@@ -2,6 +2,7 @@ import DragDrop from './DragDrop.js';
 import Item from './Item.js';
 import Dialogue from './Dialogue.js';
 import Step from './currentStep.js';
+import { Button } from '../../../commons/components/Button.js';
 
 const stepManager = new Step(1); // Initialisation de l'étape avec Step
 console.log(`Étape initialisée : ${stepManager.getCurrentStep()}`);
@@ -21,3 +22,5 @@ new DragDrop('#work-area', '.item', stepManager);
 // Initialiser les dialogues
 const dialogue = new Dialogue();
 dialogue.listDialogue(Array.from({ length: 30 }, (_, i) => i), '#dialogue-element');
+
+const btn = new Button()
