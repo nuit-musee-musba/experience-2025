@@ -112,7 +112,7 @@ function askForDifficulty(
             const element = document.getElementById(cartelItem.id);
             if (element) {
                 element.textContent = cartelItem.text;
-
+    
                 if (q.hide && q.hide.includes(cartelItem.id)) {
                     element.style.backgroundColor = "black";
                 } else {
@@ -121,8 +121,9 @@ function askForDifficulty(
             }
         });
     }
+    
 
-    document.getElementById("difficulty-selector").style.display = "block";
+    document.getElementById("difficulty-selector").style.display = "flex";
     document.getElementById("answers-container").style.display = "none";
     stepsDisplay.increment(1);
 
