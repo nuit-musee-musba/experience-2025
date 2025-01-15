@@ -9,7 +9,7 @@ console.log(`Étape initialisée : ${stepManager.getCurrentStep()}`);
 const inventorySlots = document.querySelector('.inventory-slots');
 
 // Crée les items pour les identifiants 1 à 9
-for (let item = 1; item <= 9; item++) {
+for (let item = 1; item <= 6; item++) {
     const itemInstance = new Item(item); // Passe l'identifiant de l'item
     inventorySlots.appendChild(itemInstance.element); // Ajoute l'élément à l'inventaire
     console.log(`Item ajouté : ${item}`);

@@ -174,3 +174,8 @@ img {
   color: #333; /* Couleur du texte */
 }
 
+.item.dragging {
+  opacity: 0.5; /* Grise l'élément */
+  pointer-events: none; /* Désactive les interactions */
+}
+
