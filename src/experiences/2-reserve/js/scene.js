@@ -7,6 +7,7 @@ export default class Scene extends Sprite {
         super("src", "width", "height", "x", "y")
         this.sound = sound;
         this.name = name;
+        this.elem = document.querySelector('#' + this.name);
     }
 
     start() {
@@ -38,18 +39,16 @@ export default class Scene extends Sprite {
             return;
         }
         scene.style.display = "none";
-
         AudioManager.getInstance().stopMusic();
     }
 
     initScene() {
         console.log(`Loading ${this.name}`);
-        let scene = document.querySelector('#' + this.name);
-        if (scene == null) {
+        if (this.elem == null) {
             console.error("No scene were found for " + this.name)
             return;
         }
-        scene.style.display = "block";
+        this.elem.style.display = "block";
 
         if (this.sound !== null) {
             AudioManager.getInstance().playMusic(this.sound);

@@ -15,6 +15,6 @@ export default class WelcomeScene extends Scene {
             Game.getInstance().unloadScene("scene-welcome");
             Game.getInstance().loadScene("scene-exhibition");
             AudioManager.getInstance().canPlaySound = false;
-        })
+        });
     }
 }

@@ -95,6 +95,15 @@
   opacity: 0.6;
 }
 
+.element {
+  position: absolute;
+  z-index: 2;
+}
+
+.exhibition-info {
+  z-index: 1;
+}
+
 .descriptionContainer{
     display: flex;
     justify-content: flex-start;

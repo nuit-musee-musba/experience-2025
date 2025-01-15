@@ -1,4 +1,4 @@
-import EventEmitter from "./eventEmitter.js";
+import EventEmitter from "../../../commons/components/EventEmitter.js";
 
 export default class AudioManager extends EventEmitter {
     constructor() {

@@ -2,28 +2,33 @@ import Scene from "./scene.js"
 import SelectedPaintings from "../data/selectedPaintings.js"
 import Sprite from "./sprite.js";
 import selectedPaintings from "../data/selectedPaintings.js";
+import Elements from "../data/elements.js";
+import Game from "./Game.js";
+import Dialogue from "./dialogue.js";
+import SelectedElements from "../data/selectedElements.js";
 
 export default class ExhibitionScene extends Scene {
     constructor() {
         super("scene-exhibition", "./assets/sound/song.mp3");
+
         this.lastSelectedPainting = null;
-        this.perspectiveRotation = 1920;
+        this.perspectiveRotation = 1689;
         this.isPositionSet = false;
         this.defaultPos = {x: 400, y: 400}
         this.paintingPositions = [
             {
-                x: 3104,
-                y: 864,
+                x: 2564,
+                y: 1085,
                 isOccupied: true,
             },
             {
-                x: 2618,
-                y: 578,
+                x: 1972,
+                y: 725,
                 isOccupied: false,
             },
             {
-                x: 2044,
-                y: 533,
+                x: 1476,
+                y: 685,
                 isOccupied: false,
             }
         ]
@@ -41,11 +46,12 @@ export default class ExhibitionScene extends Scene {
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
             let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
-
+            sprite.element.style.zIndex = "1";
             this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
         let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 500, 500, "selected-painting");
+        painting.element.style.zIndex = "1";
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -93,16 +99,39 @@ export default class ExhibitionScene extends Scene {
     initScene() {
         super.initScene();
         this.fetchPaintings();
+        this.fetchElements();
         document.addEventListener("click", (event) => {
+            if (event.target.classList.contains("nextButton")) {
+                return;
+            }
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
         });
         let nextButton = document.querySelector("#end-exhibition-scene")
         nextButton.disabled = true;
-        nextButton.addEventListener("click", () => {
+        nextButton.addEventListener("click", (event) => {
             SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
             SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
             this.updateOccupiedPos();
+            this.showElement();
+            this.endSceneDialogue()
         });
+
+        let empty1 = document.createElement("img")
+        empty1.style.position = "absolute"
+        empty1.style.top = "0px"
+        empty1.src = "./assets/img/scenes/emplacement_tab_1.png";
+        let empty2 = document.createElement("img")
+        empty2.style.position = "absolute"
+        empty2.style.top = "0px"
+        empty2.src = "./assets/img/scenes/emplacement_tab_2.png";
+        let empty3 = document.createElement("img")
+        empty3.style.position = "absolute"
+        empty3.style.top = "0px"
+        empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
+
+        this.elem.appendChild(empty1);
+        this.elem.appendChild(empty2);
+        this.elem.appendChild(empty3);
     }
 
     updateOccupiedPos() {
@@ -110,6 +139,30 @@ export default class ExhibitionScene extends Scene {
             return this.lastSelectedPainting.x === p.x && this.lastSelectedPainting.y === p.y;
         })
         newOccupiedPainting.isOccupied = true;
+    }
+
+    showElement() {
+        let filteredElements = Elements.filter((element) => {
+            return element.thematic === this.lastSelectedPainting.thematic;
+        });
+        if (filteredElements.length < 1) {
+            return console.error("No paintings found");
+        }
+        let element = filteredElements[Math.floor(Math.random() * filteredElements.length)];
+        let elemDom = document.createElement("img");
+        elemDom.src = element.src;
+        elemDom.classList.add("element");
+        elemDom.style.top = element.y;
+        elemDom.style.left = element.x;
+        this.elem.appendChild(elemDom);
+        SelectedElements.push(element);
+    }
+
+    endSceneDialogue() {
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-2-0`])
+        Game.getInstance().once("onDialogueClosed", () => {
+            Game.getInstance().updateGameProgression()
+        })
     }
 
     fixPaintingPosition(elem, pos) {
@@ -144,5 +197,20 @@ export default class ExhibitionScene extends Scene {
     unloadScene() {
         super.unloadScene();
         this.cleanPaintings()
+        this.cleanElements();
+    }
+
+    cleanElements() {
+        let container = document.getElementsByClassName("elements-container");
+        if (container) {
+            container.innerHTML = '';
+        }
+    }
+
+    fetchElements() {
+        SelectedElements.forEach((element) => {
+            let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
+            sprite.element.style.zIndex = "2";
+        })
     }
 }

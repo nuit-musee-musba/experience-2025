@@ -13,7 +13,6 @@ export default class ReserveScene extends Scene {
     unloadScene(){
         let filteredPaintings = []
         this.unloadPainting('#container-paintings')
-
     }
 
     initScene(){
