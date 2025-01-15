@@ -13,7 +13,7 @@ export default class WelcomeScene extends Scene {
         Game.getInstance().once("onDialogueClosed", () => {
             AudioManager.getInstance().canPlaySound = true;
             Game.getInstance().unloadScene("scene-welcome");
-            Game.getInstance().loadScene("scene-exhibition");
+            Game.getInstance().loadScene("scene-reserve");
             AudioManager.getInstance().canPlaySound = false;
         });
     }

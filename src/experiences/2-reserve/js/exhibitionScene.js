@@ -19,7 +19,7 @@ export default class ExhibitionScene extends Scene {
             {
                 x: 2564,
                 y: 1085,
-                isOccupied: true,
+                isOccupied: false,
             },
             {
                 x: 1972,
@@ -50,7 +50,7 @@ export default class ExhibitionScene extends Scene {
             this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
-        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 500, 500, "selected-painting");
+        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
         painting.element.style.zIndex = "1";
         if (painting.element) {
             painting.element.classList.add("selected");
@@ -97,6 +97,7 @@ export default class ExhibitionScene extends Scene {
     }
 
     initScene() {
+        console.log(SelectedPaintings)
         super.initScene();
         this.fetchPaintings();
         this.fetchElements();
@@ -132,9 +133,10 @@ export default class ExhibitionScene extends Scene {
         empty3.style.top = "0px"
         empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
 
-        this.elem.appendChild(empty1);
-        this.elem.appendChild(empty2);
-        this.elem.appendChild(empty3);
+        let container = document.getElementById("empty-container");
+        container.appendChild(empty1);
+        container.appendChild(empty2);
+        container.appendChild(empty3);
     }
 
     updateOccupiedPos() {
@@ -157,7 +159,8 @@ export default class ExhibitionScene extends Scene {
         elemDom.classList.add("element");
         elemDom.style.top = element.y;
         elemDom.style.left = element.x;
-        this.elem.appendChild(elemDom);
+        let container = document.getElementById("elements-container");
+        container.appendChild(elemDom);
         SelectedElements.push(element);
     }
 
@@ -180,7 +183,7 @@ export default class ExhibitionScene extends Scene {
     }
 
     setPaintingPosition(pos) {
-        const painting = document.querySelector("#selected-painting").children[0];
+        const painting = document.querySelector("#selected-container").children[0];
 
         if (this.tryGetClosestPos(pos)) {
             this.fixPaintingPosition(painting, pos);
@@ -200,11 +203,13 @@ export default class ExhibitionScene extends Scene {
         super.unloadScene();
         this.cleanPaintings()
         this.cleanElements();
+        this.cleanEmptyContainer();
+        this.cleanSelectedContainer();
         this.isPositionSet = false;
     }
 
     cleanElements() {
-        let container = document.getElementsByClassName("elements-container");
+        let container = document.getElementById("elements-container");
         if (container) {
             container.innerHTML = '';
         }
@@ -215,5 +220,15 @@ export default class ExhibitionScene extends Scene {
             let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
             sprite.element.style.zIndex = "2";
         })
+    }
+
+    cleanEmptyContainer() {
+        let container = document.getElementById("empty-container");
+        container.innerHTML = '';
+    }
+
+    cleanSelectedContainer() {
+        let container = document.getElementById("selected-container");
+        container.innerHTML = '';
     }
 }

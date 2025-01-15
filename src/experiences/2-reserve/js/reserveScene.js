@@ -5,11 +5,10 @@ import Game from "./Game.js";
 export default class ReserveScene extends Scene {
     constructor() {
         super("scene-reserve", null);
-        this.filteredPaintings = []
     }
 
     unloadScene(){
-        let filteredPaintings = []
+        super.unloadScene();
         this.unloadPainting('#container-paintings')
     }
 
