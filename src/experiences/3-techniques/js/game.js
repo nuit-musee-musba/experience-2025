@@ -57,18 +57,40 @@ export function showAnswer(
     let question = shuffledQuestions[currentQuestion];
     showingAnswer = true;
 
-    questionEl.textContent = question.responseDetails.text;
-    loadMedia(mediaContainerDiv, question.responseDetails.media);
 
-    let answersContainer = document.getElementById("answers-container");
-    answersContainer.style.display = "none";
+    document.getElementById("response-text").textContent = question.responseDetails.text;
 
-    document.getElementById("nextButton").style.display = "block";
+    // Charger le média (image ou vidéo) dans le conteneur média
+    loadMediaToResponseMedia(question.responseDetails.media);
+
+    document.getElementById("responce-contener").style.display = "flex";
 
     stopTimer();
-    timerEl.textContent = "0";
+    timerEl.style.display = "none";
 }
 
+function loadMediaToResponseMedia(media) {
+    const responseMenuImg = document.getElementById("response-menue");
+    const responseText = document.getElementById("response-text");
+
+    responseMenuImg.src = "";
+
+
+    if (media) {
+        if (media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.jpeg')) {
+            responseMenuImg.src = media;
+            responseMenuImg.style.display = "block"; 
+        } else if (media.endsWith('.mp4') || media.endsWith('.mov') || media.endsWith('.webm')) {
+            let video = document.createElement('video');
+            video.src = media;
+            video.controls = true;
+            video.style.display = "block";
+            responseMenuImg.style.display = "none";
+            responseText.style.display = "none";
+            responseMenuImg.parentElement.appendChild(video);
+        }
+    }
+}
 
 function askForDifficulty(
     questionEl,
@@ -85,10 +107,8 @@ function askForDifficulty(
 ) {
     let q = shuffledQuestions[currentQuestion];
 
-    // Affichez la question
     questionEl.textContent = q.question;
 
-    // Gérer les médias associés à la question
     mediaContainerDiv.innerHTML = '';
     if (q.media) {
         if (q.media.endsWith('.jpg') || q.media.endsWith('.png') || q.media.endsWith('.jpeg')) {
@@ -102,8 +122,6 @@ function askForDifficulty(
             mediaContainerDiv.appendChild(video);
         }
     }
-
-    // Mise à jour du cartelInfo
     const cartelInfoDiv = document.getElementById("cartelInfo");
     cartelInfoDiv.style.display = "block";
 
@@ -295,10 +313,9 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
     }
 
     showingAnswer = false;
-    currentQuestion++;
-    let answersContainer = document.getElementById("answers-container");
-    answersContainer.style.display = "flex";
-    nextButton.style.display = "none";
+    currentQuestion++;    
+    document.getElementById("responce-contener").style.display = "none";
+    timerEl.style.display = "flex"
 
     if (currentQuestion < questions.length) {
         HaveFinishQuestions = 0;
