@@ -12,7 +12,7 @@ export class Modal {
   
 
       this.titleElement = document.createElement('h3');
-      this.titleElement.className = 'h3-title-serif';
+      this.titleElement.className = 'text-xl';
       this.titleElement.textContent = this.title;
   
 

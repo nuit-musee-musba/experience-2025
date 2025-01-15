@@ -13,7 +13,7 @@ export class ScoreDisplay extends EventEmitter{
         this.titleContainer = document.createElement('div');
         this.titleContainer.className = 'title-container';
         this.titleElement = document.createElement('h3');
-        this.titleElement.className = 'h3-title-serif';
+        this.titleElement.className = 'text-xl';
         this.titleElement.textContent = 'Score';
         this.titleContainer.appendChild(this.titleElement);
 
