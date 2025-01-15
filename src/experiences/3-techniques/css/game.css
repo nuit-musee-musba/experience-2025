@@ -4,20 +4,62 @@ body {
     height: 100vh;
 }
 
+
+
+.timer-card {
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+}
+
 .game-container {
     width: 100%;
     height: 100%;
-    background: white;
     text-align: center;
     position: relative;
 }
 
+#activePlayer {
+    width: 122px;
+    position: absolute;
+    right: 580px;
+    top: 100px;
+
+}
+
+#player1 {
+    background-color: red;
+}
+
+.player-info {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+
 header {
-    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question-media-contener {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .question-container {
-    margin-bottom: 20px;
+    flex-direction: column;
+    border: 1px solid #000;
+    background-color: white;
+    padding: 100px;
+    width: 110%;
+    text-align: left;
 }
 
 
@@ -48,19 +90,20 @@ header {
 
 
 
-.inactiveCardRight, .inactiveCardLeft{
-width: 30vw;
-position: absolute;
-bottom: 0;
+.inactiveCardRight,
+.inactiveCardLeft {
+    width: 30vw;
+    position: absolute;
+    bottom: 0;
 }
 
-.inactiveCardLeft{
-left: 0;
-display: none;
+.inactiveCardLeft {
+    left: 0;
+    display: none;
 }
 
-.inactiveCardRight{
-right: 0;
+.inactiveCardRight {
+    right: 0;
 }
 
 .answer-btn {
@@ -88,7 +131,7 @@ right: 0;
 
 #mediaContainerDiv img,
 #mediaContainerDiv video {
-    height: 20vh;
+    height: 1000px;
     width: auto;
 }
 

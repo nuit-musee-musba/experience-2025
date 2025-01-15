@@ -6,17 +6,39 @@ export const questions = [
             media: "video/placeolder.mov"
         },
         media: "img/placeolder.png",
+        cartel: [
+            { id: "artistName", text: "Claude Monet" },
+            { id: "artName", text: "Impression, soleil levant" },
+            { id: "artDate", text: "1872" },
+            { id: "useTechnique", text: "Peinture à l'huile" }
+        ],
+        hide: ["artDate"],
         difficulties: {
             easy: {
-                choices: ["Paris", "Londres", "Berlin", "Madrid"],
+                choices: [
+                    { text: "", image: "img/card/paris.jpg" },
+                    { text: "", image: "img/card/london.jpg" },
+                    { text: "", image: "img/card/berlin.jpg" },
+                    { text: "", image: "img/card/madrid.jpg" }
+                ],
                 correct: "A"
             },
             medium: {
-                choices: ["Paris", "Londres", "Rome", "Athènes"],
+                choices: [
+                    { text: "Paris", image: "img/paris.jpg" },
+                    { text: "Londres", image: "img/london.jpg" },
+                    { text: "Rome", image: "img/rome.jpg" },
+                    { text: "Athènes", image: "img/athens.jpg" }
+                ],
                 correct: "A"
             },
             hard: {
-                choices: ["Nantes", "Marseille", "Lille", "Paris"],
+                choices: [
+                    { text: "Nantes", image: "img/nantes.jpg" },
+                    { text: "Marseille", image: "img/marseille.jpg" },
+                    { text: "Lille", image: "img/lille.jpg" },
+                    { text: "Paris", image: "img/paris.jpg" }
+                ],
                 correct: "D"
             }
         }
@@ -27,18 +49,40 @@ export const questions = [
             text: "5 + 7 font 12. Un simple calcul mental !",
             media: "video/placeolder.mov"
         },
-        media: "/../src/img/julie.png",
+        media: "img/placeolder.png",
+        cartel: [
+            { id: "artistName", text: "Jean pierre" },
+            { id: "artName", text: "Impression, soleil levant" },
+            { id: "artDate", text: "1872" },
+            { id: "useTechnique", text: "Peinture à l'huile" }
+        ],
+        hide: ["artDate"],
         difficulties: {
             easy: {
-                choices: ["10", "12", "15", "13"],
+                choices: [
+                    { text: "10", image: "img/number10.jpg" },
+                    { text: "12", image: "img/number12.jpg" },
+                    { text: "15", image: "img/number15.jpg" },
+                    { text: "13", image: "img/number13.jpg" }
+                ],
                 correct: "B"
             },
             medium: {
-                choices: ["11", "12", "14", "13"],
+                choices: [
+                    { text: "11", image: "img/number11.jpg" },
+                    { text: "12", image: "img/number12.jpg" },
+                    { text: "14", image: "img/number14.jpg" },
+                    { text: "13", image: "img/number13.jpg" }
+                ],
                 correct: "B"
             },
             hard: {
-                choices: ["12", "13", "14", "15"],
+                choices: [
+                    { text: "12", image: "img/number12.jpg" },
+                    { text: "13", image: "img/number13.jpg" },
+                    { text: "14", image: "img/number14.jpg" },
+                    { text: "15", image: "img/number15.jpg" }
+                ],
                 correct: "A"
             }
         }
@@ -50,40 +94,40 @@ export const questions = [
             media: "/../src/img/sky.png"
         },
         media: "video/placeolder.mov",
+        cartel: [
+            { id: "artistName", text: "Stephane" },
+            { id: "artName", text: "Impression, soleil levant" },
+            { id: "artDate", text: "1872" },
+            { id: "useTechnique", text: "Peinture à l'huile" }
+        ],
+        hide: ["useTechnique"],
         difficulties: {
             easy: {
-                choices: ["Rouge", "Bleu", "Vert", "Jaune"],
+                choices: [
+                    { text: "Rouge", image: "img/red.jpg" },
+                    { text: "Bleu", image: "img/blue.jpg" },
+                    { text: "Vert", image: "img/green.jpg" },
+                    { text: "Jaune", image: "img/yellow.jpg" }
+                ],
                 correct: "B"
             },
             medium: {
-                choices: ["Bleu", "Vert", "Gris", "Noir"],
+                choices: [
+                    { text: "Bleu", image: "img/blue.jpg" },
+                    { text: "Vert", image: "img/green.jpg" },
+                    { text: "Gris", image: "img/gray.jpg" },
+                    { text: "Noir", image: "img/black.jpg" }
+                ],
                 correct: "A"
             },
             hard: {
-                choices: ["Bleu ciel", "Bleu marine", "Turquoise", "Cyan"],
+                choices: [
+                    { text: "Bleu ciel", image: "img/skyblue.jpg" },
+                    { text: "Bleu marine", image: "img/navyblue.jpg" },
+                    { text: "Turquoise", image: "img/turquoise.jpg" },
+                    { text: "Cyan", image: "img/cyan.jpg" }
+                ],
                 correct: "A"
-            }
-        }
-    },
-    {
-        question: "Qu'est-ce qu'un zoubie ?",
-        responseDetails: {
-            text: "Un zoubie est une invention farfelue ! La réponse n’a pas d’importance ici.",
-            media: "/../src/img/fun.png"
-        },
-        media: "",
-        difficulties: {
-            easy: {
-                choices: ["Facil", "prout", "Facil", "Facil"],
-                correct: "B"
-            },
-            medium: {
-                choices: ["prout", "medium", "medium", "medium"],
-                correct: "A"
-            },
-            hard: {
-                choices: ["hard", "prout", "hard", "hard"],
-                correct: "B"
             }
         }
     }
