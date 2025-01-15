@@ -28,17 +28,20 @@ export default class Item {
       const img = document.createElement('img');
       img.src = this.image;
       img.alt = this.name;
-      img.style.width = '80px';
-      img.style.height = '80px';
+      img.style.width = '180px';
+      img.style.height = '180px';
       img.style.objectFit = 'contain';
       img.style.display = 'block';
       img.style.margin = '0 auto';
   
       // Ajouter le texte du nom de l'objet
       const textElement = document.createElement('p');
-      textElement.textContent = this.name;
-      textElement.style.textAlign = 'center';
-      textElement.style.marginTop = '5px';
+        textElement.textContent = this.name;
+        textElement.style.textAlign = 'center';
+        textElement.style.marginTop = '-20px'; // Texte positionné plus haut
+        textElement.style.fontSize = '20px'; // Texte plus gros
+        textElement.style.color = '#333'; // Couleur du texte
+
   
       // Ajouter l'image et le texte au conteneur
       itemElement.appendChild(img);
