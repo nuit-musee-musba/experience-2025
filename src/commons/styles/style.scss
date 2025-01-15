@@ -12,26 +12,32 @@
     box-sizing: border-box;
 }
 
+h1,.h1-title{
+    font-family: NyghtSerif;
+    font-size: 144px;
+    line-height: 100%;
+    font-weight: 400;
+}
 
 h2,.h2-title{
-    font-family: Helvetica;
+    font-family: NyghtSerif;
     font-size: 92px;
     line-height: 80%;
     font-weight: 400;
 }
 
 h3,.h3-title{
-    font-family: Helvetica;
+    font-family: NyghtSerif;
     font-size: 72px;
-    line-height: 80%;
+    line-height: 100%;
     font-weight: 400;
 }
 
 .h3-title-serif{
     font-family: NyghtSerif;
     font-size: 72px;
-    line-height: 100%;
-    font-weight: 300;
+    line-height: 110%;
+    font-weight: 400;
 }
 
 p,.content{
