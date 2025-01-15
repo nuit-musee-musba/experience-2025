@@ -8,6 +8,8 @@ export default class ExhibitionScene extends Scene {
         super("scene-exhibition", "./assets/sound/song.mp3");
         this.lastSelectedPainting = null;
         this.perspectiveRotation = 1920;
+        this.isPositionSet = false;
+        this.defaultPos = {x: 400, y: 400}
         this.paintingPositions = [
             {
                 x: 3104,
@@ -52,7 +54,11 @@ export default class ExhibitionScene extends Scene {
         paintingsContainer.innerHTML = "";
     }
 
-    rotatePainting(painting) {
+    rotatePainting(painting, reset = false) {
+        if (reset) {
+            painting.style.transform = "skew(0deg, 0deg)";
+            return;
+        }
         if (parseInt(painting.style.left, 10) > this.perspectiveRotation) {
             painting.style.transform = "skew(0deg, 30deg)";
         } else {
@@ -113,17 +119,18 @@ export default class ExhibitionScene extends Scene {
 
     setPaintingPosition(pos) {
         const painting = document.querySelector("#selected-painting").children[0];
-        const isPositionChanged = this.tryGetClosestPos(pos)
+        this.isPositionSet = this.tryGetClosestPos(pos)
 
-        this.fixPaintingPosition(painting, pos);
-        this.rotatePainting(painting);
-
-        if (isPositionChanged) {
+        if (this.isPositionSet) {
+            this.fixPaintingPosition(painting, pos);
+            this.rotatePainting(painting);
             document.querySelector("#end-exhibition-scene").disabled = false;
             this.lastSelectedPainting.x = pos.x;
             this.lastSelectedPainting.y = pos.y;
         }
         else {
+            this.fixPaintingPosition(painting, this.defaultPos);
+            this.rotatePainting(painting, true);
             document.querySelector("#end-exhibition-scene").disabled = true;
         }
     }
