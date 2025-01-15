@@ -16,24 +16,28 @@
         <header>
             <h2>Squiz Game</h2>
             <div class="question-media-contener">
-
-
-                <div id="mediaContainerDiv"></div>
-
-                <div id="cartelInfo">
-                    <p id="artistName"></p>
-                    <p id="artName"></p>
-                    <p id="artDate"></p>
-                    <p id="useTechnique"></p>
+                <div class="cartel-image-contener">
+                    <div id="cartelInfo">
+                        <p id="artistName"></p>
+                        <p id="artName"></p>
+                        <p id="artDate"></p>
+                        <p id="useTechnique"></p>
+                    </div>
+                    <div id="mediaContainerDiv"></div>
                 </div>
-
-
-                <div class="question-container">
-                    <h2 id="question">Question s'affiche ici</h2>
+                <div class="host-question-contener">
+                    <img src="img/renaudBulle.png" alt="">
+                    <div class="question-container">
+                        <h2 id="question">Question s'affiche ici</h2>
+                    </div>
                 </div>
             </div>
+
         </header>
-        <div class="contener-step"></div>
+        <div class="contener-stepper-text stats-display">
+            <div class="title-container"><h3 class="h3-title-serif">Question</h3></div>
+            <div class="contener-step"></div>
+        </div>
         <div id="difficulty-selector" style="display: flex;">
             <button class="button normal black" id="easy-btn">Facile</button>
             <button class="button normal black" id="medium-btn">Moyen</button>
@@ -86,7 +90,7 @@
             </button>
         </div>
     </div>
-
+    <a href="../../index.html" class="button-retour-menue"><img src="img/backHouse.svg" alt=""></a>
     <script type="module" src="js/index.js"></script>
 </body>
 
