@@ -14,3 +14,64 @@
 .selected {
     transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
 }
+
+#character {
+    z-index: 1;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 200px;
+}
+
+.dialogue {
+    display: none;
+    position: absolute;
+    bottom: 180px;
+    left: 900px;
+    background-color: white;
+}
+
+#container-paintings{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    width: 80%;
+}
+
+#container-paintings img{
+    width: 400px;
+    height: fit-content ;
+
+    transition: ease-in all 500ms;
+}
+
+#scene-reserve .selectMode .selectModeImg{
+    width: fit-content;
+    height: 70%;
+    right: 0;
+    top: 50%;
+}
+
+.selectMode{
+    background-color: #ffffff;
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px;
+    overflow: hidden;
+
+}
+
+.descriptionContainer{
+    border: black 1px solid;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 1837px;
+    gap: 78px;
+}

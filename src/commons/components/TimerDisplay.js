@@ -1,7 +1,7 @@
 import EventEmitter from "./EventEmitter";
 
 export class TimerDisplay extends EventEmitter {
-    constructor(time, className = '') {
+    constructor(time, className = '', parentElement = null) {
         super()
         this.time = time * 60; 
         this.className = className;
@@ -12,7 +12,7 @@ export class TimerDisplay extends EventEmitter {
         this.titleContainer = document.createElement('div');
         this.titleContainer.className = 'title-container';
         this.titleElement = document.createElement('h3');
-        this.titleElement.className = 'h3-title-serif';
+        this.titleElement.className = 'text-xl';
         this.titleElement.textContent = 'Timer';
         this.titleContainer.appendChild(this.titleElement);
 
@@ -25,7 +25,11 @@ export class TimerDisplay extends EventEmitter {
         this.timerDisplay.appendChild(this.titleContainer);
         this.timerDisplay.appendChild(this.timerContainer);
 
-        document.body.appendChild(this.timerDisplay);
+        if (parentElement instanceof HTMLElement) {
+            parentElement.appendChild(this.timerDisplay);
+        } else {
+            document.body.appendChild(this.timerDisplay);
+        }
         
         this.intervalId = null; // Store the interval ID for future control
         this.isPaused = false;  // Track the pause state

@@ -1,5 +1,5 @@
 export class CounterDisplay {
-    constructor(startValue, className = '') {
+    constructor(startValue, className = '', parentElement = null) {
         this.className = className;
         this.startValue = startValue;
 
@@ -9,7 +9,7 @@ export class CounterDisplay {
         this.titleContainer = document.createElement('div');
         this.titleContainer.className = 'title-container';
         this.titleElement = document.createElement('h3');
-        this.titleElement.className = 'h3-title-serif';
+        this.titleElement.className = 'text-xl';
         this.titleElement.textContent = 'Compteur';
         this.titleContainer.appendChild(this.titleElement);
 
@@ -22,8 +22,11 @@ export class CounterDisplay {
         this.counterDisplay.appendChild(this.titleContainer);
         this.counterDisplay.appendChild(this.counterContainer);
 
-        document.body.appendChild(this.counterDisplay);
-    
+        if (parentElement instanceof HTMLElement) {
+            parentElement.appendChild(this.counterDisplay);
+        } else {
+            document.body.appendChild(this.counterDisplay);
+        }
     }
 
     increment(number) {
