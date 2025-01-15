@@ -6,41 +6,43 @@ import Game from "./Game";
 import AudioManager from "./audioManager";
 
 
-
 let containerPaintings = document.querySelector('#container-paintings');
+let isSelectModeActive = false;
+let reserveVackground = document.querySelector('#reserve-background')
+
 
 containerPaintings.addEventListener("click", (e) => {
     if (e.target.tagName !== "IMG") {
         return;
     }
 
+    if (isSelectModeActive) {
+        console.log("Une image est déjà en mode sélection.");
+        return;
+    }
     let img = e.target;
     let parentImg = img.parentElement;
-    const paintingData = paintings.find((painting) => painting.src === img.getAttribute("src"));
-    const descriptionContainer = parentImg.querySelector('.descriptionContainer');
 
-    if (descriptionContainer) {
-        removeBackgroundAndDescription(parentImg, img);
-    } else {
-        addbackgroundAndDescription(img, parentImg, paintingData);
-    }
+    isSelectModeActive = true;
+    const paintingData = paintings.find((painting) => painting.src === img.getAttribute("src"));
+    addFichePainting(img, parentImg, paintingData);
 });
 
-function addbackgroundAndDescription(img, parentImg, paintingData) {
+function addFichePainting(img, parentImg, paintingData) {
     let descriptionContainer = document.createElement('div'); 
     let containerButton = document.createElement('div')
+    
     const modal = new descriptionPaintings(paintingData.title, "", "selectModeDescription", descriptionContainer);
     const contentArray = [
-        ` ${paintingData.autor}`,
+        `${paintingData.autor}`,
         `${paintingData.date}`,
         `${paintingData.description}`,
         `${paintingData.height}`
     ];
     modal.showModalWithHtml(contentArray);
 
-
-   
-
+    containerPaintings.classList.add("containerPaintingsOnselectMode")
+    reserveVackground.style.display ="none";
     parentImg.classList.add('selectMode');
     img.classList.add("selectModeImg");
     parentImg.classList.add('selectMode');
@@ -57,14 +59,17 @@ function addbackgroundAndDescription(img, parentImg, paintingData) {
     parentImg.append(descriptionContainer);
 }
 
-function removeBackgroundAndDescription(parentImg, img) {
+function removeFichePainting(parentImg, img) {
     const descriptionContainer = parentImg.querySelector('.descriptionContainer');
     if (descriptionContainer) {
         descriptionContainer.remove();
     }
 
+    containerPaintings.classList.remove("containerPaintingsOnselectMode")
+    reserveVackground.style.display ="block";
     parentImg.classList.remove('selectMode');
     img.classList.remove("selectModeImg");
+    isSelectModeActive = false;
 }
 
 function createRemoveLink(parentImg, img) {
@@ -75,7 +80,7 @@ function createRemoveLink(parentImg, img) {
     removeLink.style.marginRight = "10px";
     removeLink.addEventListener("click", (e) => {
         e.preventDefault();
-        removeBackgroundAndDescription(parentImg, img);
+        removeFichePainting(parentImg, img);
     });
     return removeLink;
 }
@@ -94,7 +99,7 @@ function createPushLink(paintingData, parentImg, img) {
             if (index !== -1) {
                 paintings.splice(index, 1); 
             }
-            removeBackgroundAndDescription(parentImg, img);
+            removeFichePainting(parentImg, img);
 
             AudioManager.getInstance().canPlaySound = true;
             Game.getInstance().unloadScene("scene-reserve");
