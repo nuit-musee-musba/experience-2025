@@ -27,6 +27,12 @@ export default class ExhibitionScene extends Scene {
                 isOccupied: false,
             }
         ]
+
+        this.button = document.createElement("button")
+        this.button.className =`nextButton button small black`;
+        this.button.textContent = "Valider";
+        this.button.id = "end-exhibition-scene";
+        document.getElementById("exhibition-info").appendChild(this.button);
     }
 
     fetchPaintings() {
