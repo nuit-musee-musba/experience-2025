@@ -1,4 +1,4 @@
-import EventEmitter from "./eventEmitter.js"
+import EventEmitter from "../../../commons/components/EventEmitter.js"
 import Dialogue from "./dialogue.js";
 
 var thematicEnum = {
@@ -14,7 +14,6 @@ Object.keys(thematicEnum).forEach(key => {
 export default class Game extends EventEmitter {
     constructor() {
         super();
-        this.chosenPaintings = [];
         this.gameProgression = 0;
         this.endGameThreshold = 2;
         if (Game._instance) {
