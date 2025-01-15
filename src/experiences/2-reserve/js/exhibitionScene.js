@@ -101,16 +101,19 @@ export default class ExhibitionScene extends Scene {
         this.fetchPaintings();
         this.fetchElements();
         document.addEventListener("click", (event) => {
-            if (event.target.classList.contains("nextButton")) {
+            if (event.target.classList.contains("nextButton") || this.isPositionSet) {
                 return;
             }
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
         });
-        let nextButton = document.querySelector("#end-exhibition-scene")
-        nextButton.disabled = true;
-        nextButton.addEventListener("click", (event) => {
+        this.button.disabled = true;
+        this.button.addEventListener("click", (event) => {
+            if (this.isPositionSet) {
+                return;
+            }
             SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
             SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
+            this.isPositionSet = true;
             this.updateOccupiedPos();
             this.showElement();
             this.endSceneDialogue()
@@ -178,9 +181,8 @@ export default class ExhibitionScene extends Scene {
 
     setPaintingPosition(pos) {
         const painting = document.querySelector("#selected-painting").children[0];
-        this.isPositionSet = this.tryGetClosestPos(pos)
 
-        if (this.isPositionSet) {
+        if (this.tryGetClosestPos(pos)) {
             this.fixPaintingPosition(painting, pos);
             this.rotatePainting(painting);
             document.querySelector("#end-exhibition-scene").disabled = false;
@@ -198,6 +200,7 @@ export default class ExhibitionScene extends Scene {
         super.unloadScene();
         this.cleanPaintings()
         this.cleanElements();
+        this.isPositionSet = false;
     }
 
     cleanElements() {
