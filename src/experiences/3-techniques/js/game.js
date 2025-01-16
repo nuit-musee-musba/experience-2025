@@ -253,7 +253,7 @@ export function loadQuestion(
     if (HaveselectedDifficulty === 0) {
         askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
         HaveselectedDifficulty = 1;
-        return; // Stop here to wait for difficulty selection
+        return;
     }
 
     let selectedDiff = q.difficulties[selectedDifficulty];
@@ -270,7 +270,6 @@ export function loadQuestion(
     startingPlayer = startingPlayer === 1 ? 2 : 1;
     hasAnswered = false;
     activePlayerEl.textContent = activePlayer;
-
     let event = new CustomEvent('questionLoaded', {
         detail: { currentQuestionIndex: currentQuestion },
     });
@@ -301,8 +300,9 @@ export function handleAnswer(
     score2El,
     nextButton
 ) {
-    let correct = questions[currentQuestion].difficulties[selectedDifficulty].correct;
-
+    let correct = shuffledQuestions[currentQuestion].difficulties[selectedDifficulty].correct;
+    console.log(shuffledQuestions[currentQuestion].difficulties[selectedDifficulty])
+    console.log(shuffledQuestions[currentQuestion])
     if (choice === correct) {
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
@@ -373,17 +373,46 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
     }
 }
 function displayScores(playerScores) {
-
     const playerScorbord = document.getElementById("playerScorbord");
     playerScorbord.innerHTML = ''; 
-    const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreA - scoreB);
-    sortedScores.forEach(([player, score]) => {
+    const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
+
+    sortedScores.forEach(([player, score], index) => {
         const playerScoreDiv = document.createElement("div");
         playerScoreDiv.classList.add("stats-display");
-        playerScoreDiv.innerHTML = `<div class="title-container" style="width: 360px"><h3>${player}</h3></div> <div class="score-container" style="width: fit-content;"><h3>${score} pts</h3></div>`;
+
+        if (index === 0) {
+            playerScoreDiv.classList.add("leader");
+        }
+
+        playerScoreDiv.innerHTML = `
+            <div class="score-container" style="width:200px; text-align: center;">
+                <h3>${index + 1 + " e"}</h3>
+            </div>
+            <div class="title-container" style="width: 360px">
+                <h3>${player}</h3>
+            </div>
+            <div class="score-container" style="width: 300px">
+                <h3>${score} pts</h3>
+            </div>
+        `;
+
         playerScorbord.appendChild(playerScoreDiv);
     });
+
+    updateVictoryMessage(playerScores);
 }
+
+
+function updateVictoryMessage(playerScores) {
+    const victoryMessageEl = document.getElementById("victory-message");
+    if (!victoryMessageEl) return;
+    const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
+    const [winner, score] = sortedScores[0];
+
+    victoryMessageEl.textContent = `Bravo ${winner} pour ta victoire !`;
+}
+
 
 
 

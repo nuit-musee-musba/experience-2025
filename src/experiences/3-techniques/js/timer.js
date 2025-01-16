@@ -3,7 +3,7 @@ let timeLeft = 20;
 
 export function startTimer(timerEl, onTimeout) {
     clearInterval(timer);
-    timeLeft = 20;
+    timeLeft = 2000;
 
     timer = setInterval(() => {
         timeLeft--;
