@@ -12,6 +12,7 @@ export default class ExhibitionScene extends Scene {
         super("scene-exhibition", "./assets/sound/song.mp3");
 
         this.lastSelectedPainting = null;
+        this.canPlacePainting = false
         this.perspectiveRotation = 1689;
         this.isPositionSet = false;
         this.defaultPos = {x: 400, y: 400}
@@ -104,7 +105,7 @@ export default class ExhibitionScene extends Scene {
         this.fetchPaintings();
         this.fetchElements();
         document.addEventListener("click", (event) => {
-            if (event.target.classList.contains("nextButton") || this.isPositionSet) {
+            if (event.target.classList.contains("nextButton") || this.isPositionSet || !this.canPlacePainting) {
                 return;
             }
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
@@ -139,6 +140,12 @@ export default class ExhibitionScene extends Scene {
         container.appendChild(empty1);
         container.appendChild(empty2);
         container.appendChild(empty3);
+
+        this.canPlacePainting = false;
+        Game.getInstance().dialogue.listDialogue(["0-2-0"]);
+        Game.getInstance().once("onDialogueClosed", () => {
+            this.canPlacePainting = true;
+        })
     }
 
     updateOccupiedPos() {
@@ -167,7 +174,7 @@ export default class ExhibitionScene extends Scene {
     }
 
     endSceneDialogue() {
-        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-2-0`])
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-2-1`])
         Game.getInstance().once("onDialogueClosed", () => {
             Game.getInstance().updateGameProgression()
         })
