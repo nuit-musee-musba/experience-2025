@@ -1,9 +1,9 @@
 export let score1 = 0;
 export let score2 = 0;
 const difficultyPoints = {
-    easy: 1,
-    medium: 2,
-    hard: 3
+    easy: 2,
+    medium: 3,
+    hard: 4
 };
 
 export function updateScores(score1El, score2El) {

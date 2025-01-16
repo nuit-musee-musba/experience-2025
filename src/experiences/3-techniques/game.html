@@ -6,42 +6,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squiz Game</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../commons/styles/style.scss">
 </head>
 
-<body>
-    <div id="progress-bar-container"></div>
+<body class="body-game">
+    <div id="responce-contener">
 
+        <div class="responce-img-text-contener">
+            <div class="color-responce-answer"></div>
+            <img src="img/illustrationRenaud2face.png" alt="">
+            <div class="responce-text-contener">
+                <div class="responce-title-contener">
+                    <h3>Bien jouer</h3>
+                </div>
+                <div class="text-contener">
+                    <p id="response-text"></p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="responce-contener-cartel">
+            <div class="cartel-contener">
+                <p id="artistNameResponce"></p>
+                <p id="artNameResponce"></p>
+                <p id="artDateResponce"></p>
+                <p id="useTechniqueResponce"></p>
+            </div>
+        </div>
+        <button class="button normal black" id="nextButton">Suivant</button>
+    </div>
     <div class="game-container">
+
         <header>
-            <h1>Squiz Game</h1>
-            <div id="mediaContainerDiv"></div>
+            <div class="question-media-contener">
+                <div class="cartel-image-contener">
+                    <div id="cartelInfo">
+                        <div class="cartel-contener">
+                            <p id="artistName"></p>
+                            <p id="artName"></p>
+                            <p id="artDate"></p>
+                            <p id="useTechnique"></p>
+                        </div>
+                        <p id="whereMuseum"></p>
+                    </div>
+                </div>
+                <div class="containerMedia">
+                    <div id="mediaContainerDiv"></div>
+                    <div class="host-question-contener">
+                        <img src="img/renaudBulle.png" alt="">
+                        <div class="question-container">
+                            <p id="question">Question s'affiche ici</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </header>
-    
-        <div class="question-container">
-            <h2 id="question">Question s'affiche ici</h2>
+
+        <div id="difficulty-selector">
+            <h3 class="h3-title-serif">Choisis ta difficulté :</h3>
+            <div class="difficulty-selector-btn"> <button class="btn-difficulty-contener" id="easy-btn">
+                    <div class="btn-difficulty">
+                        <h3>Facile</h3>
+                        <p>2 points</p>
+                    </div>
+                </button>
+                <button class="btn-difficulty-contener" id="medium-btn">
+                    <div class="btn-difficulty">
+                        <h3>Moyen</h3>
+                        <p>3 points</p>
+                    </div>
+                </button>
+                <button class="btn-difficulty-contener" id="hard-btn">
+                    <div class="btn-difficulty">
+                        <h3>Difficile</h3>
+                        <p>4 points</p>
+                    </div>
+                </button>
+            </div>
+
         </div>
-        <div id="difficulty-selector" style="display: flex;">
-            <button id="easy-btn">Facile</button>
-            <button id="medium-btn">Moyen</button>
-            <button id="hard-btn">Difficile</button>
-        </div>
-        
-        <div class="player-info">
-            <p>Joueur Actif: <span id="activePlayer">1</span></p>
-            <p>Score Joueur 1: <span id="score1">0</span></p>
-            <p>Score Joueur 2: <span id="score2">0</span></p>
-            <p>Temps restant: <span id="timer">20</span></p>
-        </div>
-        <button id="nextButton" style="display:none;">Suivant</button>
+
         <div class="answers-container" id="answers-container">
-            <button class="answer-btn" id="btnA" data-choice="A">A</button>
-            <button class="answer-btn" id="btnB" data-choice="B">B</button>
-            <button class="answer-btn" id="btnC" data-choice="C">C</button>
-            <button class="answer-btn" id="btnD" data-choice="D">D</button>
+            <div class="answers-contener-btn">
+                <button class="answer-btn" id="btnA" data-choice="A">
+                    <p>A</p>
+                </button>
+                <button class="answer-btn" id="btnB" data-choice="B">
+                    <p>B</p>
+                </button>
+                <button class="answer-btn" id="btnC" data-choice="C">
+                    <p>C</p>
+                </button>
+                <button class="answer-btn" id="btnD" data-choice="D">
+                    <p>D</p>
+                </button>
+            </div>
         </div>
     </div>
+    <div class="contener-stepper-text stats-display">
+        <div class="title-container">
+            <h3 class="h3-title-serif">Question</h3>
+        </div>
+        <div class="contener-step"></div>
+    </div>
+    <img id="activePlayer" src="img/RightArrow_AutoLayout.svg" alt="">
+    <div class="player-info">
+        <div class="stats-display test-css" id="player1" style="width: fit-content;">
+            <div class="title-container" style="width: 340px">
+                <h3 class="h3-title-serif">Joueur 1:</h3>
+            </div>
+            <div class="score-container" style="width: fit-content;">
+                <h3 id="score1">0</h3>
+            </div>
+        </div>
 
+        <div class="stats-display test-css" id="player2" style="width: fit-content;">
+            <div class="title-container" style="width: 340px">
+                <h3 class="h3-title-serif">Joueur 2:</h3>
+            </div>
+            <div class="score-container" style="width: fit-content;">
+                <h3 id="score2">0</h3>
+            </div>
+        </div>
+    </div>
+    <div class="stats-display timer-display timer-card" style="width: fit-content;">
+        <div class="title-container" style="width: fit-content;">
+            <h3 class="h3-title-serif">Temps restant</h3>
+        </div>
+        <div class="timer-container" style="width: fit-content;">
+            <h3 id="timer">20</h3>
+        </div>
+    </div>
+    <div id="endGame">
+        <h1>RESULTAT</h1>
+        <div class="endGame-contener">
+            <div id="playerScorbord">
+                
+            </div>
 
+            <div class="responce-img-text-contener ">
+                <img src="img/illustrationRenaudpng.png" alt="">
+                <div class="responce-text-contener">
+                    <div class="responce-title-contener">
+                        <h3>Bravo Joueur 2 pour ta victoire !</h3>
+                    </div>
+                    <div class="text-contener-end">
+                        <p>Vous avez maintenant toutes les clés pour décrypter les cartels des œuvres dans un musée.
+                        </p>
+                        <p>Alors, serez-vous prêt à deviner la technique ou la période des prochaines œuvres que vous
+                            croiserez ?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="button normal black" id="button-next-rules">Nouvelle partie</a>
+        <a href="game.html" class="button small white" id="button-next-rules">Recommencer</a>
+    </div>
+    <a href="../../index.html" class="button-retour-menue"><img src="img/backHouse.svg" alt=""></a>
     <script type="module" src="js/index.js"></script>
 </body>
 

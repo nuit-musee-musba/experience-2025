@@ -1,7 +1,10 @@
 import { questions } from './questions.js';
 import { score1, score2, incrementScore, updateScores } from './scores.js';
 import { startTimer, stopTimer } from './timer.js';
-import { setTotalQuestions, initializeProgressBar, updateProgressBar } from './progress.js';
+import { StepsDisplay } from "/commons/components/StepsDisplay";
+
+const Step = document.querySelector('.contener-step');
+const stepsDisplay = new StepsDisplay(0, 8, '.contener-step', Step);
 
 let currentQuestion = 0;
 let activePlayer = 1;
@@ -15,19 +18,31 @@ let shuffledQuestions = [];
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        let j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
-        console.log(shuffledQuestions)
     }
 }
+
 function initializeGame() {
     shuffledQuestions = [...questions];
     shuffleArray(shuffledQuestions);
-    setTotalQuestions(questions.length);
-    initializeProgressBar('progress-bar-container');
-    updateProgressBar('progress-bar-container', 0);
 }
 
+function loadMedia(mediaContainerDiv, media) {
+    mediaContainerDiv.innerHTML = '';
+    if (media) {
+        if (media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.jpeg')) {
+            let img = document.createElement('img');
+            img.src = media;
+            mediaContainerDiv.appendChild(img);
+        } else if (media.endsWith('.mp4') || media.endsWith('.mov') || media.endsWith('.webm')) {
+            let video = document.createElement('video');
+            video.src = media;
+            video.controls = true;
+            mediaContainerDiv.appendChild(video);
+        }
+    }
+}
 
 export function showAnswer(
     questionEl,
@@ -39,75 +54,50 @@ export function showAnswer(
     nextButton,
     timerEl
 ) {
-    const question = shuffledQuestions[currentQuestion];
+    let question = shuffledQuestions[currentQuestion];
     showingAnswer = true;
 
-    questionEl.textContent = question.responseDetails.text;
 
-    mediaContainerDiv.innerHTML = '';
+    document.getElementById("response-text").textContent = question.responseDetails.text;
 
-    if (question.responseDetails.media) {
-        if (
-            question.responseDetails.media.endsWith('.jpg') ||
-            question.responseDetails.media.endsWith('.png') ||
-            question.responseDetails.media.endsWith('.jpeg')
-        ) {
-            const img = document.createElement('img');
-            img.src = question.responseDetails.media;
-            mediaContainerDiv.appendChild(img);
-        } else if (
-            question.responseDetails.media.endsWith('.mp4') ||
-            question.responseDetails.media.endsWith('.webm') ||
-            question.responseDetails.media.endsWith('.mov')
-        ) {
-            const video = document.createElement('video');
-            video.src = question.responseDetails.media;
-            video.controls = true;
-            mediaContainerDiv.appendChild(video);
-        }
-    }
+    // Charger le média (image ou vidéo) dans le conteneur média
+    loadMediaToResponseMedia(question.responseDetails.media);
 
-    const answersContainer = document.getElementById("answers-container");
-
-    answersContainer.style.display = "none";
-
-    nextButton.style.display = "block";
+    document.getElementById("responce-contener").style.display = "flex";
 
     stopTimer();
-    timerEl.textContent = "";
-}
-function askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
-
-    document.getElementById('difficulty-selector').style.display = 'block';
-    document.getElementById('answers-container').style.display = 'none';
-
-    document.getElementById('easy-btn').addEventListener("click", () => {
-        selectedDifficulty = "easy";
-        document.getElementById('answers-container').style.display = 'flex';
-        document.getElementById('difficulty-selector').style.display = 'none';
-        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-        startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
-    });
-
-    document.getElementById('medium-btn').addEventListener("click", () => {
-        selectedDifficulty = "medium";
-        document.getElementById('answers-container').style.display = 'flex';
-        document.getElementById('difficulty-selector').style.display = 'none';
-        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-        startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
-    });
-
-    document.getElementById('hard-btn').addEventListener("click", () => {
-        selectedDifficulty = "hard";
-        document.getElementById('answers-container').style.display = 'flex';
-        document.getElementById('difficulty-selector').style.display = 'none';
-        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-        startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
-    });
+    timerEl.style.display = "none";
 }
 
-export function loadQuestion(
+function loadMediaToResponseMedia() {
 
+    let q = shuffledQuestions[currentQuestion];
+    if (q.cartel) {
+        q.cartel.forEach(cartelItem => {
+            const element = document.getElementById(cartelItem.id + "Responce");
+            if (element) {
+                element.textContent = cartelItem.text;
+
+                if (q.hide && q.hide.includes(cartelItem.id)) {
+                    element.style.color = "red";
+                } else {
+                    element.style.color = "";
+                }
+            }
+        });
+    }
+}
+function updateResponseTitle(isCorrect, player) {
+    const responseTitleContainer = document.querySelector(".responce-title-contener h3");
+
+    if (isCorrect) {
+        responseTitleContainer.textContent = `Bien joué Joueur ${player} !`;
+    } else {
+        responseTitleContainer.textContent = "Dommage";
+    }
+}
+
+function askForDifficulty(
     questionEl,
     btnA,
     btnB,
@@ -120,6 +110,135 @@ export function loadQuestion(
     score2El,
     nextButton
 ) {
+    if (stepsDisplay.CurrentStep.textContent == 8) {
+        document.getElementById("endGame").style.display = "block";
+        stopTimer()
+        const playerScores = {
+            "Joueur 1": parseInt(document.getElementById("score1").textContent, 10),
+            "Joueur 2": parseInt(document.getElementById("score2").textContent, 10),
+        };
+    
+        displayScores(playerScores);
+    }
+    
+    let q = shuffledQuestions[currentQuestion];
+
+    questionEl.textContent = q.question;
+
+    mediaContainerDiv.innerHTML = '';
+    if (q.media) {
+        if (q.media.endsWith('.jpg') || q.media.endsWith('.png') || q.media.endsWith('.jpeg')) {
+            let img = document.createElement('img');
+            img.src = q.media;
+            mediaContainerDiv.appendChild(img);
+        } else if (q.media.endsWith('.mp4') || q.media.endsWith('.mov') || q.media.endsWith('.webm')) {
+            let video = document.createElement('video');
+            video.src = q.media;
+            video.controls = true;
+            mediaContainerDiv.appendChild(video);
+        }
+    }
+    const cartelInfoDiv = document.getElementById("cartelInfo");
+    cartelInfoDiv.style.display = "block";
+    if (q.cartel) {
+        q.cartel.forEach(cartelItem => {
+            const element = document.getElementById(cartelItem.id);
+            if (element) {
+                element.textContent = cartelItem.text;
+
+                if (q.hide && q.hide.includes(cartelItem.id)) {
+                    element.style.backgroundColor = "black";
+                } else {
+                    element.style.backgroundColor = "";
+                }
+            }
+        });
+    }
+
+
+    document.getElementById("difficulty-selector").style.display = "flex";
+    document.getElementById("answers-container").style.display = "none";
+
+    stepsDisplay.increment(1);
+
+    document.getElementById("easy-btn").addEventListener("click", () => {
+        startQuestionWithDifficulty(
+            "easy",
+            questionEl,
+            btnA,
+            btnB,
+            btnC,
+            btnD,
+            activePlayerEl,
+            mediaContainerDiv,
+            timerEl,
+            score1El,
+            score2El,
+            nextButton
+        );
+    });
+
+    document.getElementById("medium-btn").addEventListener("click", () => {
+        startQuestionWithDifficulty(
+            "medium",
+            questionEl,
+            btnA,
+            btnB,
+            btnC,
+            btnD,
+            activePlayerEl,
+            mediaContainerDiv,
+            timerEl,
+            score1El,
+            score2El,
+            nextButton
+        );
+    });
+
+    document.getElementById("hard-btn").addEventListener("click", () => {
+        startQuestionWithDifficulty(
+            "hard",
+            questionEl,
+            btnA,
+            btnB,
+            btnC,
+            btnD,
+            activePlayerEl,
+            mediaContainerDiv,
+            timerEl,
+            score1El,
+            score2El,
+            nextButton
+        );
+    });
+}
+
+
+function startQuestionWithDifficulty(difficulty, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
+    selectedDifficulty = difficulty;
+    timerEl.textContent = "20";
+    document.getElementById('answers-container').style.display = 'flex';
+    document.getElementById('difficulty-selector').style.display = 'none';
+    loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+    startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
+}
+
+export function loadQuestion(
+    questionEl,
+    btnA,
+    btnB,
+    btnC,
+    btnD,
+    activePlayerEl,
+    mediaContainerDiv,
+    timerEl,
+    score1El,
+    score2El,
+    nextButton
+) {
+
+
+    
     btnA.style.display = "block";
     btnB.style.display = "block";
     btnC.style.display = "block";
@@ -130,49 +249,34 @@ export function loadQuestion(
         HaveselectedDifficulty = 0;
     }
 
-    const q = shuffledQuestions[currentQuestion];
+    let q = shuffledQuestions[currentQuestion];
     if (HaveselectedDifficulty === 0) {
         askForDifficulty(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
         HaveselectedDifficulty = 1;
+        return; // Stop here to wait for difficulty selection
     }
 
-    const selectedDiff = q.difficulties[selectedDifficulty];
+    let selectedDiff = q.difficulties[selectedDifficulty];
     questionEl.textContent = q.question;
-    const choices = selectedDiff.choices;
-    btnA.textContent = choices[0];
-    btnB.textContent = choices[1];
-    btnC.textContent = choices[2];
-    btnD.textContent = choices[3];
+    let choices = selectedDiff.choices;
+    btnA.innerHTML = `<img src="${choices[0].image}"/><span>${choices[0].text}</span>`;
+    btnB.innerHTML = `<img src="${choices[1].image}"/><span>${choices[1].text}</span>`;
+    btnC.innerHTML = `<img src="${choices[2].image}"/><span>${choices[2].text}</span>`;
+    btnD.innerHTML = `<img src="${choices[3].image}"/><span>${choices[3].text}</span>`;
 
-    mediaContainerDiv.innerHTML = '';
-
-    if (q.media) {
-        if (q.media.endsWith('.jpg') || q.media.endsWith('.png') || q.media.endsWith('.jpeg')) {
-            const img = document.createElement('img');
-            img.src = q.media;
-            mediaContainerDiv.appendChild(img);
-        } else if (q.media.endsWith('.mp4') || q.media.endsWith('.mov') || q.media.endsWith('.webm')) {
-            const video = document.createElement('video');
-            video.src = q.media;
-            video.controls = true;
-            mediaContainerDiv.appendChild(video);
-        }
-    }
+    loadMedia(mediaContainerDiv, q.media);
 
     activePlayer = startingPlayer;
     startingPlayer = startingPlayer === 1 ? 2 : 1;
     hasAnswered = false;
     activePlayerEl.textContent = activePlayer;
-    const event = new CustomEvent('questionLoaded', {
+
+    let event = new CustomEvent('questionLoaded', {
         detail: { currentQuestionIndex: currentQuestion },
     });
     document.dispatchEvent(event);
-
-
-    document.addEventListener('questionLoaded', (event) => {
-        updateProgressBar('progress-bar-container', event.detail.currentQuestionIndex);
-    });
 }
+
 function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
     if (!hasAnswered) {
         activePlayer = activePlayer === 1 ? 2 : 1;
@@ -197,80 +301,90 @@ export function handleAnswer(
     score2El,
     nextButton
 ) {
-    const correct = questions[currentQuestion].difficulties[selectedDifficulty].correct;
+    let correct = questions[currentQuestion].difficulties[selectedDifficulty].correct;
 
     if (choice === correct) {
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
+        updateResponseTitle(true, activePlayer);
+
         nextTurn(true, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     } else {
-        // Désactiver ou masquer le bouton de la réponse incorrecte
-        if (choice === "A") {
-            btnA.style.display = "none";
-        } else if (choice === "B") {
-            btnB.style.display = "none";
-        } else if (choice === "C") {
-            btnC.style.display = "none";
-        } else if (choice === "D") {
-            btnD.style.display = "none";
-        }
+        if (choice === "A") btnA.style.display = "none";
+        else if (choice === "B") btnB.style.display = "none";
+        else if (choice === "C") btnC.style.display = "none";
+        else if (choice === "D") btnD.style.display = "none";
 
         if (!hasAnswered) {
             hasAnswered = true;
             activePlayer = activePlayer === 1 ? 2 : 1;
             activePlayerEl.textContent = activePlayer;
-            startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
+
+            updateResponseTitle(false);
+
+            startTimer(timerEl, () =>
+                handleTimeout(
+                    activePlayerEl,
+                    timerEl,
+                    score1El,
+                    score2El,
+                    questionEl,
+                    btnA,
+                    btnB,
+                    btnC,
+                    btnD,
+                    mediaContainerDiv,
+                    nextButton
+                )
+            );
         } else {
             showingAnswer = false;
-            nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+            nextTurn(
+                false,
+                questionEl,
+                btnA,
+                btnB,
+                btnC,
+                btnD,
+                activePlayerEl,
+                mediaContainerDiv,
+                timerEl,
+                score1El,
+                score2El,
+                nextButton
+            );
         }
     }
 }
 
-
 export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
     if (!showingAnswer) {
-        showAnswer(
-            questionEl,
-            mediaContainerDiv,
-            btnA,
-            btnB,
-            btnC,
-            btnD,
-            nextButton,
-            timerEl
-        );
+        showAnswer(questionEl, mediaContainerDiv, btnA, btnB, btnC, btnD, nextButton, timerEl);
         return;
     }
-
     showingAnswer = false;
     currentQuestion++;
-    const answersContainer = document.getElementById("answers-container");
-    answersContainer.style.display = "flex";
-    nextButton.style.display = "none";
+    document.getElementById("responce-contener").style.display = "none";
+    timerEl.style.display = "flex"
 
     if (currentQuestion < questions.length) {
         HaveFinishQuestions = 0;
-        loadQuestion(
-            questionEl,
-            btnA,
-            btnB,
-            btnC,
-            btnD,
-            activePlayerEl,
-            mediaContainerDiv,
-            timerEl,
-            score1El,
-            score2El
-        );
-    } else {
-        endGame(score1El, score2El);
+        loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
+function displayScores(playerScores) {
 
-
-function endGame(score1El, score2El) {
-    alert(`Fin du jeu ! Joueur 1: ${score1} points, Joueur 2: ${score2} points`);
+    const playerScorbord = document.getElementById("playerScorbord");
+    playerScorbord.innerHTML = ''; 
+    const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreA - scoreB);
+    sortedScores.forEach(([player, score]) => {
+        const playerScoreDiv = document.createElement("div");
+        playerScoreDiv.classList.add("stats-display");
+        playerScoreDiv.innerHTML = `<div class="title-container" style="width: 360px"><h3>${player}</h3></div> <div class="score-container" style="width: fit-content;"><h3>${score} pts</h3></div>`;
+        playerScorbord.appendChild(playerScoreDiv);
+    });
 }
+
+
 
 initializeGame();
