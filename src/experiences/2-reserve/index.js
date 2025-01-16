@@ -6,11 +6,13 @@ import Scene from "./js/scene.js";
 import AudioManager from "./js/audioManager.js";
 import Dialogue from "./js/dialogue.js";
 import   "./js/paintingChoice.js";
+import EndScene from "./js/endScene.js";
 
 let game = new Game();
 const welcomeScene = new WelcomeScene();
 const exhibitionScene = new ExhibitionScene();
 const reserveScene = new ReserveScene();
+const endScene = new EndScene();
 
 Game.getInstance().loadScene("scene-welcome");
 
