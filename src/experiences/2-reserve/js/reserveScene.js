@@ -1,6 +1,6 @@
 import Scene from "./scene.js";
 import paintings from "../data/paintings.js";
-import selectedPaintings from "../data/selectedPaintings.js";
+import Game from "./Game.js";
 
 export default class ReserveScene extends Scene {
     constructor() {
@@ -20,6 +20,7 @@ export default class ReserveScene extends Scene {
         super.initScene()
         this.loadPaintings("#container-paintings")
         this.scrollToBottom()
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-0-0`]);
     }
 
     loadPaintings(conteneurPaintings, filteredPaintings) {
