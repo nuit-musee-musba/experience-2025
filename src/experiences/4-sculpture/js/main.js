@@ -1,25 +1,26 @@
 import DragDrop from './DragDrop.js';
 import Item from './Item.js';
 import Dialogue from './Dialogue.js';
+import Step from './currentStep.js';
+import { Button } from '../../../commons/components/Button.js';
+
+const stepManager = new Step(1); // Initialisation de l'étape avec Step
+console.log(`Étape initialisée : ${stepManager.getCurrentStep()}`);
 
 const inventorySlots = document.querySelector('.inventory-slots');
-const itemsData = [
-    { step: 1, name: 'Objet 1' },
-    { step: 2, name: 'Objet 2' },
-    { step: 3, name: 'Objet 3' },
-    { step: 4, name: 'Objet 4' },
-    { step: 5, name: 'Objet 5' },
-    { step: 6, name: 'Objet 6' },
-    { step: 7, name: 'Objet 7' },
-    { step: 8, name: 'Objet 8' },
-];
 
-itemsData.forEach(data => {
-    const item = new Item(data.step, data.name);
-    inventorySlots.appendChild(item.element);
-});
+// Crée les items pour les identifiants 1 à 9
+for (let item = 1; item <= 6; item++) {
+    const itemInstance = new Item(item); // Passe l'identifiant de l'item
+    inventorySlots.appendChild(itemInstance.element); // Ajoute l'élément à l'inventaire
+    console.log(`Item ajouté : ${item}`);
+}
 
-new DragDrop('#work-area', '.item');
+// Initialiser le Drag & Drop avec `stepManager` pour gérer les étapes
+new DragDrop('#work-area', '.item', stepManager);
 
-var dialogue = new Dialogue();
+// Initialiser les dialogues
+const dialogue = new Dialogue();
 dialogue.listDialogue(Array.from({ length: 30 }, (_, i) => i), '#dialogue-element');
+
+const btn = new Button()

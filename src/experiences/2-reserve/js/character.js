@@ -1,3 +1,5 @@
+import {Modal} from "../../../commons/components/Modal.js";
+
 export default class Character {
     constructor() {
     }
@@ -15,15 +17,13 @@ export default class Character {
 
     changeCharacterFace(emotion){
         let character = document.querySelector('#character');
-        
 
         switch (emotion) {
-            case  0:
-                character.src = `./assets/img/tristan.png`;
+            case  0: //neutral
+                character.src = `./assets/img/tristan/tristan-neutral.png`;
                 break;
-        
-            case 1 :
-                character.src = `./assets/img/tristan-triste.webp`;
+            case 1 : //showing
+                character.src = `./assets/img/tristan/tristan-showing.png`;
                 break;
             default:
                 this.hideCharacter()

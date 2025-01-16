@@ -1,61 +1,165 @@
 #scene-exhibition, #scene-reserve {
-    display: none;
-    position: relative;
-    top: 0;
-    left: 0;
+  display: none;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .exhibition-info {
-    position: absolute;
-    top: 800px;
-    left: 200px;
+  position: absolute;
+  top: 800px;
+  left: 200px;
 }
 
 .selected {
-    transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
+  transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
+}
+
+#character {
+    z-index: 1;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 200px;
+}
+
+.dialogue {
+    z-index: 1;
+    display: none;
+    position: fixed;
+    bottom: 180px;
+    left: 900px;
+    background-color: white;
 }
 
 #container-paintings{
     display: flex;
     gap: 2rem;
     flex-wrap: nowrap;
-    width: 80%;
+    width: 100%;
+    height: 100%;
 }
 
 #container-paintings img{
     width: 400px;
     height: fit-content ;
-
     transition: ease-in all 500ms;
 }
 
 #scene-reserve .selectMode .selectModeImg{
     width: fit-content;
-    height: 70%;
+    height: 100%;
     right: 0;
     top: 50%;
 }
 
-.selectMode{
+#scene-reserve .selectMode{
     background-color: #ffffff;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     display: flex;
     justify-content: space-between;
+    flex-direction: row-reverse;
     align-items: center;
-    padding: 100px;
+    padding: 200px;
     overflow: hidden;
+    border: 1px solid black;
+    gap: 100px;
+    transform: skew(0deg, 0deg)!important;
+    z-index: 10;
+}
 
+.selectMode::before{
+    content: '';
+    width: 95%;
+    height: 89%;
+    border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.selectModeDescription{
+    width: 100%;
+    height: 100%;
+}
+
+.nextButton:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.element {
+  position: absolute;
+  z-index: 2;
+}
+
+.exhibition-info {
+  z-index: 3;
 }
 
 .descriptionContainer{
-    border: black 1px solid;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    width: 1837px;
+    width: 100%;
+    height: 100%;
     gap: 78px;
 }
+
+.containerButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#reserve-background{
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    position: static ;
+}
+
+#container-paintings{
+    margin: auto;
+    gap: 2rem;
+    width: 60%;
+    height: 0px;
+    padding-top: 525px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#scene-reserve .containerPaintingsOnselectMode{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container-paintings > div:nth-child(4n + 1),
+#container-paintings > div:nth-child(4n + 3) {
+    transform: skew(0deg, -30deg);
+}
+
+#container-paintings > div:nth-child(4n + 2),
+#container-paintings > div:nth-child(4n + 4) {
+    transform: skew(0deg, 30deg);
+}
+
+
+
