@@ -1,6 +1,6 @@
 import Scene from "./scene.js";
 import paintings from "../data/paintings.js";
-import selectedPaintings from "../data/selectedPaintings.js";
+import Game from "./Game.js";
 
 export default class ReserveScene extends Scene {
     constructor() {
@@ -19,6 +19,8 @@ export default class ReserveScene extends Scene {
     initScene(){
         super.initScene()
         this.loadPaintings("#container-paintings")
+        this.scrollToBottom()
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-0-0`]);
     }
 
     loadPaintings(conteneurPaintings, filteredPaintings) {
@@ -46,6 +48,17 @@ export default class ReserveScene extends Scene {
             while (conteneurPainting.firstChild) {
                 conteneurPainting.removeChild(conteneurPainting.firstChild);
             }
+        }
+    }
+    scrollToBottom() {
+        try {
+            window.scrollBy({
+                top: 10000, // Scrolle vers le bas de 1000px
+                behavior: 'smooth' // Défilement fluide
+            });
+            console.log("Scroll forcé de 1000px vers le bas.");
+        } catch (error) {
+            console.error("Erreur de défilement : ", error);
         }
     }
 }

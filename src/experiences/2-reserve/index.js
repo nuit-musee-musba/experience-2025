@@ -22,4 +22,3 @@ document.getElementById("end-exhibition-scene").addEventListener("click", () => 
 Game.getInstance().loadScene("scene-welcome");
 
 
-
