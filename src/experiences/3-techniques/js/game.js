@@ -15,6 +15,7 @@ let selectedDifficulty = null;
 let HaveselectedDifficulty = 0;
 let HaveFinishQuestions = 0;
 let shuffledQuestions = [];
+let lastStartingPlayer = 1; 
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -67,13 +68,12 @@ export function showAnswer(
 
     document.getElementById("response-text").textContent = question.responseDetails.text;
 
-    // Charger le média (image ou vidéo) dans le conteneur média
     loadMediaToResponseMedia(question.responseDetails.media);
 
     document.getElementById("responce-contener").style.display = "flex";
 
     stopTimer();
-    timerEl.style.display = "none";
+
 }
 
 function loadMediaToResponseMedia() {
@@ -117,6 +117,7 @@ function askForDifficulty(
     score2El,
     nextButton
 ) {
+
     if (stepsDisplay.CurrentStep.textContent == 8) {
         document.getElementById("endGame").style.display = "block";
         stopTimer()
@@ -255,6 +256,7 @@ export function loadQuestion(
         HaveFinishQuestions = 1;
         HaveselectedDifficulty = 0;
     }
+    
 
     let q = shuffledQuestions[currentQuestion];
     if (HaveselectedDifficulty === 0) {
@@ -272,11 +274,8 @@ export function loadQuestion(
     btnD.innerHTML = `<img src="${choices[3].image}"/><span>${choices[3].text}</span>`;
 
     loadMedia(mediaContainerDiv, q.media);
-
-    activePlayer = startingPlayer;
-    startingPlayer = startingPlayer === 1 ? 2 : 1;
     hasAnswered = false;
-    activePlayerEl.textContent = activePlayer;
+
     updatePlayerClasses(activePlayer);
     let event = new CustomEvent('questionLoaded', {
         detail: { currentQuestionIndex: currentQuestion },
@@ -286,15 +285,15 @@ export function loadQuestion(
 
 function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
     if (!hasAnswered) {
-
-        activePlayer = activePlayer === 1 ? 2 : 1;
-        activePlayerEl.textContent = activePlayer; 
+        activePlayer = activePlayer === 1 ? 2 : 1; 
+        activePlayerEl.textContent = activePlayer;
         updatePlayerClasses(activePlayer);
         startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
     } else {
         nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
+
 
 export function handleAnswer(
     choice,
@@ -311,8 +310,7 @@ export function handleAnswer(
     nextButton
 ) {
     let correct = shuffledQuestions[currentQuestion].difficulties[selectedDifficulty].correct;
-    console.log(shuffledQuestions[currentQuestion].difficulties[selectedDifficulty])
-    console.log(shuffledQuestions[currentQuestion])
+
     if (choice === correct) {
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
@@ -373,16 +371,24 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
         showAnswer(questionEl, mediaContainerDiv, btnA, btnB, btnC, btnD, nextButton, timerEl);
         return;
     }
+
     showingAnswer = false;
     currentQuestion++;
     document.getElementById("responce-contener").style.display = "none";
-    timerEl.style.display = "flex";
+
     if (currentQuestion < questions.length) {
+    
+        activePlayer = lastStartingPlayer === 1 ? 2 : 1;
+        lastStartingPlayer = activePlayer; 
+    
+        activePlayerEl.textContent = activePlayer;
+
         HaveFinishQuestions = 0;
         updatePlayerClasses(activePlayer);
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
+
 
 function displayScores(playerScores) {
     const playerScorbord = document.getElementById("playerScorbord");
@@ -429,22 +435,25 @@ function updatePlayerClasses(activePlayer) {
     const player1Div = document.getElementById("player1");
     const player2Div = document.getElementById("player2");
     const bodyGame = document.getElementById("body-game");
+    const responceContener = document.getElementById("responce-contener");
     const activePlayerPosition = document.getElementById("activePlayer");
-    
+    console.log(activePlayer)
 
     bodyGame.classList.remove('player-active-background1', 'player-active-background2');
     player1Div.classList.remove('player-active', 'player-active1', 'player-inactive');
     player2Div.classList.remove('player-active', 'player-active2', 'player-inactive');
-
+    responceContener.classList.remove('color-responce-answer-player1', 'color-responce-answer-player2');
     if (activePlayer === 1) {
         bodyGame.classList.add('player-active-background1');
         player1Div.classList.add('player-active1');
         player2Div.classList.add('player-inactive');
+        responceContener.classList.add('color-responce-answer-player1')
         activePlayerPosition.style.top = "100px";
-    } else if(activePlayer === 2){
+    } else if (activePlayer === 2) {
         bodyGame.classList.add('player-active-background2');
         player1Div.classList.add('player-inactive');
         player2Div.classList.add('player-active2');
+        responceContener.classList.add('color-responce-answer-player2')
         activePlayerPosition.style.top = "220px";
     }
 }
