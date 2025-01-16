@@ -4,22 +4,22 @@
   font-family: 'Helvetica';
   font-style: normal;
   font-weight: 400;
-  src: url('../../../public/commons/fonts/Helvetica.ttc') ;
+  src: url('/commons/fonts/Helvetica.ttc') ;
 }
 
 @font-face {
     font-family: 'NyghtSerif';
     font-style: normal;
     font-weight: 400;
-    src: url('../../../public/commons/fonts/NyghtSerif-Regular.woff2') format('woff2'),
-         url('../../../public/commons/fonts/NyghtSerif-Regular.woff') format('woff');
+    src: url('/commons/fonts/NyghtSerif-Regular.woff2') format('woff2'),
+         url('/commons/fonts/NyghtSerif-Regular.woff') format('woff');
 }
 
 @font-face {
     font-family: 'NyghtSerif';
     font-style: normal;
     font-weight: 300;
-    src: url('../../../public/commons/fonts/NyghtSerif-Light.woff2') format('woff2'),
-         url('../../../public/commons/fonts/NyghtSerif-Light.woff') format('woff');
+    src: url('/commons/fonts/NyghtSerif-Light.woff2') format('woff2'),
+         url('/commons/fonts/NyghtSerif-Light.woff') format('woff');
 }
 
