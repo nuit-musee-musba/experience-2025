@@ -7,13 +7,14 @@ import selectedPaintings from "../data/selectedPaintings.js";
 export default class EndScene extends Scene {
     constructor() {
         super("end-scene", null); 
+        this.perspectiveRotation = 1689;
     }
 
     initScene(){
         super.initScene()
         this.fetchElements()
         this.fetchPaintings()
-        this.perspectiveRotation = 1689;
+        
         console.log('selected painting', selectedPaintings)
     }
 
@@ -48,10 +49,8 @@ export default class EndScene extends Scene {
         }
         const paintingWidth = elem.offsetWidth;
         const paintingHeight = elem.offsetHeight;
-
         const centeredLeft = pos.x - paintingWidth / 2;
         const centeredTop = pos.y - paintingHeight / 2;
-
         elem.style.left = `${centeredLeft}px`;
         elem.style.top = `${centeredTop}px`;
     }
