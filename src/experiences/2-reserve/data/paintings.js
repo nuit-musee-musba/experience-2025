@@ -8,7 +8,7 @@ export default [
         date: "1624",
         description: "Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.",
         size: "Taille moyenne ",
-        width: 500,
+        width: 300,
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ export default [
         date: "1624  ",
         description: "Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées. ",
         size: "Taille moyenne ",
-        width: 500,
+        width: 300,
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ export default [
         date: "1624 ",
         description: "Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées. ",
         size: "Taille moyenne",
-        width: 500,
+        width: 300,
     },
     {
         id: 4,
@@ -41,17 +41,7 @@ export default [
         date: "1624 ",
         description: "Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.",
         size: "Taille moyenne ",
-        width: 500,
-    },{
-        id: 1,
-        src: "./assets/img/image_2.jpg",
-        title: "Le joueur de luth ",
-        thematic: "paix",
-        author: "TER BRUGGHEN HENDRICK PRETI MATTIA",
-        date: "1624",
-        description: "Le son du luth apaise l’âme et l’esprit. Une ancienne légende murmure qu’il aurait le pouvoir d’apaiser même les personnes les plus tourmentées.",
-        size: "Taille moyenne ",
-        width: 500,
+        width: 300,
     },
     {
         id: 2,

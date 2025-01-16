@@ -30,8 +30,6 @@ export default class Dialogue extends Modal {
         }
 
         let currentIndex = 1;
-        console.log("init current index = " + currentIndex);
-        console.log("array dialogue = " + arrayDialoguesId.length);
 
         this.changeContent("", this.findDialogue(arrayDialoguesId[0]).text);
         this.character.showCharacter(this.findDialogue(arrayDialoguesId[0]).emotion);
@@ -39,13 +37,11 @@ export default class Dialogue extends Modal {
             this.button.textContent = "Fermer";
         }
         else {
-            console.log("suivant");
             this.button.textContent = "Suivant";
         }
 
         // Création du nouveau handler
         this.currentHandler = () => {
-            console.log(currentIndex);
             if (currentIndex < arrayDialoguesId.length) {
                 const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
                 if (dialogue) {
@@ -60,7 +56,6 @@ export default class Dialogue extends Modal {
             }
 
             if (currentIndex === arrayDialoguesId.length) {
-                console.log("hi");
                 this.button.textContent = "Fermer";
             }
         };
