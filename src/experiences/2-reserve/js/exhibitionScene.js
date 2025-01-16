@@ -67,6 +67,9 @@ export default class ExhibitionScene extends Scene {
     }
 
     rotatePainting(painting, reset = false) {
+        if (!painting) {
+            return;
+        }
         if (reset) {
             painting.style.transform = "skew(0deg, 0deg)";
             return;
@@ -97,7 +100,6 @@ export default class ExhibitionScene extends Scene {
     }
 
     initScene() {
-        console.log(SelectedPaintings)
         super.initScene();
         this.fetchPaintings();
         this.fetchElements();
@@ -172,6 +174,9 @@ export default class ExhibitionScene extends Scene {
     }
 
     fixPaintingPosition(elem, pos) {
+        if (!elem) {
+            return;
+        }
         const paintingWidth = elem.offsetWidth;
         const paintingHeight = elem.offsetHeight;
 

@@ -40,7 +40,7 @@ export default class Game extends EventEmitter {
     updateGameProgression() {
         this.gameProgression++;
         this.unloadScene("scene-exhibition");
-        if (this.gameProgression >= this.endGameThreshold) {
+        if (this.gameProgression > this.endGameThreshold) {
             this.loadScene("end-scene");
             return;
         }
