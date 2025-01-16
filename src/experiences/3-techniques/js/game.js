@@ -26,7 +26,14 @@ function shuffleArray(array) {
 function initializeGame() {
     shuffledQuestions = [...questions];
     shuffleArray(shuffledQuestions);
+
+    const player1Div = document.getElementById("player1");
+    const player2Div = document.getElementById("player2");
+
+    player1Div.classList.add('player-active');
+    player2Div.classList.add('player-inactive');
 }
+
 
 function loadMedia(mediaContainerDiv, media) {
     mediaContainerDiv.innerHTML = '';
@@ -319,7 +326,21 @@ export function handleAnswer(
             hasAnswered = true;
             activePlayer = activePlayer === 1 ? 2 : 1;
             activePlayerEl.textContent = activePlayer;
-
+            const player1Div = document.getElementById("player1");
+            const player2Div = document.getElementById("player2");
+        
+            player1Div.classList.remove('player-active');
+            player1Div.classList.add('player-inactive');
+            player2Div.classList.remove('player-active');
+            player2Div.classList.add('player-inactive');
+        
+            if (activePlayer === 1) {
+                player1Div.classList.remove('player-inactive');
+                player1Div.classList.add('player-active1');
+            } else {
+                player2Div.classList.remove('player-inactive');
+                player2Div.classList.add('player-active2');
+            }
             updateResponseTitle(false);
 
             startTimer(timerEl, () =>
@@ -365,13 +386,13 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
     showingAnswer = false;
     currentQuestion++;
     document.getElementById("responce-contener").style.display = "none";
-    timerEl.style.display = "flex"
-
+    timerEl.style.display = "flex";
     if (currentQuestion < questions.length) {
         HaveFinishQuestions = 0;
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
+
 function displayScores(playerScores) {
     const playerScorbord = document.getElementById("playerScorbord");
     playerScorbord.innerHTML = ''; 
