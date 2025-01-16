@@ -7,8 +7,8 @@
 
 .exhibition-info {
   position: absolute;
-  top: 800px;
-  left: 200px;
+  top: 1800px;
+  left: 3300px;
 }
 
 .selected {
@@ -16,7 +16,7 @@
 }
 
 #character {
-    z-index: 1;
+    z-index: 4;
     display: none;
     position: fixed;
     bottom: 0;
@@ -24,7 +24,7 @@
 }
 
 .dialogue {
-    z-index: 1;
+    z-index: 4;
     display: none;
     position: fixed;
     bottom: 180px;
@@ -97,11 +97,6 @@
 
 .element {
   position: absolute;
-  z-index: 2;
-}
-
-.exhibition-info {
-  z-index: 3;
 }
 
 .descriptionContainer{
