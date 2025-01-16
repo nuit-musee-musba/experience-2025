@@ -361,8 +361,34 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
-if(stepsDisplay.CurrentStep.textContent == 9){
-    document.getElementById("endGame").style.display = "flex";
+function displayScores(playerScores) {
+    // Obtenez l'élément pour afficher les scores
+    const playerScorbord = document.getElementById("playerScorbord");
+    playerScorbord.innerHTML = ''; // Nettoyez le tableau des scores
+
+    // Triez les scores par ordre croissant
+    const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreA - scoreB);
+
+    // Créez les éléments HTML pour chaque joueur et score
+    sortedScores.forEach(([player, score]) => {
+        const playerScoreDiv = document.createElement("div");
+        playerScoreDiv.classList.add("player-score-entry");
+        playerScoreDiv.innerHTML = `<h3>${player}</h3><p>${score} points</p>`;
+        playerScorbord.appendChild(playerScoreDiv);
+    });
 }
+
+if (stepsDisplay.CurrentStep.textContent == 9) {
+    document.getElementById("endGame").style.display = "flex";
+
+    const playerScores = {
+        "Joueur 1": parseInt(document.getElementById("score1").textContent, 10),
+        "Joueur 2": parseInt(document.getElementById("score2").textContent, 10),
+
+    };
+
+    displayScores(playerScores);
+}
+
 
 initializeGame();

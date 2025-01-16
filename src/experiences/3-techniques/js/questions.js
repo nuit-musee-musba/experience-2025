@@ -1,6 +1,5 @@
 export const questions = [
 
-    /*
 
     {
 
@@ -9,7 +8,7 @@ export const questions = [
         question: "Pour toi, quel outil est utilisé pour réaliser cette œuvre ?", //souligner outils
         responseDetails: {
             text: "L'appareil photo permet de capturer des images avec précision et de jouer avec la lumière et les angles pour produire une œuvre visuelle unique.",
-            media: "img/card/photo.jpg"
+            media: ""
         },
         media: "img/art/electrikGarden.jpg",
         cartel: [
@@ -25,7 +24,7 @@ export const questions = [
                 choices: [
                     { text: "", image: "img/card/massette.jpg" },
                     { text: "", image: "img/card/photo.jpg" },
-                    { text: "", image: "img/card/ebauchoir.jpg" }, //canne à souffler 
+                    { text: "", image: "img/card/canneSouffler.jpg" },
                     { text: "", image: "img/card/mirette.jpg" }
                 ],
                 correct: "B"
@@ -41,19 +40,15 @@ export const questions = [
             },
             hard: {
                 choices: [
-                    { text: "", image: "img/card/peintureHuile.jpg" }, //aquerelle
+                    { text: "", image: "img/card/aquarelle.jpg" },
                     { text: "", image: "img/card/photo.jpg" },
                     { text: "", image: "img/card/peintureHuile.jpg" }, 
-                    { text: "", image: "img/card/peintureHuile.jpg" } //gouache
+                    { text: "", image: "img/card/gouache.jpg" }
                 ],
                 correct: "B"
             }
         }
     },
-
-    */
-
-
 
 
 
@@ -66,7 +61,7 @@ export const questions = [
         question: "À toi ! De quel matériau est composée cette œuvre ?", //souligner matériau
         responseDetails: {
             text: "Cette œuvre est composée de grès, un matériau robuste et polyvalent souvent utilisé pour sa durabilité et sa texture idéale pour la sculpture ou la céramique.",
-            media: "img/card/gres.jpg"
+            media: ""
         },
         media: "img/art/coupeGres.jpg",
         cartel: [
@@ -101,7 +96,7 @@ export const questions = [
                     { text: "", image: "img/card/marbre.jpg" },
                     { text: "", image: "img/card/terreCuite.jpg" },
                     { text: "", image: "img/card/gres.jpg" },
-                    { text: "", image: "img/card/porcelaine.jpg" } //faience
+                    { text: "", image: "img/card/faience.jpg" }
                 ],
                 correct: "C"
             }
@@ -118,8 +113,8 @@ export const questions = [
         //Q3
         question: "À toi de jouer ! Quel matériau n’entre pas dans la composition de cette œuvre ?", //souligner matériau et pas
         responseDetails: {
-            text: "Cette œuvre à été réalisée avec de la laine, du chanvre et de la corde. ",
-            media: "" //pas d'image good
+            text: "Cette œuvre à été réalisée avec de la laine, du chanvre et de la corde.  La texture riche et l'usage habile des fibres mettent en valeur un travail artisanal exceptionnel.",
+            media: ""
         },
         media: "img/art/arbreVie.jpg",
         cartel: [
@@ -133,7 +128,7 @@ export const questions = [
         difficulties: {
             easy: {
                 choices: [
-                    { text: "", image: "img/card/peintureHuile.jpg" },
+                    { text: "", image: "img/card/aquarelle.jpg" },
                     { text: "", image: "img/card/corde.jpg" },
                     { text: "", image: "img/card/laine.jpg" },
                     { text: "", image: "img/card/chanvre.jpg" }
@@ -163,14 +158,14 @@ export const questions = [
 
 
 
-/*
+
 
     {
         //Q4
         question: "Selon toi, quelle est la nature de cette œuvre ?", //souligner nature
         responseDetails: {
             text: "La photogravure permet de graver des images sur des plaques avec une grande précision. C’est une technique parfaite pour capturer des scènes comme celles de Fraternité.",
-            media: "img/card/photogravure.jpg" //indispo actuellement
+            media: ""
         },
         media: "img/art/fraternité.jpg",
         cartel: [
@@ -187,16 +182,16 @@ export const questions = [
                     { text: "", image: "img/card/ceramique.jpg" },
                     { text: "", image: "img/card/verrerie.jpg" },
                     { text: "", image: "img/card/sculpture.jpg" },
-                    { text: "", image: "img/card/photogravure.jpg" } //indispo actuellement
+                    { text: "", image: "img/card/photogravure.jpg" } 
                 ],
                 correct: "D"
             },
             medium: {
                 choices: [
-                    { text: "", image: "img/card/linogravure.jpg" }, //indispo actuellement
+                    { text: "", image: "img/card/linogravure.jpg" },
                     { text: "", image: "img/card/sculpture.jpg" },
-                    { text: "", image: "img/card/heliogravure.jpg" }, //indispo actuellement
-                    { text: "", image: "img/card/photogravure.jpg" } //indispo actuellement
+                    { text: "", image: "img/card/heliogravure.jpg" },
+                    { text: "", image: "img/card/photogravure.jpg" }
                 ],
                 correct: "D"
             },
@@ -204,15 +199,15 @@ export const questions = [
                 choices: [
                     { text: "", image: "img/card/dessin.jpg" },
                     { text: "", image: "img/card/photographie.jpg" },
-                    { text: "", image: "img/card/linogravure.jpg" }, //indispo actuellement
-                    { text: "", image: "img/card/photogravure.jpg" } //indispo actuellement
+                    { text: "", image: "img/card/linogravure.jpg" },
+                    { text: "", image: "img/card/photogravure.jpg" }
                 ],
                 correct: "D"
             }
         }
     },
 
-    */
+    
 
 
 
@@ -221,7 +216,7 @@ export const questions = [
         question: "C'est ton tour ! Quel est le matériau présent dans cette œuvre ?", //souligner matériau
         responseDetails: {
             text: "Le matériau employé est le fer. Il est à la fois solide et esthétique. Cela permet de créer des pièces utiles et décoratives.",
-            media: "img/card/fer.jpg"
+            media: ""
         },
         media: "img/art/grilleDecorative.jpg",
         cartel: [
@@ -236,7 +231,7 @@ export const questions = [
             easy: {
                 choices: [
                     { text: "", image: "img/card/fer.jpg" },
-                    { text: "", image: "img/card/peintureHuile.jpg" }, //gouache
+                    { text: "", image: "img/card/gouache.jpg" },
                     { text: "", image: "img/minePlomb.jpg" },
                     { text: "", image: "img/card/verre.jpg" }
                 ],
@@ -270,7 +265,7 @@ export const questions = [
         //Q6
         question: "Prêts ? Parmi cette liste, quel matériau n’est pas utilisé ?", //souligner matériau et pas
         responseDetails: {
-            text: "L’encre de chine, la mine de plomb et la sanguine ont été utilisées pour réaliser cette œuvre. La sanguine est reconnaissable grâce à ses pigments rouge terre. ",
+            text: "L’encre de chine, la mine de plomb et la sanguine ont été utilisées pour réaliser cette œuvre. La sanguine est reconnaissable grâce à ses pigments rouge terre.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
             media: "" //pas d'image good
         },
         media: "img/art/christSamaritaine.jpg", 
@@ -296,7 +291,7 @@ export const questions = [
                 choices: [
                     { text: "", image: "img/card/minePlomb.jpg" },
                     { text: "", image: "img/card/sanguine.jpg" },
-                    { text: "", image: "img/card/peintureHuile.jpg" }, //aquarelle
+                    { text: "", image: "img/card/aquarelle.jpg" },
                     { text: "", image: "img/card/cristal.jpg" }
                 ],
                 correct: "C"
@@ -345,7 +340,7 @@ export const questions = [
             medium: {
                 choices: [
                     { text: "", image: "img/card/marbre.jpg" },
-                    { text: "", image: "img/card/fer.jpg" }, //toile
+                    { text: "", image: "img/card/toile.jpg" },
                     { text: "", image: "img/card/carton.jpg" },
                     { text: "", image: "img/card/verre.jpg" }
                 ],
@@ -354,7 +349,7 @@ export const questions = [
             hard: {
                 choices: [
                     { text: "", image: "img/card/bois.jpg" },
-                    { text: "", image: "img/card/fer.jpg" }, //toile
+                    { text: "", image: "img/card/toile.jpg" },
                     { text: "", image: "img/card/carton.jpg" },
                     { text: "", image: "img/card/papier.jpg" }
                 ],
@@ -363,7 +358,6 @@ export const questions = [
         }
     },
 
-    /*
 
     {
         //Q8
@@ -372,19 +366,19 @@ export const questions = [
             text: "Cette œuvre a été réalisée avec de l’aquarelle, une technique de peinture fluide qui utilise des pigments dilués dans l’eau pour créer des effets de transparence et de légèreté.",
             media: "img/card/aquarelle.jpg"
         },
-        media: "img/art/bordeauxPrisVif.jpg",
+        media: "img/art/jeuneFemmeFilletteLisant.jpg",
         cartel: [
-            { id: "artistName", text: "Bordeaux pris sur le vif : sonnets, impressions vues" },
-            { id: "artName", text: "René Arar" },
-            { id: "artDate", text: "1947" },
-            { id: "useTechnique", text: "crayon, plume, encre, encre de Chine, lavis d'encre de Chine, aquarelle et crayon de couleur, sur papier" },
+            { id: "artistName", text: "Jeune femme et fillette lisant" },
+            { id: "artName", text: "Anonyme français XIXème" },
+            { id: "artDate", text: "19ᵉ siècle" },
+            { id: "useTechnique", text: "Aquarelle sur papier" },
             { id: "whereMuseum", text: "En réserve" }
         ],
         hide: ["useTechnique"],
         difficulties: {
             easy: {
                 choices: [
-                    { text: "", image: "img/card/aquarelle.jpg" }, //aquarelle
+                    { text: "", image: "img/card/aquarelle.jpg" }, 
                     { text: "", image: "img/card/photo.jpg" },
                     { text: "", image: "img/card/laine.jpg" },
                     { text: "", image: "img/card/encreChine.jpg" }
@@ -393,73 +387,26 @@ export const questions = [
             },
             medium: {
                 choices: [
-                    { text: "", image: "img/card/aquarelle.jpg" }, //aquarelle
-                    { text: "", image: "img/card/gouache.jpg" }, //gouache
-                    { text: "", image: "img/card/crayonConté.jpg" }, //conté
+                    { text: "", image: "img/card/aquarelle.jpg" }, 
+                    { text: "", image: "img/card/gouache.jpg" }, 
+                    { text: "", image: "img/card/crayonConte.jpg" }, 
                     { text: "", image: "img/card/encreChine.jpg" }
                 ],
                 correct: "A"
             },
             hard: {
                 choices: [
-                    { text: "", image: "img/card/aquarelle.jpg" }, //aquarelle
-                    { text: "", image: "img/card/gouache.jpg" }, //gouache
-                    { text: "", image: "img/card/acrylique.jpg" }, //acrylique
+                    { text: "", image: "img/card/aquarelle.jpg" },
+                    { text: "", image: "img/card/gouache.jpg" },
+                    { text: "", image: "img/card/acrylique.jpg" },
                     { text: "", image: "img/card/peintureHuile.jpg" }
                 ],
                 correct: "A"
             }
         }
     },
-*/
 
-{
-    //Q9   
-    question: "Pour toi, en quel matériau est fabriqué ce médaillon ?", //souligner matériau
-    responseDetails: {
-        text: "Ce médaillon est fabriqué en plâtre, un matériau idéal pour les sculptures décoratives et les reliefs détaillés.",
-        media: "img/card/platre.jpg"
-    },
-    media: "img/art/medailleVilleBordeaux.jpg",
-    cartel: [
-        { id: "artistName", text: "Ville de Bordeaux - Médaille" },
-        { id: "artName", text: "Dubois Henri Alfred Auguste" },
-        { id: "artDate", text: "19ᵉ siècle" },
-        { id: "useTechnique", text: "Moulage en plâtre" },
-        { id: "whereMuseum", text: "En réserve" }
-    ],
-    hide: ["useTechnique"],
-    difficulties: {
-        easy: {
-            choices: [
-                { text: "", image: "img/card/platre.jpg" }, 
-                { text: "", image: "img/card/corde.jpg" },
-                { text: "", image: "img/card/chanvre.jpg" },
-                { text: "", image: "img/card/verre.jpg" }
-            ],
-            correct: "A"
-        },
-        medium: {
-            choices: [
-                { text: "", image: "img/card/platre.jpg" },
-                { text: "", image: "img/card/bronze.jpg" }, 
-                { text: "", image: "img/card/porcelaine.jpg" },
-                { text: "", image: "img/card/cristal.jpg" }
-            ],
-            correct: "A"
-        },
-        hard: {
-            choices: [
-                { text: "", image: "img/card/platre.jpg" }, 
-                { text: "", image: "img/card/gres.jpg" }, 
-                { text: "", image: "img/card/marbre.jpg" },
-                { text: "", image: "img/card/cristal.jpg" }
-            ],
-            correct: "A"
-        }
-    }
-},
-    
+
 
 
 
@@ -471,7 +418,7 @@ export const questions = [
         text: "Cette œuvre à été réalisée avec de l’aquarelle, de l’encre de chine et du crayon.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
         media: "img/card/aquarelle.jpg"
     },
-    media: "img/art/paysageBoise.jpg",
+    media: "img/art/bordeauxPrisVif.jpg",
     cartel: [
         { id: "artistName", text: "Paysage boisé" },
         { id: "artName", text: "Hugues Clovis" },
@@ -483,30 +430,30 @@ export const questions = [
     difficulties: {
         easy: {
             choices: [
-                { text: "", image: "img/card/aquarelle.jpg" }, //aquarelle
-                { text: "", image: "img/card/photo.jpg" },
-                { text: "", image: "img/card/laine.jpg" },
-                { text: "", image: "img/card/encreChine.jpg" }
+                { text: "", image: "img/card/encreChine.jpg" },
+                { text: "", image: "img/card/crayon.jpg" },
+                { text: "", image: "img/card/massette.jpg" },
+                { text: "", image: "img/card/aquarelle.jpg" }
             ],
-            correct: "A"
+            correct: "C"
         },
         medium: {
             choices: [
-                { text: "", image: "img/card/aquarelle.jpg" }, //aquarelle
-                { text: "", image: "img/card/gouache.jpg" }, //gouache
-                { text: "", image: "img/card/crayonConté.jpg" }, //conté
-                { text: "", image: "img/card/encreChine.jpg" }
+                { text: "", image: "img/card/encreChine.jpg" }, 
+                { text: "", image: "img/card/crayon.jpg" }, 
+                { text: "", image: "img/card/ebauchoir.jpg" }, 
+                { text: "", image: "img/card/aquarelle.jpg" }
             ],
-            correct: "A"
+            correct: "C"
         },
         hard: {
             choices: [
-                { text: "", image: "img/card/aquarelle.jpg" }, //aquarelle
-                { text: "", image: "img/card/gouache.jpg" }, //gouache
-                { text: "", image: "img/card/acrylique.jpg" }, //acrylique
-                { text: "", image: "img/card/peintureHuile.jpg" }
+                { text: "", image: "img/card/encreChine.jpg" }, 
+                { text: "", image: "img/card/crayon.jpg" }, 
+                { text: "", image: "img/card/minePlomb.jpg" }, 
+                { text: "", image: "img/card/aquarelle.jpg" }
             ],
-            correct: "A"
+            correct: "C"
         }
     }
 },
@@ -590,7 +537,7 @@ export const questions = [
                 { text: "", image: "img/card/fusain.jpg" }, 
                 { text: "", image: "img/card/crayon.jpg" },
                 { text: "", image: "img/card/cire.jpg" },
-                { text: "", image: "img/card/peintureHuile.jpg" } //aquarelle
+                { text: "", image: "img/card/acrylique.jpg" }
             ],
             correct: "C"
         },
@@ -694,7 +641,7 @@ export const questions = [
         easy: {
             choices: [
                 { text: "", image: "img/card/corde.jpg" }, 
-                { text: "", image: "img/card/fer.jpg" }, //toile
+                { text: "", image: "img/card/toile.jpg" }, 
                 { text: "", image: "img/card/sanguine.jpg" },
                 { text: "", image: "img/card/verre.jpg" } 
             ],
@@ -774,16 +721,16 @@ export const questions = [
 },
 
 
-/*
+
 
 {
     //Q15
     question: "Quelle est la nature de cette œuvre ?", //souligner nature
     responseDetails: {
-        text: "L’œuvre a été réalisée en terre cuite, un matériau naturel très apprécié pour la sculpture. La terre cuite est facile à modeler lorsqu’elle est humide et, une fois cuite, elle devient solide et durable",
+        text: "Cette œuvre est une statuette en ronde-bosse, ce qui signifie qu’elle est sculptée en trois dimensions et peut être admirée sous tous les angles.",
         media: "img/card/terreCuite.jpg"
     },
-    media: "img/art/hebe.jpg",
+    media: "img/art/sainteMarieMadeleine.jpg",
     cartel: [
         { id: "artistName", text: "Sainte couronnée" },
         { id: "artName", text: "Anonyme français XVème" },
@@ -797,7 +744,7 @@ export const questions = [
             choices: [
                 { text: "", image: "img/card/dessin.jpg" }, 
                 { text: "", image: "img/card/peinture.jpg" },
-                { text: "", image: "img/card/rondeBosse.jpg" }, //ronde bosse
+                { text: "", image: "img/card/rondeBosse.jpg" },
                 { text: "", image: "img/card/ceramique.jpg" } 
             ],
             correct: "C"
@@ -806,16 +753,16 @@ export const questions = [
             choices: [
                 { text: "", image: "img/card/ferronerie.jpg" }, 
                 { text: "", image: "img/card/verrerie.jpg" },
-                { text: "", image: "img/card/rondeBosse.jpg" }, //ronde bosse
+                { text: "", image: "img/card/rondeBosse.jpg" },
                 { text: "", image: "img/card/ceramique.jpg" }
             ],
             correct: "C"
         },
         hard: {
             choices: [
-                { text: "", image: "img/card/terreCuite.jpg" }, //haut relief
-                { text: "", image: "img/card/gres.jpg" }, //bas relief
-                { text: "", image: "img/card/marbre.jpg" }, //ronde bosse
+                { text: "", image: "img/card/hautRelief.jpg" },
+                { text: "", image: "img/card/basRelief.jpg" },
+                { text: "", image: "img/card/marbre.jpg" },
                 { text: "", image: "img/card/ceramique.jpg" }
             ],
             correct: "C"
@@ -823,7 +770,7 @@ export const questions = [
     }
 },
 
-*/
+
 
 
 

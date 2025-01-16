@@ -289,14 +289,13 @@ header {
     width: fit-content;
 }
 
-.responce-img-text-contener img {
-    image-orientation: from-image;
-}
 
 .responce-text-contener {
     background-color: white;
     width: 1600px;
+    text-align: left;
 }
+
 
 .responce-title-contener {
     padding: 40px;
@@ -308,6 +307,15 @@ header {
     padding: 40px;
     border: 1px solid #000;
     border-top: 0px;
+}
+
+.text-contener-end {
+    padding: 40px;
+    border: 1px solid #000;
+    border-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
 }
 
 /* END GAME */
@@ -333,4 +341,10 @@ h1 {
     line-height: 80%;
 
     text-transform: uppercase;
+}
+
+.endGame-contener {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
