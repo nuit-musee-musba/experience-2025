@@ -34,10 +34,10 @@ function addPaintingDetails(img, parentImg, paintingData) {
     
     const modal = new descriptionPaintings(paintingData.title, "", "selectModeDescription", descriptionContainer);
     const contentArray = [
-        `${paintingData.autor}`,
+        ` ${paintingData.author}`,
         `${paintingData.date}`,
         `${paintingData.description}`,
-        `${paintingData.height}`
+        `${paintingData.size}`
     ];
     modal.showModalWithHtml(contentArray);
 

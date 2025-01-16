@@ -9,12 +9,12 @@ export default class WelcomeScene extends Scene {
 
     initScene() {
         super.initScene();
-        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-0-0`]);
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-0-0`, `${Game.getInstance().gameProgression}-0-1`]);
         Game.getInstance().once("onDialogueClosed", () => {
             AudioManager.getInstance().canPlaySound = true;
             Game.getInstance().unloadScene("scene-welcome");
-            Game.getInstance().loadScene("scene-exhibition");
+            Game.getInstance().loadScene("scene-reserve");
             AudioManager.getInstance().canPlaySound = false;
-        })
+        });
     }
 }

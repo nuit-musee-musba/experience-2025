@@ -35,7 +35,7 @@ export default class Dialogue extends Modal {
             if (currentIndex < arrayDialoguesId.length) {
                 const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
                 if (dialogue) {
-                    this.content = dialogue.text;
+                    this.changeContent("", dialogue.text)
                     this.character.showCharacter(dialogue.emotion);
                     currentIndex++;
                 }

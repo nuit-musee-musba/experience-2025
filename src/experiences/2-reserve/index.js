@@ -12,13 +12,6 @@ const welcomeScene = new WelcomeScene();
 const exhibitionScene = new ExhibitionScene();
 const reserveScene = new ReserveScene();
 
-document.getElementById("end-exhibition-scene").addEventListener("click", () => {
-    AudioManager.getInstance().canPlaySound = true;
-    Game.getInstance().unloadScene("scene-exhibition");
-    Game.getInstance().loadScene("scene-reserve");
-    AudioManager.getInstance().canPlaySound = false;
-});
-
 Game.getInstance().loadScene("scene-welcome");
 
 

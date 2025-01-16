@@ -1,18 +1,18 @@
 #scene-exhibition, #scene-reserve {
-    display: none;
-    position: relative;
-    top: 0;
-    left: 0;
+  display: none;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .exhibition-info {
-    position: absolute;
-    top: 800px;
-    left: 200px;
+  position: absolute;
+  top: 800px;
+  left: 200px;
 }
 
 .selected {
-    transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
+  transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease;
 }
 
 #character {
@@ -86,6 +86,22 @@
 .selectModeDescription{
     width: 100%;
     height: 100%;
+}
+
+.nextButton:disabled {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.element {
+  position: absolute;
+  z-index: 2;
+}
+
+.exhibition-info {
+  z-index: 3;
 }
 
 .descriptionContainer{
