@@ -43,7 +43,6 @@
 #container-paintings img{
     width: 400px;
     height: fit-content ;
-
     transition: ease-in all 500ms;
 }
 
@@ -70,8 +69,8 @@
     gap: 100px;
     transform: skew(0deg, 0deg)!important;
     z-index: 10;
-
 }
+
 .selectMode::before{
     content: '';
     width: 95%;
@@ -114,8 +113,6 @@
     position: static ;
 }
 
-
-
 #container-paintings{
     margin: auto;
     gap: 2rem;
@@ -130,10 +127,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    
-
 }
-
 
 #scene-reserve .containerPaintingsOnselectMode{
     width: 100%;

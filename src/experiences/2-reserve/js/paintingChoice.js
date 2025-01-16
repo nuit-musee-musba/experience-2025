@@ -8,7 +8,7 @@ import AudioManager from "./audioManager";
 
 let containerPaintings = document.querySelector('#container-paintings');
 let isSelectModeActive = false;
-let reserveVackground = document.querySelector('#reserve-background')
+let reserveBackground = document.querySelector('#reserve-background')
 
 
 containerPaintings.addEventListener("click", (e) => {
@@ -25,10 +25,10 @@ containerPaintings.addEventListener("click", (e) => {
 
     isSelectModeActive = true;
     const paintingData = paintings.find((painting) => painting.src === img.getAttribute("src"));
-    addFichePainting(img, parentImg, paintingData);
+    addPaintingDetails(img, parentImg, paintingData);
 });
 
-function addFichePainting(img, parentImg, paintingData) {
+function addPaintingDetails(img, parentImg, paintingData) {
     let descriptionContainer = document.createElement('div'); 
     let containerButton = document.createElement('div')
     
@@ -42,7 +42,7 @@ function addFichePainting(img, parentImg, paintingData) {
     modal.showModalWithHtml(contentArray);
 
     containerPaintings.classList.add("containerPaintingsOnselectMode")
-    reserveVackground.style.display ="none";
+    reserveBackground.style.display ="none";
     parentImg.classList.add('selectMode');
     img.classList.add("selectModeImg");
     parentImg.classList.add('selectMode');
@@ -59,14 +59,14 @@ function addFichePainting(img, parentImg, paintingData) {
     parentImg.append(descriptionContainer);
 }
 
-function removeFichePainting(parentImg, img) {
+function removePaintingDetails(parentImg, img) {
     const descriptionContainer = parentImg.querySelector('.descriptionContainer');
     if (descriptionContainer) {
         descriptionContainer.remove();
     }
 
     containerPaintings.classList.remove("containerPaintingsOnselectMode")
-    reserveVackground.style.display ="block";
+    reserveBackground.style.display ="block";
     parentImg.classList.remove('selectMode');
     img.classList.remove("selectModeImg");
     isSelectModeActive = false;
@@ -80,7 +80,7 @@ function createRemoveLink(parentImg, img) {
     removeLink.style.marginRight = "10px";
     removeLink.addEventListener("click", (e) => {
         e.preventDefault();
-        removeFichePainting(parentImg, img);
+        removePaintingDetails(parentImg, img);
     });
     return removeLink;
 }
@@ -99,7 +99,7 @@ function createPushLink(paintingData, parentImg, img) {
             if (index !== -1) {
                 paintings.splice(index, 1); 
             }
-            removeFichePainting(parentImg, img);
+            removePaintingDetails(parentImg, img);
 
             AudioManager.getInstance().canPlaySound = true;
             Game.getInstance().unloadScene("scene-reserve");
