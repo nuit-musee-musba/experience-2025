@@ -4,7 +4,7 @@ let timeLeft = 20;
 export function startTimer(timerEl, onTimeout) {
     clearInterval(timer);
     timeLeft = 2000;
-
+    document.getElementById('timer-card').style.display = 'flex';
     timer = setInterval(() => {
         timeLeft--;
         timerEl.textContent = timeLeft;
@@ -18,4 +18,5 @@ export function startTimer(timerEl, onTimeout) {
 
 export function stopTimer() {
     clearInterval(timer);
+    document.getElementById('timer-card').style.display = 'none';
 }

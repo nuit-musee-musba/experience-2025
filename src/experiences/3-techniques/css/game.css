@@ -60,7 +60,7 @@ body {
     position: absolute;
     right: 580px;
     top: 100px;
-transition: 0.5s;
+    transition: 0.5s;
 }
 
 .player-info {
@@ -365,11 +365,11 @@ header {
 }
 
 
-.player-active1{
+.player-active1 {
     background-color: #B991CD;
 }
 
-.player-active2{
+.player-active2 {
     background-color: #F2A884;
 }
 
@@ -377,17 +377,22 @@ header {
     background-color: white;
 }
 
-.player-inactive .score-container{
+.player-inactive .score-container {
     background-color: white !important;
     color: #000 !important;
     border: 1px solid #000;
 }
 
-.player-active-background1{
+.player-active-background1 {
     border: 40px solid #B991CD;
     background: #F8F3FB;
 }
-.player-active-background2{
+
+.player-active-background2 {
     border: 40px solid #F2A884;
     background: linear-gradient(0deg, #FEF8F5 0%, #FEF8F5 100%), #FFF;
+}
+
+#timer-card {
+    display: none;
 }
