@@ -69,26 +69,31 @@ export function showAnswer(
     timerEl.style.display = "none";
 }
 
-function loadMediaToResponseMedia(media) {
-    const responseMenuImg = document.getElementById("response-menue");
-    const responseText = document.getElementById("response-text");
+function loadMediaToResponseMedia() {
 
-    responseMenuImg.src = "";
+    let q = shuffledQuestions[currentQuestion];
+    if (q.cartel) {
+        q.cartel.forEach(cartelItem => {
+            const element = document.getElementById(cartelItem.id + "Responce");
+            if (element) {
+                element.textContent = cartelItem.text;
 
+                if (q.hide && q.hide.includes(cartelItem.id)) {
+                    element.style.color = "red";
+                } else {
+                    element.style.color = "";
+                }
+            }
+        });
+    }
+}
+function updateResponseTitle(isCorrect, player) {
+    const responseTitleContainer = document.querySelector(".responce-title-contener h3");
 
-    if (media) {
-        if (media.endsWith('.jpg') || media.endsWith('.png') || media.endsWith('.jpeg')) {
-            responseMenuImg.src = media;
-            responseMenuImg.style.display = "block"; 
-        } else if (media.endsWith('.mp4') || media.endsWith('.mov') || media.endsWith('.webm')) {
-            let video = document.createElement('video');
-            video.src = media;
-            video.controls = true;
-            video.style.display = "block";
-            responseMenuImg.style.display = "none";
-            responseText.style.display = "none";
-            responseMenuImg.parentElement.appendChild(video);
-        }
+    if (isCorrect) {
+        responseTitleContainer.textContent = `Bien joué Joueur ${player} !`;
+    } else {
+        responseTitleContainer.textContent = "Dommage";
     }
 }
 
@@ -124,13 +129,12 @@ function askForDifficulty(
     }
     const cartelInfoDiv = document.getElementById("cartelInfo");
     cartelInfoDiv.style.display = "block";
-
     if (q.cartel) {
         q.cartel.forEach(cartelItem => {
             const element = document.getElementById(cartelItem.id);
             if (element) {
                 element.textContent = cartelItem.text;
-    
+
                 if (q.hide && q.hide.includes(cartelItem.id)) {
                     element.style.backgroundColor = "black";
                 } else {
@@ -139,10 +143,11 @@ function askForDifficulty(
             }
         });
     }
-    
+
 
     document.getElementById("difficulty-selector").style.display = "flex";
     document.getElementById("answers-container").style.display = "none";
+
     stepsDisplay.increment(1);
 
     document.getElementById("easy-btn").addEventListener("click", () => {
@@ -220,6 +225,9 @@ export function loadQuestion(
     score2El,
     nextButton
 ) {
+
+
+    
     btnA.style.display = "block";
     btnB.style.display = "block";
     btnC.style.display = "block";
@@ -287,6 +295,8 @@ export function handleAnswer(
     if (choice === correct) {
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
+        updateResponseTitle(true, activePlayer);
+
         nextTurn(true, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     } else {
         if (choice === "A") btnA.style.display = "none";
@@ -298,10 +308,40 @@ export function handleAnswer(
             hasAnswered = true;
             activePlayer = activePlayer === 1 ? 2 : 1;
             activePlayerEl.textContent = activePlayer;
-            startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
+
+            updateResponseTitle(false);
+
+            startTimer(timerEl, () =>
+                handleTimeout(
+                    activePlayerEl,
+                    timerEl,
+                    score1El,
+                    score2El,
+                    questionEl,
+                    btnA,
+                    btnB,
+                    btnC,
+                    btnD,
+                    mediaContainerDiv,
+                    nextButton
+                )
+            );
         } else {
             showingAnswer = false;
-            nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+            nextTurn(
+                false,
+                questionEl,
+                btnA,
+                btnB,
+                btnC,
+                btnD,
+                activePlayerEl,
+                mediaContainerDiv,
+                timerEl,
+                score1El,
+                score2El,
+                nextButton
+            );
         }
     }
 }
@@ -311,22 +351,18 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
         showAnswer(questionEl, mediaContainerDiv, btnA, btnB, btnC, btnD, nextButton, timerEl);
         return;
     }
-
     showingAnswer = false;
-    currentQuestion++;    
+    currentQuestion++;
     document.getElementById("responce-contener").style.display = "none";
     timerEl.style.display = "flex"
 
     if (currentQuestion < questions.length) {
         HaveFinishQuestions = 0;
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-    } else {
-        endGame(score1El, score2El);
     }
 }
-
-function endGame(score1El, score2El) {
-    alert(`Fin du jeu ! Joueur 1: ${score1} points, Joueur 2: ${score2} points`);
+if(stepsDisplay.CurrentStep.textContent == 9){
+    document.getElementById("endGame").style.display = "flex";
 }
 
 initializeGame();

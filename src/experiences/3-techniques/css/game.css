@@ -2,12 +2,12 @@ body {
     background-color: #c8c8c8;
     width: 100vw;
     height: 100vh;
+
 }
 
 .body-game {
     border: 40px solid #B991CD;
     background: #F8F3FB;
-    ;
 }
 
 .contener-stepper-text {
@@ -48,6 +48,7 @@ body {
 }
 
 .game-container {
+    margin-top: -100px;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -90,14 +91,20 @@ header {
     flex-direction: row;
     align-items: center;
     position: relative;
+    margin-top: 100px;
 }
 
-.cartel-image-contener {
+.cartel-image-contener,
+#responce-contener-cartel {
     position: absolute;
     width: 800px;
     top: 400px;
     left: -840px;
     text-align: right;
+}
+
+#responce-contener-cartel {
+    position: static;
 }
 
 .host-question-contener {
@@ -253,6 +260,7 @@ header {
 #responce-contener {
     top: 0;
     left: 0;
+    gap: 100px;
     z-index: 10;
     width: 100vw;
     height: 100vh;
@@ -262,40 +270,67 @@ header {
     flex-direction: column;
 }
 
-.color-responce-answer{
+.color-responce-answer {
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vw;
+    width: 100%;
+    height: 100%;
     position: absolute;
     background: rgba(185, 145, 205, 0.40);
-z-index: -1000;
+    z-index: -1000;
     backdrop-filter: blur(7px);
 }
 
-.responce-img-text-contener{
+.responce-img-text-contener {
+    margin-top: 200px;
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    width:fit-content;
+    width: fit-content;
 }
 
-.responce-img-text-contener img{
-    image-orientation:from-image;
+.responce-img-text-contener img {
+    image-orientation: from-image;
 }
 
-.responce-text-contener{
+.responce-text-contener {
     background-color: white;
     width: 1600px;
 }
-.responce-title-contener{
+
+.responce-title-contener {
     padding: 40px;
     width: 100%;
     border: 1px solid #000;
 }
 
-.text-contener{
+.text-contener {
     padding: 40px;
     border: 1px solid #000;
     border-top: 0px;
+}
+
+/* END GAME */
+
+#endGame {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*display: none;*/
+}
+
+#endGame,
+h1 {
+    color: #000;
+    text-align: center;
+    font-family: "Nyght Serif";
+    font-size: 144px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80%;
+
+    text-transform: uppercase;
 }
