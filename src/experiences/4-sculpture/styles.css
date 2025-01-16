@@ -4,23 +4,30 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Supprime le scroll */
+  overflow: hidden;
 }
 
 /* Container principal */
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes : gauche (Zone de travail et Dialogue), droite (Progress Bar et Inventaire) */
-  grid-template-rows: 3fr 1fr;    /* Zone de travail (75%), Dialogue (25%) */
-  height: 100vh; /*La grille occupe toute la hauteur */
-  width: 100vw; /* La grille occupe toute la largeur */
-  gap: 10px; /* Espacement entre les sections */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  height: 100vh;
+  width: 100vw;
+  gap: 10px;
+}
+
+/* Titres */
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 10px 0;
 }
 
 /* Zone de travail */
 .zone-de-travail {
-  grid-column: 1 / 2; /* Colonne gauche */
-  grid-row: 1 / 2; /* Première rangée */
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   border: 2px solid #ccc;
   background-color: #ffffff;
   display: flex;
@@ -33,17 +40,17 @@ html, body {
 .drop-zone {
   width: 90%;
   height: 90%;
-  border: 2px dashed #bbb; /* Style en pointillés */
+  border: 2px dashed #bbb;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9; /* Léger contraste */
+  background-color: #f9f9f9;
 }
 
 /* Zone de dialogue */
 .tutoriel {
-  grid-column: 1 / 2; /* Colonne gauche */
-  grid-row: 2 / 3; /* Deuxième rangée */
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
   border: 2px solid #ccc;
   background-color: #f9f9f9;
   padding: 20px;
@@ -51,20 +58,19 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1rem; /* Taille de texte ajustée */
 }
 
 /* Partie droite */
 .inventaire-et-tutoriel {
-  grid-column: 2 / 3; /* Colonne droite */
-  grid-row: 1 / 3; /* Occupe toute la hauteur */
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
 }
 
 /* Progress Bar */
 .progress-bar {
-  height: 15%; /* Prend 15% de la hauteur de la colonne droite */
+  height: 15%;
   border: 2px solid #ccc;
   background-color: #f9f9f9;
   padding: 10px;
@@ -73,120 +79,63 @@ html, body {
   justify-content: center;
   align-items: center;
 }
+
 .progress {
   width: 100%;
   height: 20px;
   background-color: #ddd;
   border-radius: 10px;
   overflow: hidden;
-  position: relative;
 }
 
 .progress-inner {
   height: 100%;
   background-color: #4caf50;
-  width: 0%; /* La largeur sera modifiée via le JS */
-  transition: width 0.3s ease; /* Animation fluide de la progression */
+  width: 0%;
+  transition: width 0.3s ease;
 }
 
-/* Inventaire */
 /* Inventaire */
 .inventaire {
   flex: 1;
   border: 2px solid #ccc;
   background-color: #e6ffe6;
   display: flex;
-  justify-content: center; /* Centre les items horizontalement */
-  align-items: center; /* Centre les items verticalement */
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   padding: 20px;
 }
 
-
 .inventory-slots {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-  gap: 170px; /* Augmente l'espacement entre les items */
-  justify-content: center; /* Centre les items horizontalement */
-  align-items: center; /* Centre les items verticalement */
-  padding: 20px; /* Ajoute de l'espace autour de la grille */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
 
 .item {
-  background-color: #fff;
-  border: 2px solid #bbb;
-  text-align: center;
-  cursor: grab;
   display: flex;
+  flex-direction: column; /* Aligne les éléments (image et texte) verticalement */
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1; /* Assure une forme carrée */
-  box-sizing: border-box;
-}
-
-
-.item:active {
-  cursor: grabbing;
-}
-
-.item.used {
-  background-color: #ddd;
-  border-color: #999;
-  color: #666;
-  cursor: not-allowed;
-}
-
-img {
-    transition: all 0.3s ease;
-    width: auto; /* Laisse l'image ajuster sa largeur automatiquement */
-    height: auto; /* Laisse l'image ajuster sa hauteur automatiquement */
-    max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
-    max-height: 100%; /* Empêche l'image de dépasser la hauteur de son conteneur */
-    display: block; /* Supprime les espaces blancs autour de l'image */
-    margin: auto; /* Centre l'image horizontalement */
-    transition: all 0.3s ease;
-}
-
-.item {
-  background-color: #fff;
-  border: 2px solid #bbb;
-  text-align: center;
-  cursor: grab;
-  display: flex;
-  flex-direction: column; /* Place l'image et le texte en colonne */
-  justify-content: center;
-  align-items: center;
-  width: 200px; /* Largeur augmentée */
-  height: 220px; /* Hauteur augmentée */
-  aspect-ratio: 1; /* Assure une forme carrée */
-  box-sizing: border-box;
-  border-radius: 10px; /* Ajoute un arrondi aux coins */
-  transition: transform 0.2s ease, background-color 0.2s ease; /* Animation au survol */
-}
-
-.item:hover {
-  background-color: #f0f0f0; /* Change légèrement la couleur au survol */
-  transform: scale(1.05); /* Agrandit légèrement au survol */
+  width: 100%; /* S'assure que l'item occupe tout l'espace disponible */
+  height: 100%; /* Pareil pour la hauteur */
 }
 
 .item img {
-  width: 100px; /* Taille ajustée pour l'image */
-  height: 100px;
-  object-fit: contain; /* Garde les proportions de l'image */
-  transition: transform 0.2s ease; /* Ajoute une animation au survol */
+  max-width: none !important;
+  max-height: none !important;
+  width: 90% !important; /* Ajuste la taille des images */
+  height: auto !important; /* Préserve les proportions */
+  object-fit: contain;
 }
 
 .item p {
-  margin-top: 10px;
-  font-size: 16px; /* Taille du texte augmentée */
+  font-size: 1rem;
   text-align: center;
-}
-
-.item.dragging {
-  background-color: #ccc; /* Change la couleur de fond en gris */
-  border-color: #999; /* Change la couleur de la bordure */
-  opacity: 0.7; /* Rend l'élément légèrement transparent */
+  margin-top: 10px; /* Espace entre l'image et le texte */
 }
