@@ -1,3 +1,11 @@
+import { setupCanvas } from "./canvas.ts"
+
+declare global {
+    interface DocumentEventMap {
+        'switchSceneEvent': CustomEvent;
+    }
+}
+
 export class Router {
     container: HTMLElement;
     currentRoute: any;
@@ -7,6 +15,7 @@ export class Router {
         this.currentRoute = null
         this.init();
         this.listenForHashChange();
+        this.canvas();
     }
 
     async init() {
@@ -36,12 +45,20 @@ export class Router {
 
             case "/intro-3":
                 const { default: Intro3 } = await import("./pages/Intro3");
-                this.currentRoute = new Intro3(this.container, "./src/assets/img/perso.png", "Tu auras l’opportunité d’effectuer ta première restauration sur cette œuvre.</br>Prépare-toi à redonner vie à son histoire !","/step-1");
+                this.currentRoute = new Intro3(this.container, "./src/assets/img/perso.png", "Tu auras l’opportunité d’effectuer ta première restauration sur cette œuvre.</br>Prépare-toi à redonner vie à son histoire !","/observer");
                 break;
 
-            case "/step-1":
-                const { default: Step } = await import("./pages/Step");
-                this.currentRoute = new Step(this.container);
+            case "/observer":
+                const { default: Observer } = await import("./pages/Observer");
+                this.currentRoute = new Observer(this.container);
+
+                /* const event = new CustomEvent('switchSceneEvent', { detail: { scene: 'scene2' } });
+                document.dispatchEvent(event); */
+                break;
+
+            case "/eclairer":
+                const { default: Eclairer } = await import("./pages/Eclairer");
+                this.currentRoute = new Eclairer(this.container);
                 break;
 
             default:
@@ -59,4 +76,16 @@ export class Router {
             this.init(); // Reinitialize the router when the hash changes
         });
     }
+
+    canvas(){
+        setupCanvas(document.querySelector('#ogl-canvas'));
+    }
 }
+
+document.addEventListener('click', (e) => {
+    console.log('Clicked:', e.target);
+});
+
+document.addEventListener('switchSceneEvent', (event: CustomEvent) => {
+    console.log("in the custom event youpiiii");
+});

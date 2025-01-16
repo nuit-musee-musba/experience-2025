@@ -48,6 +48,9 @@ export default class Intro3{
 
     handleMouseDown(path: string){
         window.location.hash = path; // Navigate to /#/intro | "/"
+
+        /* const event = new CustomEvent('switchSceneEvent', { detail: { scene: 'scene2' } });
+        document.dispatchEvent(event); */
     };
 
     async exit(): Promise<void>{

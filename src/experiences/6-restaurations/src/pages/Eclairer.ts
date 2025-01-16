@@ -1,4 +1,4 @@
-export default class Step{
+export default class Eclairer{
     container: HTMLElement;
     element: HTMLElement
 
@@ -19,25 +19,25 @@ export default class Step{
                                 <h3 class="h3-title-serif">Étape</h3>
                             </div>
                             <div class="step-count">
-                                <h3>1/6</h3>
+                                <h3>2/6</h3>
                             </div>
                         </div>
                         <div class="exp-header">
-                            <h1>Observer</h1>
-                            <h2>Détecte les imperfections</h2>
+                            <h1>Éclairer</h1>
+                            <h2>Révèle les secrets cachés avec une lampe UV.</h2>
                         </div>
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme une loupe et passe le tout le long de l’œuvre pour trouver les dégâts et mesurer leur ampleur.</p>
+                        <p>Utilise ton doigt comme une lampe UV et parcoure le tableau afin d'identifier les zones qui devront être restaurées.</p>
                     </div>
                 </div>
                 <div class="exp-right">
-                    <img class="exp-char-img" src="./src/assets/img/perso.png" alt="">
+                    <img class="exp-char-img" src="./src/assets/img/perso-eclairer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
-                        <p>Chaque œuvre d’art, abîmée ou intacte, témoigne de son époque. L’observation est la première étape pour révéler ses secrets. Elle peut être abimée par le transport, l’humidité, ou simplement par le temps.</p>
-                        <p>Un restaurateur se doit d’examiner attentivement l’œuvre pour repérer les imperfections : craquelures, tâches ou décolorations. Ces indices sont essentiels pour comprendre les restaurations nécessaires.</p>
+                        <p>Cette lumière spéciale vous permettra de détecter des zones traitées par d’anciennes restaurations, mais principalement d’analyser la couche de vernis.</p>
+                        <p>Les vernis jaunissent avec le temps, ils brillent différemment sous UV. La lampe peut également révéler des endroits non-vernis ou bien même des traces inattendues témoignant parfois d’un travail moins précautionneux qu’à notre époque.</p>
                     </div>
                 </div>
             </div>
@@ -66,6 +66,7 @@ export default class Step{
         const consigneElement = this.element.querySelector(".exp-consigne") as HTMLElement;
         const rightElement = this.element.querySelector(".exp-right") as HTMLElement;
         const buttonElement = this.element.querySelector(".button-suivant") as HTMLElement;
+        const canvasElement = document.querySelector("#ogl-canvas") as HTMLElement;
 
         if (this.element) {
             headerElement.classList.remove("entry-animation")
@@ -80,6 +81,9 @@ export default class Step{
             buttonElement.classList.remove("entry-animation")
             buttonElement.classList.add("exit-animation"); // Add your exit class
 
+            canvasElement.classList.remove("entry-animation")
+            canvasElement.classList.add("exit-animation"); // Add your exit class
+
             await this.waitForKeyframe(headerElement); // Wait for transition
         }
     }
@@ -89,6 +93,7 @@ export default class Step{
         const consigneElement = this.element.querySelector(".exp-consigne") as HTMLElement;
         const rightElement = this.element.querySelector(".exp-right") as HTMLElement;
         const buttonElement = this.element.querySelector(".button-suivant") as HTMLElement;
+        const canvasElement = document.querySelector("#ogl-canvas") as HTMLElement;
 
         if (this.element) {
             headerElement.classList.remove("exit-animation")
@@ -102,6 +107,9 @@ export default class Step{
 
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
+
+            canvasElement.classList.remove("exit-animation")
+            canvasElement.classList.add("entry-animation"); 
         }
     }
 
