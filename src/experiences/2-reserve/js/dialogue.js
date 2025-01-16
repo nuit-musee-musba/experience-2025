@@ -23,30 +23,52 @@ export default class Dialogue extends Modal {
     }
 
     listDialogue(arrayDialoguesId) {
-        this.show()
-        let currentIndex = 1;
-        this.changeContent("", this.findDialogue(arrayDialoguesId[0]).text);
-        this.character.showCharacter(this.findDialogue(arrayDialoguesId[0]).emotion);
-        if (currentIndex === arrayDialoguesId.length) {
-            this.button.textContent = "Fermer";
+        this.show();
+        // Stockage de la référence à l'ancien handler si elle existe
+        if (this.currentHandler) {
+            this.button.removeEventListener("click", this.currentHandler);
         }
 
-        this.button.addEventListener("click", () => {
+        let currentIndex = 1;
+        console.log("init current index = " + currentIndex);
+        console.log("array dialogue = " + arrayDialoguesId.length);
+
+        this.changeContent("", this.findDialogue(arrayDialoguesId[0]).text);
+        this.character.showCharacter(this.findDialogue(arrayDialoguesId[0]).emotion);
+        if (arrayDialoguesId.length < 2) {
+            this.button.textContent = "Fermer";
+        }
+        else {
+            console.log("suivant");
+            this.button.textContent = "Suivant";
+        }
+
+        // Création du nouveau handler
+        this.currentHandler = () => {
+            console.log(currentIndex);
             if (currentIndex < arrayDialoguesId.length) {
                 const dialogue = this.findDialogue(arrayDialoguesId[currentIndex]);
                 if (dialogue) {
-                    this.content = dialogue.text;
+                    this.changeContent("", dialogue.text);
                     this.character.showCharacter(dialogue.emotion);
                     currentIndex++;
                 }
             } else {
-                this.close();
+                setTimeout(() => {
+                    this.close();
+                }, 100);
             }
+
             if (currentIndex === arrayDialoguesId.length) {
+                console.log("hi");
                 this.button.textContent = "Fermer";
             }
-        });
+        };
+
+        // Ajout du nouveau handler
+        this.button.addEventListener("click", this.currentHandler);
     }
+
 
     close() {
         super.close();

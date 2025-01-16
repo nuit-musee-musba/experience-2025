@@ -6,7 +6,7 @@
 }
 
 .progress-block {
-    padding: 0.7% 1%;
+    padding: 100px 100px;
     border: 0.1vh solid #000;
     color: black;
     display: flex;
