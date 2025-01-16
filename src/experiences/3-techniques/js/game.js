@@ -379,8 +379,8 @@ function displayScores(playerScores) {
     const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreA - scoreB);
     sortedScores.forEach(([player, score]) => {
         const playerScoreDiv = document.createElement("div");
-        playerScoreDiv.classList.add("player-score-entry");
-        playerScoreDiv.innerHTML = `<h3>${player}</h3><p>${score} points</p>`;
+        playerScoreDiv.classList.add("stats-display");
+        playerScoreDiv.innerHTML = `<div class="title-container" style="width: 360px"><h3>${player}</h3></div> <div class="score-container" style="width: fit-content;"><h3>${score} pts</h3></div>`;
         playerScorbord.appendChild(playerScoreDiv);
     });
 }
