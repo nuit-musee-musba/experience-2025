@@ -7,13 +7,14 @@ import selectedPaintings from "../data/selectedPaintings.js";
 export default class EndScene extends Scene {
     constructor() {
         super("end-scene", null); 
+        this.perspectiveRotation = 1689;
     }
 
     initScene(){
         super.initScene()
         this.fetchElements()
         this.fetchPaintings()
-        this.perspectiveRotation = 1689;
+        
         console.log('selected painting', selectedPaintings)
     }
 

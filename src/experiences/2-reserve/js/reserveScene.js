@@ -4,7 +4,7 @@ import Game from "./Game.js";
 
 export default class ReserveScene extends Scene {
     constructor() {
-        super("scene-reserve", null);
+        super("scene-reserve", "./assets/sound/song.mp3");
     }
 
     unloadScene(){
