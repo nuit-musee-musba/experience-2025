@@ -395,12 +395,20 @@ function displayScores(playerScores) {
     playerScorbord.innerHTML = '';
     const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
 
+    const [winner, winnerScore] = sortedScores[0];
+    const winnerClass = winner === "Joueur 1" ? "winner-player1" : "winner-player2";
+
     sortedScores.forEach(([player, score], index) => {
         const playerScoreDiv = document.createElement("div");
         playerScoreDiv.classList.add("stats-display");
 
+        const isWinner = player === winner; // Déplacez cette déclaration avant son utilisation
+
         if (index === 0) {
             playerScoreDiv.classList.add("leader");
+            if (isWinner) {
+                playerScoreDiv.classList.add(winnerClass);
+            }
         }
 
         playerScoreDiv.innerHTML = `
@@ -437,7 +445,6 @@ function updatePlayerClasses(activePlayer) {
     const bodyGame = document.getElementById("body-game");
     const responceContener = document.getElementById("responce-contener");
     const activePlayerPosition = document.getElementById("activePlayer");
-    console.log(activePlayer)
 
     bodyGame.classList.remove('player-active-background1', 'player-active-background2');
     player1Div.classList.remove('player-active', 'player-active1', 'player-inactive');

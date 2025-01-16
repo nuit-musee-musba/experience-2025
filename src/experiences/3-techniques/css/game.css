@@ -411,3 +411,10 @@ header {
     background: rgba(242, 168, 132, 0.40);
     backdrop-filter: blur(7px);
 }
+
+.winner-player1{
+    background-color: #B991CD;
+}
+.winner-player2{
+    background-color: #F2A884;
+}
