@@ -327,7 +327,8 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    /*display: none;*/
+    display: none;
+
 }
 
 #endGame,
@@ -339,8 +340,6 @@ h1 {
     font-style: normal;
     font-weight: 400;
     line-height: 80%;
-
-    text-transform: uppercase;
 }
 
 .endGame-contener {
