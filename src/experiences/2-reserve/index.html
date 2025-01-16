@@ -10,43 +10,31 @@
 </head>
 <body>
 <!-- Welcome scene -->
-    <div id="scene-welcome">
-        <h1>Hello</h1>
-        <button id="start-button">Start Game</button>
-    </div>
+<div id="scene-welcome">
+    <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition">
+</div>
 
 <!-- Scene 1 -->
-    <div id="scene-exhibition">
-        <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition">
-        <div class="exhibition-info">
-            <h1>scene-exhibition</h1>
-            <button id="change-scene">Next</button>
-        </div>
-        <div id="paintings-container"></div>
-        <div id="selected-painting"></div>
-    </div>
+<div id="scene-exhibition">
+    <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition">
+    <div class="exhibition-info" id="exhibition-info"></div>
+    <div id="paintings-container"></div>
+    <div id="elements-container"></div>
+    <div id="selected-container"></div>
+    <div id="empty-container"></div>
+</div>
 
 <!-- Scène 2 -->
 <div id="scene-reserve">
-    <h1>scene-reserve</h1>
-    <div class="dialogueNameContent">
-        <h3 >Tristan le conservateur</h3>
-        <div class="dialogueContainer">
-            <p id="dialogue-element">
-                Bienvenue au MusBa
-            </p>
-        </div>
-    <div class="nextButton">
-        <p>Suivant</p>
-        <img src="#" alt="Flèche">
-    </div>
+    <div id="container-paintings"></div>
+    <img id="reserve-background" src="./assets/img/scenes/reserve.jpg" alt="">
 </div>
-<img id="character"  src="#" alt="#">
-    <div id="conteneur-paintings">
-    </div>
 </div>
 
+<!-- Character -->
+<img id="character" src="#" alt="#">
+
 <!-- Music -->
-    <audio id="background-music" src="" loop></audio>
+<audio id="background-music" src="" loop></audio>
 </body>
 </html>

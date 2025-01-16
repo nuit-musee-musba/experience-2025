@@ -2,29 +2,42 @@ import Scene from "./scene.js"
 import SelectedPaintings from "../data/selectedPaintings.js"
 import Sprite from "./sprite.js";
 import selectedPaintings from "../data/selectedPaintings.js";
+import Elements from "../data/elements.js";
+import Game from "./Game.js";
+import Dialogue from "./dialogue.js";
+import SelectedElements from "../data/selectedElements.js";
 
 export default class ExhibitionScene extends Scene {
     constructor() {
         super("scene-exhibition", "./assets/sound/song.mp3");
+
         this.lastSelectedPainting = null;
-        this.perspectiveRotation = 1920;
+        this.perspectiveRotation = 1689;
+        this.isPositionSet = false;
+        this.defaultPos = {x: 400, y: 400}
         this.paintingPositions = [
             {
-                x: 3104,
-                y: 864,
-                isOccupied: true,
-            },
-            {
-                x: 2618,
-                y: 578,
+                x: 2564,
+                y: 1085,
                 isOccupied: false,
             },
             {
-                x: 2044,
-                y: 533,
+                x: 1972,
+                y: 725,
+                isOccupied: false,
+            },
+            {
+                x: 1476,
+                y: 685,
                 isOccupied: false,
             }
         ]
+
+        this.button = document.createElement("button")
+        this.button.className =`nextButton button small black`;
+        this.button.textContent = "Valider";
+        this.button.id = "end-exhibition-scene";
+        document.getElementById("exhibition-info").appendChild(this.button);
     }
 
     fetchPaintings() {
@@ -33,11 +46,12 @@ export default class ExhibitionScene extends Scene {
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
             let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
-
+            sprite.element.style.zIndex = "1";
             this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
-        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 500, 500, "selected-painting");
+        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
+        painting.element.style.zIndex = "1";
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -52,7 +66,14 @@ export default class ExhibitionScene extends Scene {
         paintingsContainer.innerHTML = "";
     }
 
-    rotatePainting(painting) {
+    rotatePainting(painting, reset = false) {
+        if (!painting) {
+            return;
+        }
+        if (reset) {
+            painting.style.transform = "skew(0deg, 0deg)";
+            return;
+        }
         if (parseInt(painting.style.left, 10) > this.perspectiveRotation) {
             painting.style.transform = "skew(0deg, 30deg)";
         } else {
@@ -81,17 +102,43 @@ export default class ExhibitionScene extends Scene {
     initScene() {
         super.initScene();
         this.fetchPaintings();
+        this.fetchElements();
         document.addEventListener("click", (event) => {
+            if (event.target.classList.contains("nextButton") || this.isPositionSet) {
+                return;
+            }
             this.setPaintingPosition({x: event.clientX, y: event.clientY});
         });
-        let nextButton = document.querySelector("#change-scene")
-        nextButton.disabled = true;
-        nextButton.addEventListener("click", () => {
+        this.button.disabled = true;
+        this.button.addEventListener("click", (event) => {
+            if (this.isPositionSet) {
+                return;
+            }
             SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
             SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
+            this.isPositionSet = true;
             this.updateOccupiedPos();
-            console.log(this.paintingPositions);
+            this.showElement();
+            this.endSceneDialogue()
         });
+
+        let empty1 = document.createElement("img")
+        empty1.style.position = "absolute"
+        empty1.style.top = "0px"
+        empty1.src = "./assets/img/scenes/emplacement_tab_1.png";
+        let empty2 = document.createElement("img")
+        empty2.style.position = "absolute"
+        empty2.style.top = "0px"
+        empty2.src = "./assets/img/scenes/emplacement_tab_2.png";
+        let empty3 = document.createElement("img")
+        empty3.style.position = "absolute"
+        empty3.style.top = "0px"
+        empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
+
+        let container = document.getElementById("empty-container");
+        container.appendChild(empty1);
+        container.appendChild(empty2);
+        container.appendChild(empty3);
     }
 
     updateOccupiedPos() {
@@ -101,7 +148,35 @@ export default class ExhibitionScene extends Scene {
         newOccupiedPainting.isOccupied = true;
     }
 
+    showElement() {
+        let filteredElements = Elements.filter((element) => {
+            return element.thematic === this.lastSelectedPainting.thematic;
+        });
+        if (filteredElements.length < 1) {
+            return console.error("No paintings found");
+        }
+        let element = filteredElements[Math.floor(Math.random() * filteredElements.length)];
+        let elemDom = document.createElement("img");
+        elemDom.src = element.src;
+        elemDom.classList.add("element");
+        elemDom.style.top = element.y;
+        elemDom.style.left = element.x;
+        let container = document.getElementById("elements-container");
+        container.appendChild(elemDom);
+        SelectedElements.push(element);
+    }
+
+    endSceneDialogue() {
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-2-0`])
+        Game.getInstance().once("onDialogueClosed", () => {
+            Game.getInstance().updateGameProgression()
+        })
+    }
+
     fixPaintingPosition(elem, pos) {
+        if (!elem) {
+            return;
+        }
         const paintingWidth = elem.offsetWidth;
         const paintingHeight = elem.offsetHeight;
 
@@ -113,24 +188,52 @@ export default class ExhibitionScene extends Scene {
     }
 
     setPaintingPosition(pos) {
-        const painting = document.querySelector("#selected-painting").children[0];
-        const isPositionChanged = this.tryGetClosestPos(pos)
+        const painting = document.querySelector("#selected-container").children[0];
 
-        this.fixPaintingPosition(painting, pos);
-        this.rotatePainting(painting);
-
-        if (isPositionChanged) {
-            document.querySelector("#change-scene").disabled = false;
+        if (this.tryGetClosestPos(pos)) {
+            this.fixPaintingPosition(painting, pos);
+            this.rotatePainting(painting);
+            document.querySelector("#end-exhibition-scene").disabled = false;
             this.lastSelectedPainting.x = pos.x;
             this.lastSelectedPainting.y = pos.y;
         }
         else {
-            document.querySelector("#change-scene").disabled = true;
+            this.fixPaintingPosition(painting, this.defaultPos);
+            this.rotatePainting(painting, true);
+            document.querySelector("#end-exhibition-scene").disabled = true;
         }
     }
 
     unloadScene() {
         super.unloadScene();
         this.cleanPaintings()
+        this.cleanElements();
+        this.cleanEmptyContainer();
+        this.cleanSelectedContainer();
+        this.isPositionSet = false;
+    }
+
+    cleanElements() {
+        let container = document.getElementById("elements-container");
+        if (container) {
+            container.innerHTML = '';
+        }
+    }
+
+    fetchElements() {
+        SelectedElements.forEach((element) => {
+            let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
+            sprite.element.style.zIndex = "2";
+        })
+    }
+
+    cleanEmptyContainer() {
+        let container = document.getElementById("empty-container");
+        container.innerHTML = '';
+    }
+
+    cleanSelectedContainer() {
+        let container = document.getElementById("selected-container");
+        container.innerHTML = '';
     }
 }

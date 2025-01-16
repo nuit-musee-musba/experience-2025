@@ -1,5 +1,5 @@
-export class ArrowButton{
-    constructor(direction, color, link, className = ''){
+export class ArrowButton {
+    constructor(direction, color, link, className = '', parentElement = null) {
         this.direction = direction;
         this.color = color;
         this.className = className;
@@ -10,6 +10,11 @@ export class ArrowButton{
         this.icon.src = `/commons/icons/arrow-${this.color}.svg`;
 
         this.arrowButton.appendChild(this.icon);
-        document.body.appendChild(this.arrowButton);
+
+        if (parentElement instanceof HTMLElement) {
+            parentElement.appendChild(this.arrowButton);
+        } else {
+            document.body.appendChild(this.arrowButton);
+        }
     }
 }
