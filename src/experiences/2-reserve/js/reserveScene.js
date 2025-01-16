@@ -16,7 +16,7 @@ export default class ReserveScene extends Scene {
         super.initScene()
         this.loadPaintings("#container-paintings")
         this.scrollToBottom()
-        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-0-0`]);
+        Game.getInstance().dialogue.listDialogue([`0-1-0`, `0-1-1`]);
     }
 
     loadPaintings(conteneurPaintings, filteredPaintings) {
@@ -36,15 +36,9 @@ export default class ReserveScene extends Scene {
     
     }
 
-    unloadPainting(IdcontainerPaintings) {
-        const conteneurPainting = document.querySelector(IdcontainerPaintings);
-    
-        if (conteneurPainting) {
-            // Supprimer tous les enfants du conteneur
-            while (conteneurPainting.firstChild) {
-                conteneurPainting.removeChild(conteneurPainting.firstChild);
-            }
-        }
+    unloadPainting(idContainerPaintings) {
+        const containerPaintings = document.querySelector(idContainerPaintings);
+        containerPaintings.innerHTML = "";
     }
     scrollToBottom() {
         try {
