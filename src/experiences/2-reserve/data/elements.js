@@ -9,8 +9,8 @@ export default [
     {
         id: 0,
         src: "./assets/img/elements/lianes.png",
-        x: 951,
-        y: 71,
+        x: 0,
+        y: 0,
         thematic: "nature",
     },
 ]
