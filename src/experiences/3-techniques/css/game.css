@@ -60,7 +60,7 @@ body {
     position: absolute;
     right: 580px;
     top: 100px;
-
+transition: 0.5s;
 }
 
 .player-info {
@@ -68,8 +68,6 @@ body {
     top: 100px;
     right: 100px;
 }
-
-
 
 header {
     margin-top: 100px;
@@ -347,6 +345,7 @@ header {
 }
 
 .score-container {
+    width: 300px !important;
     justify-content: center;
 }
 
@@ -376,4 +375,19 @@ header {
 
 .player-inactive {
     background-color: white;
+}
+
+.player-inactive .score-container{
+    background-color: white !important;
+    color: #000 !important;
+    border: 1px solid #000;
+}
+
+.player-active-background1{
+    border: 40px solid #B991CD;
+    background: #F8F3FB;
+}
+.player-active-background2{
+    border: 40px solid #F2A884;
+    background: linear-gradient(0deg, #FEF8F5 0%, #FEF8F5 100%), #FFF;
 }

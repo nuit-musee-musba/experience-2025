@@ -26,7 +26,7 @@ function shuffleArray(array) {
 function initializeGame() {
     shuffledQuestions = [...questions];
     shuffleArray(shuffledQuestions);
-
+    updatePlayerClasses(activePlayer);
     const player1Div = document.getElementById("player1");
     const player2Div = document.getElementById("player2");
 
@@ -124,10 +124,10 @@ function askForDifficulty(
             "Joueur 1": parseInt(document.getElementById("score1").textContent, 10),
             "Joueur 2": parseInt(document.getElementById("score2").textContent, 10),
         };
-    
+
         displayScores(playerScores);
     }
-    
+
     let q = shuffledQuestions[currentQuestion];
 
     questionEl.textContent = q.question;
@@ -245,7 +245,7 @@ export function loadQuestion(
 ) {
 
 
-    
+
     btnA.style.display = "block";
     btnB.style.display = "block";
     btnC.style.display = "block";
@@ -277,6 +277,7 @@ export function loadQuestion(
     startingPlayer = startingPlayer === 1 ? 2 : 1;
     hasAnswered = false;
     activePlayerEl.textContent = activePlayer;
+    updatePlayerClasses(activePlayer);
     let event = new CustomEvent('questionLoaded', {
         detail: { currentQuestionIndex: currentQuestion },
     });
@@ -285,8 +286,10 @@ export function loadQuestion(
 
 function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
     if (!hasAnswered) {
+
         activePlayer = activePlayer === 1 ? 2 : 1;
-        activePlayerEl.textContent = activePlayer;
+        activePlayerEl.textContent = activePlayer; 
+        updatePlayerClasses(activePlayer);
         startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
     } else {
         nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
@@ -326,21 +329,7 @@ export function handleAnswer(
             hasAnswered = true;
             activePlayer = activePlayer === 1 ? 2 : 1;
             activePlayerEl.textContent = activePlayer;
-            const player1Div = document.getElementById("player1");
-            const player2Div = document.getElementById("player2");
-        
-            player1Div.classList.remove('player-active');
-            player1Div.classList.add('player-inactive');
-            player2Div.classList.remove('player-active');
-            player2Div.classList.add('player-inactive');
-        
-            if (activePlayer === 1) {
-                player1Div.classList.remove('player-inactive');
-                player1Div.classList.add('player-active1');
-            } else {
-                player2Div.classList.remove('player-inactive');
-                player2Div.classList.add('player-active2');
-            }
+            updatePlayerClasses(activePlayer);
             updateResponseTitle(false);
 
             startTimer(timerEl, () =>
@@ -359,6 +348,7 @@ export function handleAnswer(
                 )
             );
         } else {
+            activePlayer = activePlayer === 1 ? 2 : 1;
             showingAnswer = false;
             nextTurn(
                 false,
@@ -389,13 +379,14 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
     timerEl.style.display = "flex";
     if (currentQuestion < questions.length) {
         HaveFinishQuestions = 0;
+        updatePlayerClasses(activePlayer);
         loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
 
 function displayScores(playerScores) {
     const playerScorbord = document.getElementById("playerScorbord");
-    playerScorbord.innerHTML = ''; 
+    playerScorbord.innerHTML = '';
     const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
 
     sortedScores.forEach(([player, score], index) => {
@@ -434,6 +425,29 @@ function updateVictoryMessage(playerScores) {
     victoryMessageEl.textContent = `Bravo ${winner} pour ta victoire !`;
 }
 
+function updatePlayerClasses(activePlayer) {
+    const player1Div = document.getElementById("player1");
+    const player2Div = document.getElementById("player2");
+    const bodyGame = document.getElementById("body-game");
+    const activePlayerPosition = document.getElementById("activePlayer");
+    
+
+    bodyGame.classList.remove('player-active-background1', 'player-active-background2');
+    player1Div.classList.remove('player-active', 'player-active1', 'player-inactive');
+    player2Div.classList.remove('player-active', 'player-active2', 'player-inactive');
+
+    if (activePlayer === 1) {
+        bodyGame.classList.add('player-active-background1');
+        player1Div.classList.add('player-active1');
+        player2Div.classList.add('player-inactive');
+        activePlayerPosition.style.top = "100px";
+    } else if(activePlayer === 2){
+        bodyGame.classList.add('player-active-background2');
+        player1Div.classList.add('player-inactive');
+        player2Div.classList.add('player-active2');
+        activePlayerPosition.style.top = "220px";
+    }
+}
 
 
 
