@@ -1,10 +1,8 @@
 import Scene from "./scene.js"
 import SelectedPaintings from "../data/selectedPaintings.js"
 import Sprite from "./sprite.js";
-import selectedPaintings from "../data/selectedPaintings.js";
 import Elements from "../data/elements.js";
 import Game from "./Game.js";
-import Dialogue from "./dialogue.js";
 import SelectedElements from "../data/selectedElements.js";
 
 export default class ExhibitionScene extends Scene {
@@ -35,7 +33,7 @@ export default class ExhibitionScene extends Scene {
         ]
 
         this.button = document.createElement("button")
-        this.button.className =`nextButton button small black`;
+        this.button.className =`nextButton button normal white`;
         this.button.textContent = "Valider";
         this.button.id = "end-exhibition-scene";
         document.getElementById("exhibition-info").appendChild(this.button);
@@ -47,12 +45,10 @@ export default class ExhibitionScene extends Scene {
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
             let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
-            sprite.element.style.zIndex = "1";
             this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
         let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
-        painting.element.style.zIndex = "1";
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -229,8 +225,7 @@ export default class ExhibitionScene extends Scene {
 
     fetchElements() {
         SelectedElements.forEach((element) => {
-            let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
-            sprite.element.style.zIndex = "2";
+            new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
         })
     }
 
