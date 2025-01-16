@@ -1,0 +1,550 @@
+@import url('https://cdn.jsdelivr.net/npm/helveticaneue@1.0.0/helveticaneue.min.css');
+@import url('https://fonts.cdnfonts.com/css/nyght-serif');
+
+/* Import local font si besoin */
+@font-face {
+    font-family: 'NyghtSerif-Light';
+    src: url('../fonts/NyghtSerif-Light.ttf') format('truetype');
+}
+
+/* Style général */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- BOUTONS et lien Retour --- */
+button,
+.back-button {
+  border: 1px solid black; /* Contour noir */
+  background: white;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  z-index: 20;
+}
+
+/* Personnage */
+.character {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  animation: slideInLeft 1s ease-out forwards;
+  transform: translateX(-100%);
+  z-index: 11;
+}
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Image du personnage */
+.character img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Boîte de dialogue en bas */
+.content-block {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  background: white;
+  width: 50%;
+  border: 1px solid #00000057;
+  z-index: 12;
+  margin-bottom: 1rem;
+  height: 41rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 50%);
+  }
+}
+
+
+.content-block h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: 'NyghtSerif-Light', serif;
+  font-size: 5rem;
+  border-bottom: 1px solid black;
+  padding: 2rem;
+}
+
+/* Texte du dialogue */
+.content-block p {
+  font-size: 3rem;
+  line-height: 1.3;
+}
+.dialogue-text {
+  margin: 0;
+  padding: 2rem;
+  min-height: 1.5em;
+  white-space: pre-line;
+
+}
+
+/* Effet machine à écrire */
+.char {
+  opacity: 0;
+  animation: fadeInChar 0.05s forwards;
+}
+@keyframes fadeInChar {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Bouton "Suivant" (dialogue) */
+.next-dialogue {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background: none;
+  border: 2px solid black;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 31px;
+}
+.arrow-icon {
+  width: 2.5rem;
+  height: auto;
+}
+
+/* Bouton "Fermer" (dernier dialogue) */
+.close-dialog {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: 2px solid black;
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 25px;
+}
+.hidden {
+  display: none;
+}
+
+/* Artwork images */
+.artwork-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.artwork {
+  position: absolute;
+  max-width: 100%;
+  opacity: 0;
+}
+.top-left { 
+  animation: fadeIn 1s forwards;
+  animation-delay: 0s;
+}
+.top-center { 
+  animation: fadeIn 1s forwards;
+  animation-delay: 0.5s;
+}
+.top-right { 
+  animation: fadeIn 1s forwards;
+  animation-delay: 1s;
+}
+.bottom-center { 
+  animation: fadeIn 1s forwards;
+  animation-delay: 1.5s;
+}
+.bottom-right { 
+  animation: fadeIn 1s forwards;
+  animation-delay: 2s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Exemples de positionnement */
+.top-left {
+  top: 9%;
+  left: 3%;
+  width: 66rem;
+}
+.top-center { 
+  top: 9%;
+  left: 29%;
+  width: 112rem;
+}
+.top-right { 
+  top: 10%;
+  right: 10%;
+  display: none; /* si tu ne veux pas l'afficher */
+}
+.bottom-center { 
+  bottom: 10%;
+  left: 50%;
+  display: none;
+}
+.bottom-right { 
+  bottom: 15%;
+  right: 15%;
+  display: none;
+}
+
+/* FadeOut (appliqué en JS) */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Overlay noir */
+.overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 1s;
+}
+/* Écran principal */
+.main-game-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  z-index: 9; 
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+.overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.main-game-screen.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.main-game-content {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  background: white;
+  padding: 20px;
+  overflow: auto;
+
+  /* Effet FadeInUp au chargement */
+  opacity: 0;
+  animation: fadeInUpContent 0.8s ease-out forwards;
+}
+
+/* Titre de l'écran principal */
+.main-game-content h2 {
+  margin-top: 0;
+  font-family: 'NyghtSerif-Light', serif;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+/* Conteneur pour l'art et les palettes en flex (gauche/droite) */
+.art-and-palette {
+  display: flex;
+  justify-content: space-between; /* ou "space-around"/"space-evenly" si tu préfères */
+  gap: 20px;
+  align-items: center; /* commence aligné en haut */
+}
+
+/* Bloc infos de l'œuvre */
+.art-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  align-items: center;
+  transition: margin 0.8s ease;
+}
+.art-info .art-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+.art-info img {
+  max-width: 75%;
+  height: auto;
+  margin-bottom: 1rem;
+  width: 80rem;
+}
+
+.art-info,
+.color-palette-options,
+.cards-column,
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centre horizontalement chaque bloc */
+}
+
+/* Bloc palettes (à droite) */
+.color-palette-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-top: 3rem;
+}
+.color-palette-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.color-palette-options label img {
+    width: 35rem;  /* au lieu de 100px */
+    height: auto;
+    border: 1px solid #0003;
+}
+
+/* Radio à droite de l'image => on inverse l’ordre dans le label */
+.color-palette-options label img {
+  order: 1;
+}
+.color-palette-options label input[type="radio"] {
+  order: 2; /* radio après l'image */
+}
+
+.color-palette-options input[type="radio"] {
+  transform: scale(5.75);
+  margin-left: 4rem;
+}
+
+.validate-button {
+  margin-top: 1rem;
+  border: 1px solid black; 
+  background: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.validate-button:hover {
+  background: black;
+  color: white;
+}
+
+/* ----------------- Styles Spécifiques au Second Jeu ------------------ */
+
+/* 1) Effet FadeIn pour .main-game-content au chargement */
+.main-game-content {
+  opacity: 0; /* caché au départ */
+  animation: fadeInUpContent 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUpContent {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2) DialogBox persistante */
+.persistent-dialog {
+  background: white;
+  border: 1px solid #0003;
+  padding: 16px;
+  margin-bottom: 1rem;
+  position: fixed;
+  top: 71px;
+}
+
+.persistent-dialog h1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: 'NyghtSerif-Light', serif;
+  font-size: 24px;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+
+.persistent-dialog p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  white-space: pre-line; /* pour gérer les retours à la ligne */
+}
+
+/* 3) Cartes de couleur en row */
+.cards-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* 4) Cartes de couleur */
+.color-card {
+  position: relative; /* pour positionner le texte supplémentaire */
+  color: white;
+  border-radius: 8px;
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+  transform-origin: top center;                     /* L'animation partira du haut */
+  transition: transform 0.4s cubic-bezier(0.19,1,0.22,1),
+              box-shadow 0.4s cubic-bezier(0.19,1,0.22,1),
+              padding 0.4s cubic-bezier(0.19,1,0.22,1);  transform-origin: top center;                     /* L'animation partira du haut */
+  /* Ombrage léger pour donner du relief */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-top: 4rem;
+  overflow: hidden; /* pour contenir les détails lors de l'agrandissement */
+}
+
+/* Couleurs spécifiques */
+.color-card[data-color="#9C8A54"] {
+  background-color: #9C8A54; /* Or */
+  transform: rotate(-20deg);
+}
+
+.color-card[data-color="#3C514A"] {
+  background-color: #3C514A; /* Bleu/vert */
+}
+
+.color-card[data-color="#BD5A4E"] {
+  background-color: #BD5A4E; /* Rouge */
+  transform: rotate(20deg);
+}
+
+.color-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Agrandissement et mise en avant lorsqu'une carte est sélectionnée */
+.color-card.selected {
+  padding-top: 20px;            /* ça "pousse" la carte vers le bas, donc effet “agrandissement par le haut” */
+  z-index: 1;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Détails supplémentaires sur la carte, cachés par défaut */
+.card-details {
+  display: none; /* caché par défaut */
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Affichage des détails lorsque la carte est sélectionnée */
+.color-card.selected .card-details {
+  display: block;
+  opacity: 1;
+}
+
+/* Style du bouton Valider fixé en bas à droite */
+.validate-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid black; 
+  background: black;
+  color: white;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+  z-index: 100; /* Assure qu'il reste au-dessus des autres éléments */
+}
+
+.validate-button:hover {
+  background: #333;
+}
+
+/* Responsive : Ajustements pour petits écrans */
+@media (max-width: 768px) {
+  .art-and-palette {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+
+  .cards-row {
+    flex-direction: column;
+  }
+
+  .color-card {
+    width: 100%;
+  }
+
+  .validate-button {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>La Renaissance</title>
+  <link rel="stylesheet" href="styles/artwork.css" />
+</head>
+<body>
+
+  <!-- Bouton Retour -->
+  <a href="index.html" class="back-button">Retour</a>
+
+  <!-- Personnage à gauche -->
+  <div class="character">
+    <img src="images/perso2.png" alt="Personnage" />
+  </div>
+
+  <!-- Boîte de dialogue en bas -->
+  <div class="content-block">
+    <h1>La Renaissance (s), 15e - 16e siècles</h1>
+    <div id="dialogueText"></div>
+    <button class="next-dialogue" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog hidden" id="closeDialog">Fermer</button>
+  </div>
+
+  <!-- Artwork -->
+  <div class="artwork-container">
+    <img src="images/image 10 (1).png" alt="Œuvre 1" class="artwork top-left">
+    <img src="images/image 8.png" alt="Œuvre 2" class="artwork top-center">
+    <img src="images/image12.png" alt="Œuvre 3" class="artwork top-right">
+    <img src="images/image11.png" alt="Œuvre 4" class="artwork bottom-center">
+    <img src="images/image13.png" alt="Œuvre 5" class="artwork bottom-right">
+  </div>
+
+  <!-- Overlay noir -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Écran principal du "jeu" -->
+  <div class="main-game-screen" id="mainGameScreen">
+    <div class="main-game-content">
+      <h2>Trouve la palette que j’ai utilisée pour réaliser ce tableau :</h2>
+      <div class="art-and-palette">
+        <div class="art-info">
+          <p class="art-title">
+            PERUGIN, LE (dit) Pietro di Cristoforo Vannucci,<br>
+            La Vierge entre saint Jérôme et saint Augustin, 15e siècle
+          </p>
+          <img src="images/perugino.png" alt="Tableau de Perugino">
+        </div>
+        <div class="color-palette-options">
+          <label>
+            <img src="images/palette1.png" alt="Palette 1">
+            <input type="radio" name="palette" value="palette1">
+          </label>
+          <label>
+            <img src="images/palette2.png" alt="Palette 2">
+            <input type="radio" name="palette" value="palette2">
+          </label>
+          <label>
+            <img src="images/palette3.png" alt="Palette 3">
+            <input type="radio" name="palette" value="palette3">
+          </label>
+        </div>
+      </div>
+      <button id="validateBtn">Valider</button>
+    </div>
+  </div>
+
+  <script src="script/start.js"></script>
+</body>
+</html>

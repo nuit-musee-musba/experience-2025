@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Deuxième Jeu - Renaissance</title>
+  <link rel="stylesheet" href="styles/artwork.css" />
+</head>
+<body>
+
+  <!-- Bouton Retour -->
+  <a href="index.html" class="back-button">Retour</a>
+
+  <!-- Personnage à gauche -->
+  <div class="character">
+    <img src="images/perso2.png" alt="Personnage" />
+  </div>
+
+  <!-- Boîte de dialogue dynamique en bas (identique au premier jeu) -->
+  <div class="content-block">
+    <h1>La Renaissance</h1>
+    <div id="dialogueText"></div>
+    <button class="next-dialogue" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog hidden" id="closeDialog">Fermer</button>
+  </div>
+
+  <!-- Overlay noir -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Écran principal du "deuxième jeu" -->
+  <div class="main-game-screen visible">
+    <div class="main-game-content">
+      <h2>Appuie sur une carte pour découvrir la signification de la couleur et recolorise la partie clé du tableau.</h2>
+      <div class="art-and-palette">
+
+        <!-- L'image du tableau à gauche avec inversion de l'ordre -->
+        <div class="art-info">
+          <img src="images/p1renaissance.png" alt="Détail Renaissance">
+          <p class="art-title">
+            PERUGIN (Pietro di Cristoforo Vannucci),<br>
+            Détail du tableau (15e siècle)
+          </p>
+        </div>
+
+        <!-- À droite, on a la "DialogBox" persistante + 3 cartes dessous -->
+        <div class="right-column">
+
+          <!-- LA BOX PERSISTANTE -->
+          <div class="persistent-dialog">
+            <h1>Les saints</h1>
+            <p>
+              Les vêtements des saints doivent refléter leur force, 
+              leur passion et leur sacrifice pour la foi.
+            </p>
+          </div>
+
+          <!-- Les cartes en row -->
+          <div class="cards-row">
+            <!-- Carte OR -->
+            <div class="color-card" data-color="#9C8A54">
+              <div class="card-title">Or</div>
+              <!-- Le texte détaillé, caché tant que pas 'selected' -->
+              <div class="card-details">
+                <p>Divin</p>
+                <p>Sacré</p>
+                <p>Éternel</p>
+              </div>
+            </div>
+
+            <!-- Carte BLEU/VERT -->
+            <div class="color-card" data-color="#3C514A">
+              <div class="card-title">Bleu/vert</div>
+              <div class="card-details">
+                <p>Spiritualité</p>
+                <p>Pureté</p>
+                <p>Élévation</p>
+              </div>
+            </div>
+
+            <!-- Carte ROUGE -->
+            <div class="color-card" data-color="#BD5A4E">
+              <div class="card-title">Rouge</div>
+              <div class="card-details">
+                <p>Amour divin</p>
+                <p>Foi</p>
+                <p>Sacrifice</p>
+              </div>
+            </div>
+          </div> <!-- fin cards-row -->
+
+        </div> <!-- fin right-column -->
+      </div> <!-- fin .art-and-palette -->
+
+      <!-- Bouton Valider fixé en bas à droite -->
+      <button id="validateColor" class="validate-button">Valider</button>
+
+    </div> <!-- fin .main-game-content -->
+  </div> <!-- fin .main-game-screen -->
+
+  <script src="script/colorGame.js"></script>
+</body>
+</html>
