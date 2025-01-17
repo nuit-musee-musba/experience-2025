@@ -28,20 +28,25 @@ export default [
     {
         id : "0-2-0",
         emotion : 1,
+        text: "Place ton tableau sur un des murs de la salle."
+    },
+    {
+        id : "0-2-1",
+        emotion : 1,
         text: "Observe comme l'espace d'exposition réagit à ta sélection ! En tant que conservateur, ton rôle est aussi de créer un dialogue entre l'œuvre et son environnement. La scénographie que tu vois s'adapter participe à cette magie."
     },
     {
-        id : "1-2-0",
+        id : "1-2-1",
         emotion : 1,
         text: "Par ma veste en velours étoilé ! On dirait que tu deviens un vrai magicien du musée ! Tu as le don pour faire parler les tableaux entre eux et raconter de belles histoires aux visiteurs."
     },
     {
-        id : "2-2-0",
+        id : "2-2-1",
         emotion : 1,
         text: "La transformation est complète ! Tu as su donner un nouveau souffle à ces œuvres, les sortir de leur sommeil dans la réserve pour leur offrir la lumière qu'elles méritent."
     },
     {
-        id : "2-2-1",
+        id : "2-2-2",
         emotion : 0,
         text: "Félicitations, tu es un vrai magicien des musées ! C'est comme si tu avais créé ton propre film avec des peintures !",
     },

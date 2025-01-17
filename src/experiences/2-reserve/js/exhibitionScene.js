@@ -1,10 +1,8 @@
 import Scene from "./scene.js"
 import SelectedPaintings from "../data/selectedPaintings.js"
 import Sprite from "./sprite.js";
-import selectedPaintings from "../data/selectedPaintings.js";
 import Elements from "../data/elements.js";
 import Game from "./Game.js";
-import Dialogue from "./dialogue.js";
 import SelectedElements from "../data/selectedElements.js";
 
 export default class ExhibitionScene extends Scene {
@@ -12,29 +10,30 @@ export default class ExhibitionScene extends Scene {
         super("scene-exhibition", "./assets/sound/song.mp3");
 
         this.lastSelectedPainting = null;
+        this.canPlacePainting = false
         this.perspectiveRotation = 1689;
         this.isPositionSet = false;
         this.defaultPos = {x: 400, y: 400}
         this.paintingPositions = [
             {
-                x: 2564,
+                x: 2634,
                 y: 1085,
                 isOccupied: false,
             },
             {
-                x: 1972,
+                x: 1964,
                 y: 725,
                 isOccupied: false,
             },
             {
-                x: 1476,
+                x: 1464,
                 y: 685,
                 isOccupied: false,
             }
         ]
 
         this.button = document.createElement("button")
-        this.button.className =`nextButton button small black`;
+        this.button.className =`nextButton button normal white`;
         this.button.textContent = "Valider";
         this.button.id = "end-exhibition-scene";
         document.getElementById("exhibition-info").appendChild(this.button);
@@ -45,13 +44,11 @@ export default class ExhibitionScene extends Scene {
 
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
-            sprite.element.style.zIndex = "1";
+            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.x, painting.y, "paintings-container");
             this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
-        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
-        painting.element.style.zIndex = "1";
+        let painting = new Sprite(this.lastSelectedPainting.src + ".jpg", this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -103,25 +100,35 @@ export default class ExhibitionScene extends Scene {
         super.initScene();
         this.fetchPaintings();
         this.fetchElements();
-        document.addEventListener("click", (event) => {
-            if (event.target.classList.contains("nextButton") || this.isPositionSet) {
-                return;
-            }
-            this.setPaintingPosition({x: event.clientX, y: event.clientY});
-        });
         this.button.disabled = true;
-        this.button.addEventListener("click", (event) => {
+
+        // Nettoyage des anciens handlers
+        if (this.placeHandler || this.validateHandler) {
+            this.button.removeEventListener("click", this.validateHandler);
+            document.removeEventListener("click", this.placeHandler); // Changé pour document
+        }
+
+        this.validateHandler = () => {
             if (this.isPositionSet) {
                 return;
             }
+            console.log(SelectedPaintings)
             SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
             SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
             this.isPositionSet = true;
             this.updateOccupiedPos();
             this.showElement();
             this.endSceneDialogue()
-        });
+        }
 
+        this.placeHandler = (event) => {
+            if (this.isPositionSet || !this.canPlacePainting) {
+                return;
+            }
+            this.setPaintingPosition({x: event.clientX, y: event.clientY});
+        }
+
+        // Setup des images
         let empty1 = document.createElement("img")
         empty1.style.position = "absolute"
         empty1.style.top = "0px"
@@ -139,10 +146,21 @@ export default class ExhibitionScene extends Scene {
         container.appendChild(empty1);
         container.appendChild(empty2);
         container.appendChild(empty3);
+
+        this.canPlacePainting = false;
+        Game.getInstance().dialogue.listDialogue(["0-2-0"]);
+        Game.getInstance().once("onDialogueClosed", () => {
+            this.canPlacePainting = true;
+        });
+
+        // Attacher les handlers
+        this.button.addEventListener("click", this.validateHandler);
+        document.addEventListener("click", this.placeHandler); // Changé pour document
     }
 
     updateOccupiedPos() {
-        let newOccupiedPainting = this.paintingPositions.find((p) => {
+        let newOccupiedPainting = this.paintingPositions.filter((p) => !p.isOccupied).find((p) => {
+            console.log("updateOccupiedPos Y", { a: this.lastSelectedPainting.y, b: p.y });
             return this.lastSelectedPainting.x === p.x && this.lastSelectedPainting.y === p.y;
         })
         newOccupiedPainting.isOccupied = true;
@@ -153,7 +171,7 @@ export default class ExhibitionScene extends Scene {
             return element.thematic === this.lastSelectedPainting.thematic;
         });
         if (filteredElements.length < 1) {
-            return console.error("No paintings found");
+            return console.error("No element found");
         }
         let element = filteredElements[Math.floor(Math.random() * filteredElements.length)];
         let elemDom = document.createElement("img");
@@ -167,7 +185,7 @@ export default class ExhibitionScene extends Scene {
     }
 
     endSceneDialogue() {
-        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-2-0`])
+        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-2-1`])
         Game.getInstance().once("onDialogueClosed", () => {
             Game.getInstance().updateGameProgression()
         })
@@ -223,7 +241,7 @@ export default class ExhibitionScene extends Scene {
     fetchElements() {
         SelectedElements.forEach((element) => {
             let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
-            sprite.element.style.zIndex = "2";
+            sprite.element.style.zIndex = element.zIndex;
         })
     }
 

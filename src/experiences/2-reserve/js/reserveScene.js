@@ -4,7 +4,7 @@ import Game from "./Game.js";
 
 export default class ReserveScene extends Scene {
     constructor() {
-        super("scene-reserve", null);
+        super("scene-reserve", "./assets/sound/song.mp3");
     }
 
     unloadScene(){
@@ -16,7 +16,7 @@ export default class ReserveScene extends Scene {
         super.initScene()
         this.loadPaintings("#container-paintings")
         this.scrollToBottom()
-        Game.getInstance().dialogue.listDialogue([`${Game.getInstance().gameProgression}-0-0`]);
+        Game.getInstance().dialogue.listDialogue([`0-1-0`, `0-1-1`]);
     }
 
     loadPaintings(conteneurPaintings, filteredPaintings) {
@@ -26,7 +26,7 @@ export default class ReserveScene extends Scene {
                 const img = document.createElement("img");
                 let div = document.createElement('div');
         
-                img.src = painting.src;
+                img.src = painting.src + ".jpg";
                 img.alt = painting.description || "Image sans description";
                 div.classList.add('paintingContainer')
                 conteneurPainting.append(div);
@@ -36,15 +36,9 @@ export default class ReserveScene extends Scene {
     
     }
 
-    unloadPainting(IdcontainerPaintings) {
-        const conteneurPainting = document.querySelector(IdcontainerPaintings);
-    
-        if (conteneurPainting) {
-            // Supprimer tous les enfants du conteneur
-            while (conteneurPainting.firstChild) {
-                conteneurPainting.removeChild(conteneurPainting.firstChild);
-            }
-        }
+    unloadPainting(idContainerPaintings) {
+        const containerPaintings = document.querySelector(idContainerPaintings);
+        containerPaintings.innerHTML = "";
     }
     scrollToBottom() {
         try {

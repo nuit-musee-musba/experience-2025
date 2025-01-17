@@ -5,64 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../commons/styles/style.scss">
-    <link rel="stylesheet" href="./style.scss">
-
+    <link rel="stylesheet" href="./styles/style.scss">
 </head>
 <body>
     <section class="hub">
-        <div class="content">
-            <div class="description">
-                <h1>LE NOM DU PROJET</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-            </div>
-            <div class="navigation">
-                <h3>Arts Graphiques</h3>
-                <h3>Peinture</h3>
-                <h3>Réserve</h3>
-                <h3>Restauration</h3>
-                <h3>Sculpture</h3>
+        <h1 class="project-title">NIGHT MUSEUM</h1>
+        <div class="home">
+            <h3 class="back-home">HOME</h3>
+            <nav class="nav">
+                <ul>
+                    <li experience-id="1" class="text-xl">Réserve</li>
+                    <li experience-id="2" class="text-xl">Sculpture</li>
+                    <li experience-id="3" class="text-xl">Peinture</li>
+                    <li experience-id="4" class="text-xl">Arts Graphiques</li>
+                    <li experience-id="5" class="text-xl">Restauration</li>
+                </ul>
+            </nav>
+            <div class="personnages">
+                <div class="personnage-container" experience-id="1">
+                    <img  class="personnage" src="/1-hub/home/reserve.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="2">
+                    <img  class="personnage" src="/1-hub/home/art-graphiques.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="3">
+                    <img  class="personnage" src="/1-hub/home/peinture.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="4">
+                    <img  class="personnage" src="/1-hub/home/sculpture.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="5">
+                    <img  class="personnage" src="/1-hub/home/restauration.png" alt="">
+                </div>
             </div>
         </div>
-        <div class="experience-images">
-            <div class="illustrations graphics-art">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
+
+        <div class="experience-page">
+
+            <div class="personnages">
+                <div class="personnage-container" experience-id="1">
+                    <img  class="personnage" src="/1-hub/home/reserve.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="2">
+                    <img  class="personnage" src="/1-hub/home/art-graphiques.png" alt="">
+                </div>
+                <div class="personnage-container"  experience-id="3">
+                    <img class="personnage" src="/1-hub/home/peinture.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="4">
+                    <img  class="personnage" src="/1-hub/home/sculpture.png" alt="">
+                </div>
+                <div class="personnage-container" experience-id="5">
+                    <img  class="personnage" src="/1-hub/home/restauration.png" alt="">
+                </div>
             </div>
-            <div class="illustrations paint">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
+            <div class="experience-content">
+                <div class="experience-illustartion">
+                    <img src="/1-hub/placeholder.png" alt="">
+                </div>
+                <div class="experience-modal">
+                        <h3 class="text-xl">Titre de l'exemple</h3>
+                        <div class="line"></div>
+                        <p>Contenu de l'exemple</p>
+                        <button class="experience-btn"><a href="https://www.google.com/">Commencer</a></button>
+                </div>
             </div>
-            <div class="illustrations reserve">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-            </div>
-            <div class="illustrations restoration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-            </div>
-            <div class="illustrations sculpture">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-                <img src="" alt="" class="illustration">
-            </div>
-            
         </div>
     </section>
-    <h1>G1</h1>
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
 </body>
 </html>
