@@ -32,28 +32,195 @@ const experienceModalLine = document.querySelector('.experience-page .experience
 const experienceModalText = document.querySelector('.experience-page .experience-modal p');
 const experienceModalButton = document.querySelector('.experience-page .experience-modal button a');
 
-// Navigation dans l'expérience
-const experienceNavigation = document.querySelector('.experience-page .experience-navigation');
-const experienceNavLeft = document.querySelector('.experience-page .arrow-button.left');
-const experienceNavRight = document.querySelector('.experience-page .arrow-button.right');
+const experienceData = [
+    {
+        id: 1,
+        title: 'Résérve',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
+        illustration: '/1-hub/placeholder.png',
+        link: '/experiences/2-reserve/index.html'
+    },
+    {
+        id: 2,
+        title: 'Sculpture',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
+        illustration: '/1-hub/placeholder.png',
+        link: '/experiences/3-techniques/index.html'
+    },
+    {
+        id: 3,
+        title: 'Peinture',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
+        illustration: '/1-hub/placeholder.png',
+        link: '/experiences/4-sculpture/index.html'
+    },
+    {
+        id: 4,
+        title: 'Arts Graphiques',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
+        illustration: '/1-hub/placeholder.png',
+        link: '/experiences/5-peintures/index.html'
+    },
+    {
+        id: 5,
+        title: 'Restauration',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
+        illustration: '/1-hub/placeholder.png',
+        link: '/experiences/6-restaurations/index.html'
+    },
+    
+]
+
+
+
 
 
 let experienceID
+let previousExperienceID
+let isInExperiencePage = false;
+
+// Fonction pour créer l'animation enterExperience
+const enterExperience = (experienceID) => {
+    console.log('enter experience');
+    
+
+    const targetPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${experienceID}"]`);
+    const targetModalTitle = document.querySelector(`.experience-page .experience-modal h3`);
+    const targetModalText = document.querySelector(`.experience-page .experience-modal p`);
+    const targetIllustartion = document.querySelector(`.experience-page .experience-illustartion img`);
+    const targetBtn = document.querySelector(`.experience-page .experience-modal button a`);
+    
+
+    if ( !targetPerso) {
+        console.error(`No elements found for experience ID: ${experienceID}`);
+        return;
+    }
+
+    const targetExperienceData = experienceData.find((exp) => exp.id == experienceID);
+
+    if (!targetExperienceData) {
+        console.error(`No data found for experience ID: ${experienceID}`);
+        return;
+    }
+
+    targetModalTitle.innerText = targetExperienceData.title;
+    targetModalText.innerText = targetExperienceData.description;
+    targetIllustartion.src = targetExperienceData.illustration;
+    targetBtn.href = targetExperienceData.link;
+
+    // Crée et joue la timeline pour l'animation
+    return gsap.timeline({delay:0.5})
+        .set(experienceContent, {display: 'flex'})
+        .fromTo(targetPerso, {
+            opacity: 0,
+            y:1500,
+        },{
+            display: 'block',
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+        })
+        .fromTo(experienceIllustration,
+            {
+                opacity: 0,
+            },
+            {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+            },0
+        )
+        .fromTo(experienceModal,
+            {
+                opacity: 0,
+            },
+            {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+            }, 0
+        )
+};
 
 
+const changeExperience = (experienceID, previousExperienceID) => {
+    console.log('change experience');
+    
 
+    const targetPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${experienceID}"]`);
+    const previousPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${previousExperienceID}"]`);
+
+    const targetModalTitle = document.querySelector(`.experience-page .experience-modal h3`);
+    const targetModalText = document.querySelector(`.experience-page .experience-modal p`);
+    const targetIllustartion = document.querySelector(`.experience-page .experience-illustartion img`);
+    const targetBtn = document.querySelector(`.experience-page .experience-modal button a`);
+    
+
+    if ( !targetPerso) {
+        console.error(`No elements found for experience ID: ${experienceID}`);
+        return;
+    }
+
+    const targetExperienceData = experienceData.find((exp) => exp.id == experienceID);
+
+    if (!targetExperienceData) {
+        console.error(`No data found for experience ID: ${experienceID}`);
+        return;
+    }
+
+    targetModalTitle.innerText = targetExperienceData.title;
+    targetModalText.innerText = targetExperienceData.description;
+    targetIllustartion.src = targetExperienceData.illustration;
+    targetBtn.href = targetExperienceData.link;
+
+    console.log(targetPerso, previousPerso);
+    
+
+    if ( !targetPerso || !previousPerso) {
+        console.error(`No elements found for experience ID: ${experienceID}`);
+        return;
+    }
+
+    return gsap.timeline()
+        .to(previousPerso, {
+            opacity: 0,
+            y: 1500,
+            duration: 0.5,
+            ease: "power2.out",
+        })
+        .fromTo(targetPerso, {
+            opacity: 0,
+            y: 1500,
+        },{
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+        },'-=0.5')
+
+
+}
 
 homeNavItems.forEach((item, index) => {
-    item.addEventListener('click',()=>{
-        //Play tl of leaveHome
-        leaveHome.play();
+    item.addEventListener('click', () => {
+        const newExperienceID = item.getAttribute('experience-id');
 
-        experienceID = item.getAttribute('experience-id')
+        if (newExperienceID === experienceID) return;
 
 
-        //Play tl of experiencepage apparition
+        previousExperienceID = experienceID;
+        experienceID = newExperienceID;
 
-    })
+
+        if (!isInExperiencePage) {
+            leaveHome.play();
+            enterExperience(experienceID);
+            isInExperiencePage = true;
+        } else {
+            changeExperience(experienceID, previousExperienceID);
+        }
+    });
 });
 
 
@@ -67,4 +234,4 @@ leaveHome
     .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 },'-=0.5') 
 
 
-const enterExperience = gsap.timeline({paused: true})
+// const enterExperience = gsap.timeline({paused: true})
