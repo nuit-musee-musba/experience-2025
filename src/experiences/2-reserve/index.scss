@@ -1,4 +1,4 @@
-#scene-exhibition, #scene-reserve, #end-scene {
+#scene-exhibition, #scene-reserve, #end-scene, #scene-welcome {
   display: none;
   position: relative;
   top: 0;
@@ -163,6 +163,16 @@
   position: fixed;
   bottom: 100px;
   left: 100px;
+}
+
+
+
+.rightBottom{
+    position: absolute;
+    top: 1800px;
+    left: 3085px;
+    z-index: 1000;
+
 }
 
 
