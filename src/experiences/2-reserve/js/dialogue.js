@@ -5,7 +5,7 @@ import Game from "./Game.js";
 
 export default class Dialogue extends Modal {
     constructor() {
-        super("Tristan le conservateur", "TestContent", "dialogue")
+        super("Tristan le conservateur", "TestContent", "dialogue transitionAnimation _delay")
         this.character = new Character();
 
         this.contentElement.textContent = this.content;
