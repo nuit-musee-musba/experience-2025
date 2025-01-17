@@ -122,6 +122,7 @@
             align-items: center;
             display: none;
             .experience-modal{
+                transform: translateY(-15vh);
                 background-color: white;
                 display: flex;
                 flex-direction: column;
