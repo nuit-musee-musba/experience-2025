@@ -3,6 +3,7 @@ import { setupCanvas } from "./canvas.ts"
 declare global {
     interface DocumentEventMap {
         'switchSceneEvent': CustomEvent;
+        'cleanPaint': CustomEvent;
     }
 }
 
@@ -60,6 +61,32 @@ export class Router {
                 const { default: Eclairer } = await import("./pages/Eclairer");
                 this.currentRoute = new Eclairer(this.container);
                 break;
+
+            case "/nettoyer":
+                const { default: Nettoyer } = await import("./pages/Nettoyer");
+                this.currentRoute = new Nettoyer(this.container);
+                break;
+
+            case "/mastiquer":
+                const { default: Mastiquer } = await import("./pages/Mastiquer");
+                this.currentRoute = new Mastiquer(this.container);
+                break;
+
+            case "/retoucher":
+                const { default: Retoucher } = await import("./pages/Retoucher");
+                this.currentRoute = new Retoucher(this.container);
+                break;
+
+            case "/vernir":
+                const { default: Vernir } = await import("./pages/Vernir");
+                this.currentRoute = new Vernir(this.container);
+                break;
+
+            case "/apprecier":
+                const { default: Apprecier } = await import("./pages/Apprecier");
+                this.currentRoute = new Apprecier(this.container);
+                break;
+
 
             default:
                 this.container.innerHTML = "<h1>404 - Page Not Found</h1>";
