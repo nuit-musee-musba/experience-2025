@@ -21,6 +21,7 @@ export default class AudioManager extends EventEmitter {
 
     playMusic(soundPath) {
         if (!this.canPlaySound) {
+            console.warn("CanPlaySound:", false);
             this.waitingSound = soundPath;
             return;
         }
@@ -28,7 +29,18 @@ export default class AudioManager extends EventEmitter {
             this.stopMusic();
         }
         this.audioElem.src = soundPath;
+        this.audioElem.volume = 0;
         this.audioElem.play();
+        // Ajoute un fondu progressif
+        let volume = 0;
+        const fadeInInterval = setInterval(() => {
+            if (volume < .5) {
+                volume += 0.05; // Augmente par étapes (0.05 = 5%)
+                this.audioElem.volume = Math.min(volume, .5); // Limite à 1.0
+            } else {
+                clearInterval(fadeInInterval); // Arrête une fois le volume à 1.0
+            }
+        }, 100);
     }
 
     stopMusic() {
