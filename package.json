@@ -6,10 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bundle": "npm run build && gulp bundle",
+    "bundle:zip": "npm run build && gulp bundleZipped"
   },
   "devDependencies": {
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "del": "^7.1.0",
+    "gulp": "^4.0.2",
+    "gulp-zip": "^6.0.0"
   },
   "dependencies": {
     "ogl": "^1.0.10",
