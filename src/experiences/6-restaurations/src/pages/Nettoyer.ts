@@ -31,7 +31,7 @@ export default class Nettoyer{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme un coton imbibé d’un dissolvant adapté et nettoie délicatement les zones ciblées.</p>
+                        <p>Utilise ton doigt comme un coton imbibé d’un dissolvant adapté et glisse le délicatement sur l’œuvre pour le nettoyer.</p>
                     </div>
                 </div>
                 <div class="exp-right">

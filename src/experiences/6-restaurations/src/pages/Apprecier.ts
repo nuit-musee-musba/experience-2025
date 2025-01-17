@@ -28,14 +28,14 @@ export default class Apprecier{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Rends-toi là où l’œuvre est exposée pour apprécier ta restauration.</p>
+                        <p>Utilise ton doigt comme une loupe, en le déplaçant sur le tableau, pour examiner les détails de ta restauration et apprécier ton travail</p>
                     </div>
                 </div>
                 <div class="exp-right">
                     <img class="exp-char-img" src="./src/assets/img/perso-apprecier.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
-                        <p>En temps normal, une restauration peut durer plusieurs semaines, voire plusieurs mois, surtout pour une œuvre comme celle-ci, qui mesure 2,13 m x 1,42 m.</p>
+                        <p>En temps normal, une restauration peut durer plusieurs semaines, voire plusieurs mois, surtout pour une œuvre comme celle-ci.</p>
                         <p>Accomplir une telle restauration est une tâche difficile, alors félicitations pour ton travail !</p>
                     </div>
                 </div>

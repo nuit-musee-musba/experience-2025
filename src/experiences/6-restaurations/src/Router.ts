@@ -41,12 +41,12 @@ export class Router {
 
             case "/intro-2":
                 const { default: Intro2 } = await import("./pages/Intro2");
-                this.currentRoute = new Intro2(this.container, "./src/assets/img/perso2.png", "Le tableau Une scène de Saint-Barthélemy de Camille Roqueplan (1836), représentant une scène fictive du massacre de 1572 a été restauré par Tiziana Mazzoni. Celui-ci, caractéristique du romantisme du XIXème siècle, met en lumière l’émotion et l’humanité des personnages.","/intro-3");
+                this.currentRoute = new Intro2(this.container, "./src/assets/img/perso2.png", "Cette huille sur toile : La Grèce sur les ruines de Missolonghi de Eugène Delacroix (1826) représente une allégorie de la Grèce après le siège de Missolongi.","/intro-3");
                 break;
 
             case "/intro-3":
                 const { default: Intro3 } = await import("./pages/Intro3");
-                this.currentRoute = new Intro3(this.container, "./src/assets/img/perso.png", "Tu auras l’opportunité d’effectuer ta première restauration sur cette œuvre.</br>Prépare-toi à redonner vie à son histoire !","/observer");
+                this.currentRoute = new Intro3(this.container, "./src/assets/img/perso.png", "Tu auras l’opportunité d’effectuer ta première restauration sur cette œuvre.</br></br>Prépare-toi à donner une deuxième vie à son histoire !</br></br>(Cette restauration est fictive et à but informatif uniquement.)","/observer");
                 break;
 
             case "/observer":

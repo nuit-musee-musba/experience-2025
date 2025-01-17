@@ -1,4 +1,9 @@
+import { AudioManager } from "../AudioManager";
+import { audioManager } from "../main-exp-6"
+
 let counter = 0
+
+//const audioManager = new AudioManager();
 
 export default class Observer{
     container: HTMLElement;
@@ -31,7 +36,7 @@ export default class Observer{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme une loupe et passe le tout le long de l’œuvre pour trouver les dégâts et mesurer leur ampleur.</p>
+                        <p>Utilise ton doigt comme une loupe et glisse le sur les zones ciblées de l’œuvre pour trouver les dégâts et mesurer leur ampleur.</p>
                     </div>
                 </div>
                 <div class="exp-right">
@@ -122,6 +127,7 @@ export default class Observer{
     }
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/eclairer"; // Navigate to /#/intro
     };
 
