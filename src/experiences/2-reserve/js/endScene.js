@@ -11,7 +11,7 @@ import descriptionExposition from "../data/descriptionExposition.js";
 
 export default class EndScene extends Scene {
     constructor() {
-        super("end-scene", null);
+        super("end-scene", "./assets/sound/song.mp3");
         this.perspectiveRotation = 1689;
         
         this.button = document.createElement("button")
@@ -63,7 +63,6 @@ export default class EndScene extends Scene {
             return sortedArr1.every((value, index) => value === sortedArr2[index]);
         }
 
-        console.log('description', description)
         let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
         document.querySelector('.modalEnd').appendChild(this.button);
         modal.titleElement.className += 'h3-title-serif'
