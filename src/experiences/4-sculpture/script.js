@@ -226,8 +226,6 @@ function touchEnd(event) {
                 currentSequence.push(itemName);
                 currentDialogueIndex++;
                 updateDialogue();
-            } else {
-                alert("Ce n'est pas l'action attendue pour cette étape !");
             }
         }
 
@@ -273,6 +271,8 @@ function touchMove(event) {
         clonedImage.style.top = `${initialTouchPosition.y + deltaY - height / 2}px`;
     }
 }
+
+
 
 // Initialise le premier dialogue
 updateDialogue();

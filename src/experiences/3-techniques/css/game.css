@@ -229,6 +229,7 @@ header {
 }
 
 .difficulty-selector-btn {
+
     display: flex;
     justify-content: center;
     gap: 80px;
@@ -238,7 +239,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 60px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .btn-difficulty-contener {
@@ -444,4 +445,19 @@ header {
 }
 .winner-player2{
     background-color: #F2A884;
+}
+
+#continuerDifficulty{
+    display: none;
+}
+.continuer-difficulty{
+    display: flex;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+.btnDifficultyValidate{
+    transition: 0.5s;
+    color: #fff;
+    background-color: #000;
 }

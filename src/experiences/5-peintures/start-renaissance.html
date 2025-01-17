@@ -13,7 +13,7 @@
 
   <!-- Personnage à gauche -->
   <div class="character">
-    <img src="images/perso2.png" alt="Personnage" />
+    <img src="images/perso2.webp" alt="Personnage" />
   </div>
 
   <!-- Boîte de dialogue en bas -->
@@ -36,30 +36,34 @@
       <h2>Trouve la palette que j’ai utilisée pour réaliser ce tableau :</h2>
       <div class="art-and-palette">
         <div class="art-info">
+          <img src="images/perugino.webp" alt="Tableau de Perugino">
           <p class="art-title">
             PERUGINO, LE (dit) Pietro di Cristoforo Vannucci,<br>
             La Vierge entre saint Jérôme et saint Augustin, 15e siècle
           </p>
-          <img src="images/perugino.png" alt="Tableau de Perugino">
         </div>
         <div class="color-palette-options">
           <label>
-            <img src="images/palette1.png" alt="Palette 1">
+            <img src="images/palette1.webp" alt="Palette 1">
             <input type="radio" name="palette" value="palette1">
           </label>
           <label>
-            <img src="images/palette2.png" alt="Palette 2">
+            <img src="images/palette2.webp" alt="Palette 2">
             <input type="radio" name="palette" value="palette2">
           </label>
           <label>
-            <img src="images/palette3.png" alt="Palette 3">
+            <img src="images/palette3.webp" alt="Palette 3">
             <input type="radio" name="palette" value="palette3">
           </label>
         </div>
       </div>
     </div>
   </div>
-
+  <style>
+    .art-info .art-title {
+      padding-left: 3rem;
+    }
+  </style>
   <script src="script/start-renaissance.js"></script>
 </body>
 </html>

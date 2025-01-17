@@ -46,21 +46,21 @@ const experienceData = [
         title: 'Sculpture',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
         illustration: '/1-hub/placeholder.png',
-        link: '/experiences/3-techniques/index.html'
+        link: '/experiences/4-sculpture/index.html'
     },
     {
         id: 3,
         title: 'Peinture',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
         illustration: '/1-hub/placeholder.png',
-        link: '/experiences/4-sculpture/index.html'
+        link: '/experiences/5-peintures/index.html'
     },
     {
         id: 4,
         title: 'Arts Graphiques',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
         illustration: '/1-hub/placeholder.png',
-        link: '/experiences/5-peintures/index.html'
+        link: '/experiences/3-techniques/index.html'
     },
     {
         id: 5,

@@ -5,45 +5,76 @@ import Scene from "./scene.js";
 import selectedPaintings from "../data/selectedPaintings.js";
 import Game from "./Game.js";
 import selectedElements from "../data/selectedElements.js";
+import { Modal } from "../../../commons/components/Modal.js";
+import descriptionExposition from "../data/descriptionExposition.js";
+
 
 export default class EndScene extends Scene {
     constructor() {
-        super("end-scene", null); 
+        super("end-scene", "./assets/sound/song.mp3");
         this.perspectiveRotation = 1689;
-
+        
         this.button = document.createElement("button")
-        this.button.className =`nextButton button normal white rightBottom`;
+        this.button.className = `nextButton button normal white rightBottom`;
         this.button.textContent = "Recommencer";
         this.button.id = "reload-game";
-        document.getElementById("end-scene").appendChild(this.button);
+       
     }
 
-    initScene(){
+    initScene() {
         super.initScene()
         this.fetchElements()
         this.fetchPaintings()
+        Game.getInstance().once("onDialogueClosed", () => {
+            this.showDescriptionFinal();
+        })
         Game.getInstance().dialogue.listDialogue(["2-2-2", `3-0-0`]);
-        if (this.placeHandler || this.reloadHandler) {
-                    this.button.removeEventListener("click", this.reloadHandler);
-                    document.removeEventListener("click", this.placeHandler); // Changé pour document
-                }
-        
-                this.reloadHandler = () => {
-                    Game.getInstance().resetGame()
-                }
-             
+        if (this.reloadHandler) {
+            this.button.removeEventListener("click", this.reloadHandler);
+        }
+
+        this.reloadHandler = () => {
+            Game.getInstance().resetGame()
+        }
+
 
         this.button.addEventListener("click", this.reloadHandler);
-        document.addEventListener("click", this.placeHandler); // Changé pour document
+    }
+
+
+    showDescriptionFinal(){
+        let parentElement = document.querySelector('#' + this.name)
+        let exhibitionThematic = [];
+        SelectedPaintings.forEach(element => {
+            exhibitionThematic.push(element.thematic)
+        });
+
+        let description = descriptionExposition.find((description) => {
+            return arraysHaveSameElements(description.thematic, exhibitionThematic);
+        });
+        
+        function arraysHaveSameElements(arr1, arr2) {
+            if (arr1.length !== arr2.length) return false; // Vérifie si les tailles sont différentes
+        
+            // Trie les tableaux et compare élément par élément
+            const sortedArr1 = [...arr1].sort();
+            const sortedArr2 = [...arr2].sort();
+        
+            return sortedArr1.every((value, index) => value === sortedArr2[index]);
+        }
+
+        let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
+        document.querySelector('.modalEnd').appendChild(this.button);
+        modal.titleElement.className += 'h3-title-serif'
     }
 
 
     fetchPaintings() {
         for (let i = 0; i < SelectedPaintings.length; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "end-paintings-container");
+            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "end-paintings-container");
             sprite.element.style.zIndex = "1";
-            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
+            this.fixPaintingPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
     }
@@ -82,7 +113,7 @@ export default class EndScene extends Scene {
         })
     }
 
-    unloadScene(){
+    unloadScene() {
         super.unloadScene()
         selectedPaintings.splice(0, selectedPaintings.length);
         selectedElements.splice(0, selectedElements.length);
@@ -94,11 +125,9 @@ export default class EndScene extends Scene {
             paintingsContainer.innerHTML = "";
         }
         if (elementsContainer) {
-            elementsContainer.innerHTML = ""; 
+            elementsContainer.innerHTML = "";
         }
-
-        
     }
-    
+
 }
 

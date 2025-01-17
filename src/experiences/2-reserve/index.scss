@@ -44,11 +44,11 @@
 #container-paintings img {
   width: 400px;
   height: fit-content;
-  transition: ease-in all 500ms;
 }
 
 #scene-reserve .selectMode .selectModeImg {
   width: fit-content;
+  max-width: 1286px;
   height: 100%;
   right: 0;
   top: 50%;
@@ -64,7 +64,7 @@
     justify-content: space-between;
     flex-direction: row-reverse;
     align-items: center;
-    padding: 200px;
+    padding: 200px 405px;
     overflow: hidden;
     border: 1px solid black;
     gap: 100px;
@@ -74,8 +74,8 @@
 
 .selectMode::before{
     content: '';
-    width: 95%;
-    height: 89%;
+    width: 85%;
+    height: 91%;
     border: 1px solid black;
     position: absolute;
     top: 50%;
@@ -132,7 +132,7 @@
     gap: 2rem;
     width: 60%;
     height: 0px;
-    padding-top: 400px;
+    padding-top: 280px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
@@ -166,15 +166,46 @@
   left: 100px;
 }
 
-
-
-.rightBottom{
+.rightBottom {
     position: absolute;
-    top: 1800px;
-    left: 3085px;
+   right: 0;
+   bottom: 0;
+   transform: translateY(20rem);
     z-index: 1000;
-
 }
 
+.transitionAnimation {
+    opacity: 0;
+    transform: translateY(150px);
+    animation: fade 0.5s ease-out forwards;
 
+    &._delay {
+        animation-delay: 0.25s;
+    }
+}
 
+@keyframes fade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modalEnd{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1837px;
+    height: 1282px;
+    background-color: white;
+    z-index: 1000;
+}
+
+.imageBorder {
+    border: 3mm ridge rgb(203 189 74);
+
+    &._large {
+        border: 8mm ridge rgb(203 189 74);
+    }
+}

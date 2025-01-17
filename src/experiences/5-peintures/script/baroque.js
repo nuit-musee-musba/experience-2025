@@ -2,7 +2,7 @@
 const rounds = [
   {
     name: "Jésus dans son linceul",
-    image: "images/p1baroque.png",
+    image: "images/p1baroque.webp",
     persistentTitle: "Jésus dans son linceul",
     persistentText: "Pour moi la couleur de la peau du Christ représente sa pureté, son innocence et sa vulnérabilité.",
     correctColor: "#F6EAAE",
@@ -12,7 +12,7 @@ const rounds = [
   },
   {
     name: "La Vierge",
-    image: "images/p2baroque.png",
+    image: "images/p2baroque.webp",
     persistentTitle: "La Vierge",
     persistentText: "Le vêtement de la vierge évoque la divinité céleste et la compassion.",
     correctColor: "#51617A",
@@ -22,7 +22,7 @@ const rounds = [
   },
   {
     name: "Vêtement",
-    image: "images/p3baroque.png",
+    image: "images/p3baroque.webp",
     persistentTitle: "Vêtement",
     persistentText: "Ce vêtement est synonyme de sacrifice.",
     correctColor: "#BF7D65",
@@ -32,7 +32,7 @@ const rounds = [
   },
   {
     name: "L’homme",
-    image: "images/p4baroque.png",
+    image: "images/p4baroque.webp",
     persistentTitle: "L’homme",
     persistentText: "L'homme au premier plan contraste avec le blanc, symbolisant le deuil et la gravité.",
     correctColor: "#715C3E",
@@ -285,7 +285,7 @@ function triggerSuccessState() {
       perso2Image.style.top = "60.25rem"; // Revenir à la position initiale
       // Étape 3 : Après un court délai, exécuter le reste des animations et mises à jour
       setTimeout(() => {
-        fadeToNewImage(artworkImage, "images/pfinalebaroque.png");
+        fadeToNewImage(artworkImage, "images/pfinalebaroque.webp");
 
         persistentDialog.classList.add('success');
         perso2Image.classList.add('success');

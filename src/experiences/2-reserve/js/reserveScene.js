@@ -5,15 +5,15 @@ import Game from "./Game.js";
 
 export default class ReserveScene extends Scene {
     constructor() {
-        super("scene-reserve", "./assets/sound/song.mp3");
+        super("scene-reserve", "./assets/sound/les_reserves_du_MusBa.mp3");
     }
 
-    unloadScene(){
+    unloadScene() {
         super.unloadScene();
         this.unloadPainting('#container-paintings')
     }
 
-    initScene(){
+    initScene() {
         super.initScene()
         this.loadPaintings("#container-paintings")
         this.scrollToBottom()
@@ -30,7 +30,7 @@ export default class ReserveScene extends Scene {
         
                 img.src = painting.src + ".jpg";
                 img.alt = painting.description || "Image sans description";
-                div.classList.add('paintingContainer')
+                    div.classList.add('paintingContainer', 'imageBorder');
                 conteneurPainting.append(div);
                 conteneurPainting.append(img);
                 div.append(img)
@@ -48,7 +48,6 @@ export default class ReserveScene extends Scene {
                 top: 10000, // Scrolle vers le bas de 1000px
                 behavior: 'smooth' // Défilement fluide
             });
-            console.log("Scroll forcé de 1000px vers le bas.");
         } catch (error) {
             console.error("Erreur de défilement : ", error);
         }
