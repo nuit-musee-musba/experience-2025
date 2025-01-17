@@ -21,7 +21,6 @@ export default class AudioManager extends EventEmitter {
 
     playMusic(soundPath) {
         if (!this.canPlaySound) {
-            console.warn("CanPlaySound:", false);
             this.waitingSound = soundPath;
             return;
         }

@@ -59,7 +59,6 @@ export default class ExhibitionScene extends Scene {
 
             this.isPositionSet = true;
             this.currentPainting.position.isOccupied = true;
-            console.log(this.currentPainting);
             this.showElement();
             this.endSceneDialogue()
         }
@@ -106,7 +105,6 @@ export default class ExhibitionScene extends Scene {
         //On affiche tous les tableaux sauf le dernier sélectionné
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            console.log(painting);
             let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
             sprite.element.className += "imageBorder";
             this.fixPaintingElementPosition(sprite.element, {x: painting.position.x, y: painting.position.y});

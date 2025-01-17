@@ -63,7 +63,6 @@ export default class EndScene extends Scene {
             return sortedArr1.every((value, index) => value === sortedArr2[index]);
         }
 
-        console.log('description', description)
         let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
         document.querySelector('.modalEnd').appendChild(this.button);
         modal.titleElement.className += 'h3-title-serif'
