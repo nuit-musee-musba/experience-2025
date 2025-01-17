@@ -27,7 +27,7 @@ export default class ExhibitionScene extends Scene {
             },
             {
                 x: 1464,
-                y: 685,
+                y: 712,
                 isOccupied: false
             }
         ]
@@ -108,12 +108,14 @@ export default class ExhibitionScene extends Scene {
             let painting = SelectedPaintings[i];
             console.log(painting);
             let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
+            sprite.element.className += "imageBorder";
             this.fixPaintingElementPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
         //Dernier élément sélectionné dans la réserve
         this.currentPainting = SelectedPaintings[SelectedPaintings.length - 1]
         let painting = new Sprite(this.currentPainting.src + ".jpg", this.currentPainting.width, this.currentPainting.height, 150, 150, "selected-container");
+        painting.element.className += "imageBorder";
         if (painting.element) {
             painting.element.classList.add("selected");
         }

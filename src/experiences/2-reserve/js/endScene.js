@@ -66,6 +66,7 @@ export default class EndScene extends Scene {
         console.log('description', description)
         let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
         document.querySelector('.modalEnd').appendChild(this.button);
+        modal.titleElement.className += 'h3-title-serif'
     }
 
 
