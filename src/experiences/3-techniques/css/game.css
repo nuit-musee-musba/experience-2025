@@ -58,7 +58,7 @@ body {
 #activePlayer {
     width: 122px;
     position: absolute;
-    right: 820px;
+    right: 780px;
     top: 100px;
     transition: 0.5s;
 }
@@ -215,7 +215,8 @@ header {
     font-style: italic;
     margin-top: 40px;
 }
-.typo-h3-helvetica{
+
+.typo-h3-helvetica {
     font-family: Helvetica !important;
 }
 
@@ -257,7 +258,8 @@ header {
     color: #000;
     border: 1px solid #000;
 }
-.btn-difficulty h3{
+
+.btn-difficulty h3 {
     font-family: Helvetica;
     font-size: 72px;
     font-style: normal;
@@ -316,10 +318,17 @@ header {
 
 /* END GAME */
 
+#artName {
+    font-style: italic;
+}
+
 #endGame {
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
+    background-image: url('../img/ACCUEIL.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
     top: 0;
     left: 0;
@@ -330,7 +339,7 @@ header {
 #endGame h1 {
     color: #000;
     text-align: center;
-    font-family: "Nyght Serif";
+    font-family: "NyghtSerif";
     font-size: 144px;
     font-style: normal;
     font-weight: 400;
@@ -390,12 +399,18 @@ header {
 
 .player-active-background1 {
     border: 40px solid #B991CD;
-    background: #F8EAFF;
+    background-image: url('../img/joueurBackground1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .player-active-background2 {
     border: 40px solid #F2A884;
-    background: #FFF1EA;
+    background-image: url('../img/joueurBackground2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #timer-card {
@@ -426,7 +441,7 @@ header {
 }
 
 .loser-player2 {
-    background-color: #F5CBA7; 
+    background-color: #F5CBA7;
 }
 
 .loser-player1 .score-container {
@@ -435,29 +450,79 @@ header {
 }
 
 .loser-player2 .score-container {
-    background-color: white !important; 
+    background-color: white !important;
     color: #000 !important;
 }
 
 
-.winner-player1{
+.winner-player1 {
     background-color: #B991CD;
 }
-.winner-player2{
+
+.winner-player2 {
     background-color: #F2A884;
 }
 
-#continuerDifficulty{
+#continuerDifficulty {
     display: none;
 }
-.continuer-difficulty{
+
+.continuer-difficulty {
     display: flex;
     justify-content: center;
     margin-right: 40px;
 }
 
-.btnDifficultyValidate{
+.btnDifficultyValidate {
     transition: 0.5s;
     color: #fff;
     background-color: #000;
+}
+
+#NextTurnPlayer {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #000;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.20), 0px 0px 25px 0px rgba(0, 0, 0, 0.20);
+    width: 2400px;
+    height: fit-content;
+    flex-direction: column;
+    padding: 100px 100px 100px 0px;
+    gap: 40px;
+    z-index: 1000px;
+}
+
+#NextTurnPlayerName {
+    color: #000;
+    text-align: center;
+    font-family: "NyghtSerif";
+    font-size: 232px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80%;
+}
+
+#NextTurnPlayerStart {
+    margin-top: 80px;
+}
+
+#backgroundNextTurnPlayer{
+    backdrop-filter: blur(7px);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: none;
+}
+
+#validate-btn {
+    display: none;
 }
