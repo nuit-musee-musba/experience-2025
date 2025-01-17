@@ -319,7 +319,10 @@ header {
 #endGame {
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
+    background-image: url('../img/ACCUEIL.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
     position: absolute;
     top: 0;
     left: 0;
@@ -390,12 +393,18 @@ header {
 
 .player-active-background1 {
     border: 40px solid #B991CD;
-    background: #F8EAFF;
+    background-image: url('../img/joueurBackground1.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
 }
 
 .player-active-background2 {
     border: 40px solid #F2A884;
-    background: #FFF1EA;
+    background-image: url('../img/joueurBackground2.png');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
 }
 
 #timer-card {
