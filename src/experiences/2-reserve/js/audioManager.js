@@ -7,6 +7,7 @@ export default class AudioManager extends EventEmitter {
             throw new Error("An audio manager is a singleton. Please use getInstance() instead.");
         }
         this.audioElem = document.querySelector('#background-music')
+        this.audioElem.volume = .5;
         this.canPlaySound = false;
         this.waitingSound = null;
     }

@@ -11,7 +11,7 @@ import descriptionExposition from "../data/descriptionExposition.js";
 
 export default class EndScene extends Scene {
     constructor() {
-        super("end-scene", null);
+        super("end-scene", "./assets/sound/song.mp3");
         this.perspectiveRotation = 1689;
         
         this.button = document.createElement("button")
