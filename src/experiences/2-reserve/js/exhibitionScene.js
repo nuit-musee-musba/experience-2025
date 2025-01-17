@@ -233,6 +233,9 @@ export default class ExhibitionScene extends Scene {
             this.button.removeEventListener("click", this.validateHandler);
             document.removeEventListener("click", this.setPaintingPositionHandler);
         }
+        if (Game.getInstance().gameProgression > Game.getInstance().endGameThreshold) {
+            this.resetOccupiedPositions();
+        }
     }
 
     cleanElements() {
@@ -257,5 +260,11 @@ export default class ExhibitionScene extends Scene {
     cleanSelectedContainer() {
         let container = document.getElementById("selected-container");
         container.innerHTML = '';
+    }
+
+    resetOccupiedPositions() {
+        this.paintingPositions.forEach((position) => {
+            position.isOccupied = false;
+        })
     }
 }
