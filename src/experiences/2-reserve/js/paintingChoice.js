@@ -4,6 +4,7 @@ import paintings from "../data/paintings";
 import selectedPaintings from "../data/selectedPaintings";
 import Game from "./Game";
 import AudioManager from "./audioManager";
+import reserveScene from "./reserveScene.js";
 
 
 let containerPaintings = document.querySelector('#container-paintings');
@@ -12,7 +13,7 @@ let reserveBackground = document.querySelector('#reserve-background')
 
 
 containerPaintings.addEventListener("click", (e) => {
-    if (e.target.tagName !== "IMG") {
+    if (e.target.tagName !== "IMG" || Game.getInstance().dialogue.modal.style.display !== "none") {
         return;
     }
 

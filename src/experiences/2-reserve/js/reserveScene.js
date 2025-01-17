@@ -8,12 +8,12 @@ export default class ReserveScene extends Scene {
         super("scene-reserve", "./assets/sound/song.mp3");
     }
 
-    unloadScene(){
+    unloadScene() {
         super.unloadScene();
         this.unloadPainting('#container-paintings')
     }
 
-    initScene(){
+    initScene() {
         super.initScene()
         this.loadPaintings("#container-paintings")
         this.scrollToBottom()
@@ -23,25 +23,26 @@ export default class ReserveScene extends Scene {
     loadPaintings(conteneurPaintings) {
         const conteneurPainting = document.querySelector(conteneurPaintings);
 
-                let filteredPaintings = paintings.filter(p => !selectedPaintings.some(sp => sp.id === p.id));
-                filteredPaintings.forEach((painting) => {
-                const img = document.createElement("img");
-                let div = document.createElement('div');
-        
-                img.src = painting.src + ".jpg";
-                img.alt = painting.description || "Image sans description";
-                div.classList.add('paintingContainer')
-                conteneurPainting.append(div);
-                conteneurPainting.append(img);
-                div.append(img)
+        let filteredPaintings = paintings.filter(p => !selectedPaintings.some(sp => sp.id === p.id));
+        filteredPaintings.forEach((painting) => {
+            const img = document.createElement("img");
+            let div = document.createElement('div');
+
+            img.src = painting.src + ".jpg";
+            img.alt = painting.description || "Image sans description";
+            div.classList.add('paintingContainer')
+            conteneurPainting.append(div);
+            conteneurPainting.append(img);
+            div.append(img)
         });
-    
+
     }
 
     unloadPainting(idContainerPaintings) {
         const containerPaintings = document.querySelector(idContainerPaintings);
         containerPaintings.innerHTML = "";
     }
+
     scrollToBottom() {
         try {
             window.scrollBy({
