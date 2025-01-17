@@ -135,7 +135,7 @@ function askForDifficulty(
     nextButton
 ) {
 
-    if (stepsDisplay.CurrentStep.textContent == 1) {
+    if (stepsDisplay.CurrentStep.textContent == 8) {
         document.getElementById("endGame").style.display = "block";
         stopTimer()
         const playerScores = {
