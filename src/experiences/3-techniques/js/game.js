@@ -95,8 +95,11 @@ function loadMediaToResponseMedia() {
                     } else if (activePlayer == 2 && playerNoWin == 1) {
                         element.style.color = "#C05825";
                     }
+                    else if (playerNoWin == 0) {
+                        element.style.color = "#C70003";
+                    }
                 } else {
-                    element.style.color = "#C70003";
+                    element.style.color = "";
                 }
             }
         });
@@ -417,7 +420,7 @@ function displayScores(playerScores) {
         const playerScoreDiv = document.createElement("div");
         playerScoreDiv.classList.add("stats-display");
 
-        const isWinner = player === winner; // Déplacez cette déclaration avant son utilisation
+        const isWinner = player === winner;
 
         if (index === 0) {
             playerScoreDiv.classList.add("leader");
