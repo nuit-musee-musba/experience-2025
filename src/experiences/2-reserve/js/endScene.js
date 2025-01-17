@@ -18,7 +18,7 @@ export default class EndScene extends Scene {
         this.button.className = `nextButton button normal white rightBottom`;
         this.button.textContent = "Recommencer";
         this.button.id = "reload-game";
-       
+        this.endModal;
     }
 
     initScene() {
@@ -63,9 +63,9 @@ export default class EndScene extends Scene {
             return sortedArr1.every((value, index) => value === sortedArr2[index]);
         }
 
-        let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
+        this.endModal = new Modal(description.title, description.description, "modalEnd", parentElement)
         document.querySelector('.modalEnd').appendChild(this.button);
-        modal.titleElement.className += 'h3-title-serif'
+        this.endModal.titleElement.className += 'h3-title-serif'
     }
 
 
@@ -127,6 +127,8 @@ export default class EndScene extends Scene {
         if (elementsContainer) {
             elementsContainer.innerHTML = "";
         }
+        this.endModal.remove()
+        this.endModal = null;
     }
 
 }
