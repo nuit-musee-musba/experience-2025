@@ -9,29 +9,30 @@ export default class ExhibitionScene extends Scene {
     constructor() {
         super("scene-exhibition", "./assets/sound/song.mp3");
 
-        this.lastSelectedPainting = null;
+        this.currentPainting = null;
         this.canPlacePainting = false
         this.perspectiveRotation = 1689;
         this.isPositionSet = false;
-        this.defaultPos = {x: 400, y: 400}
+        this.currentPaintingDefaultPos = {x: 400, y: 400}
         this.paintingPositions = [
             {
                 x: 2634,
                 y: 1085,
-                isOccupied: false,
+                isOccupied: false
             },
             {
                 x: 1964,
                 y: 725,
-                isOccupied: false,
+                isOccupied: false
             },
             {
                 x: 1464,
                 y: 685,
-                isOccupied: false,
+                isOccupied: false
             }
         ]
 
+        window.selectedPaintings = SelectedPaintings;
         this.button = document.createElement("button")
         this.button.className =`nextButton button normal white`;
         this.button.textContent = "Valider";
@@ -39,16 +40,80 @@ export default class ExhibitionScene extends Scene {
         document.getElementById("exhibition-info").appendChild(this.button);
     }
 
-    fetchPaintings() {
-        this.lastSelectedPainting = SelectedPaintings[SelectedPaintings.length - 1]
+    initScene() {
+        super.initScene();
+        this.fetchPaintings();
+        this.fetchElements();
+        this.button.disabled = true;
 
+        // Nettoyage des anciens handlers
+        if (this.setPaintingPositionHandler || this.validateHandler) {
+            this.button.removeEventListener("click", this.validateHandler);
+            document.removeEventListener("click", this.setPaintingPositionHandler);
+        }
+
+        this.validateHandler = () => {
+            if (this.isPositionSet) {
+                return;
+            }
+
+            this.isPositionSet = true;
+            this.currentPainting.position.isOccupied = true;
+            console.log(this.currentPainting);
+            this.showElement();
+            this.endSceneDialogue()
+        }
+
+        this.setPaintingPositionHandler = (event) => {
+            if (this.isPositionSet || !this.canPlacePainting) {
+                return;
+            }
+            this.setPaintingPosition({x: event.clientX, y: event.clientY});
+        }
+
+        // Setup des images
+        let empty1 = document.createElement("img")
+        empty1.style.position = "absolute"
+        empty1.style.top = "0px"
+        empty1.src = "./assets/img/scenes/emplacement_tab_1.png";
+        let empty2 = document.createElement("img")
+        empty2.style.position = "absolute"
+        empty2.style.top = "0px"
+        empty2.src = "./assets/img/scenes/emplacement_tab_2.png";
+        let empty3 = document.createElement("img")
+        empty3.style.position = "absolute"
+        empty3.style.top = "0px"
+        empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
+
+        let container = document.getElementById("empty-container");
+        container.appendChild(empty1);
+        container.appendChild(empty2);
+        container.appendChild(empty3);
+
+        this.canPlacePainting = false;
+        Game.getInstance().dialogue.listDialogue(["0-2-0"]);
+        Game.getInstance().once("onDialogueClosed", () => {
+            this.canPlacePainting = true;
+        });
+
+        // Attacher les handlers
+        this.button.addEventListener("click", this.validateHandler);
+        document.addEventListener("click", this.setPaintingPositionHandler); // Changé pour document
+    }
+
+
+    fetchPaintings() {
+        //On affiche tous les tableaux sauf le dernier sélectionné
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.x, painting.y, "paintings-container");
-            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
+            console.log(painting);
+            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
+            this.fixPaintingElementPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
-        let painting = new Sprite(this.lastSelectedPainting.src + ".jpg", this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
+        //Dernier élément sélectionné dans la réserve
+        this.currentPainting = SelectedPaintings[SelectedPaintings.length - 1]
+        let painting = new Sprite(this.currentPainting.src + ".jpg", this.currentPainting.width, this.currentPainting.height, 150, 150, "selected-container");
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -84,91 +149,23 @@ export default class ExhibitionScene extends Scene {
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    //Change the inPos to a default one if close enough. Return true if it succeeded.
-    tryGetClosestPos(inPos) {
-        for (const pos of this.paintingPositions.filter(e => !e.isOccupied)) {
-            if (this.calculateDistance(inPos.x, inPos.y, pos.x, pos.y) < 300) {
-                inPos.x = pos.x;
-                inPos.y = pos.y;
-                return true;
+    //Change the inPos to a default one if close enough.
+    getClosestPosition (inputPosition) {
+        let closestPositionIndex = null;
+
+        this.paintingPositions.forEach((position, index) => {
+            if (!position.isOccupied
+                && this.calculateDistance(inputPosition.x, inputPosition.y, position.x, position.y) < 300) {
+                closestPositionIndex = index;
             }
-        }
-        return false;
-    }
-
-    initScene() {
-        super.initScene();
-        this.fetchPaintings();
-        this.fetchElements();
-        this.button.disabled = true;
-
-        // Nettoyage des anciens handlers
-        if (this.placeHandler || this.validateHandler) {
-            this.button.removeEventListener("click", this.validateHandler);
-            document.removeEventListener("click", this.placeHandler); // Changé pour document
-        }
-
-        this.validateHandler = () => {
-            if (this.isPositionSet) {
-                return;
-            }
-            console.log(SelectedPaintings)
-            SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
-            SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
-            this.isPositionSet = true;
-            this.updateOccupiedPos();
-            this.showElement();
-            this.endSceneDialogue()
-        }
-
-        this.placeHandler = (event) => {
-            if (this.isPositionSet || !this.canPlacePainting) {
-                return;
-            }
-            this.setPaintingPosition({x: event.clientX, y: event.clientY});
-        }
-
-        // Setup des images
-        let empty1 = document.createElement("img")
-        empty1.style.position = "absolute"
-        empty1.style.top = "0px"
-        empty1.src = "./assets/img/scenes/emplacement_tab_1.png";
-        let empty2 = document.createElement("img")
-        empty2.style.position = "absolute"
-        empty2.style.top = "0px"
-        empty2.src = "./assets/img/scenes/emplacement_tab_2.png";
-        let empty3 = document.createElement("img")
-        empty3.style.position = "absolute"
-        empty3.style.top = "0px"
-        empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
-
-        let container = document.getElementById("empty-container");
-        container.appendChild(empty1);
-        container.appendChild(empty2);
-        container.appendChild(empty3);
-
-        this.canPlacePainting = false;
-        Game.getInstance().dialogue.listDialogue(["0-2-0"]);
-        Game.getInstance().once("onDialogueClosed", () => {
-            this.canPlacePainting = true;
-        });
-
-        // Attacher les handlers
-        this.button.addEventListener("click", this.validateHandler);
-        document.addEventListener("click", this.placeHandler); // Changé pour document
-    }
-
-    updateOccupiedPos() {
-        let newOccupiedPainting = this.paintingPositions.filter((p) => !p.isOccupied).find((p) => {
-            console.log("updateOccupiedPos Y", { a: this.lastSelectedPainting.y, b: p.y });
-            return this.lastSelectedPainting.x === p.x && this.lastSelectedPainting.y === p.y;
         })
-        newOccupiedPainting.isOccupied = true;
+
+        return closestPositionIndex;
     }
 
     showElement() {
         let filteredElements = Elements.filter((element) => {
-            return element.thematic === this.lastSelectedPainting.thematic;
+            return element.thematic === this.currentPainting.thematic;
         });
         if (filteredElements.length < 1) {
             return console.error("No element found");
@@ -191,7 +188,7 @@ export default class ExhibitionScene extends Scene {
         })
     }
 
-    fixPaintingPosition(elem, pos) {
+    fixPaintingElementPosition(elem, pos) {
         if (!elem) {
             return;
         }
@@ -206,19 +203,20 @@ export default class ExhibitionScene extends Scene {
     }
 
     setPaintingPosition(pos) {
-        const painting = document.querySelector("#selected-container").children[0];
+        const paintingElem = document.querySelector("#selected-container").children[0];
+        const positionIndex = this.getClosestPosition(pos);
+        const selectedPosition = positionIndex !== null ? this.paintingPositions[positionIndex] : null;
 
-        if (this.tryGetClosestPos(pos)) {
-            this.fixPaintingPosition(painting, pos);
-            this.rotatePainting(painting);
-            document.querySelector("#end-exhibition-scene").disabled = false;
-            this.lastSelectedPainting.x = pos.x;
-            this.lastSelectedPainting.y = pos.y;
+        if (selectedPosition !== null) {
+            this.fixPaintingElementPosition(paintingElem, selectedPosition);
+            this.rotatePainting(paintingElem);
+            this.button.disabled = false;
+            this.currentPainting.position = selectedPosition;
         }
         else {
-            this.fixPaintingPosition(painting, this.defaultPos);
-            this.rotatePainting(painting, true);
-            document.querySelector("#end-exhibition-scene").disabled = true;
+            this.fixPaintingElementPosition(paintingElem, this.currentPaintingDefaultPos);
+            this.rotatePainting(paintingElem, true);
+            this.button.disabled = true;
         }
     }
 
@@ -228,7 +226,13 @@ export default class ExhibitionScene extends Scene {
         this.cleanElements();
         this.cleanEmptyContainer();
         this.cleanSelectedContainer();
+        this.canPlacePainting = true;
         this.isPositionSet = false;
+        this.currentPainting = null;
+        if (this.setPaintingPositionHandler || this.validateHandler) {
+            this.button.removeEventListener("click", this.validateHandler);
+            document.removeEventListener("click", this.setPaintingPositionHandler);
+        }
     }
 
     cleanElements() {

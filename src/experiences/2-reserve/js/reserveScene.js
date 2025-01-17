@@ -1,5 +1,6 @@
 import Scene from "./scene.js";
 import paintings from "../data/paintings.js";
+import selectedPaintings from "../data/selectedPaintings.js";
 import Game from "./Game.js";
 
 export default class ReserveScene extends Scene {
@@ -19,10 +20,11 @@ export default class ReserveScene extends Scene {
         Game.getInstance().dialogue.listDialogue([`0-1-0`, `0-1-1`]);
     }
 
-    loadPaintings(conteneurPaintings, filteredPaintings) {
+    loadPaintings(conteneurPaintings) {
         const conteneurPainting = document.querySelector(conteneurPaintings);
-                
-                paintings.forEach((painting) => {
+
+                let filteredPaintings = paintings.filter(p => !selectedPaintings.some(sp => sp.id === p.id));
+                filteredPaintings.forEach((painting) => {
                 const img = document.createElement("img");
                 let div = document.createElement('div');
         

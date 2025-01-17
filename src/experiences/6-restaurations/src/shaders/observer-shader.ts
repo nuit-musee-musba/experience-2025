@@ -54,7 +54,9 @@ export function ObserverShader(gl, texture) {
                 texColor = texture2D(uTexture, uv);
             }
 
-            gl_FragColor = vec4(texColor.rgb, texColor.a);
+            vec4 brownTint = vec4(0.6, 0.4, 0.2, 1.0); // Brown color
+            gl_FragColor = mix(texColor, brownTint, 0.3); // Blend with 10% brown tint
+            //gl_FragColor = vec4(texColor.rgb, texColor.a);
         }`,
         uniforms: {
             uTexture: { value: texture },
@@ -68,14 +70,25 @@ export function ObserverShader(gl, texture) {
     const mesh = new Mesh(gl, { geometry, program });
     mesh.setParent(scene);
 
-    // Mouse interaction
-    window.addEventListener('mousemove', (event) => {
+    const updateMousePosition = (clientX, clientY) => {
         const rect = gl.canvas.getBoundingClientRect();
-        const canvasX = (event.clientX - rect.left) / rect.width;
-        const canvasY = (event.clientY - rect.top) / rect.height;
+        const canvasX = (clientX - rect.left) / rect.width;
+        const canvasY = (clientY - rect.top) / rect.height;
 
         // Normalize to UV coordinates
         program.uniforms.uMouse.value = [canvasX, 1.0 - canvasY]; // Flip Y for UV
+    };
+
+   /*  // Mouse interaction
+    gl.canvas.addEventListener('mousemove', (event) => {
+        updateMousePosition(event.clientX, event.clientY);
+    }); */
+
+    // Touch interaction
+    window.addEventListener('touchmove', (event) => {
+        const clientX = event.changedTouches[0].clientX;
+        const clientY = event.changedTouches[0].clientY;
+        updateMousePosition(clientX, clientY);
     });
 
 

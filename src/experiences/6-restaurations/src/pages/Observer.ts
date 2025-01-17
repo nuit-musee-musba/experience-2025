@@ -37,7 +37,7 @@ export default class Observer{
                 <div class="exp-right">
                     <div class="steps">
                         <div class="counter">
-                            <h3>${counter}/4</h3>
+                            <h3>${counter}/5</h3>
                         </div>
                     </div>
                     <img class="exp-char-img" src="./src/assets/img/perso-observer.png" alt="">
@@ -66,6 +66,9 @@ export default class Observer{
             <div class="select-circle circle-4 obs">
                 <img src="./src/assets/img/select.png" alt="">
             </div>
+            <div class="select-circle circle-5 obs">
+                <img src="./src/assets/img/select.png" alt="">
+            </div>
 
         `;
 
@@ -73,51 +76,85 @@ export default class Observer{
 
         const buttonElement = this.element.querySelector(".button-suivant");
 
-        const circleElements = this.element.querySelectorAll(".select-circle");
+        //const circleElements = this.element.querySelectorAll(".select-circle");
+
+        const circleElements = [...this.element.querySelectorAll(".select-circle")] as HTMLElement[];
+
         
         if(buttonElement){
             buttonElement.addEventListener("mousedown", this.handleMouseDown);
         }
 
-        if (circleElements.length > 0) {
+        /* if (circleElements.length > 0) {
             circleElements.forEach((circle) => {
-                circle.addEventListener("mouseover", this.handleMouseOver);
+                circle.addEventListener("touchmove", this.handleMouseOver);
             });
+        } */
+
+        if (circleElements.length > 0) {
+            window.addEventListener("touchmove", (event) => this.handleGlobalTouchMove(event, circleElements));
         }
+        //window.addEventListener("touchmove", () => {console.log("i've moved touch")});
+    }
+
+    handleGlobalTouchMove(event: TouchEvent, circles: HTMLElement[]) {
+        const touch = event.changedTouches[0];
+        const { clientX, clientY } = touch;
+    
+        // Check if the touch intersects any circle
+        circles.forEach((circle, index) => {
+            const rect = circle.getBoundingClientRect();
+            if (
+                clientX >= rect.left &&
+                clientX <= rect.right &&
+                clientY >= rect.top &&
+                clientY <= rect.bottom
+            ) {
+                if (!circle.dataset.processed) {
+                    circle.dataset.processed = "true"; // Mark this circle as processed
+                    this.handleMouseOver(circle);
+    
+                    // Remove the circle from future checks
+                    circles.splice(index, 1);
+                }
+            }
+        });
     }
 
     handleMouseDown = () => {
         window.location.hash = "/eclairer"; // Navigate to /#/intro
     };
 
-    handleMouseOver = async (event) => {
+    handleMouseOver = async (circle) => {
         const counterElement = this.element.querySelector(".counter h3");
         const buttonElement = this.element.querySelector(".button-suivant");
+
+        circle.removeEventListener("touchmove", circle);
 
         counter += 1;
         console.log("my counter", counter);
 
         if(counterElement){
-            counterElement.textContent = `${counter}/4`;
+            counterElement.textContent = `${counter}/5`;
         }
 
-        if(counter == 4 && buttonElement){
+        if(counter == 5 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
         }
         
-        event.currentTarget.classList.remove("entry-animation")
-        event.currentTarget.classList.add("exit-animation");
+        circle.classList.remove("entry-animation")
+        circle.classList.add("exit-animation");
 
         console.log("afte removing/adding animation classes");
-        console.log("Current Target:", event.currentTarget);
+        console.log("Current Target:", circle);
 
-        await this.waitForKeyframe(event.currentTarget);
+        await this.waitForKeyframe(circle);
 
         console.log("after await");
 
-        if(event.currentTarget){
-            event.currentTarget.remove();
+        if(circle){
+            circle.remove();
         }
     };
 

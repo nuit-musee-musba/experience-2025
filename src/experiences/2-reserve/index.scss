@@ -1,4 +1,4 @@
-#scene-exhibition, #scene-reserve, #end-scene {
+#scene-exhibition, #scene-reserve, #end-scene, #scene-welcome {
   display: none;
   position: relative;
   top: 0;
@@ -49,6 +49,7 @@
 
 #scene-reserve .selectMode .selectModeImg {
   width: fit-content;
+  max-width: 1286px;
   height: 100%;
   right: 0;
   top: 50%;
@@ -160,10 +161,33 @@
 }
 
 .home-button {
+  z-index: 20;
   position: fixed;
   bottom: 100px;
   left: 100px;
 }
 
 
+
+.rightBottom{
+    position: absolute;
+   right: 0;
+   bottom: 0;
+   transform: translateY(20rem);
+    z-index: 1000;
+
+}
+
+
+
+.modalEnd{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1837px;
+    height: 1282px;
+    background-color: white;
+    z-index: 1000;
+}
 
