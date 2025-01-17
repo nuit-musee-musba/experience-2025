@@ -31,7 +31,7 @@ export default class Vernir{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme un gros pinceau et applique le vernis de finition uniformément sur toute la surface.</p>
+                        <p>Utilise ton doigt comme un gros pinceau et applique le vernis de finition uniformément sur toute la surface en glissant ton doigt.</p>
                     </div>
                 </div>
                 <div class="exp-right">

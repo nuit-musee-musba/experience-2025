@@ -59,6 +59,19 @@ export function setupCanvas(element) {
         console.log("UV light texture loaded");
     };
 
+    const vernirTexture = new Image();
+    vernirTexture.src = './src/assets/textures/vernir.jpg';
+
+    const texturedVernirTexture = new Texture(gl, {
+        wrapS: gl.CLAMP_TO_EDGE,
+        wrapT: gl.CLAMP_TO_EDGE,
+    });
+
+    vernirTexture.onload = () => {
+        texturedVernirTexture.image = vernirTexture;
+        console.log("UV light texture loaded");
+    };
+
     const resize = () => {
         const cssWidth = ((80 / 100) * window.innerHeight) * 0.75;
         const cssHeight = (80 / 100) * window.innerHeight;
@@ -85,7 +98,7 @@ export function setupCanvas(element) {
             currentScene = RetoucherShader(gl, texture, texturedRetoucheTexture);
         }
         if (event.detail?.scene === 'scene6') {
-            currentScene = VernirShader(gl, texturedRetoucheTexture, texture);
+            currentScene = VernirShader(gl, texturedRetoucheTexture, texturedVernirTexture);
         }
     });
 
