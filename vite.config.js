@@ -50,6 +50,7 @@ export default defineConfig({
         "1-hub": "./src/experiences/1-hub/index.html",
         "2-reserve": "./src/experiences/2-reserve/index.html",
         "3-techniques": "./src/experiences/3-techniques/index.html",
+        "3-techniques/game": "./src/experiences/3-techniques/game.html",
         "4-sculpture": "./src/experiences/4-sculpture/index.html",
         "5-peintures": "./src/experiences/5-peintures/index.html",
         "6-restaurations": "./src/experiences/6-restaurations/index.html",
