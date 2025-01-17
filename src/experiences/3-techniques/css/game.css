@@ -1,5 +1,5 @@
 body {
-    background-color: #c8c8c8;
+
     width: 100vw;
     height: 100vh;
 
@@ -58,13 +58,9 @@ body {
 #activePlayer {
     width: 122px;
     position: absolute;
-    right: 580px;
+    right: 820px;
     top: 100px;
-
-}
-
-#player1 {
-    background-color: red;
+    transition: 0.5s;
 }
 
 .player-info {
@@ -72,8 +68,6 @@ body {
     top: 100px;
     right: 100px;
 }
-
-
 
 header {
     margin-top: 100px;
@@ -153,6 +147,7 @@ header {
     margin-top: 100px;
     width: 2200px;
     justify-content: space-around;
+    transition: 0.5s;
 }
 
 .answers-container {
@@ -161,6 +156,7 @@ header {
     align-items: center;
     width: 100%;
     justify-content: center;
+
 }
 
 
@@ -216,7 +212,11 @@ header {
 }
 
 #whereMuseum {
+    font-style: italic;
     margin-top: 40px;
+}
+.typo-h3-helvetica{
+    font-family: Helvetica !important;
 }
 
 .cartel-contener {
@@ -256,6 +256,11 @@ header {
     color: #000;
     border: 1px solid #000;
 }
+.btn-difficulty h3{
+    font-family: Helvetica;
+    font-size: 72px;
+    font-style: normal;
+}
 
 #responce-contener {
     top: 0;
@@ -270,16 +275,6 @@ header {
     flex-direction: column;
 }
 
-.color-responce-answer {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: rgba(185, 145, 205, 0.40);
-    z-index: -1000;
-    backdrop-filter: blur(7px);
-}
 
 .responce-img-text-contener {
     margin-top: 200px;
@@ -331,8 +326,7 @@ header {
 
 }
 
-#endGame,
-h1 {
+#endGame h1 {
     color: #000;
     text-align: center;
     font-family: "Nyght Serif";
@@ -340,10 +334,114 @@ h1 {
     font-style: normal;
     font-weight: 400;
     line-height: 80%;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
 }
 
 .endGame-contener {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.score-container {
+    width: 300px !important;
+    justify-content: center;
+}
+
+.leader {
+    scale: 120%;
+    margin-bottom: 60px;
+    margin-left: 90px;
+}
+
+.btn-restar-game {
+    margin-top: 200px;
+    gap: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.player-active1 {
+    transition: 0.5s;
+    background-color: #B991CD;
+}
+
+.player-active2 {
+    transition: 0.5s;
+    background-color: #F2A884;
+}
+
+.player-inactive {
+    transition: 0.5s;
+    background-color: white;
+}
+
+.player-inactive .score-container {
+    background-color: white !important;
+    color: #000 !important;
+    border: 1px solid #000;
+}
+
+.player-active-background1 {
+    border: 40px solid #B991CD;
+    background: #F8EAFF;
+}
+
+.player-active-background2 {
+    border: 40px solid #F2A884;
+    background: #FFF1EA;
+}
+
+#timer-card {
+    display: none;
+}
+
+.color-responce-answer {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1000;
+}
+
+.color-responce-answer-player1 {
+    background: rgba(185, 145, 205, 0.40);
+    backdrop-filter: blur(7px);
+}
+
+.color-responce-answer-player2 {
+    background: rgba(242, 168, 132, 0.40);
+    backdrop-filter: blur(7px);
+}
+
+.loser-player1 {
+    background-color: #D9B8F5;
+}
+
+.loser-player2 {
+    background-color: #F5CBA7; 
+}
+
+.loser-player1 .score-container {
+    background-color: white !important;
+    color: #000 !important;
+}
+
+.loser-player2 .score-container {
+    background-color: white !important; 
+    color: #000 !important;
+}
+
+
+.winner-player1{
+    background-color: #B991CD;
+}
+.winner-player2{
+    background-color: #F2A884;
 }
