@@ -7,6 +7,7 @@ export default class AudioManager extends EventEmitter {
             throw new Error("An audio manager is a singleton. Please use getInstance() instead.");
         }
         this.audioElem = document.querySelector('#background-music')
+        this.audioElem.volume = .5;
         this.canPlaySound = false;
         this.waitingSound = null;
     }
@@ -27,7 +28,18 @@ export default class AudioManager extends EventEmitter {
             this.stopMusic();
         }
         this.audioElem.src = soundPath;
+        this.audioElem.volume = 0;
         this.audioElem.play();
+        // Ajoute un fondu progressif
+        let volume = 0;
+        const fadeInInterval = setInterval(() => {
+            if (volume < .5) {
+                volume += 0.05; // Augmente par étapes (0.05 = 5%)
+                this.audioElem.volume = Math.min(volume, .5); // Limite à 1.0
+            } else {
+                clearInterval(fadeInInterval); // Arrête une fois le volume à 1.0
+            }
+        }, 100);
     }
 
     stopMusic() {

@@ -9,6 +9,10 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden; /* Pas de défilement */
+  background-image: url("/Images/Fond.webp"); /* Image de fond */
+  background-size: cover; /* Couvre toute la fenêtre */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Pas de répétition de l'image */
 }
 
 .container {
@@ -20,7 +24,7 @@ html, body {
 
 .left {
   display: grid;
-  grid-template-rows: 80% 20%; /* Zone de travail (80%) en haut, Zone de dialogue (20%) en bas */
+  grid-template-rows: 75% 25%; /* Zone de travail (80%) en haut, Zone de dialogue (20%) en bas */
 }
 
 .right {
@@ -28,10 +32,9 @@ html, body {
   grid-template-rows: 10% 90%; /* Barre de progression (10%) en haut, Inventaire (90%) en bas */
 }
 
-
 .section {
   position: relative; /* Pour positionner les éléments internes */
-  background-color: white; /* Fond blanc */
+  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
   border: 2px solid black; /* Délimitations noires */
   padding-top: 40px; /* Espace pour le titre */
 }
@@ -46,7 +49,7 @@ html, body {
   font-family: Arial, sans-serif;
   color: black; /* Couleur noire */
   padding: 10px 0; /* Espacement autour du titre */
-  background-color: white; /* Fond blanc pour le titre */
+  background-color: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent pour le titre */
   border-bottom: 2px solid black; /* Ligne de séparation en dessous du titre */
 }
 
@@ -63,7 +66,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white; /* Fond blanc */
+  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
   font-size: 1.2rem; /* Taille du texte */
   font-family: Arial, sans-serif;
   color: black; /* Couleur du texte */
@@ -85,14 +88,23 @@ html, body {
   justify-content: flex-start; /* Positionne le contenu à gauche */
   height: 100%; /* Prend toute la hauteur disponible */
   padding: 20px;
+  gap: 20px; /* Espacement entre les éléments */
 }
 
-.character-image img {
-  max-width: 300%; /* Augmente la taille de l'image x3 */
-  max-height: none; /* Permet à l'image de s'étendre verticalement si nécessaire */
-  border-radius: 10px; /* Bords arrondis */
+.dialogue-button {
+  width: 100px; /* Taille x2 : 50px x 2 */
+  height: 100px; /* Taille x2 : 50px x 2 */
+  background-image: url("/Images/Menu_Button.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
 }
 
+.dialogue-button:hover {
+  opacity: 0.8; /* Légère transparence au survol */
+}
 
 .character-image img {
   max-width: 100%;
@@ -102,7 +114,7 @@ html, body {
 
 .dialogue-modal {
   flex: 3; /* Tripler la taille relative de la modal par rapport à l'image */
-  background-color: #f0f0f0;
+  background-color: rgba(240, 240, 240, 0.9); /* Fond blanc semi-transparent */
   padding: 30px; /* Augmente l'espace interne */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
@@ -129,7 +141,6 @@ html, body {
   align-items: center; /* Centre le contenu verticalement */
 }
 
-
 /* Barre de progression interne */
 #progress-bar {
   width: 0%; /* Départ à 0% */
@@ -145,4 +156,23 @@ html, body {
   font-style: italic;
   color: #555;
   cursor: pointer;
+}
+
+.button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.button-container button {
+  width: 100px;
+  height: 100px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #0056b3;
 }

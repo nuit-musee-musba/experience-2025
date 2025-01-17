@@ -4,6 +4,7 @@ import paintings from "../data/paintings";
 import selectedPaintings from "../data/selectedPaintings";
 import Game from "./Game";
 import AudioManager from "./audioManager";
+import reserveScene from "./reserveScene.js";
 
 
 let containerPaintings = document.querySelector('#container-paintings');
@@ -12,7 +13,7 @@ let reserveBackground = document.querySelector('#reserve-background')
 
 
 containerPaintings.addEventListener("click", (e) => {
-    if (e.target.tagName !== "IMG") {
+    if (e.target.tagName !== "IMG" || Game.getInstance().dialogue.modal.style.display !== "none") {
         return;
     }
 
@@ -44,7 +45,7 @@ function addPaintingDetails(img, parentImg, paintingData) {
     containerPaintings.classList.add("containerPaintingsOnselectMode")
     reserveBackground.style.display ="none";
     parentImg.classList.add('selectMode');
-    img.classList.add("selectModeImg");
+    img.classList.add("selectModeImg","imageBorder","_large");
     parentImg.classList.add('selectMode');
     containerButton.classList.add('containerButton')
     img.classList.add("selectModeImg");
@@ -105,7 +106,6 @@ function createPushLink(paintingData, parentImg, img) {
             AudioManager.getInstance().canPlaySound = true;
             Game.getInstance().unloadScene("scene-reserve");
             Game.getInstance().loadScene("scene-exhibition");
-            AudioManager.getInstance().canPlaySound = false;
         } else {
             console.error('Cette peinture est déjà sélectionnée.');
         }

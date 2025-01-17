@@ -27,7 +27,7 @@ export default class ExhibitionScene extends Scene {
             },
             {
                 x: 1464,
-                y: 685,
+                y: 712,
                 isOccupied: false
             }
         ]
@@ -59,7 +59,6 @@ export default class ExhibitionScene extends Scene {
 
             this.isPositionSet = true;
             this.currentPainting.position.isOccupied = true;
-            console.log(this.currentPainting);
             this.showElement();
             this.endSceneDialogue()
         }
@@ -106,14 +105,15 @@ export default class ExhibitionScene extends Scene {
         //On affiche tous les tableaux sauf le dernier sélectionné
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            console.log(painting);
             let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
+            sprite.element.className += "imageBorder";
             this.fixPaintingElementPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
         //Dernier élément sélectionné dans la réserve
         this.currentPainting = SelectedPaintings[SelectedPaintings.length - 1]
         let painting = new Sprite(this.currentPainting.src + ".jpg", this.currentPainting.width, this.currentPainting.height, 150, 150, "selected-container");
+        painting.element.className += "imageBorder";
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -233,6 +233,9 @@ export default class ExhibitionScene extends Scene {
             this.button.removeEventListener("click", this.validateHandler);
             document.removeEventListener("click", this.setPaintingPositionHandler);
         }
+        if (Game.getInstance().gameProgression > Game.getInstance().endGameThreshold) {
+            this.resetOccupiedPositions();
+        }
     }
 
     cleanElements() {
@@ -257,5 +260,11 @@ export default class ExhibitionScene extends Scene {
     cleanSelectedContainer() {
         let container = document.getElementById("selected-container");
         container.innerHTML = '';
+    }
+
+    resetOccupiedPositions() {
+        this.paintingPositions.forEach((position) => {
+            position.isOccupied = false;
+        })
     }
 }

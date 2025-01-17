@@ -2,7 +2,7 @@
 const rounds = [
   {
     name: "Les saints",
-    image: "images/p1renaissance.png",
+    image: "images/p1renaissance.webp",
     persistentTitle: "Les saints",
     persistentText: "Les vêtements des saints doivent refléter leur force, \nleur passion et leur sacrifice pour la foi.",
     correctColor: "#BD5A4E",
@@ -11,7 +11,7 @@ const rounds = [
   },
   {
     name: "Les auréoles",
-    image: "images/p2renaissance.png",
+    image: "images/p2renaissance.webp",
     persistentTitle: "La Vierge",
     persistentText: "La robe de la Vierge, doit évoquer la sérénité, \nla sagesse et le lien entre le ciel et la terre.",
     correctColor: "#3C514A",
@@ -20,7 +20,7 @@ const rounds = [
   },
   {
     name: "La Vierge",
-    image: "images/p3renaissance.png",
+    image: "images/p3renaissance.webp",
     persistentTitle: "Les auréoles",
     persistentText: "Les auréoles doivent briller comme un symbole divin, \npour rappeler la pureté et la sainteté des personnages.",
     correctColor: "#9C8A54",
@@ -258,8 +258,8 @@ function triggerSuccessState() {
 
       // Étape 2 : Après un court délai, exécuter le reste des animations et mises à jour
       setTimeout(() => {
-        // Remplacer l'image par pfinalerenaissance.png avec un fondu
-        fadeToNewImage(artworkImage, "images/pfinalerenaissance.png");
+        // Remplacer l'image par pfinalerenaissance.webp avec un fondu
+        fadeToNewImage(artworkImage, "images/pfinalerenaissance.webp");
 
         // Déplacer le persistent-dialog avec une animation fluide
         persistentDialog.classList.add('success');
