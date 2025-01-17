@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=0.9">
-  <title>Deuxième Jeu - Baroque</title>
+  <title>Deuxième Jeu - Symbolisme</title>
   <!-- Lien vers votre fichier CSS séparé -->
   <link rel="stylesheet" href="styles/game.css" />
 </head>
@@ -14,7 +14,7 @@
 
   <!-- Personnage à gauche (masqué par défaut) -->
   <div class="character hidden">
-    <img src="images/perso-baroque.webp" alt="Personnage" />
+    <img src="images/perso-symbolisme.webp" alt="Personnage" />
   </div>
 
   <!-- Boîte de dialogue dynamique en bas (initialement cachée) -->
@@ -40,9 +40,9 @@
 
         <!-- L'image du tableau à gauche -->
         <div class="art-info">
-          <img id="artworkImage" src="images/p1baroque.webp" alt="Détail Baroque">
+          <img id="artworkImage" src="images/p1symbolisme.webp" alt="Détail Symbolisme">
           <p class="art-title2" id="artworkCaption">
-            VAN DEN HOECKE Jan, La Déploration du Christ, 17e siecle
+            Henri Gervex (1840-1916), Saint Sebastien, 1910 (vers), pastel sur papier.
           </p>
         </div>
 
@@ -57,44 +57,44 @@
           </div>
 
           <!-- Nouvelle image perso2 à droite du persistent-dialog -->
-          <img src="images/perso-baroque.webp" alt="Personnage 2" class="perso2-image" />
+          <img src="images/perso-symbolisme.webp" alt="Personnage 2" class="perso2-image" />
 
           <!-- Les cartes en row -->
           <div class="cards-row">
-            <div class="color-card" data-color="#51617A">
-              <div class="card-title">Bleu</div>
-              <div class="card-details">
-                <p>Eternité</p>
-                <p>Loyauté</p>
-                <p>Bienveillance</p>
-              </div>
-            </div>
-
-            <div class="color-card" data-color="#BF7D65">
+            <div class="color-card" data-color="#BD5A4E">
               <div class="card-title">Rouge</div>
               <div class="card-details">
-                <p>Sacrifice</p>
-                <p>Dévouement</p>
-                <p>Consécration</p>
+                <p>Douleur</p>
+                <p>Sang</p>
+                <p>Noble</p>
               </div>
             </div>
 
-            <div class="color-card" data-color="#F6EAAE">
-              <div class="card-title">Beige</div>
+            <div class="color-card" data-color="#6E6F58">
+              <div class="card-title">Vert</div>
               <div class="card-details">
-                <p>Sainteté</p>
-                <p>Pureté</p>
-                <p>Élévation</p>
+                <p>Naturel</p>
+                <p>Vivant</p>
+                <p>Cycle</p>
+              </div>
+            </div>
+
+            <div class="color-card" data-color="#604F97">
+              <div class="card-title">Violet</div>
+              <div class="card-details">
+                <p>Spirituel</p>
+                <p>Surnaturelle</p>
+                <p>Envoûtant</p>
               </div>
             </div>
 
             <!-- Carte ROUGE -->
-            <div class="color-card" data-color="#715C3E">
-              <div class="card-title">Marron</div>
+            <div class="color-card" data-color="#E6BB41">
+              <div class="card-title">Jaune</div>
               <div class="card-details">
-                <p>Drame</p>
-                <p>Souffrance</p>
-                <p>Perte</p>
+                <p>Pur</p>
+                <p>Lumineux</p>
+                <p>Rayonnant</p>
               </div>
             </div>
           </div> <!-- fin .cards-row -->
@@ -113,17 +113,18 @@
       max-width: 100%;
       height: auto;
       margin-bottom: 1rem;
-      width: 104rem;
-      padding-top: 11rem;
+      padding-top: 6rem;
+      width: 69rem;
     }
 
     .art-info .art-title2 {
-      padding-right: 24rem;
-      padding-left: 1rem;
+      padding-right: 15rem;
+      padding-left: 19rem;
     }
 
     .persistent-dialog {
-      width: 73rem;
+      width: 86rem;
+      margin-top: 5rem;
     }
 
     .perso2-image {
@@ -145,10 +146,42 @@
 
     .persistent-dialog.success {
     top: 38rem;
-    width: 76rem;
+    width: 89rem;
+    }
+
+    .color-card[data-color="#BD5A4E"] {
+    background-color: #BD5A4E;
+    position: fixed;
+    right: 85rem;
+    bottom: 17rem;
+    transform: rotate(-20deg);
+    }
+
+    .color-card[data-color="#6E6F58"] {
+    background-color: #6E6F58;
+    position: fixed;
+    right: 65.5rem;
+    bottom: 22rem;
+    transform: rotate(-5deg);
+    }
+
+    .color-card[data-color="#604F97"] {
+    background-color: #604F97;
+    position: fixed;
+    right: 45rem;
+    bottom: 21rem;
+    transform: rotate(11deg);
+    }
+
+    .color-card[data-color="#E6BB41"] {
+    background-color: #E6BB41;
+    position: fixed;
+    right: 24rem;
+    bottom: 15rem;
+    transform: rotate(22deg);
     }
   </style>
   <!-- Lien vers votre fichier JS séparé -->
-  <script src="script/baroque.js"></script>
+  <script src="script/symbolisme.js"></script>
 </body>
 </html>

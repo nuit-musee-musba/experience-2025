@@ -1,44 +1,44 @@
 // ======================== CONFIGURATION DU JEU ========================
 const rounds = [
   {
-    name: "Jésus dans son linceul",
-    image: "images/p1baroque.webp",
-    persistentTitle: "Jésus dans son linceul",
-    persistentText: "Pour moi la couleur de la peau du Christ représente sa pureté, son innocence et sa vulnérabilité.",
-    correctColor: "#F6EAAE",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, les draps représentent la sainteté !",
-    perso2Pos: "26.25rem" // Position pour ce round
+    name: "L’herbe",
+    image: "images/p1symbolisme.webp",
+    persistentTitle: "L’herbe",
+    persistentText: "L'herbe et le feuillage symbolisent le cycle de la vie, porteurs d'espoir en une renaissance spirituelle.",
+    correctColor: "#6E6F58",
+    failTitle: "Odilon Redon",
+    failText: "Faux ! \n\nAttention, l’herbe contraste avec la mort !",
+    perso2Pos: "25.25rem" // Position pour ce round
   },
   {
-    name: "La Vierge",
-    image: "images/p2baroque.webp",
-    persistentTitle: "La Vierge",
-    persistentText: "Le vêtement de la vierge évoque la divinité céleste et la compassion.",
-    correctColor: "#51617A",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, la vierge Marie représente la loyauté !",
-    perso2Pos: "20.25rem" // Position pour ce round
+    name: "Les fleurs",
+    image: "images/p2symbolisme.webp",
+    persistentTitle: "Les fleurs",
+    persistentText: "Regarde attentivement les fleurs, disséminées au pied du saint, ces fleurs rappellent le sang et le sacrifice.",
+    correctColor: "#BD5A4E",
+    failTitle: "Odilon Redon",
+    failText: "Faux ! \n\nAttention, les roses symbolisent le sang !",
+    perso2Pos: "25.25rem" // Position pour ce round
   },
   {
-    name: "Vêtement",
-    image: "images/p3baroque.webp",
-    persistentTitle: "Vêtement",
-    persistentText: "Ce vêtement est synonyme de sacrifice.",
-    correctColor: "#BF7D65",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, le vêtement représente le dévouement !",
-    perso2Pos: "14.25rem" // Position pour ce round
+    name: "Le nuage",
+    image: "images/p3symbolisme.webp",
+    persistentTitle: "Le nuage",
+    persistentText: "Le nuage suggère une atmosphère mystique et irréelle, renforçant le caractère sacré du sacrifice.",
+    correctColor: "#604F97",
+    failTitle: "Odilon Redon",
+    failText: "Faux ! \n\nLe nuage suggère une atmosphère mystique et irréelle, renforçant le caractère sacré du sacrifice.",
+    perso2Pos: "25.25rem" // Position pour ce round
   },
   {
-    name: "L’homme",
-    image: "images/p4baroque.webp",
-    persistentTitle: "L’homme",
-    persistentText: "L'homme au premier plan contraste avec le blanc, symbolisant le deuil et la gravité.",
-    correctColor: "#715C3E",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, l’homme représente la perte !",
-    perso2Pos: "20.25rem" // Position pour ce round
+    name: "Le ciel",
+    image: "images/p4symbolisme.webp",
+    persistentTitle: "Le ciel",
+    persistentText: "Le haut du ciel représente la lumière céleste, c’est un symbole d'espoir.",
+    correctColor: "#E6BB41",
+    failTitle: "Odilon Redon",
+    failText: "Faux ! \n\nAttention, pour le ciel pense à une couleur lumineuse !",
+    perso2Pos: "25.25rem" // Position pour ce round
   },
 ];
 
@@ -285,7 +285,7 @@ function triggerSuccessState() {
       perso2Image.style.top = "60.25rem"; // Revenir à la position initiale
       // Étape 3 : Après un court délai, exécuter le reste des animations et mises à jour
       setTimeout(() => {
-        fadeToNewImage(artworkImage, "images/pfinalebaroque.webp");
+        fadeToNewImage(artworkImage, "images/pfinalesymbolisme.webp");
 
         persistentDialog.classList.add('success');
         perso2Image.classList.add('success');
@@ -296,8 +296,8 @@ function triggerSuccessState() {
 
         const persistentTitle = document.getElementById('persistentTitle');
         const persistentText = document.getElementById('persistentText');
-        persistentTitle.textContent = "VAN DEN HOECKE Jan";
-        persistentText.textContent = "Bravo ! Avec tes choix de couleurs, tu as ressenti toute l’émotion que j’ai voulu transmettre : la douleur du deuil et la profondeur de la foi. Merci de faire revivre mon œuvre !";
+        persistentTitle.textContent = "Odilon Redon";
+        persistentText.textContent = "Bravo ! En révélant les nuances de mystère et de souffrance, tu as capturé l’intensité de cette scène. Tu as parfaitement su faire revivre l’émotion que j’ai voulu transmettre à travers Saint Sébastien.";
 
         validateBtn.removeEventListener('click', validateColorHandler);
         validateBtn.addEventListener('click', () => {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baroque</title>
+  <title>Symbolisme</title>
   <link rel="stylesheet" href="styles/game.css" />
 </head>
 <body>
@@ -13,12 +13,12 @@
 
   <!-- Personnage à gauche -->
   <div class="character">
-    <img src="images/perso-baroque.webp" alt="Personnage" />
+    <img src="images/perso-symbolisme.webp" alt="Personnage" />
   </div>
 
   <!-- Boîte de dialogue en bas -->
   <div class="content-block">
-    <h1>VAN DEN HOECKE Jan</h1>
+    <h1>Odilon Redon</h1>
     <div id="dialogueText"></div>
     <button class="next-dialogue hidden" id="nextDialogue">
       <span id="btnText">Suivant</span>
@@ -36,20 +36,20 @@
       <h2>Trouve la palette que j’ai utilisée pour réaliser ce tableau :</h2>
       <div class="art-and-palette">
         <div class="art-info">
-          <img src="images/baroque.webp" alt="La Déploration du Christ">
-          <p class="art-title">VAN DEN HOECKE Jan, La Déploration du Christ, 17e siecle</p>
+          <img src="images/symbolisme.webp" alt="La Déploration du Christ">
+          <p class="art-title">Odilon REDON Bertrand REDON, Saint Sébastien, entre 1840 et 1916</p>
         </div>
         <div class="color-palette-options">
           <label>
-            <img src="images/palette-1-baroque.webp" alt="Palette 1">
+            <img src="images/palette-1-symbolisme.webp" alt="Palette 1">
             <input type="radio" name="palette" value="palette1">
           </label>
           <label>
-            <img src="images/palette-2-baroque.webp" alt="Palette 2">
+            <img src="images/palette-2-symbolisme.webp" alt="Palette 2">
             <input type="radio" name="palette" value="palette2">
           </label>
           <label>
-            <img src="images/palette-3-baroque.webp" alt="Palette 3">
+            <img src="images/palette-3-symbolisme.webp" alt="Palette 3">
             <input type="radio" name="palette" value="palette3">
           </label>
         </div>
@@ -60,21 +60,25 @@
   <style>
     /* Appliquer les styles spécifiques si le titre contient "Baroque" */
     .content-block {
-      left: 57%;
+      left: 51%;
       bottom: 3%;
     }
 
     .art-info img {
-      max-width: 89%;
-      padding-top: 8rem;
+      max-width: 85%;
+      width: 64rem;
     }
 
     .art-and-palette {
       padding-top: 4rem;
     }
 
+    .art-info .art-title {
+      padding-left: 15rem;
+      padding-right: 8rem;
+    }
   </style>
 
-  <script src="script/start-baroque.js"></script>
+  <script src="script/start-symbolisme.js"></script>
 </body>
 </html>

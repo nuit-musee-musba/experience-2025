@@ -1,44 +1,44 @@
 // ======================== CONFIGURATION DU JEU ========================
 const rounds = [
   {
-    name: "Jésus dans son linceul",
-    image: "images/p1baroque.webp",
-    persistentTitle: "Jésus dans son linceul",
-    persistentText: "Pour moi la couleur de la peau du Christ représente sa pureté, son innocence et sa vulnérabilité.",
-    correctColor: "#F6EAAE",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, les draps représentent la sainteté !",
-    perso2Pos: "26.25rem" // Position pour ce round
+    name: "Le corps de la femme",
+    image: "images/p1romantisme.webp",
+    persistentTitle: "Le corps de la femme",
+    persistentText: "La peau de la femme représente la pureté et la fragilité.",
+    correctColor: "#D0C0A7",
+    failTitle: "Henri Gervex",
+    failText: "Faux ! \n\nAttention, le corps de la femme représente la délicatesse !",
+    perso2Pos: "25.25rem" // Position pour ce round
   },
   {
-    name: "La Vierge",
-    image: "images/p2baroque.webp",
-    persistentTitle: "La Vierge",
-    persistentText: "Le vêtement de la vierge évoque la divinité céleste et la compassion.",
-    correctColor: "#51617A",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, la vierge Marie représente la loyauté !",
-    perso2Pos: "20.25rem" // Position pour ce round
+    name: "Les draps",
+    image: "images/p2romantisme.webp",
+    persistentTitle: "Les draps",
+    persistentText: "J’aimerais attirer l’attention avec les draps, avec un air d'innocence et de vulnérabilité.",
+    correctColor: "#D7D7D7",
+    failTitle: "Henri Gervex",
+    failText: "Faux ! \n\nAttention, les draps représente la fragilité.",
+    perso2Pos: "25.25rem" // Position pour ce round
   },
   {
-    name: "Vêtement",
-    image: "images/p3baroque.webp",
-    persistentTitle: "Vêtement",
-    persistentText: "Ce vêtement est synonyme de sacrifice.",
-    correctColor: "#BF7D65",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, le vêtement représente le dévouement !",
-    perso2Pos: "14.25rem" // Position pour ce round
+    name: "La couverture",
+    image: "images/p3romantisme.webp",
+    persistentTitle: "La couverture",
+    persistentText: "Cette couverture évoque la mélancolie.",
+    correctColor: "#637988",
+    failTitle: "Henri Gervex",
+    failText: "Faux ! \n\nAttention, la couverture évoque la tristesse.",
+    perso2Pos: "19.25rem" // Position pour ce round
   },
   {
-    name: "L’homme",
-    image: "images/p4baroque.webp",
-    persistentTitle: "L’homme",
-    persistentText: "L'homme au premier plan contraste avec le blanc, symbolisant le deuil et la gravité.",
-    correctColor: "#715C3E",
-    failTitle: "VAN DEN HOECKE Jan",
-    failText: "Faux ! \n\nAttention, l’homme représente la perte !",
-    perso2Pos: "20.25rem" // Position pour ce round
+    name: "Le corset",
+    image: "images/p4romantisme.webp",
+    persistentTitle: "Le corset",
+    persistentText: "Le corset est associé à l’amour et au désir.",
+    correctColor: "#853E2F",
+    failTitle: "Henri Gervex",
+    failText: "Faux ! \n\nAttention, le corset représente la sensualité.",
+    perso2Pos: "19.25rem" // Position pour ce round
   },
 ];
 
@@ -285,7 +285,7 @@ function triggerSuccessState() {
       perso2Image.style.top = "60.25rem"; // Revenir à la position initiale
       // Étape 3 : Après un court délai, exécuter le reste des animations et mises à jour
       setTimeout(() => {
-        fadeToNewImage(artworkImage, "images/pfinalebaroque.webp");
+        fadeToNewImage(artworkImage, "images/pfinaleromantisme.webp");
 
         persistentDialog.classList.add('success');
         perso2Image.classList.add('success');
@@ -296,8 +296,8 @@ function triggerSuccessState() {
 
         const persistentTitle = document.getElementById('persistentTitle');
         const persistentText = document.getElementById('persistentText');
-        persistentTitle.textContent = "VAN DEN HOECKE Jan";
-        persistentText.textContent = "Bravo ! Avec tes choix de couleurs, tu as ressenti toute l’émotion que j’ai voulu transmettre : la douleur du deuil et la profondeur de la foi. Merci de faire revivre mon œuvre !";
+        persistentTitle.textContent = "Henri Gervex";
+        persistentText.textContent = "Bravo ! En révélant les nuances de passion et de désir, tu as capturé l’intensité de cette scène. Tu as parfaitement su faire revivre l’émotion que j’ai voulu transmettre à travers Rolla.";
 
         validateBtn.removeEventListener('click', validateColorHandler);
         validateBtn.addEventListener('click', () => {

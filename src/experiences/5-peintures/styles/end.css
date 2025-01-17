@@ -1,0 +1,131 @@
+/* Import éventuels de polices */
+@import url('https://cdn.jsdelivr.net/npm/helveticaneue@1.0.0/helveticaneue.min.css');
+@font-face {
+    font-family: 'NyghtSerif-Light';
+    src: url('../fonts/NyghtSerif-Light.ttf') format('truetype');
+}
+
+/* Réinitialisation basique */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  opacity: 0; /* Initialement transparent */
+  transition: opacity 1s ease-in-out;
+}
+
+/* Classe pour fade-in */
+.fade-in {
+  opacity: 1;
+}
+
+/* Classe pour fade-out */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* ====================== Conteneurs de défilement ====================== */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 44rem; /* Hauteur fixe, pas de responsive */
+}
+
+.marquee-content {
+  display: flex;
+  width: 200%;
+}
+
+.bottom {
+    display: flex;
+    /* On double la largeur pour pouvoir « glisser » 2 fois la série d'images */
+    width: 100%;
+}
+/* Les images (on ne change pas leur taille, pas de responsive) */
+.marquee-content img {
+  width: 44rem;       /* largeurs imposées */
+  height: auto;       /* pour éviter toute déformation */
+  margin: 0 0.5rem;   /* petit gap horizontal */
+  flex-shrink: 0;     /* pour empêcher la réduction si l'écran est trop petit */
+  object-fit: cover;
+}
+
+/* ====================== Animation du haut (vers la droite) ====================== */
+.marquee-top .marquee-content {
+  animation: scroll-right 40s linear infinite;
+}
+
+/* Pour un défilement « vers la droite », on fait glisser le conteneur vers la gauche.
+   0% -> on est en position normale, 100% -> on a glissé de -50%. */
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ====================== Animation du bas (vers la gauche) ====================== */
+.marquee-bottom .marquee-content {
+  animation: scroll-left 40s linear infinite;
+}
+
+/* Pour un défilement « vers la gauche », on fait l’inverse :
+   on part à -50% et on revient à 0 pour un effet continu. */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ====================== Milieu de page : Texte et bouton ====================== */
+.middle-text {
+  max-width: 100rem; /* 1600px */
+  margin: 5rem auto; /* espace au-dessus/en-dessous */
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.big-title {
+  font-size: 6rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.middle-text p {
+  font-size: 3.5rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+#home-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  font-size: 4.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: opacity 0.3s ease;
+  font-family: 'NyghtSerif-Light', serif;
+}
+
+#home-button:hover {
+  opacity: 0.8;
+}

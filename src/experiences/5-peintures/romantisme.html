@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=0.9">
-  <title>Deuxième Jeu - Baroque</title>
+  <title>Deuxième Jeu - Romantisme</title>
   <!-- Lien vers votre fichier CSS séparé -->
   <link rel="stylesheet" href="styles/game.css" />
 </head>
@@ -14,7 +14,7 @@
 
   <!-- Personnage à gauche (masqué par défaut) -->
   <div class="character hidden">
-    <img src="images/perso-baroque.webp" alt="Personnage" />
+    <img src="images/perso-romantisme.webp" alt="Personnage" />
   </div>
 
   <!-- Boîte de dialogue dynamique en bas (initialement cachée) -->
@@ -40,9 +40,9 @@
 
         <!-- L'image du tableau à gauche -->
         <div class="art-info">
-          <img id="artworkImage" src="images/p1baroque.webp" alt="Détail Baroque">
+          <img id="artworkImage" src="images/p1romantisme.webp" alt="Détail romantisme">
           <p class="art-title2" id="artworkCaption">
-            VAN DEN HOECKE Jan, La Déploration du Christ, 17e siecle
+            Henri GERVEX (1852-1929), Rolla, 1878, huile sur toile.
           </p>
         </div>
 
@@ -57,44 +57,44 @@
           </div>
 
           <!-- Nouvelle image perso2 à droite du persistent-dialog -->
-          <img src="images/perso-baroque.webp" alt="Personnage 2" class="perso2-image" />
+          <img src="images/perso-romantisme.webp" alt="Personnage 2" class="perso2-image" />
 
           <!-- Les cartes en row -->
           <div class="cards-row">
-            <div class="color-card" data-color="#51617A">
-              <div class="card-title">Bleu</div>
+            <div class="color-card" data-color="#D7D7D7">
+              <div class="card-title">Blanc</div>
               <div class="card-details">
-                <p>Eternité</p>
-                <p>Loyauté</p>
-                <p>Bienveillance</p>
+                <p>Éclatante</p>
+                <p>Immaculée</p>
+                <p>Lumineuse</p>
               </div>
             </div>
 
-            <div class="color-card" data-color="#BF7D65">
-              <div class="card-title">Rouge</div>
-              <div class="card-details">
-                <p>Sacrifice</p>
-                <p>Dévouement</p>
-                <p>Consécration</p>
-              </div>
-            </div>
-
-            <div class="color-card" data-color="#F6EAAE">
+            <div class="color-card" data-color="#D0C0A7">
               <div class="card-title">Beige</div>
               <div class="card-details">
-                <p>Sainteté</p>
-                <p>Pureté</p>
-                <p>Élévation</p>
+                <p>Délicat</p>
+                <p>Sensible</p>
+                <p>Pure</p>
+              </div>
+            </div>
+
+            <div class="color-card" data-color="#853E2F">
+              <div class="card-title">Rouge</div>
+              <div class="card-details">
+                <p>Passion</p>
+                <p>Décadence</p>
+                <p>Tragédie</p>
               </div>
             </div>
 
             <!-- Carte ROUGE -->
-            <div class="color-card" data-color="#715C3E">
-              <div class="card-title">Marron</div>
+            <div class="color-card" data-color="#637988">
+              <div class="card-title">Bleu</div>
               <div class="card-details">
-                <p>Drame</p>
-                <p>Souffrance</p>
-                <p>Perte</p>
+                <p>Pur</p>
+                <p>Lumineux</p>
+                <p>Rayonnant</p>
               </div>
             </div>
           </div> <!-- fin .cards-row -->
@@ -113,17 +113,17 @@
       max-width: 100%;
       height: auto;
       margin-bottom: 1rem;
-      width: 104rem;
-      padding-top: 11rem;
+      padding-top: 6rem;
+      width: 107rem;
     }
 
     .art-info .art-title2 {
-      padding-right: 24rem;
-      padding-left: 1rem;
+      padding-right: 32rem;
     }
 
     .persistent-dialog {
-      width: 73rem;
+      width: 76rem;
+      margin-top: 5rem;
     }
 
     .perso2-image {
@@ -145,10 +145,44 @@
 
     .persistent-dialog.success {
     top: 38rem;
-    width: 76rem;
+    width: 74rem;
+    }
+
+    .color-card[data-color="#D7D7D7"] {
+    background-color: #D7D7D7;
+    position: fixed;
+    right: 73rem;
+    bottom: 20rem;
+    transform: rotate(-20deg);
+    color: black;
+    }
+
+    .color-card[data-color="#D0C0A7"] {
+    background-color: #D0C0A7;
+    position: fixed;
+    right: 53.5rem;
+    bottom: 25rem;
+    transform: rotate(-5deg);
+    color: black;
+    }
+
+    .color-card[data-color="#853E2F"] {
+    background-color: #853E2F;
+    position: fixed;
+    right: 33rem;
+    bottom: 24rem;
+    transform: rotate(11deg);
+    }
+
+    .color-card[data-color="#637988"] {
+    background-color: #637988;
+    position: fixed;
+    right: 12rem;
+    bottom: 18rem;
+    transform: rotate(22deg);
     }
   </style>
   <!-- Lien vers votre fichier JS séparé -->
-  <script src="script/baroque.js"></script>
+  <script src="script/romantisme.js"></script>
 </body>
 </html>
