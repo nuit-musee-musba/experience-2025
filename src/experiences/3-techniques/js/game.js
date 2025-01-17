@@ -109,7 +109,13 @@ function updateResponseTitle(isCorrect, player) {
     const responseTitleContainer = document.querySelector(".responce-title-contener h3");
 
     if (isCorrect) {
-        responseTitleContainer.textContent = `Bien joué Joueur ${player} !`;
+
+        if (playerNoWin == 0) {
+            responseTitleContainer.textContent = "Dommage";
+        }
+        else {
+            responseTitleContainer.textContent = `Bien joué Joueur ${player} !`;
+        }
     } else {
         responseTitleContainer.textContent = "Dommage";
     }
