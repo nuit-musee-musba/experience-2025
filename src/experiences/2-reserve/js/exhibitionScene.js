@@ -18,17 +18,17 @@ export default class ExhibitionScene extends Scene {
             {
                 x: 2634,
                 y: 1085,
-                isOccupied: false,
+                isOccupied: false
             },
             {
                 x: 1964,
                 y: 725,
-                isOccupied: false,
+                isOccupied: false
             },
             {
                 x: 1464,
                 y: 685,
-                isOccupied: false,
+                isOccupied: false
             }
         ]
 
@@ -44,8 +44,8 @@ export default class ExhibitionScene extends Scene {
 
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "paintings-container");
-            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
+            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
+            this.fixPaintingPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
         let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
@@ -85,15 +85,17 @@ export default class ExhibitionScene extends Scene {
     }
 
     //Change the inPos to a default one if close enough. Return true if it succeeded.
-    tryGetClosestPos(inPos) {
-        for (const pos of this.paintingPositions.filter(e => !e.isOccupied)) {
-            if (this.calculateDistance(inPos.x, inPos.y, pos.x, pos.y) < 300) {
-                inPos.x = pos.x;
-                inPos.y = pos.y;
-                return true;
+    getClosestPosition (inputPosition) {
+        let closestPositionIndex = null;
+
+        this.paintingPositions.forEach((position, index) => {
+            if (!position.isOccupied 
+                && this.calculateDistance(inputPosition.x, inputPosition.y, position.x, position.y) < 300) {
+                closestPositionIndex = index;
             }
-        }
-        return false;
+        })
+
+        return closestPositionIndex;
     }
 
     initScene() {
@@ -112,11 +114,9 @@ export default class ExhibitionScene extends Scene {
             if (this.isPositionSet) {
                 return;
             }
-            console.log(SelectedPaintings)
-            SelectedPaintings[SelectedPaintings.length - 1].x = this.lastSelectedPainting.x;
-            SelectedPaintings[SelectedPaintings.length - 1].y = this.lastSelectedPainting.y;
+
             this.isPositionSet = true;
-            this.updateOccupiedPos();
+            this.lastSelectedPainting.position.isOccupied = true;
             this.showElement();
             this.endSceneDialogue()
         }
@@ -156,14 +156,6 @@ export default class ExhibitionScene extends Scene {
         // Attacher les handlers
         this.button.addEventListener("click", this.validateHandler);
         document.addEventListener("click", this.placeHandler); // Changé pour document
-    }
-
-    updateOccupiedPos() {
-        let newOccupiedPainting = this.paintingPositions.filter((p) => !p.isOccupied).find((p) => {
-            console.log("updateOccupiedPos Y", { a: this.lastSelectedPainting.y, b: p.y });
-            return this.lastSelectedPainting.x === p.x && this.lastSelectedPainting.y === p.y;
-        })
-        newOccupiedPainting.isOccupied = true;
     }
 
     showElement() {
@@ -207,13 +199,14 @@ export default class ExhibitionScene extends Scene {
 
     setPaintingPosition(pos) {
         const painting = document.querySelector("#selected-container").children[0];
+        const positionIndex = this.getClosestPosition(pos);
+        const selectedPosition = positionIndex !== null ? this.paintingPositions[positionIndex] : null;
 
-        if (this.tryGetClosestPos(pos)) {
-            this.fixPaintingPosition(painting, pos);
+        if (selectedPosition) {
+            this.fixPaintingPosition(painting, selectedPosition);
             this.rotatePainting(painting);
             document.querySelector("#end-exhibition-scene").disabled = false;
-            this.lastSelectedPainting.x = pos.x;
-            this.lastSelectedPainting.y = pos.y;
+            this.lastSelectedPainting.position = selectedPosition;
         }
         else {
             this.fixPaintingPosition(painting, this.defaultPos);
