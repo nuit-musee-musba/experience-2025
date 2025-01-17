@@ -24,7 +24,7 @@ containerPaintings.addEventListener("click", (e) => {
     let parentImg = img.parentElement;
 
     isSelectModeActive = true;
-    const paintingData = paintings.find((painting) => painting.src === img.getAttribute("src"));
+    const paintingData = paintings.find((painting) => painting.src + ".jpg" === img.getAttribute("src"));
     addPaintingDetails(img, parentImg, paintingData);
 });
 
