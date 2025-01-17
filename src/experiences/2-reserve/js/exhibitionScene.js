@@ -44,11 +44,11 @@ export default class ExhibitionScene extends Scene {
 
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
-            this.fixPaintingPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
+            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.x, painting.y, "paintings-container");
+            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
-        let painting = new Sprite(this.lastSelectedPainting.src, this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
+        let painting = new Sprite(this.lastSelectedPainting.src + ".jpg", this.lastSelectedPainting.width, this.lastSelectedPainting.height, 150, 150, "selected-container");
         if (painting.element) {
             painting.element.classList.add("selected");
         }
@@ -163,7 +163,7 @@ export default class ExhibitionScene extends Scene {
             return element.thematic === this.lastSelectedPainting.thematic;
         });
         if (filteredElements.length < 1) {
-            return console.error("No paintings found");
+            return console.error("No element found");
         }
         let element = filteredElements[Math.floor(Math.random() * filteredElements.length)];
         let elemDom = document.createElement("img");
@@ -233,7 +233,8 @@ export default class ExhibitionScene extends Scene {
 
     fetchElements() {
         SelectedElements.forEach((element) => {
-            new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
+            let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
+            sprite.element.style.zIndex = element.zIndex;
         })
     }
 
