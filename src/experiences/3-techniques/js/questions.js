@@ -1,6 +1,6 @@
 export const questions = [
 
-    /*
+    
 
     {
 
@@ -11,7 +11,7 @@ export const questions = [
             text: "L'appareil photo permet de capturer des images avec précision et de jouer avec la lumière et les angles pour produire une œuvre visuelle unique.",
             media: ""
         },
-        media: "img/art/electrikGarden.jpg",
+        media: "img/art/electrikGarden.png",
         cartel: [
             { id: "artistName", text: "Candillon Ruddy" },
             { id: "artName", text: "Electrik garden" },
@@ -53,7 +53,7 @@ export const questions = [
 
 
 
-*/
+
 
 
 
@@ -64,7 +64,7 @@ export const questions = [
             text: "Cette œuvre est composée de grès, un matériau robuste et polyvalent souvent utilisé pour sa durabilité et sa texture idéale pour la sculpture ou la céramique.",
             media: ""
         },
-        media: "img/art/coupeGres.jpg",
+        media: "img/art/coupeGres.png",
         cartel: [
             { id: "artistName", text: "Buthaud René" },
             { id: "artName", text: "Petite coupe grès avec profil" },
@@ -117,7 +117,7 @@ export const questions = [
                 text: "Cette œuvre à été réalisée avec de la laine, du chanvre et de la corde.  La texture riche et l'usage habile des fibres mettent en valeur un travail artisanal exceptionnel.",
                 media: ""
             },
-            media: "img/art/arbreVie.jpg",
+            media: "img/art/arbreVie.png",
             cartel: [
                 { id: "artistName", text: "Dartois Daniel" },
                 { id: "artName", text: "L'arbre de vie" },
@@ -168,7 +168,7 @@ export const questions = [
             text: "La photogravure permet de graver des images sur des plaques avec une grande précision. C’est une technique parfaite pour capturer des scènes comme celles de Fraternité.",
             media: ""
         },
-        media: "img/art/fraternité.jpg",
+        media: "img/art/fraternité.png",
         cartel: [
             { id: "artistName", text: "Audibran François-Adolphe-Bruneau" },
             { id: "artName", text: "Fraternité" },
@@ -219,7 +219,7 @@ export const questions = [
             text: "Le matériau employé est le fer. Il est à la fois solide et esthétique. Cela permet de créer des pièces utiles et décoratives.",
             media: ""
         },
-        media: "img/art/grilleDecorative.jpg",
+        media: "img/art/grilleDecorative.png",
         cartel: [
             { id: "artistName", text: "Saupique Georges Laurent" },
             { id: "artName", text: "Grille décorative - Ronde-bosse" },
@@ -269,7 +269,7 @@ export const questions = [
             text: "L’encre de chine, la mine de plomb et la sanguine ont été utilisées pour réaliser cette œuvre. La sanguine est reconnaissable grâce à ses pigments rouge terre.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
             media: ""
         },
-        media: "img/art/christSamaritaine.jpg",
+        media: "img/art/christSamaritaine.png",
         cartel: [
             { id: "artistName", text: "Weyer Gabriel" },
             { id: "artName", text: "Le Christ et la Samaritaine" },
@@ -319,7 +319,7 @@ export const questions = [
             text: "Cette œuvre repose sur un carton, un support pratique et léger, souvent utilisé pour les esquisses ou les études de paysages.",
             media: ""
         },
-        media: "img/art/paysageBoise.jpg",
+        media: "img/art/paysageBoise.png",
         cartel: [
             { id: "artistName", text: "Hugues Clovis" },
             { id: "artName", text: "Paysage boisé" },
@@ -359,7 +359,7 @@ export const questions = [
         }
     },
 
-    /*
+
 
     {
         //Q8
@@ -368,7 +368,7 @@ export const questions = [
             text: "Cette œuvre a été réalisée avec de l’aquarelle, une technique de peinture fluide qui utilise des pigments dilués dans l’eau pour créer des effets de transparence et de légèreté.",
             media: ""
         },
-        media: "img/art/jeuneFemmeFilletteLisant.jpg",
+        media: "img/art/jeuneFemmeFilletteLisant.png",
         cartel: [
             { id: "artistName", text: "Anonyme français XIXème" },
             { id: "artName", text: "Jeune femme et fillette lisant" },
@@ -409,7 +409,7 @@ export const questions = [
     },
 
 
-*/
+
 
 
 
@@ -420,7 +420,7 @@ export const questions = [
             text: "Cette œuvre à été réalisée avec de l’aquarelle, de l’encre de chine et du crayon.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
             media: ""
         },
-        media: "img/art/bordeauxPrisVif.jpg",
+        media: "img/art/bordeauxPrisVif.png",
         cartel: [
             { id: "artistName", text: "Hugues Clovis" },
             { id: "artName", text: "Paysage boisé" },
@@ -473,7 +473,7 @@ export const questions = [
             text: "Ce médaillon est fabriqué en plâtre, un matériau idéal pour les sculptures décoratives et les reliefs détaillés.",
             media: ""
         },
-        media: "img/art/medailleVilleBordeaux.jpg",
+        media: "img/art/medailleVilleBordeaux.png",
         cartel: [
             { id: "artistName", text: "Dubois Henri Alfred Auguste" },
             { id: "artName", text: "Ville de Bordeaux - Médaille " },
@@ -524,7 +524,7 @@ export const questions = [
             text: "L’œuvre a été réalisée en cire, un matériau malléable et polyvalent prisé par les artistes pour son aptitude à capturer les détails les plus fins.",
             media: ""
         },
-        media: "img/art/figurineChat.jpg",
+        media: "img/art/figurineChat.png",
         cartel: [
             { id: "artistName", text: "Steinlen Théophile Alexandre" },
             { id: "artName", text: "Chat - Figurine - sur socle" },
@@ -566,7 +566,7 @@ export const questions = [
 
 
 
-    /*
+    
     
     
     {
@@ -617,7 +617,7 @@ export const questions = [
     },
     
     
-    */
+
 
 
 
@@ -630,7 +630,7 @@ export const questions = [
             text: "Le matériau est le verre, utilisé pour sa transparence, sa luminosité et sa capacité à être façonné sous haute température.",
             media: ""
         },
-        media: "img/art/vaseGlobeVerre.jpg",
+        media: "img/art/vaseGlobeVerre.png",
         cartel: [
             { id: "artistName", text: "Sabino Marius-Ernest" },
             { id: "artName", text: "Vase globe en verre, blanc opaque" },
@@ -682,7 +682,7 @@ export const questions = [
             text: "L’œuvre a été réalisée en terre cuite, un matériau naturel très apprécié pour la sculpture. La terre cuite est facile à modeler lorsqu’elle est humide et, une fois cuite, elle devient solide et durable",
             media: ""
         },
-        media: "img/art/hebe.jpg",
+        media: "img/art/hebe.png",
         cartel: [
             { id: "artistName", text: "Berruer Pierre-François" },
             { id: "artName", text: "Hébé" },
@@ -732,7 +732,7 @@ export const questions = [
             text: "Cette œuvre est une statuette en ronde-bosse, ce qui signifie qu’elle est sculptée en trois dimensions et peut être admirée sous tous les angles.",
             media: ""
         },
-        media: "img/art/sainteMarieMadeleine.jpg",
+        media: "img/art/sainteMarieMadeleine.png",
         cartel: [
             { id: "artistName", text: "Anonyme français XVème" },
             { id: "artName", text: "Sainte couronnée" },
@@ -783,7 +783,7 @@ export const questions = [
             text: "L'œuvre Jardin au Pyla d' Albert Marquet est une ode à la simplicité et à la lumière du sud-ouest de la France. Dans ce tableau, Marquet capture la quiétude d'un jardin baigné par la douce lumière côtière du Pyla, près du bassin d'Arcachon. ",
             media: ""
         },
-        media: "img/art/jardinPyla.jpg",
+        media: "img/art/jardinPyla.png",
         cartel: [
             { id: "artistName", text: "Marquet Albert" },
             { id: "artName", text: "Jardin au Pyla" },
@@ -831,7 +831,7 @@ export const questions = [
             text: "L'Église Sainte-Croix est l'abbatiale d'un ancien monastère bénédictin, fondé au 7ᵉ siècle. Le clocher à droite du portail remonte au 12ᵉ siècle, son porche au 11e tandis que le clocher de gauche a été rajouté au 19ᵉ siècle par l'architecte Paul Abadie.",
             media: ""
         },
-        media: "img/art/egliseSainteCroix.jpg",
+        media: "img/art/egliseSainteCroix.png",
         cartel: [
             { id: "artistName", text: " Anonyme français XIXème" },
             { id: "artName", text: "L'Église Sainte-Croix à Bordeaux" },
@@ -881,7 +881,7 @@ export const questions = [
             text: "Elle a pris le nom de porte d'Aquitaine le 18 novembre 1753 afin d'honorer le second fils de la Dauphine, le duc d'Aquitaine Xavier de France qui venait de naître.",
             media: ""
         },
-        media: "img/art/porteAquitaineBordeaux.jpg",
+        media: "img/art/porteAquitaineBordeaux.png",
         cartel: [
             { id: "artistName", text: "Drouyn Léo" },
             { id: "artName", text: "Porte d'Aquitaine à Bordeaux" },
@@ -932,7 +932,7 @@ export const questions = [
             text: "La porte Cailhau se dresse sur la place du Palais du côté du fleuve. Située entre les embouchures des deux principales rivières de Bordeaux, le Peugue et la Devèze, c'était la principale entrée dans la ville depuis le port. ",
             media: ""
         },
-        media: "img/art/bordeauxPorteCailleau.jpg",
+        media: "img/art/bordeauxPorteCailleau.png",
         cartel: [
             { id: "artistName", text: "Drouyn Léo" },
             { id: "artName", text: "Bordeaux, Porte du Cailleau" },
@@ -1035,7 +1035,7 @@ export const questions = [
             text: "L'œuvre La Foulaison du blé en Camargue , réalisée par Rosa Bonheur , met en lumière le travail agricole dans la région de la Camargue avec une maîtrise artistique remarquable. ",
             media: ""
         },
-        media: "img/art/foulaisonBleCamargue.jpg",
+        media: "img/art/foulaisonBleCamargue.png",
         cartel: [
             { id: "artistName", text: "Bonheur Rosa" },
             { id: "artName", text: "La Foulaison du blé en Camargue" },
@@ -1087,7 +1087,7 @@ export const questions = [
             text: "L'œuvre rend hommage à Jean Racine , l'un des plus grands dramaturges français du XVIIᵉ siècle.",
             media: ""
         },
-        media: "img/art/portraitFillsLouisXIV.jpg",
+        media: "img/art/portraitFillsLouisXIV.png",
         cartel: [
             { id: "artistName", text: "Boullogne Bon" },
             { id: "artName", text: "Portrait d'un fils légitimé de Louis XIV - Portrait de Jean Racine" },
@@ -1137,7 +1137,7 @@ export const questions = [
             text: "Odilon Redon est un peintre et graveur symboliste français. Son art explore les aspects de la pensée, la part sombre et ésotérique de l'âme humaine, empreinte des mécanismes du rêve.",
             media: ""
         },
-        media: "img/art/portraitMadameRedon.jpg",
+        media: "img/art/portraitMadameRedon.png",
         cartel: [
             { id: "artistName", text: " Odilon Redon" },
             { id: "artName", text: "Portrait de Madame Redon" },
@@ -1188,7 +1188,7 @@ export const questions = [
             text: "L'œuvre La Chasse aux lions d' Eugène Delacroix illustre avec intensité et mouvement une scène dramatique de chasse dans un paysage exotique. Inspiré par ses voyages en Afrique du Nord, Delacroix capture ici la confrontation entre l'homme et la nature sauvage.",
             media: ""
         },
-        media: "img/art/chasseLions.jpg",
+        media: "img/art/chasseLions.png",
         cartel: [
             { id: "artistName", text: "Delacroix Eugène" },
             { id: "artName", text: "La Chasse aux lions" },
@@ -1240,7 +1240,7 @@ export const questions = [
             text: "Cette œuvre, La Visitation - Élisabeth et la Vierge , est d' origine espagnole . Réalisée entre 1430 et 1470, elle témoigne du savoir-faire des sculpteurs espagnols du XVe siècle, notamment dans le travail de l' albâtre , un matériau pris pour sa finesse et sa capacité à restituer les détails avec élégance.",
             media: ""
         },
-        media: "img/art/visitation.jpg",
+        media: "img/art/visitation.png",
         cartel: [
             { id: "artistName", text: "Anonyme espagnol XVᵉ siècle" },
             { id: "artName", text: "La Visitation - Elisabeth et la Vierge" },
@@ -1340,7 +1340,7 @@ export const questions = [
             text: "L'œuvre L'Adoration des bergers d' Abraham Daniëlsz Hondius a été réalisée entre 1658 et 1660 , ce qui la situe au XVIIᵉ siècle . Cette période correspond à l'âge d'or de la peinture baroque, caractérisée par des compositions dynamiques, des contrastes marqués et une grande expressivité.",
             media: ""
         },
-        media: "img/art/adorationBergers.jpg",
+        media: "img/art/adorationBergers.png",
         cartel: [
             { id: "artistName", text: "Hondius Abraham Daniëlsz" },
             { id: "artName", text: "L'Adoration des bergers" },
@@ -1444,7 +1444,7 @@ export const questions = [
             text: "L'œuvre Vierge de Pitié entourée de saints de Hans Clot a été réalisée en 1469 , ce qui la situe au XVᵉ siècle . Cette période est marquée par l'art gothique tardif, où l'on retrouve une grande attention aux détails, des expressions empreintes de piété et une mise en scène soignée des figures religieuses. ",
             media: ""
         },
-        media: "img/art/viergePitieSaints.jpg",
+        media: "img/art/viergePitieSaints.png",
         cartel: [
             { id: "artistName", text: "Clot Hans" },
             { id: "artName", text: "Vierge de Pitié entourée de saints" },
