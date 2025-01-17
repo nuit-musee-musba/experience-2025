@@ -108,36 +108,36 @@
     </div>
     <div class="contener-stepper-text stats-display">
         <div class="title-container">
-            <h3 class="h3-title-serif">Question</h3>
+            <h3 class="h3-title-serif typo-h3-helvetica">Question</h3>
         </div>
         <div class="contener-step"></div>
     </div>
     <img id="activePlayer" src="img/RightArrow_AutoLayout.svg" alt="">
     <div class="player-info">
         <div class="stats-display test-css player-active1" id="player1" style="width: fit-content;">
-            <div class="title-container" style="width: 340px">
-                <h3 class="h3-title-serif">Joueur 1:</h3>
+            <div class="title-container" style="width: 380px">
+                <h3 class="h3-title-serif typo-h3-helvetica">Joueur 1:</h3>
             </div>
             <div class="score-container">
-                <h3 id="score1">00 pts</h3>
+                <h3 id="score1" class="typo-h3-helvetica">00 pts</h3>
             </div>
         </div>
 
         <div class="stats-display test-css" id="player2" style="width: fit-content;">
-            <div class="title-container" style="width: 340px">
-                <h3 class="h3-title-serif">Joueur 2:</h3>
+            <div class="title-container" style="width: 380px">
+                <h3 class="h3-title-serif typo-h3-helvetica">Joueur 2:</h3>
             </div>
             <div class="score-container">
-                <h3 id="score2">00 pts</h3>
+                <h3 id="score2" class="typo-h3-helvetica">00 pts</h3>
             </div>
         </div>
     </div>
     <div class="stats-display timer-display timer-card" id="timer-card" style="width: fit-content;">
         <div class="title-container" style="width: fit-content;">
-            <h3 class="h3-title-serif">Temps restant</h3>
+            <h3 class="h3-title-serif typo-h3-helvetica">Temps restant</h3>
         </div>
         <div class="timer-container" style="width: fit-content;">
-            <h3 id="timer">20</h3>
+            <h3 id="timer" class="typo-h3-helvetica">20</h3>
         </div>
     </div>
     <div id="endGame">
@@ -169,6 +169,11 @@
         </div>
     </div>
     <a href="../../index.html" class="button-retour-menue"><img src="img/backHouse.svg" alt=""></a>
+    <audio id="background-music" src="music/game-card.wav" preload="auto" loop></audio>
+    <audio id="correct-sound" src="sound/SUCCESS.wav"></audio>
+    <audio id="wrong-sound" src="sound/WRONG.wav"></audio>
+    <audio id="timer-sound" src="sound/TIMER.mp3"></audio>
+    <script src="js/music.js"></script>
     <script type="module" src="js/index.js"></script>
 </body>
 

@@ -5,6 +5,9 @@ import { StepsDisplay } from "/commons/components/StepsDisplay";
 
 const Step = document.querySelector('.contener-step');
 const stepsDisplay = new StepsDisplay(0, 8, '.contener-step', Step);
+const correctSound = new Audio('sound/SUCCESS.wav');
+const wrongSound = new Audio('sound/WRONG.wav');
+
 
 let playerNoWin = 0;
 let currentQuestion = 0;
@@ -299,7 +302,6 @@ function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, 
     }
 }
 
-
 export function handleAnswer(
     choice,
     questionEl,
@@ -316,9 +318,10 @@ export function handleAnswer(
 ) {
     let correct = shuffledQuestions[currentQuestion].difficulties[selectedDifficulty].correct;
 
-    
     playerNoWin = 0;
     if (choice === correct) {
+        correctSound.play();
+
         playerNoWin = 1;
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
@@ -326,6 +329,8 @@ export function handleAnswer(
 
         nextTurn(true, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     } else {
+        wrongSound.play();
+
         playerNoWin = 0;
         if (choice === "A") btnA.style.display = "none";
         else if (choice === "B") btnB.style.display = "none";
@@ -338,7 +343,7 @@ export function handleAnswer(
             activePlayerEl.textContent = activePlayer;
             updatePlayerClasses(activePlayer);
             updateResponseTitle(false);
-
+            stopTimer()
             startTimer(timerEl, () =>
                 handleTimeout(
                     activePlayerEl,
@@ -374,6 +379,7 @@ export function handleAnswer(
         }
     }
 }
+
 
 export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
     if (!showingAnswer) {
@@ -425,13 +431,13 @@ function displayScores(playerScores) {
 
         playerScoreDiv.innerHTML = `
             <div class="score-container" style="width:200px; text-align: center;">
-                <h3>${index + 1 + " e"}</h3>
+                <h3 class="typo-h3-helvetica">${index + 1 + " e"}</h3>
             </div>
             <div class="title-container" style="width: 360px">
-                <h3>${player}</h3>
+                <h3 class="typo-h3-helvetica">${player}</h3>
             </div>
             <div class="score-container" style="width: 300px">
-                <h3>${score} pts</h3>
+                <h3 class="typo-h3-helvetica">${score} pts</h3>
             </div>
         `;
 

@@ -58,7 +58,7 @@ body {
 #activePlayer {
     width: 122px;
     position: absolute;
-    right: 780px;
+    right: 820px;
     top: 100px;
     transition: 0.5s;
 }
@@ -212,7 +212,11 @@ header {
 }
 
 #whereMuseum {
+    font-style: italic;
     margin-top: 40px;
+}
+.typo-h3-helvetica{
+    font-family: Helvetica !important;
 }
 
 .cartel-contener {
@@ -251,6 +255,11 @@ header {
     background-color: white;
     color: #000;
     border: 1px solid #000;
+}
+.btn-difficulty h3{
+    font-family: Helvetica;
+    font-size: 72px;
+    font-style: normal;
 }
 
 #responce-contener {
@@ -404,7 +413,6 @@ header {
 .color-responce-answer-player1 {
     background: rgba(185, 145, 205, 0.40);
     backdrop-filter: blur(7px);
-   
 }
 
 .color-responce-answer-player2 {
