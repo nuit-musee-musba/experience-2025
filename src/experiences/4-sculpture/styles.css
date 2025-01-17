@@ -1,192 +1,148 @@
-/* Désactive tout scrolling */
-html, body {
+/* Reset des marges et bordures */
+* {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Supprime le scroll */
+  box-sizing: border-box;
 }
 
-/* Container principal */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Pas de défilement */
+}
+
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes : gauche (Zone de travail et Dialogue), droite (Progress Bar et Inventaire) */
-  grid-template-rows: 3fr 1fr;    /* Zone de travail (75%), Dialogue (25%) */
-  height: 100vh; /*La grille occupe toute la hauteur */
-  width: 100vw; /* La grille occupe toute la largeur */
-  gap: 10px; /* Espacement entre les sections */
+  grid-template-columns: 50% 50%; /* Deux colonnes : gauche et droite */
+  height: 100vh; /* Hauteur de l'écran */
+  width: 100vw;  /* Largeur de l'écran */
 }
 
-/* Zone de travail */
-.zone-de-travail {
-  grid-column: 1 / 2; /* Colonne gauche */
-  grid-row: 1 / 2; /* Première rangée */
-  border: 2px solid #ccc;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+.left {
+  display: grid;
+  grid-template-rows: 80% 20%; /* Zone de travail (80%) en haut, Zone de dialogue (20%) en bas */
 }
 
-.drop-zone {
-  width: 90%;
-  height: 90%;
-  border: 2px dashed #bbb; /* Style en pointillés */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f9f9f9; /* Léger contraste */
-}
-
-/* Zone de dialogue */
-.tutoriel {
-  grid-column: 1 / 2; /* Colonne gauche */
-  grid-row: 2 / 3; /* Deuxième rangée */
-  border: 2px solid #ccc;
-  background-color: #f9f9f9;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem; /* Taille de texte ajustée */
-}
-
-/* Partie droite */
-.inventaire-et-tutoriel {
-  grid-column: 2 / 3; /* Colonne droite */
-  grid-row: 1 / 3; /* Occupe toute la hauteur */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Progress Bar */
-.progress-bar {
-  height: 15%; /* Prend 15% de la hauteur de la colonne droite */
-  border: 2px solid #ccc;
-  background-color: #f9f9f9;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.progress {
-  width: 100%;
-  height: 20px;
-  background-color: #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.progress-inner {
-  height: 100%;
-  background-color: #4caf50;
-  width: 0%; /* La largeur sera modifiée via le JS */
-  transition: width 0.3s ease; /* Animation fluide de la progression */
-}
-
-/* Inventaire */
-/* Inventaire */
-.inventaire {
-  flex: 1;
-  border: 2px solid #ccc;
-  background-color: #e6ffe6;
-  display: flex;
-  justify-content: center; /* Centre les items horizontalement */
-  align-items: center; /* Centre les items verticalement */
-  box-sizing: border-box;
-  padding: 20px;
+.right {
+  display: grid;
+  grid-template-rows: 10% 90%; /* Barre de progression (10%) en haut, Inventaire (90%) en bas */
 }
 
 
-.inventory-slots {
+.section {
+  position: relative; /* Pour positionner les éléments internes */
+  background-color: white; /* Fond blanc */
+  border: 2px solid black; /* Délimitations noires */
+  padding-top: 40px; /* Espace pour le titre */
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center; /* Titre centré */
+  font-size: 3.6rem; /* Taille x2 par rapport à l'original (1.8rem) */
+  font-family: Arial, sans-serif;
+  color: black; /* Couleur noire */
+  padding: 10px 0; /* Espacement autour du titre */
+  background-color: white; /* Fond blanc pour le titre */
+  border-bottom: 2px solid black; /* Ligne de séparation en dessous du titre */
+}
+
+/* Grille pour l'inventaire */
+.inventory-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-  gap: 170px; /* Augmente l'espacement entre les items */
-  justify-content: center; /* Centre les items horizontalement */
-  align-items: center; /* Centre les items verticalement */
-  padding: 20px; /* Ajoute de l'espace autour de la grille */
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  grid-template-rows: repeat(2, 1fr);   /* 2 lignes */
+  height: 100%; /* Prend toute la hauteur disponible */
+  align-content: center; /* Centre verticalement les cases */
 }
 
-.item {
-  background-color: #fff;
-  border: 2px solid #bbb;
-  text-align: center;
-  cursor: grab;
+.inventory-item {
   display: flex;
-  justify-content: center;
   align-items: center;
-  aspect-ratio: 1; /* Assure une forme carrée */
-  box-sizing: border-box;
+  justify-content: center;
+  background-color: white; /* Fond blanc */
+  font-size: 1.2rem; /* Taille du texte */
+  font-family: Arial, sans-serif;
+  color: black; /* Couleur du texte */
+  overflow: hidden; /* Cache tout débordement des images */
+  padding: 10px; /* Padding interne pour que les images ne touchent pas les bords */
 }
 
-
-.item:active {
-  cursor: grabbing;
+.inventory-item img {
+  width: 100%; /* Prend toute la largeur disponible */
+  height: 100%; /* Prend toute la hauteur disponible */
+  object-fit: contain; /* Maintient les proportions */
+  aspect-ratio: 1 / 1; /* Garde les images carrées */
 }
 
-.item.used {
-  background-color: #ddd;
-  border-color: #999;
-  color: #666;
-  cursor: not-allowed;
-}
-
-img {
-    transition: all 0.3s ease;
-    width: auto; /* Laisse l'image ajuster sa largeur automatiquement */
-    height: auto; /* Laisse l'image ajuster sa hauteur automatiquement */
-    max-width: 100%; /* Empêche l'image de dépasser la largeur de son conteneur */
-    max-height: 100%; /* Empêche l'image de dépasser la hauteur de son conteneur */
-    display: block; /* Supprime les espaces blancs autour de l'image */
-    margin: auto; /* Centre l'image horizontalement */
-    transition: all 0.3s ease;
-}
-
-.item {
-  background-color: #fff;
-  border: 2px solid #bbb;
-  text-align: center;
-  cursor: grab;
+/* Zone de Dialogue */
+.dialogue-content {
   display: flex;
-  flex-direction: column; /* Place l'image et le texte en colonne */
-  justify-content: center;
-  align-items: center;
-  width: 200px; /* Largeur augmentée */
-  height: 220px; /* Hauteur augmentée */
-  aspect-ratio: 1; /* Assure une forme carrée */
-  box-sizing: border-box;
-  border-radius: 10px; /* Ajoute un arrondi aux coins */
-  transition: transform 0.2s ease, background-color 0.2s ease; /* Animation au survol */
+  align-items: center; /* Centre verticalement */
+  justify-content: flex-start; /* Positionne le contenu à gauche */
+  height: 100%; /* Prend toute la hauteur disponible */
+  padding: 20px;
 }
 
-.item:hover {
-  background-color: #f0f0f0; /* Change légèrement la couleur au survol */
-  transform: scale(1.05); /* Agrandit légèrement au survol */
+.character-image img {
+  max-width: 300%; /* Augmente la taille de l'image x3 */
+  max-height: none; /* Permet à l'image de s'étendre verticalement si nécessaire */
+  border-radius: 10px; /* Bords arrondis */
 }
 
-.item img {
-  width: 100px; /* Taille ajustée pour l'image */
-  height: 100px;
-  object-fit: contain; /* Garde les proportions de l'image */
-  transition: transform 0.2s ease; /* Ajoute une animation au survol */
+
+.character-image img {
+  max-width: 100%;
+  max-height: 300px; /* Limite la hauteur de l'image */
+  border-radius: 10px; /* Arrondit les bords */
 }
 
-.item p {
+.dialogue-modal {
+  flex: 3; /* Tripler la taille relative de la modal par rapport à l'image */
+  background-color: #f0f0f0;
+  padding: 30px; /* Augmente l'espace interne */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  margin-left: 20px; /* Espacement entre l'image et la modal */
+  height: auto; /* Ajuste automatiquement à la taille du contenu */
+}
+
+.dialogue-modal p {
+  font-size: 2rem; /* Taille encore plus grande pour le texte */
+  line-height: 2; /* Espacement des lignes encore plus large */
+  color: #333;
+}
+
+/* Conteneur de la barre de progression */
+.progress-container {
+  width: 90%; /* Largeur de la barre de progression (carrée) */
+  height: 20%; /* Hauteur égale pour former un carré */
+  background-color: #e0e0e0; /* Couleur de fond de la barre */
+  border: 2px solid #000; /* Bordure noire */
+  margin: auto; /* Centre horizontalement */
+  position: relative;
+  overflow: hidden; /* Cache le débordement de la barre */
+  display: flex; /* Utilisé pour le centrage vertical */
+  align-items: center; /* Centre le contenu verticalement */
+}
+
+
+/* Barre de progression interne */
+#progress-bar {
+  width: 0%; /* Départ à 0% */
+  height: 100%; /* Prend toute la hauteur du conteneur */
+  background-color: #000; /* Couleur noire pour la progression */
+  transition: width 0.3s ease; /* Animation douce lors de la progression */
+}
+
+.next-dialogue {
+  text-align: center;
   margin-top: 10px;
-  font-size: 16px; /* Taille du texte augmentée */
-  text-align: center;
-}
-
-.item.dragging {
-  background-color: #ccc; /* Change la couleur de fond en gris */
-  border-color: #999; /* Change la couleur de la bordure */
-  opacity: 0.7; /* Rend l'élément légèrement transparent */
+  font-size: 1rem;
+  font-style: italic;
+  color: #555;
+  cursor: pointer;
 }

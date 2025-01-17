@@ -3,53 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Jeu de Drag and Drop</title>
+    <title>Inventaire Drag and Drop</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../../commons/styles/style.scss">
 </head>
 <body>
     <div class="container">
-        <!-- Zone de travail -->
-        <div class="zone-de-travail">
-            <h2>Zone de travail</h2>
-            <div id="work-area" class="drop-zone"></div>
-        </div>
+        <div class="left">
+            <div class="section work-area" id="work-area">
+                <div class="title">Zone de Travail</div>
+            </div>
+            <div class="section dialogue-zone">
+              <div class="dialogue-content">
+                  <div class="character-image">
+                      <img src="/Images/Item_Homme.webp" alt="Personnage">
+                  </div>
+                  <div class="dialogue-modal">
+                      <p id="dialogue-text">
+                          Bienvenue, Apprenti ! Je suis Jean-Louis Ernest Meissonier, peintre et sculpteur.
+                          Aujourd'hui, je vais t'enseigner les bases de l'art de la sculpture de bronze.
+                          Crois-moi, c'est un savoir-faire bien plus complexe qu'il n'y paraît !
+                          Il est tout à fait normal que tu ne saches pas tout faire. Je vais t’épauler pour chaque étape. Sois bien attentif !
+                      </p>
+                      <p id="next-dialogue" class="next-dialogue">Cliquer pour le dialogue suivant</p>
+                  </div>
+              </div>
+          </div>
 
-        <!-- Zone de dialogue -->
-        <div class="tutoriel">
-            <h1>Dialogue</h1>
-            <div class="dialogueNameContent">
-                <h3>Ernest le sculpteur</h3>
-                <div class="dialogueContainer">
-                    <p id="dialogue-element">
-                        Bienvenue, Apprenti ! Aujourd'hui, je vais t'enseigner les bases de l'art délicat de la sculpture en bronze.
-                    </p>
-                </div>
-                <div class="nextButton">
-                    <p>Suivant</p>
-                    <img src="#" alt="Flèche">
-                </div>
+
+        </div>
+        <div class="right">
+          <div class="section progress-bar">
+            <div class="progress-container">
+                <div id="progress-bar"></div>
             </div>
         </div>
 
-        <!-- Partie droite -->
-        <div class="inventaire-et-tutoriel">
-            <!-- Progress Bar -->
-            <div class="progress-bar">
-                <h2>Progression</h2>
-                <div class="progress">
-                    <div class="progress-inner" style="width: 0%;"></div>
+
+            <div class="section inventory">
+                <div class="title">Inventaire</div>
+                <div class="inventory-grid">
+                  <div class="inventory-item">
+                    <img src="/Images/Item_Argile.webp" alt="ARGILE" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+                  </div>
+                  <div class="inventory-item">
+                      <img src="/Images/Item_Cire.webp" alt="CIRE" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+                  </div>
+                  <div class="inventory-item">
+                      <img src="/Images/Item_Platre.webp" alt="PLATRE" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+                  </div>
+                  <div class="inventory-item">
+                      <img src="/Images/Item_Tuyau.webp" alt="TUYAU" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+                  </div>
+                  <div class="inventory-item">
+                      <img src="/Images/Item_Bronze.webp" alt="BRONZE" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+                  </div>
+                  <div class="inventory-item">
+                      <img src="/Images/Item_Marteau.webp" alt="MARTEAU" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+                  </div>
                 </div>
-            </div>
-
-            <!-- Inventaire Partie-->
-            <div class="inventaire">
-
-                <div class="inventory-slots"></div> <!-- Les items seront ajoutés par le JS -->
             </div>
         </div>
     </div>
-
-    <script type="module" src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
