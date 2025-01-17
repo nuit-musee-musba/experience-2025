@@ -1,6 +1,6 @@
 let percentage = 0;
 
-export default class Eclairer{
+export default class Nettoyer{
     container: HTMLElement;
     element: HTMLElement
 
@@ -21,17 +21,17 @@ export default class Eclairer{
                                 <h3 class="h3-title-serif">Étape</h3>
                             </div>
                             <div class="step-count">
-                                <h3>2/6</h3>
+                                <h3>3/6</h3>
                             </div>
                         </div>
                         <div class="exp-header">
-                            <h1>Éclairer</h1>
-                            <h2>Révèle les secrets cachés avec une lampe UV.</h2>
+                            <h1>Nettoyer</h1>
+                            <h2>Redonne au tableau son éclat d’origine.</h2>
                         </div>
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme une lampe UV et parcoure le tableau afin d'identifier les zones qui devront être restaurées.</p>
+                        <p>Utilise ton doigt comme un coton imbibé d’un dissolvant adapté et nettoie délicatement les zones ciblées.</p>
                     </div>
                 </div>
                 <div class="exp-right">
@@ -40,11 +40,11 @@ export default class Eclairer{
                             <h3>${percentage}%</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-eclairer.png" alt="">
+                    <img class="exp-char-img" src="./src/assets/img/perso-nettoyer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
-                        <p>Cette lumière spéciale vous permettra de détecter des zones traitées par d’anciennes restaurations, mais principalement d’analyser la couche de vernis.</p>
-                        <p>Les vernis jaunissent avec le temps, ils brillent différemment sous UV. La lampe peut également révéler des endroits non-vernis ou bien même des traces inattendues témoignant parfois d’un travail moins précautionneux qu’à notre époque.</p>
+                        <p>La saleté et le vernis jauni peuvent ternir une œuvre et masquer sa beauté.</p>
+                        <p>Par exemple, le célèbre tableau La Joconde a été nettoyé en 2012, mettant en lumière une clarté et des détails que personne n’avait vu depuis des siècles ! Un restaurateur se doit de travailler avec précision pour ne pas endommager les couches inférieures.</p>
                     </div>
                 </div>
             </div>
@@ -119,6 +119,10 @@ export default class Eclairer{
 
         percentage += Math.floor((1/12)*100);
 
+        const event = new CustomEvent('cleanPaint', { detail: { scene: 'clean' } });
+        document.dispatchEvent(event);
+        console.log("event fired")
+
         if(percentageElement){
             if(percentage >= 96){
                 percentage = 100
@@ -139,7 +143,7 @@ export default class Eclairer{
 
 
     handleMouseDown = () => {
-        window.location.hash = "/nettoyer"; // Navigate to /#/intro
+        window.location.hash = "/mastiquer"; // Navigate to /#/intro
     };
 
     async exit(): Promise<void>{
@@ -167,7 +171,7 @@ export default class Eclairer{
 
             await this.waitForKeyframe(headerElement); // Wait for transition
 
-            const event = new CustomEvent('switchSceneEvent', { detail: { scene: 'scene3' } });
+            const event = new CustomEvent('switchSceneEvent', { detail: { scene: 'scene4' } });
             document.dispatchEvent(event);
         }
     }

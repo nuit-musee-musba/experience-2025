@@ -1,6 +1,6 @@
 let counter = 0
 
-export default class Observer{
+export default class Mastiquer{
     container: HTMLElement;
     element: HTMLElement
 
@@ -21,30 +21,30 @@ export default class Observer{
                                 <h3 class="h3-title-serif">Étape</h3>
                             </div>
                             <div class="step-count">
-                                <h3>1/6</h3>
+                                <h3>4/6</h3>
                             </div>
                         </div>
                         <div class="exp-header">
-                            <h1>Observer</h1>
-                            <h2>Détecte les imperfections</h2>
+                            <h1>Mastiquer</h1>
+                            <h2>Comble les imperfections</h2>
                         </div>
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme une loupe et passe le tout le long de l’œuvre pour trouver les dégâts et mesurer leur ampleur.</p>
+                        <p>Utilise ton doigt comme un ébauchoir et applique la pâte adaptée sur les zones abîmées avec précision.</p>
                     </div>
                 </div>
                 <div class="exp-right">
                     <div class="steps">
                         <div class="counter">
-                            <h3>${counter}/5</h3>
+                            <h3>${counter}/4</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-observer.png" alt="">
+                    <img class="exp-char-img" src="./src/assets/img/perso-mastiquer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
-                        <p>Chaque œuvre d’art, abîmée ou intacte, témoigne de son époque. L’observation est la première étape pour révéler ses secrets. Elle peut être abimée par le transport, l’humidité, ou simplement par le temps.</p>
-                        <p>Un restaurateur se doit d’examiner attentivement l’œuvre pour repérer les imperfections : craquelures, tâches ou décolorations. Ces indices sont essentiels pour comprendre les restaurations nécessaires.</p>
+                        <p>Les fissures, trous et la peinture craquelée sur un tableau peuvent affaiblir sa structure et son apparence. En appliquant le mastic, il faut veiller à reproduire les coups de pinceaux de l’artiste.</p>
+                        <p>Les restaurateurs de la Chapelle Sixtine ont découvert des fissures dans le plafond causées par des tremblements de terre et leur masticage a été une prouesse technique.</p>
                     </div>
                 </div>
             </div>
@@ -57,9 +57,6 @@ export default class Observer{
             <div class="select-circle circle-1 obs">
                 <img src="./src/assets/img/select.png" alt="">
             </div>
-            <div class="select-circle circle-2 obs">
-                <img src="./src/assets/img/select.png" alt="">
-            </div>
             <div class="select-circle circle-3 obs">
                 <img src="./src/assets/img/select.png" alt="">
             </div>
@@ -68,6 +65,13 @@ export default class Observer{
             </div>
             <div class="select-circle circle-5 obs">
                 <img src="./src/assets/img/select.png" alt="">
+            </div>
+
+            <div class="mastique-container">
+                <img src="./src/assets/img/mastique-haut.png" alt="" class="opacity-0 mastique-1">
+                <img src="./src/assets/img/mastique-tête.png" alt="" class="opacity-0 mastique-2">
+                <img src="./src/assets/img/mastique-main.png" alt="" class="opacity-0 mastique-3">
+                <img src="./src/assets/img/mastique-robe.png" alt="" class="opacity-0 mastique-4">
             </div>
 
         `;
@@ -92,7 +96,7 @@ export default class Observer{
         } */
 
         if (circleElements.length > 0) {
-            window.addEventListener("touchmove", (event) => this.handleGlobalTouchMove(event, circleElements));
+            window.addEventListener("touchstart", (event) => this.handleGlobalTouchMove(event, circleElements));
         }
         //window.addEventListener("touchmove", () => {console.log("i've moved touch")});
     }
@@ -122,23 +126,29 @@ export default class Observer{
     }
 
     handleMouseDown = () => {
-        window.location.hash = "/eclairer"; // Navigate to /#/intro
+        window.location.hash = "/retoucher"; // Navigate to /#/intro
     };
 
     handleMouseOver = async (circle) => {
         const counterElement = this.element.querySelector(".counter h3");
         const buttonElement = this.element.querySelector(".button-suivant");
 
-        circle.removeEventListener("touchmove", circle);
+        const mastique1Element = this.element.querySelector(".mastique-1");
+        const mastique2Element = this.element.querySelector(".mastique-2");
+        const mastique3Element = this.element.querySelector(".mastique-3");
+        const mastique4Element = this.element.querySelector(".mastique-4");
+        
+
+        circle.removeEventListener("touchstart", circle);
 
         counter += 1;
         console.log("my counter", counter);
 
         if(counterElement){
-            counterElement.textContent = `${counter}/5`;
+            counterElement.textContent = `${counter}/4`;
         }
 
-        if(counter == 5 && buttonElement){
+        if(counter == 4 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
         }
@@ -147,7 +157,24 @@ export default class Observer{
         circle.classList.add("exit-animation");
 
         console.log("afte removing/adding animation classes");
-        console.log("Current Target:", circle);
+        console.log("Current Target:", circle.classList[1]);
+
+        if(circle.classList[1] == "circle-1" && mastique4Element){
+            mastique4Element.classList.remove("opacity-0")
+            mastique4Element.classList.add("opacity-1")
+        }
+        if(circle.classList[1] == "circle-3" && mastique3Element){
+            mastique3Element.classList.remove("opacity-0")
+            mastique3Element.classList.add("opacity-1")
+        }
+        if(circle.classList[1] == "circle-4" && mastique1Element){
+            mastique1Element.classList.remove("opacity-0")
+            mastique1Element.classList.add("opacity-1")
+        }
+        if(circle.classList[1] == "circle-5" && mastique2Element){
+            mastique2Element.classList.remove("opacity-0")
+            mastique2Element.classList.add("opacity-1")
+        }
 
         await this.waitForKeyframe(circle);
 
@@ -183,7 +210,7 @@ export default class Observer{
 
             await this.waitForKeyframe(headerElement); // Wait for transition
 
-            const event = new CustomEvent('switchSceneEvent', { detail: { scene: 'scene2' } });
+            const event = new CustomEvent('switchSceneEvent', { detail: { scene: 'scene5' } });
             document.dispatchEvent(event);
         }
     }
