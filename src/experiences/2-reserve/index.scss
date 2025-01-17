@@ -49,6 +49,7 @@
 
 #scene-reserve .selectMode .selectModeImg {
   width: fit-content;
+  max-width: 1286px;
   height: 100%;
   right: 0;
   top: 50%;
@@ -170,11 +171,23 @@
 
 .rightBottom{
     position: absolute;
-    top: 1800px;
-    left: 3085px;
+   right: 0;
+   bottom: 0;
+   transform: translateY(20rem);
     z-index: 1000;
 
 }
 
 
+
+.modalEnd{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1837px;
+    height: 1282px;
+    background-color: white;
+    z-index: 1000;
+}
 
