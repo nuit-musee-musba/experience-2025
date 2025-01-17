@@ -32,11 +32,21 @@ window.addEventListener("load", () => {
     }, 150);
   });
 
-  // 7) Bouton “Démarrer” -> log le card-title de la carte centrée
+  // 7) Bouton “Démarrer” -> redirection basée sur le card-title
   document.getElementById("startButton").addEventListener("click", () => {
     if (currentCenterCard) {
       const title = currentCenterCard.querySelector(".card-title")?.textContent;
       console.log("Carte sélectionnée :", title);
+
+      if (title.includes("Renaissance")) {
+        window.location.href = "start-renaissance.html";
+      } else if (title.includes("Baroque")) {
+        window.location.href = "start-baroque.html";
+      } else {
+        console.log("Aucune redirection définie pour ce titre.");
+        // Optionnel : redirection par défaut ou affichage d'un message
+        // window.location.href = "start-default.html";
+      }
     } else {
       console.log("Aucune carte sélectionnée");
     }
