@@ -93,7 +93,7 @@ function loadMediaToResponseMedia() {
                         element.style.color = "#C05825";
                     }
                 } else {
-                    element.style.color = "";
+                    element.style.color = "#C70003";
                 }
             }
         });
@@ -123,7 +123,7 @@ function askForDifficulty(
     nextButton
 ) {
 
-    if (stepsDisplay.CurrentStep.textContent == 8) {
+    if (stepsDisplay.CurrentStep.textContent == 1) {
         document.getElementById("endGame").style.display = "block";
         stopTimer()
         const playerScores = {
@@ -418,6 +418,9 @@ function displayScores(playerScores) {
             if (isWinner) {
                 playerScoreDiv.classList.add(winnerClass);
             }
+        } else {
+            const loserClass = player === "Joueur 1" ? "loser-player1" : "loser-player2";
+            playerScoreDiv.classList.add(loserClass);
         }
 
         playerScoreDiv.innerHTML = `

@@ -412,6 +412,25 @@ header {
     backdrop-filter: blur(7px);
 }
 
+.loser-player1 {
+    background-color: #D9B8F5;
+}
+
+.loser-player2 {
+    background-color: #F5CBA7; 
+}
+
+.loser-player1 .score-container {
+    background-color: white !important;
+    color: #000 !important;
+}
+
+.loser-player2 .score-container {
+    background-color: white !important; 
+    color: #000 !important;
+}
+
+
 .winner-player1{
     background-color: #B991CD;
 }
