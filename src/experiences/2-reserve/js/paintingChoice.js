@@ -45,7 +45,7 @@ function addPaintingDetails(img, parentImg, paintingData) {
     containerPaintings.classList.add("containerPaintingsOnselectMode")
     reserveBackground.style.display ="none";
     parentImg.classList.add('selectMode');
-    img.classList.add("selectModeImg");
+    img.classList.add("selectModeImg","imageBorder","_large");
     parentImg.classList.add('selectMode');
     containerButton.classList.add('containerButton')
     img.classList.add("selectModeImg");

@@ -44,12 +44,12 @@
 #container-paintings img {
   width: 400px;
   height: fit-content;
-  transition: ease-in all 500ms;
 }
 
 #scene-reserve .selectMode .selectModeImg {
   width: fit-content;
   max-width: 1286px;
+  height: 100%;
   right: 0;
   top: 50%;
 }
@@ -132,7 +132,7 @@
     gap: 2rem;
     width: 60%;
     height: 0px;
-    padding-top: 400px;
+    padding-top: 280px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
@@ -191,8 +191,6 @@
     }
 }
 
-
-
 .modalEnd{
     position: absolute;
     left: 50%;
@@ -204,3 +202,10 @@
     z-index: 1000;
 }
 
+.imageBorder {
+    border: 3mm ridge rgb(203 189 74);
+
+    &._large {
+        border: 8mm ridge rgb(203 189 74);
+    }
+}

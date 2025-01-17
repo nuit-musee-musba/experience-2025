@@ -23,33 +23,31 @@ export default class ReserveScene extends Scene {
     loadPaintings(conteneurPaintings) {
         const conteneurPainting = document.querySelector(conteneurPaintings);
 
-        let filteredPaintings = paintings.filter(p => !selectedPaintings.some(sp => sp.id === p.id));
-        filteredPaintings.forEach((painting) => {
-            const img = document.createElement("img");
-            let div = document.createElement('div');
-
-            img.src = painting.src + ".jpg";
-            img.alt = painting.description || "Image sans description";
-            div.classList.add('paintingContainer')
-            conteneurPainting.append(div);
-            conteneurPainting.append(img);
-            div.append(img)
+                let filteredPaintings = paintings.filter(p => !selectedPaintings.some(sp => sp.id === p.id));
+                filteredPaintings.forEach((painting) => {
+                const img = document.createElement("img");
+                let div = document.createElement('div');
+        
+                img.src = painting.src + ".jpg";
+                img.alt = painting.description || "Image sans description";
+                    div.classList.add('paintingContainer', 'imageBorder');
+                conteneurPainting.append(div);
+                conteneurPainting.append(img);
+                div.append(img)
         });
-
+    
     }
 
     unloadPainting(idContainerPaintings) {
         const containerPaintings = document.querySelector(idContainerPaintings);
         containerPaintings.innerHTML = "";
     }
-
     scrollToBottom() {
         try {
             window.scrollBy({
                 top: 10000, // Scrolle vers le bas de 1000px
                 behavior: 'smooth' // Défilement fluide
             });
-            console.log("Scroll forcé de 1000px vers le bas.");
         } catch (error) {
             console.error("Erreur de défilement : ", error);
         }
