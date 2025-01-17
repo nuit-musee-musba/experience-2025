@@ -6,6 +6,7 @@ import { StepsDisplay } from "/commons/components/StepsDisplay";
 const Step = document.querySelector('.contener-step');
 const stepsDisplay = new StepsDisplay(0, 8, '.contener-step', Step);
 
+let playerNoWin = 0;
 let currentQuestion = 0;
 let activePlayer = 1;
 let startingPlayer = 1;
@@ -15,7 +16,7 @@ let selectedDifficulty = null;
 let HaveselectedDifficulty = 0;
 let HaveFinishQuestions = 0;
 let shuffledQuestions = [];
-let lastStartingPlayer = 1; 
+let lastStartingPlayer = 1;
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -86,7 +87,11 @@ function loadMediaToResponseMedia() {
                 element.textContent = cartelItem.text;
 
                 if (q.hide && q.hide.includes(cartelItem.id)) {
-                    element.style.color = "red";
+                    if (activePlayer == 1 && playerNoWin == 1) {
+                        element.style.color = "#741CA1";
+                    } else if (activePlayer == 2 && playerNoWin == 1) {
+                        element.style.color = "#C05825";
+                    }
                 } else {
                     element.style.color = "";
                 }
@@ -256,7 +261,7 @@ export function loadQuestion(
         HaveFinishQuestions = 1;
         HaveselectedDifficulty = 0;
     }
-    
+
 
     let q = shuffledQuestions[currentQuestion];
     if (HaveselectedDifficulty === 0) {
@@ -285,7 +290,7 @@ export function loadQuestion(
 
 function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
     if (!hasAnswered) {
-        activePlayer = activePlayer === 1 ? 2 : 1; 
+        activePlayer = activePlayer === 1 ? 2 : 1;
         activePlayerEl.textContent = activePlayer;
         updatePlayerClasses(activePlayer);
         startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
@@ -311,13 +316,17 @@ export function handleAnswer(
 ) {
     let correct = shuffledQuestions[currentQuestion].difficulties[selectedDifficulty].correct;
 
+    
+    playerNoWin = 0;
     if (choice === correct) {
+        playerNoWin = 1;
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
         updateResponseTitle(true, activePlayer);
 
         nextTurn(true, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     } else {
+        playerNoWin = 0;
         if (choice === "A") btnA.style.display = "none";
         else if (choice === "B") btnB.style.display = "none";
         else if (choice === "C") btnC.style.display = "none";
@@ -377,10 +386,10 @@ export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePl
     document.getElementById("responce-contener").style.display = "none";
 
     if (currentQuestion < questions.length) {
-    
+
         activePlayer = lastStartingPlayer === 1 ? 2 : 1;
-        lastStartingPlayer = activePlayer; 
-    
+        lastStartingPlayer = activePlayer;
+
         activePlayerEl.textContent = activePlayer;
 
         HaveFinishQuestions = 0;
