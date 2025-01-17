@@ -272,5 +272,7 @@ function touchMove(event) {
     }
 }
 
+
+
 // Initialise le premier dialogue
 updateDialogue();
