@@ -17,11 +17,11 @@
 }
 
 #character {
-  z-index: 4;
+  z-index: 5;
   display: none;
   position: fixed;
   bottom: 0;
-  left: 200px;
+  left: 260px;
 }
 
 .dialogue {
@@ -157,6 +157,12 @@
 #container-paintings > div:nth-child(4n + 2),
 #container-paintings > div:nth-child(4n + 4) {
   transform: skew(0deg, 30deg);
+}
+
+.home-button {
+  position: fixed;
+  bottom: 100px;
+  left: 100px;
 }
 
 
