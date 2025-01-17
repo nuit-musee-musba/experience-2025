@@ -589,7 +589,7 @@ export const questions = [
             easy: {
                 choices: [
                     { text: "", image: "img/card/ceramique.jpg" }, 
-                    { text: "", image: "img/card/ferronerie.jpg" },
+                    { text: "", image: "img/card/ferronnerie.jpg" },
                     { text: "", image: "img/card/dessin.jpg" },
                     { text: "", image: "img/card/verrerie.jpg" } 
                 ],
@@ -753,7 +753,7 @@ export const questions = [
             },
             medium: {
                 choices: [
-                    { text: "", image: "img/card/ferronerie.jpg" },
+                    { text: "", image: "img/card/ferronnerie.jpg" },
                     { text: "", image: "img/card/verrerie.jpg" },
                     { text: "", image: "img/card/rondeBosse.jpg" },
                     { text: "", image: "img/card/ceramique.jpg" }
