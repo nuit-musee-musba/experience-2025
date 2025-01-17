@@ -380,12 +380,12 @@ header {
 
 .player-active-background1 {
     border: 40px solid #B991CD;
-    background: #F8F3FB;
+    background: #F8EAFF;
 }
 
 .player-active-background2 {
     border: 40px solid #F2A884;
-    background: linear-gradient(0deg, #FEF8F5 0%, #FEF8F5 100%), #FFF;
+    background: #FFF1EA;
 }
 
 #timer-card {
