@@ -3,19 +3,38 @@ import SelectedElements from "../data/selectedElements.js";
 import Sprite from "./sprite.js";
 import Scene from "./scene.js";
 import selectedPaintings from "../data/selectedPaintings.js";
+import Game from "./Game.js";
+import selectedElements from "../data/selectedElements.js";
 
 export default class EndScene extends Scene {
     constructor() {
         super("end-scene", null); 
         this.perspectiveRotation = 1689;
+
+        this.button = document.createElement("button")
+        this.button.className =`nextButton button normal white rightBottom`;
+        this.button.textContent = "Recommencer";
+        this.button.id = "reload-game";
+        document.getElementById("end-scene").appendChild(this.button);
     }
 
     initScene(){
         super.initScene()
         this.fetchElements()
         this.fetchPaintings()
+        Game.getInstance().dialogue.listDialogue(["2-2-2", `3-0-0`]);
+        if (this.placeHandler || this.reloadHandler) {
+                    this.button.removeEventListener("click", this.reloadHandler);
+                    document.removeEventListener("click", this.placeHandler); // Changé pour document
+                }
         
-        console.log('selected painting', selectedPaintings)
+                this.reloadHandler = () => {
+                    Game.getInstance().resetGame()
+                }
+             
+
+        this.button.addEventListener("click", this.reloadHandler);
+        document.addEventListener("click", this.placeHandler); // Changé pour document
     }
 
 
@@ -28,6 +47,7 @@ export default class EndScene extends Scene {
             this.rotatePainting(sprite.element);
         }
     }
+
     rotatePainting(painting, reset = false) {
         if (!painting) {
             return;
@@ -54,13 +74,31 @@ export default class EndScene extends Scene {
         elem.style.left = `${centeredLeft}px`;
         elem.style.top = `${centeredTop}px`;
     }
+
     fetchElements() {
-            SelectedElements.forEach((element) => {
-                let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "end-elements-container");
-                sprite.element.style.zIndex = "2";
-            })
+        SelectedElements.forEach((element) => {
+            let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "end-elements-container");
+            sprite.element.style.zIndex = "2";
+        })
     }
 
+    unloadScene(){
+        super.unloadScene()
+        selectedPaintings.splice(0, selectedPaintings.length);
+        selectedElements.splice(0, selectedElements.length);
+
+        const paintingsContainer = document.getElementById("end-paintings-container");
+        const elementsContainer = document.getElementById("end-elements-container");
+
+        if (paintingsContainer) {
+            paintingsContainer.innerHTML = "";
+        }
+        if (elementsContainer) {
+            elementsContainer.innerHTML = ""; 
+        }
+
+        
+    }
     
 }
 

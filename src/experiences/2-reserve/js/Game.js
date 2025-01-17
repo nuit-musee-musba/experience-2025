@@ -1,5 +1,8 @@
 import EventEmitter from "../../../commons/components/EventEmitter.js"
+import selectedElements from "../data/selectedElements.js";
 import Dialogue from "./dialogue.js";
+import selectedPaintings from "../data/selectedPaintings.js";
+
 
 var thematicEnum = {
     0: "happy",
@@ -46,5 +49,17 @@ export default class Game extends EventEmitter {
             return;
         }
         this.loadScene("scene-reserve")
+    }
+
+
+    resetGame(){
+        this.unloadScene('scene-reserve')
+        this.unloadScene('end-scene')
+        this.unloadScene('scene-welcome')
+        this.unloadScene('scene-exhibition')
+        this.gameProgression = 0
+        this.loadScene('scene-welcome')
+        selectedPaintings.splice(0, selectedPaintings.length);
+        selectedElements.splice(0, selectedElements.length);
     }
 }
