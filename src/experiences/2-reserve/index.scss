@@ -7,6 +7,7 @@
 
 .exhibition-info {
   position: absolute;
+  z-index: 10;
   top: 1800px;
   left: 3300px;
 }
@@ -16,41 +17,41 @@
 }
 
 #character {
-    z-index: 4;
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 200px;
+  z-index: 4;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 200px;
 }
 
 .dialogue {
-    z-index: 4;
-    display: none;
-    position: fixed;
-    bottom: 180px;
-    left: 900px;
-    background-color: white;
+  z-index: 4;
+  display: none;
+  position: fixed;
+  bottom: 180px;
+  left: 900px;
+  background-color: white;
 }
 
-#container-paintings{
-    display: flex;
-    gap: 2rem;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: 100%;
+#container-paintings {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
 }
 
-#container-paintings img{
-    width: 400px;
-    height: fit-content ;
-    transition: ease-in all 500ms;
+#container-paintings img {
+  width: 400px;
+  height: fit-content;
+  transition: ease-in all 500ms;
 }
 
-#scene-reserve .selectMode .selectModeImg{
-    width: fit-content;
-    height: 100%;
-    right: 0;
-    top: 50%;
+#scene-reserve .selectMode .selectModeImg {
+  width: fit-content;
+  height: 100%;
+  right: 0;
+  top: 50%;
 }
 
 #scene-reserve .selectMode{
@@ -85,9 +86,9 @@
     z-index: -1;
 }
 
-.selectModeDescription{
-    width: 100%;
-    height: 100%;
+.selectModeDescription {
+  width: 100%;
+  height: 100%;
 }
 
 .nextButton:disabled {
@@ -101,29 +102,29 @@
   position: absolute;
 }
 
-.descriptionContainer{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    gap: 78px;
+.descriptionContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 78px;
 }
 
-.containerButton{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.containerButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-#reserve-background{
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    position: static ;
+#reserve-background {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  position: static;
 }
 
 #container-paintings{
@@ -142,20 +143,20 @@
     transform: translateX(-50%);
 }
 
-#scene-reserve .containerPaintingsOnselectMode{
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+#scene-reserve .containerPaintingsOnselectMode {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #container-paintings > div:nth-child(4n + 1),
 #container-paintings > div:nth-child(4n + 3) {
-    transform: skew(0deg, -30deg);
+  transform: skew(0deg, -30deg);
 }
 
 #container-paintings > div:nth-child(4n + 2),
 #container-paintings > div:nth-child(4n + 4) {
-    transform: skew(0deg, 30deg);
+  transform: skew(0deg, 30deg);
 }
 
 
