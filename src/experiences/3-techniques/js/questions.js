@@ -1483,4 +1483,269 @@ export const questions = [
             }
         }
     },
+
+
+
+
+
+
+
+    {
+        //Q30
+        question: "Quel domaine est représenté ici ? ", //souligner domaine
+        responseDetails: {
+            text: "L'œuvre Les Beaux-Arts de Nicolas Henry Jeaurat de Bertry représente une allégorie des arts, mettant en scène des éléments emblématiques du monde artistique. À travers cette composition, l'artiste illustre l'importance des disciplines telles que la peinture, la sculpture et l'architecture, qui étaient au cœur des préoccupations culturelles du XVIIIᵉ siècle .",
+            media: ""
+        },
+        media: "img/art/beauxArts.png",
+        cartel: [
+            { id: "artistName", text: "Jeaurat de Bertry Nicolas Henry" },
+            { id: "artName", text: "Les Beaux-Arts" },
+            { id: "artDate", text: "18ᵉ siècle" },
+            { id: "useTechnique", text: "Huile sur toile" },
+            { id: "whereMuseum", text: "Exposée" }
+        ],
+        hide: ["artistName"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "img/card/Cuisine.jpg" },
+                    { text: "", image: "img/card/BeauxArts.jpg" },
+                    { text: "", image: "img/card/Technologie.jpg" },
+                    { text: "", image: "img/card/Sport.jpg" }
+                ],
+                correct: "B"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "img/card/Languesetrangeres.jpg" },
+                    { text: "", image: "img/card/BeauxArts.jpg" },
+                    { text: "", image: "img/card/Labiologie.jpg" },
+                    { text: "", image: "img/card/Mathematiques.jpg" }
+                ],
+                correct: "B"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "img/card/Languesetrangeres.jpg" },
+                    { text: "", image: "img/card/BeauxArts.jpg" },
+                    { text: "", image: "img/card/Histoire.jpg" },
+                    { text: "", image: "img/card/Philosophie.jpg" }
+                ],
+                correct: "B"
+            }
+        }
+    },
+
+
+
+
+
+
+
+    {
+        //Q31
+        question: "Pour toi, sur quel matériau repose cette œuvre ?", //souligner repose
+        responseDetails: {
+            text: "L'œuvre Saint Sébastien , réalisée par Odilon Redon dit Bertrand Redon , est exécutée sur un support en papier , en utilisant la technique du pastel . Ce choix de support permet d'obtenir des nuances subtiles et des dégradés doux, caractéristiques du travail d'Odilon Redon.",
+            media: ""
+        },
+        media: "img/art/saintSebastian.png",
+        cartel: [
+            { id: "artistName", text: "Odilon Redon" },
+            { id: "artName", text: "Saint Sébastien" },
+            { id: "artDate", text: "1910" },
+            { id: "useTechnique", text: "Pastel sur papier" },
+            { id: "whereMuseum", text: "Exposée" }
+        ],
+        hide: ["useTechnique"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "img/card/verre.jpg" },
+                    { text: "", image: "img/card/papier.jpg" },
+                    { text: "", image: "img/card/corde.jpg" },
+                    { text: "", image: "img/card/fer.jpg" }
+                ],
+                correct: "B"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "img/card/marbre.jpg" },
+                    { text: "", image: "img/card/papier.jpg" },
+                    { text: "", image: "img/card/terreCuite.jpg" },
+                    { text: "", image: "img/card/carton.jpg" }
+                ],
+                correct: "B"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "img/card/toile.jpg" },
+                    { text: "", image: "img/card/papier.jpg" },
+                    { text: "", image: "img/card/bois.jpg" },
+                    { text: "", image: "img/card/carton.jpg" }
+                ],
+                correct: "B"
+            }
+        }
+    },
+
+
+
+
+
+
+    {
+        //Q32
+        question: "Quels outils est utilisé pour cette œuvre ?", //souligner outils
+        responseDetails: {
+            text: "Pour réaliser Nature morte, fruits et fleurs en 1942 , Henri Matisse a utilisé le fusain sur papier. Le fusain , un outil de dessin composé de charbon de bois, permet d'obtenir des tracés à la fois précis et expressifs, ainsi que de riches variations de tons, du noir profond aux nuances plus légères. ",
+            media: ""
+        },
+        media: "img/art/natureMorte.png",
+        cartel: [
+            { id: "artistName", text: "Matisse Henri" },
+            { id: "artName", text: "Nature morte, fruits et fleurs" },
+            { id: "artDate", text: "1942" },
+            { id: "useTechnique", text: "Fusain sur papier" },
+            { id: "whereMuseum", text: "Exposée" }
+        ],
+        hide: ["useTechnique"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "img/card/verre.jpg" },
+                    { text: "", image: "img/card/laine.jpg" },
+                    { text: "", image: "img/card/massette.jpg" },
+                    { text: "", image: "img/card/fusain.jpg" }
+                ],
+                correct: "D"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "img/card/encreChine.jpg" },
+                    { text: "", image: "img/card/aquarelle.jpg" },
+                    { text: "", image: "img/card/acrylique.jpg" },
+                    { text: "", image: "img/card/fusain.jpg" }
+                ],
+                correct: "D"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "img/card/encreChine.jpg" },
+                    { text: "", image: "img/card/crayon.jpg" },
+                    { text: "", image: "img/card/minePlomb.jpg" },
+                    { text: "", image: "img/card/fusain.jpg" }
+                ],
+                correct: "D"
+            }
+        }
+    },
+
+    
+
+
+
+    {
+        //Q33
+        question: "A toi ! Quand cette peinture a-t-elle été réalisée ?", //souligner quand
+        responseDetails: {
+            text: "Pour réaliser Galerie des rois et des reines en 2019 , Denis Monfleur a utilisé des outils de sculpture adaptés à la pouzzolane de Chambois émaillée et à la lave du Mont-Dore . Ces matériaux volcaniques ont obligatoirement des instruments robustes tels que des ciseaux à pierre, maillets et meules diamantées , permettant de tailler avec précision et de révéler les textures uniques de la roche.",
+            media: ""
+        },
+        media: "img/art/galerieRoiReine.png",
+        cartel: [
+            { id: "artistName", text: "Monfleur Denis" },
+            { id: "artName", text: "Galerie des rois et des reines" },
+            { id: "artDate", text: "2019" },
+            { id: "useTechnique", text: "Pouzzolane de Chambois émaillée et lave du Mont-Dore" },
+            { id: "whereMuseum", text: "Exposée" }
+        ],
+        hide: ["artDate"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "img/card/MoyenAge.jpg" },
+                    { text: "", image: "img/card/Antiquite.jpg" },
+                    { text: "", image: "img/card/EpoqueContemporaine.jpg" },
+                    { text: "", image: "img/card/Prehistoire.jpg" }
+                ],
+                correct: "B"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "img/card/20e.jpg" },
+                    { text: "", image: "img/card/22e.jpg" },
+                    { text: "", image: "img/card/21e.jpg" },
+                    { text: "", image: "img/card/19e.jpg" }
+                ],
+                correct: "B"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "img/card/2000-2010.jpg" },
+                    { text: "", image: "img/card/1990-2000.jpg" },
+                    { text: "", image: "img/card/2010-2020.jpg" },
+                    { text: "", image: "img/card/2020-2025.jpg" }
+                ],
+                correct: "B"
+            }
+        }
+    },
+
+
+
+
+
+
+
+
+    {
+        //Q34
+        question: "Quels outils est utilisé pour cette œuvre ?", //souligner outils
+        responseDetails: {
+            text: "Pour réaliser Projet de mosaïque , Edmond Boissonnet a utilisé la gouache sur papier, une peinture à base d'eau offrant des couleurs intenses et opaques. Il a également travaillé en collage , fixant son dessin sur un deuxième papier pour renforcer l'effet visuel et la composition. ",
+            media: ""
+        },
+        media: "img/art/projetMosaique.png",
+        cartel: [
+            { id: "artistName", text: "Boissonnet Edmond" },
+            { id: "artName", text: "Projet de mosaïque" },
+            { id: "artDate", text: "20ᵉ siècle" },
+            { id: "useTechnique", text: "Gouache sur papier collé sur papier" },
+            { id: "whereMuseum", text: "En réserve" }
+        ],
+        hide: ["useTechnique"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "img/card/gouache.jpg" },
+                    { text: "", image: "img/card/ebauchoir.jpg" },
+                    { text: "", image: "img/card/chanvre.jpg" },
+                    { text: "", image: "img/card/mirette.jpg" }
+                ],
+                correct: "A"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "img/card/gouache.jpg" },
+                    { text: "", image: "img/card/platre.jpg" },
+                    { text: "", image: "img/card/crayon.jpg" },
+                    { text: "", image: "img/card/sanguine.jpg" }
+                ],
+                correct: "A"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "img/card/gouache.jpg" },
+                    { text: "", image: "img/card/acrylique.jpg" },
+                    { text: "", image: "img/card/aquarelle.jpg" },
+                    { text: "", image: "img/card/peintureHuile.jpg" }
+                ],
+                correct: "A"
+            }
+        }
+    },    
+
+
 ];
