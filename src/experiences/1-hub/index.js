@@ -37,36 +37,36 @@ const experienceData = [
     {
         id: 1,
         title: 'Résérve',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Tristan régisseur du Musba fait appel à toi, gardien des merveilles, pour tisser les fils d'une toute nouvelle exposition enchantée. Plonge dans les trésors des réserves, où chaque peinture murmure des histoires oubliées, et laisse ta créativité illuminer la salle. Ta mission : insuffler une magie unique, transformant cet espace en un royaume vibrant qui émerveillera les âmes et éveillera les rêves.",
+        illustration: '/1-hub/illustrations/reserve.png',
         link: '/experiences/2-reserve/index.html'
     },
     {
         id: 2,
         title: 'Sculpture',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Plongez dans l'univers captivant de la sculpture de bronze avec Ernest Meissonier comme guide ! Découvrez chaque étape du processus, de la modélisation en argile au coulage du bronze, et recréez le chef-d'œuvre Le Voyageur. Dans cette expérience ludique et immersive, apprenez l’art complexe de la sculpture de bronze.",
+        illustration: '/1-hub/illustrations/sculpture.png',
         link: '/experiences/4-sculpture/index.html'
     },
     {
         id: 3,
         title: 'Peinture',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Avec Polychromia, plonge dans l’univers fascinant des couleurs à travers divers mouvements artistiques ! Découvre comment la palette choisie par l’artiste influence la signification de l’œuvre, et recolorise certaines parties clés du tableau pour comprendre l’importance des couleurs dans une œuvre. Grâce à des choix interactifs et guidés, tu apprendras à décoder l’art de manière ludique et captivante !",
+        illustration: '/1-hub/illustrations/peinture.png',
         link: '/experiences/5-peintures/index.html'
     },
     {
         id: 4,
         title: 'Arts Graphiques',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Mesdames et Messieurs, vous avez été sélectionnés pour participer au célèbre quiz CARTES & CARTELS ! Que vous veniez seul ou à plusieurs, préparez-vous à affronter une succession de questions sur ces petits écriteaux descriptifs des œuvres : les cartels. Déduction et connaissances seront vos meilleures armes pour parvenir à vous sortir de cette aventure périlleuse.",
+        illustration: '/1-hub/illustrations/art-graphiques.png',
         link: '/experiences/3-techniques/index.html'
     },
     {
         id: 5,
         title: 'Restauration',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Prenez les commandes d’une restauration de tableau et découvrez la beauté de ce métier qui transmet le passé aux générations futures. À travers cette expérience, suivez les conseils du formateur et formez vous avant tout à ce noble métier requérant des notions scientifiques surprenantes. Un métier magique et bien plus exercer que vous ne le pensez.",
+        illustration: '/1-hub/illustrations/restauration.png',
         link: '/experiences/6-restaurations/index.html'
     },
     

@@ -47,11 +47,11 @@
             .personnage-container{
                 position: absolute;
                 &[experience-id="1"] {
-                    transform: translate(-25vw, 13vh);
+                    transform: translate(-23vw, 12vh);
                     z-index: -3;
                 }
                 &[experience-id="2"] {
-                    transform: translate(-12vw, 1vh);
+                    transform: translate(-13vw, 1vh);
                     z-index: -2;
                 }
                 &[experience-id="3"] {
@@ -63,7 +63,7 @@
                     z-index: -2;
                 }
                 &[experience-id="5"] {
-                    transform: translate(27vw, 7vh);
+                    transform: translate(30vw, 7vh);
                     z-index: -3;
                 }
                 .personnage{
@@ -116,11 +116,21 @@
             height: 60vh;
             position: relative;
             justify-content: center;
-            top: 15vh;
+            top: 25vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             display: none;
+            .experience-illustartion{
+                height: 1000px;
+                width: 3360px;
+                z-index: -3;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
             .experience-modal{
                 transform: translateY(-15vh);
                 background-color: white;
