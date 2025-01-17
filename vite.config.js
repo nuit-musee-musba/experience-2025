@@ -53,7 +53,6 @@ export default defineConfig({
         "4-sculpture": "./src/experiences/4-sculpture/index.html",
         "5-peintures": "./src/experiences/5-peintures/index.html",
         "6-restaurations": "./src/experiences/6-restaurations/index.html",
-
       },
     },
   },
