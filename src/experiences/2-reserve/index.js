@@ -14,6 +14,6 @@ const exhibitionScene = new ExhibitionScene();
 const reserveScene = new ReserveScene();
 const endScene = new EndScene();
 
-Game.getInstance().loadScene("end-scene");
+Game.getInstance().loadScene("scene-welcome");
 
 
