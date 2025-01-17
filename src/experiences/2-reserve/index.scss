@@ -1,4 +1,4 @@
-#scene-exhibition, #scene-reserve, #end-scene {
+#scene-exhibition, #scene-reserve, #end-scene, #scene-welcome {
   display: none;
   position: relative;
   top: 0;
@@ -156,6 +156,16 @@
 #container-paintings > div:nth-child(4n + 2),
 #container-paintings > div:nth-child(4n + 4) {
     transform: skew(0deg, 30deg);
+}
+
+
+
+.rightBottom{
+    position: absolute;
+    top: 1800px;
+    left: 3085px;
+    z-index: 1000;
+
 }
 
 

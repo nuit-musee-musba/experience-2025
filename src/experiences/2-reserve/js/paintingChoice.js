@@ -88,25 +88,26 @@ function createRemoveLink(parentImg, img) {
 function createPushLink(paintingData, parentImg, img) {
     let pushLink = document.createElement('a');
     pushLink.href = "#";
-    pushLink.classList.add('small', 'black', 'nextButton' ,'button')
-    pushLink.innerText = "Valider";
+    pushLink.classList.add('small', 'black', 'nextButton', 'button');
+    pushLink.innerText = "Choisir";
+    
     pushLink.addEventListener("click", (e) => {
         e.preventDefault();
-
-        if (!selectedPaintings.includes(paintingData)) {
+        
+    
+        if (!selectedPaintings.some(p => p.id === paintingData.id)) {
             selectedPaintings.push(paintingData);
-            const index = paintings.findIndex(painting => painting.id === paintingData.id);
-            if (index !== -1) {
-                paintings.splice(index, 1); 
-            }
+            
+            // Supprime les détails de la peinture dans l'interface utilisateur
             removePaintingDetails(parentImg, img);
 
+            // Gère les sons et la transition de scène
             AudioManager.getInstance().canPlaySound = true;
             Game.getInstance().unloadScene("scene-reserve");
             Game.getInstance().loadScene("scene-exhibition");
             AudioManager.getInstance().canPlaySound = false;
         } else {
-            console.error ('Cette peinture est déjà sélectionnée.');
+            console.error('Cette peinture est déjà sélectionnée.');
         }
     });
     return pushLink;
