@@ -8,6 +8,7 @@ const stepsDisplay = new StepsDisplay(0, 8, '.contener-step', Step);
 const correctSound = new Audio('sound/SUCCESS.wav');
 const wrongSound = new Audio('sound/WRONG.wav');
 
+let questionInProgress = 0;
 
 let playerNoWin = 0;
 let currentQuestion = 0;
@@ -137,7 +138,7 @@ function askForDifficulty(
 
     if (stepsDisplay.CurrentStep.textContent == 8) {
         document.getElementById("endGame").style.display = "block";
-        stopTimer()
+        stopTimer();
         const playerScores = {
             "Joueur 1": parseInt(document.getElementById("score1").textContent, 10),
             "Joueur 2": parseInt(document.getElementById("score2").textContent, 10),
@@ -147,7 +148,6 @@ function askForDifficulty(
     }
 
     let q = shuffledQuestions[currentQuestion];
-
     questionEl.textContent = q.question;
 
     mediaContainerDiv.innerHTML = '';
@@ -163,6 +163,7 @@ function askForDifficulty(
             mediaContainerDiv.appendChild(video);
         }
     }
+
     const cartelInfoDiv = document.getElementById("cartelInfo");
     cartelInfoDiv.style.display = "block";
     if (q.cartel) {
@@ -180,7 +181,6 @@ function askForDifficulty(
         });
     }
 
-
     document.getElementById("difficulty-selector").style.display = "flex";
     document.getElementById("answers-container").style.display = "none";
 
@@ -189,69 +189,80 @@ function askForDifficulty(
     document.getElementById("easy-btn").replaceWith(document.getElementById("easy-btn").cloneNode(true));
     document.getElementById("medium-btn").replaceWith(document.getElementById("medium-btn").cloneNode(true));
     document.getElementById("hard-btn").replaceWith(document.getElementById("hard-btn").cloneNode(true));
-    
+
     document.getElementById("easy-btn").addEventListener("click", () => {
-        startQuestionWithDifficulty(
-            "easy",
-            questionEl,
-            btnA,
-            btnB,
-            btnC,
-            btnD,
-            activePlayerEl,
-            mediaContainerDiv,
-            timerEl,
-            score1El,
-            score2El,
-            nextButton
-        );
+        updateBackground("easy");
+        showContinueButton();
     });
     
     document.getElementById("medium-btn").addEventListener("click", () => {
-        startQuestionWithDifficulty(
-            "medium",
-            questionEl,
-            btnA,
-            btnB,
-            btnC,
-            btnD,
-            activePlayerEl,
-            mediaContainerDiv,
-            timerEl,
-            score1El,
-            score2El,
-            nextButton
-        );
+        updateBackground("medium")
+        showContinueButton();
     });
     
     document.getElementById("hard-btn").addEventListener("click", () => {
-        startQuestionWithDifficulty(
-            "hard",
-            questionEl,
-            btnA,
-            btnB,
-            btnC,
-            btnD,
-            activePlayerEl,
-            mediaContainerDiv,
-            timerEl,
-            score1El,
-            score2El,
-            nextButton
-        );
+        updateBackground("hard");
+        showContinueButton();
     });
-    
+
+    function showContinueButton() {
+        const continueBtn = document.getElementById("continuerDifficulty");
+        continueBtn.style.display = "block";
+        
+        continueBtn.onclick = null; 
+        continueBtn.onclick = () => {
+            startQuestionWithDifficulty(selectedDifficulty, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
+            continueBtn.style.display = "none";
+        };
+        
+    }
+
+    function updateBackground(difficulty) {
+        const btnDifficultyEs = document.getElementById("btnDifficultyEs");
+        const btnDifficultyMedium = document.getElementById("btnDifficultyMedium");
+        const btnDifficultyHard = document.getElementById("btnDifficultyHard");
+        
+        if (difficulty === "easy") {
+            btnDifficultyEs.classList.add("btnDifficultyValidate");
+            btnDifficultyMedium.classList.remove("btnDifficultyValidate");
+            btnDifficultyHard.classList.remove("btnDifficultyValidate");
+        } else if (difficulty === "medium") {
+            btnDifficultyEs.classList.remove("btnDifficultyValidate");
+            btnDifficultyMedium.classList.add("btnDifficultyValidate");
+            btnDifficultyHard.classList.remove("btnDifficultyValidate")
+        } else if (difficulty === "hard") {
+            btnDifficultyEs.classList.remove("btnDifficultyValidate");
+            btnDifficultyMedium.classList.remove("btnDifficultyValidate");
+            btnDifficultyHard.classList.add("btnDifficultyValidate")
+        }
+
+        selectedDifficulty = difficulty;
+    }
 }
 
 
+
 function startQuestionWithDifficulty(difficulty, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {
+    const btnDifficultyEs = document.getElementById("btnDifficultyEs");
+    const btnDifficultyMedium = document.getElementById("btnDifficultyMedium");
+    const btnDifficultyHard = document.getElementById("btnDifficultyHard");
+    btnDifficultyEs.classList.remove("btnDifficultyValidate");
+    btnDifficultyMedium.classList.remove("btnDifficultyValidate");
+    btnDifficultyHard.classList.remove("btnDifficultyValidate")
+    questionInProgress = true;
     selectedDifficulty = difficulty;
     timerEl.textContent = "20";
     document.getElementById('answers-container').style.display = 'flex';
     document.getElementById('difficulty-selector').style.display = 'none';
     loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
-    startTimer(timerEl, () => handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton));
+
+    console.log("la");
+    startTimer(timerEl, () => {
+        handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton);
+        questionInProgress = false;
+    });
 }
+
 
 export function loadQuestion(
     questionEl,
