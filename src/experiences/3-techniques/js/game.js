@@ -186,6 +186,10 @@ function askForDifficulty(
 
     stepsDisplay.increment(1);
 
+    document.getElementById("easy-btn").replaceWith(document.getElementById("easy-btn").cloneNode(true));
+    document.getElementById("medium-btn").replaceWith(document.getElementById("medium-btn").cloneNode(true));
+    document.getElementById("hard-btn").replaceWith(document.getElementById("hard-btn").cloneNode(true));
+    
     document.getElementById("easy-btn").addEventListener("click", () => {
         startQuestionWithDifficulty(
             "easy",
@@ -202,7 +206,7 @@ function askForDifficulty(
             nextButton
         );
     });
-
+    
     document.getElementById("medium-btn").addEventListener("click", () => {
         startQuestionWithDifficulty(
             "medium",
@@ -219,7 +223,7 @@ function askForDifficulty(
             nextButton
         );
     });
-
+    
     document.getElementById("hard-btn").addEventListener("click", () => {
         startQuestionWithDifficulty(
             "hard",
@@ -236,6 +240,7 @@ function askForDifficulty(
             nextButton
         );
     });
+    
 }
 
 
