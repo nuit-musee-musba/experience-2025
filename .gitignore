@@ -10,6 +10,12 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+
+bundle.zip
+bundle/
+.bundle_files/
+
+
 *.local
 
 # Editor directories and files
