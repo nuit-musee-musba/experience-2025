@@ -7,6 +7,7 @@ const projectTitle = document.querySelector('.project-title');
 // Navigation dans la section home
 const homeNav = document.querySelector('.home .nav');
 const homeNavItems = document.querySelectorAll('.home .nav li');
+const backHome = document.querySelector('.back-home');
 
 // Personnages dans la section home
 const homePersonnages = document.querySelectorAll('.home .personnage');
@@ -111,6 +112,13 @@ const enterExperience = (experienceID) => {
     // Crée et joue la timeline pour l'animation
     return gsap.timeline({delay:0.5})
         .set(experienceContent, {display: 'flex'})
+        .to(experienceContent,
+            {
+                opacity:1,
+                duration: 0.5,
+                ease: "power2.out",
+            }
+        )
         .fromTo(targetPerso, {
             opacity: 0,
             y:1500,
@@ -143,6 +151,26 @@ const enterExperience = (experienceID) => {
         )
 };
 
+
+const leaveExperience = (experienceID) => { 
+    const targetPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${experienceID}"]`);
+    
+    return gsap.timeline()
+        .to(targetPerso,{
+            opacity: 0,
+            y: 1500,
+            duration: 0.5,
+            ease: "power2.out",
+        })
+        .to(experienceContent,{
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        })
+        .set(experienceContent,{
+            display: 'none',
+        })
+}
 
 const changeExperience = (experienceID, previousExperienceID) => {
     console.log('change experience');
@@ -232,6 +260,18 @@ const leaveHome = gsap.timeline({
 leaveHome
     .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5})
     .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 },'-=0.5') 
+
+
+backHome.addEventListener('click', () => {
+    leaveExperience(experienceID);
+    setTimeout(() => {
+        leaveHome.reverse();
+    }, 500);
+
+    isInExperiencePage = false;
+    experienceID = null;
+    previousExperienceID = null;
+})
 
 
 // const enterExperience = gsap.timeline({paused: true})
