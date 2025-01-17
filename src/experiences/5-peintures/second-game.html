@@ -4,23 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=0.9">
   <title>Deuxième Jeu - Renaissance</title>
-  <link rel="stylesheet" href="styles/artwork.css" />
+  <!-- Lien vers votre fichier CSS séparé -->
+  <link rel="stylesheet" href="styles/artworktest.css" />
 </head>
 <body>
 
   <!-- Bouton Retour -->
   <a href="index.html" class="back-button">Retour</a>
 
-  <!-- Personnage à gauche -->
-  <div class="character">
+  <!-- Personnage à gauche (masqué par défaut) -->
+  <div class="character hidden">
     <img src="images/perso2.png" alt="Personnage" />
   </div>
 
-  <!-- Boîte de dialogue dynamique en bas (identique au premier jeu) -->
+  <!-- Boîte de dialogue dynamique en bas (initialement cachée) -->
   <div class="content-block">
-    <h1>La Renaissance</h1>
+    <h1 id="dialogTitle"></h1> <!-- Le titre sera mis à jour par JS -->
     <div id="dialogueText"></div>
-    <button class="next-dialogue" id="nextDialogue">
+    <!-- On masque le bouton "Suivant" car on n’en a plus besoin dans ce scénario -->
+    <button class="next-dialogue hidden" id="nextDialogue">
       <span id="btnText">Suivant</span>
       <img src="images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
     </button>
@@ -36,33 +38,35 @@
       <h2>Appuie sur une carte pour découvrir la signification de la couleur et recolorise la partie clé du tableau.</h2>
       <div class="art-and-palette">
 
-        <!-- L'image du tableau à gauche avec inversion de l'ordre -->
+        <!-- L'image du tableau à gauche -->
         <div class="art-info">
-          <img src="images/p1renaissance.png" alt="Détail Renaissance">
-          <p class="art-title">
+          <img id="artworkImage" src="images/p1renaissance.png" alt="Détail Renaissance">
+          <p class="art-title2" id="artworkCaption">
             PERUGIN (Pietro di Cristoforo Vannucci),<br>
             Détail du tableau (15e siècle)
           </p>
         </div>
 
-        <!-- À droite, on a la "DialogBox" persistante + 3 cartes dessous -->
+        <!-- À droite, la "DialogBox" persistante + 3 cartes dessous -->
         <div class="right-column">
 
-          <!-- LA BOX PERSISTANTE -->
+          <!-- BOX PERSISTANTE -->
           <div class="persistent-dialog">
-            <h1>Les saints</h1>
-            <p>
+            <h1 id="persistentTitle">Les saints</h1>
+            <p id="persistentText">
               Les vêtements des saints doivent refléter leur force, 
               leur passion et leur sacrifice pour la foi.
             </p>
           </div>
+
+          <!-- Nouvelle image perso2 à droite du persistent-dialog -->
+          <img src="images/perso2.png" alt="Personnage 2" class="perso2-image" />
 
           <!-- Les cartes en row -->
           <div class="cards-row">
             <!-- Carte OR -->
             <div class="color-card" data-color="#9C8A54">
               <div class="card-title">Or</div>
-              <!-- Le texte détaillé, caché tant que pas 'selected' -->
               <div class="card-details">
                 <p>Divin</p>
                 <p>Sacré</p>
@@ -89,17 +93,18 @@
                 <p>Sacrifice</p>
               </div>
             </div>
-          </div> <!-- fin cards-row -->
+          </div> <!-- fin .cards-row -->
 
-        </div> <!-- fin right-column -->
+        </div> <!-- fin .right-column -->
       </div> <!-- fin .art-and-palette -->
 
-      <!-- Bouton Valider fixé en bas à droite -->
-      <button id="validateColor" class="validate-button">Valider</button>
+      <!-- Bouton Valider -->
+      <button id="validateColor" class="validate-button">Choisir</button>
 
     </div> <!-- fin .main-game-content -->
   </div> <!-- fin .main-game-screen -->
 
+  <!-- Lien vers votre fichier JS séparé -->
   <script src="script/colorGame.js"></script>
 </body>
 </html>

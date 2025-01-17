@@ -1,9 +1,6 @@
-// ---------------------- Gestion du dialogue -------------------------
+// Dialogue initial à afficher au chargement
 const dialogues = [
-  "On invente des techniques comme la perspective pour donner de la profondeur aux tableaux, ou de la peinture à l’huile pour des couleurs plus vives. Ce sont des portraits, des scènes religieuses ou mythologiques, avec des corps beaux et parfaits.",
-  "Deuxième message du dialogue...",
-  // 3ᵉ phrase => Perugin
-  "Je suis Perugin le peintre de ce tableau !\nObserve le bien, il montre une scène religieuse avec des couleurs vives.\n\nParmi un choix de trois palettes de couleurs différentes devine laquelle a été utilisée dans mon tableau !"
+  "Je suis Perugino le peintre de ce tableau !\nObserve bien, il montre une scène religieuse avec des couleurs vives.\n\nParmi un choix de trois palettes de couleurs différentes, devine laquelle a été utilisée dans mon tableau !"
 ];
 
 let currentDialogue = 0;
@@ -13,8 +10,11 @@ let isTyping = false;
 const dialogueText = document.getElementById('dialogueText');
 const nextButton = document.getElementById('nextDialogue');
 const closeDialogBtn = document.getElementById('closeDialog');
-const arrowIcon = nextButton.querySelector('.arrow-icon');
 const btnText = document.getElementById('btnText');
+const contentBlock = document.querySelector('.content-block');
+const overlay = document.getElementById('overlay');
+const character = document.querySelector('.character');
+const titleElement = contentBlock.querySelector('h1');
 
 // Machine à écrire
 function typeWriter(text, element) {
@@ -32,6 +32,15 @@ function typeWriter(text, element) {
       setTimeout(addChar, 20);
     } else {
       isTyping = false;
+      // Si c'est le dernier dialogue, afficher "Fermer" avec FadeIn
+      if (currentDialogue === dialogues.length - 1) {
+        setTimeout(() => {
+          closeDialogBtn.classList.add('visible');
+        }, 100); // Petit délai pour synchroniser avec l'animation
+      } else {
+        // Pour les dialogues suivants, afficher "Suivant"
+        nextButton.classList.remove('hidden');
+      }
     }
   }
   addChar();
@@ -42,258 +51,231 @@ function showNextDialogue() {
   if (isTyping) {
     dialogueText.innerHTML = `<p class="dialogue-text">${dialogues[currentDialogue]}</p>`;
     isTyping = false;
+    // Afficher "Fermer" si c'est le dernier dialogue
+    if (currentDialogue === dialogues.length - 1) {
+      closeDialogBtn.classList.add('visible');
+    }
     return;
   }
 
   currentDialogue++;
 
-  // === AJOUTE CE TEST pour afficher directement "Fermer" au dernier dialogue ===
+  // Afficher "Fermer" au dernier dialogue
   if (currentDialogue === dialogues.length - 1) {
     // On masque le bouton "Suivant" entièrement
     nextButton.classList.add('hidden');
-    // On affiche le bouton "Fermer"
-    closeDialogBtn.classList.remove('hidden');
+    // On affiche le bouton "Fermer" avec FadeIn
+    closeDialogBtn.classList.add('visible');
   }
 
-  // On affiche normalement le dialogue suivant
-  dialogueText.innerHTML = '';
-  const p = document.createElement('p');
-  p.classList.add('dialogue-text');
-  dialogueText.appendChild(p);
-  typeWriter(dialogues[currentDialogue], p);
+  // Afficher le dialogue suivant si disponible
+  if (currentDialogue < dialogues.length) {
+    dialogueText.innerHTML = '';
+    const p = document.createElement('p');
+    p.classList.add('dialogue-text');
+    dialogueText.appendChild(p);
+    typeWriter(dialogues[currentDialogue], p);
+  }
 }
-
-
 
 // Initialiser au chargement
 window.addEventListener('load', () => {
+  // Faire apparaître le main game avec un fondu
+  const mainGameScreen = document.getElementById('mainGameScreen');
+  mainGameScreen.classList.add('visible');
+
+  // Afficher la boîte de dialogue initiale avec l'overlay noir
   const p = document.createElement('p');
   p.classList.add('dialogue-text');
   dialogueText.appendChild(p);
   typeWriter(dialogues[0], p);
+
+  contentBlock.style.display = 'block';
+  contentBlock.classList.add('visible');
+
+  // Afficher le personnage avec une animation de slideIn
+  character.classList.add('visible', 'slideInLeft');
+
+  // Afficher l'overlay noir
+  overlay.classList.add('visible');
 });
 
 // Clic sur "Suivant"
 nextButton.addEventListener('click', showNextDialogue);
 
-// Clic sur "Fermer" => on cache la dialogbox, le perso et l’overlay
+// Clic sur "Fermer" => on cache la dialogbox et l’overlay avec FadeOut
 closeDialogBtn.addEventListener('click', () => {
-  const contentBlock = document.querySelector('.content-block');
-  const character = document.querySelector('.character');
-  const overlay = document.getElementById('overlay');
+  // Supprimer les classes d'animation précédentes
+  contentBlock.classList.remove('fadeInUp', 'visible');
+  
+  // Appliquer l'animation de fadeOutDown à la boîte de dialogue
+  contentBlock.classList.add('fadeOutDown');
 
-  // Option 1 : disparition immédiate
-  // contentBlock.style.display = 'none';
-  // character.style.display = 'none';
-  // overlay.classList.remove('visible');
-  // overlay.style.display = 'none';
+  // Appliquer l'animation de fadeOut à l'overlay
+  overlay.classList.remove('visible');
+  overlay.classList.add('fade-out');
 
-  // Option 2 : fadeOut
-  contentBlock.style.animation = "fadeOutDown 0.8s ease-out forwards";
-
-  // Personnage : slideOutLeft
-  character.style.animation = "slideOutLeft 0.8s ease-out forwards";
-
-  // Overlay : simple fadeOut
-  overlay.style.animation = "fadeOut 0.8s ease-out forwards";
-  fadeOutArtworksAndShowMainScreen();
-  // Après 0.8s, on masque complètement ces éléments
-  setTimeout(() => {
-    contentBlock.style.display = 'none';
-    character.style.display = 'none';
-    overlay.style.display = 'none';
-  }, 800);
+  // Appliquer l'animation de slideOutLeft au personnage
+  character.classList.remove('slideInLeft');
+  character.classList.add('slideOutLeft');
 });
 
-// ------------------- Transition vers écran principal ----------------
+// Écouteur pour la fin de l'animation fadeOutDown
+contentBlock.addEventListener('animationend', (event) => {
+  if (event.animationName === 'fadeOutDown') {
+    contentBlock.style.display = 'none';
+    contentBlock.classList.remove('fadeOutDown');
+  }
+});
 
-const artworkElems = document.querySelectorAll('.artwork');
-const overlay = document.getElementById('overlay');
-const mainGameScreen = document.getElementById('mainGameScreen');
+// Écouteur pour la fin de l'animation fadeOut sur l'overlay
+overlay.addEventListener('animationend', (event) => {
+  if (event.animationName === 'fadeOut') {
+    overlay.classList.remove('fade-out');
+  }
+});
 
-function fadeOutArtworksAndShowMainScreen() {
-  // FadeOut artworks
-  artworkElems.forEach((art, index) => {
-    art.style.animation = "fadeOut 1s forwards";
-    art.style.animationDelay = (index * 0.2) + "s";
-  });
-
-  // Après 1.5s, on affiche l’overlay et l’écran principal
-  setTimeout(() => {
-    overlay.classList.add('visible');
-    mainGameScreen.classList.add('visible');
-  }, 1500);
-
-  // On peut masquer les artworks du DOM après 2s
-  setTimeout(() => {
-    const artworkContainer = document.querySelector('.artwork-container');
-    artworkContainer.style.display = 'none';
-  }, 2000);
-}
+// Écouteur pour la fin de l'animation slideOutLeft sur le personnage
+character.addEventListener('animationend', (event) => {
+  if (event.animationName === 'slideOutLeft') {
+    character.style.display = 'none';
+    character.classList.remove('slideOutLeft');
+  }
+});
 
 // Fonction pour réinitialiser et afficher la boîte de dialogue
 function showDialogBox(dialogueTextContent, title) {
-const contentBlock = document.querySelector('.content-block');
-const character = document.querySelector('.character');
-const overlay = document.getElementById('overlay');
-const dialogueText = document.getElementById('dialogueText');
-const titleElement = contentBlock.querySelector('h1');
+  // Si un 'title' est fourni, on l'affiche dans le h1
+  if (title) {
+    titleElement.textContent = title;
+  }
 
-// Si un 'title' est fourni, on l'affiche dans le h1
-if (title) {
-  titleElement.textContent = title;
-}
+  // Réinitialiser le texte de la boîte de dialogue
+  dialogueText.innerHTML = '';
+  const p = document.createElement('p');
+  p.classList.add('dialogue-text');
+  dialogueText.appendChild(p);
 
-// Réinitialiser le texte de la boîte de dialogue
-dialogueText.innerHTML = '';
-const p = document.createElement('p');
-p.classList.add('dialogue-text');
-dialogueText.appendChild(p);
+  // Activer la machine à écrire
+  typeWriter(dialogueTextContent, p);
 
-// Activer la machine à écrire
-typeWriter(dialogueTextContent, p);
+  // Réafficher la boîte de dialogue avec l'animation fadeInUp
+  contentBlock.style.display = 'block';
+  
+  // Supprimer les animations précédentes
+  contentBlock.classList.remove('fadeOutDown', 'visible');
+  
+  // Ajouter les nouvelles classes d'animation
+  contentBlock.classList.add('visible', 'fadeInUp');
 
-// Réafficher la boîte de dialogue
-contentBlock.style.display = 'block';
-contentBlock.style.animation = 'fadeInUp 0.8s ease-out forwards';
+  // Réafficher l'overlay noir
+  overlay.classList.remove('fade-out');
+  overlay.classList.add('visible');
 
-// Réafficher le personnage si nécessaire (et réinitialiser son animation)
-if (character.style.display === 'none' || character.style.opacity === '0') {
-  // Remettre hors-champ pour redémarrer l'anim 'slideInLeft'
+  // Réafficher le personnage avec une animation de slideIn
   character.style.display = 'flex';
-  character.style.animation = 'none';                  // Retire l’anim précédente
-  character.style.transform = 'translateX(-100%)';     // Position de départ à gauche
-  void character.offsetWidth;                          // Force un "reflow" (technique CSS)
-  character.style.animation = 'slideInLeft 1s forwards'; 
-  character.style.opacity = '1';
+  character.classList.remove('slideOutLeft');
+  character.classList.add('visible', 'slideInLeft');
 }
 
-// Réafficher l'overlay
-overlay.style.display = 'block';
-overlay.style.animation = 'fadeIn 0.8s ease-out forwards';
-}
-
-// Exemple d'utilisation sur les radios
+// Gestion des choix de palette de couleurs
 document.querySelectorAll('input[name="palette"]').forEach((radio) => {
-radio.addEventListener('change', (event) => {
-  const value = event.target.value;
-  if (value === 'palette2') {
-    // --- 1) Tableau des 3 dialogues ---
-    const successDialogues = [
-      // 1ère page
-      "BRAVO !\n\nLes tons doux et lumineux du Pérugin soulignent la sérénité de la Vierge et la spiritualité des saints. Bravo pour avoir décodé cette première étape du processus créatif !",
-      
-      // 2ème page
-      "Maintenant que tu as compris l’importance de la palette dans l'interprétation d’un tableau, passons à une nouvelle étape !",
-      
-      // 3ème page
-      "Ici, tu vas recolorier un élément clé du tableau, d’après ce que j’aimerais exprimer. Chaque couleur a une signification particulière ! Maintiens une couleur appuyée pour avoir sa symbolique. Glisse la bonne couleur sur l’élément en noir et blanc pour recoloriser mon tableau !"
-    ];
-    
-    // Index pour suivre quelle page de successDialogues on affiche
-    let currentSuccessIndex = 0;
-  
-    /**
-     * Affiche la page suivante (ou la page courante) dans la boîte de dialogue.
-     * - Si on arrive à la 3ᵉ page, on cache « Suivant » et montre « Fermer ».
-     * - Sinon, on cache « Fermer » et montre « Suivant ».
-     */
-    function showNextSuccessDialogue() {
-      // Tant qu’il reste des pages à afficher…
-      if (currentSuccessIndex < successDialogues.length) {
-        // On affiche le texte
-        const text = successDialogues[currentSuccessIndex];
-        showDialogBox(text, "PERUGIN, Pietro di Cristoforo Vannucci");
-        currentSuccessIndex++;
-  
-        // Si c’est la dernière page (3ᵉ) qu’on vient d’afficher :
-        if (currentSuccessIndex === successDialogues.length) {
-          // On masque « Suivant » et on affiche « Fermer »
-          nextButton.classList.add('hidden');
-          closeDialogBtn.classList.remove('hidden');
-        } else {
-          // Sinon on affiche « Suivant », on masque « Fermer »
-          nextButton.classList.remove('hidden');
-          closeDialogBtn.classList.add('hidden');
+  radio.addEventListener('change', (event) => {
+    const value = event.target.value;
+    if (value === 'palette2') {
+      // Dialogues de succès
+      const successDialogues = [
+        "BRAVO !\n\nLes tons doux et lumineux du Perugino soulignent la sérénité de la Vierge et la spiritualité des saints. Bravo pour avoir décodé cette première étape du processus créatif !",
+        "Maintenant que tu as compris l’importance de la palette dans l'interprétation d’un tableau, passons à une nouvelle étape !",
+        "Ici, tu vas recolorier un élément clé du tableau, d’après ce que j’aimerais exprimer. Chaque couleur a une signification particulière ! Maintiens une couleur appuyée pour avoir sa symbolique. Glisse la bonne couleur sur l’élément en noir et blanc pour recoloriser mon tableau !"
+      ];
+
+      let currentSuccessIndex = 0;
+
+      // Fonction pour afficher le dialogue de succès suivant
+      function showNextSuccessDialogue() {
+        if (currentSuccessIndex < successDialogues.length) {
+          const text = successDialogues[currentSuccessIndex];
+          showDialogBox(text, "PERUGINO, Pietro di Cristoforo Vannucci");
+          currentSuccessIndex++;
+
+          if (currentSuccessIndex === successDialogues.length) {
+            nextButton.classList.add('hidden');
+            closeDialogBtn.classList.add('visible'); // Ajout du FadeIn
+          } else {
+            nextButton.classList.remove('hidden');
+            closeDialogBtn.classList.remove('visible'); // Masquer "Fermer" si ce n'est pas le dernier dialogue
+          }
         }
       }
-    }
-  
-    /**
-     * Gère le clic sur « Suivant » (uniquement pour ces dialogues "success")
-     */
-    function handleSuccessNext() {
+
+      // Gérer le clic sur "Suivant" pour les dialogues de succès
+      function handleSuccessNext() {
+        showNextSuccessDialogue();
+      }
+
+      // Gérer le clic sur "Fermer" après les dialogues de succès
+      function handleSuccessClose() {
+        // 1) FadeOut de la palette
+        const paletteOptions = document.querySelector('.color-palette-options');
+        paletteOptions.classList.add('fadeOut');
+        paletteOptions.addEventListener('animationend', () => {
+          paletteOptions.remove();
+        }, { once: true });
+
+        // 2) FadeOut du h2 principal
+        const mainGameH2 = document.querySelector('.main-game-content h2');
+        mainGameH2.classList.add('fadeOut');
+        mainGameH2.addEventListener('animationend', () => {
+          mainGameH2.remove();
+        }, { once: true });
+
+        // 3) FadeOut du art-info
+        const artInfo = document.querySelector('.art-info');
+        artInfo.classList.add('fadeOut');
+        artInfo.addEventListener('animationend', () => {
+          artInfo.remove();
+        }, { once: true });
+
+        // 4) On enlève les eventListeners spéciaux
+        nextButton.removeEventListener('click', handleSuccessNext);
+        closeDialogBtn.removeEventListener('click', handleSuccessClose);
+
+        // 5) On remet l’écouteur normal "showNextDialogue"
+        nextButton.addEventListener('click', showNextDialogue);
+
+        // 6) On masque « Fermer »
+        closeDialogBtn.classList.remove('visible');
+
+        // 7) Rediriger vers le 2ᵉ jeu après un délai
+        setTimeout(() => {
+          window.location.href = "second-game.html";
+        }, 1000);
+      }
+
+      // --- 1) Initialiser les boutons ---
+      nextButton.classList.remove('hidden');
+      closeDialogBtn.classList.remove('visible');
+
+      // --- 2) On détache l’événement normal de "Suivant" ---
+      nextButton.removeEventListener('click', showNextDialogue);
+
+      // --- 3) On attache nos propres événements ---
+      nextButton.addEventListener('click', handleSuccessNext);
+      closeDialogBtn.addEventListener('click', handleSuccessClose);
+
+      // --- 4) On lance l’affichage du premier dialogue de succès ---
       showNextSuccessDialogue();
+    } else if (value === 'palette1') {
+      showDialogBox(
+        "FAUX !\n\nCe n’est pas la bonne palette, elle est plus foncée, mais réessaye encore !", 
+        "PERUGINO, Pietro di Cristoforo Vannucci"
+      );
+    } else if (value === 'palette3') {
+      showDialogBox(
+        "FAUX !\n\nCe n’est pas la bonne palette, mais réessaye encore !", 
+        "PERUGINO, Pietro di Cristoforo Vannucci"
+      );
     }
-  
-    /**
-     * Gère le clic sur « Fermer » (quand on est à la dernière page).
-     *  - On supprime la palette, on recentre art-info,
-     *  - On remet le comportement normal du bouton « Suivant ».
-     */
-    function handleSuccessClose() {
-      // 1) FadeOut de la palette
-      const paletteOptions = document.querySelector('.color-palette-options');
-      paletteOptions.style.animation = "fadeOut 0.8s forwards";
-      setTimeout(() => {
-        paletteOptions.remove();
-      }, 800);
-    
-      // 2) FadeOut du h2 principal
-      const mainGameH2 = document.querySelector('.main-game-content h2');
-      mainGameH2.style.animation = "fadeOut 0.8s forwards";
-      setTimeout(() => {
-        mainGameH2.remove();
-      }, 800);
-    
-      // 3) FadeOut du art-info
-      const artInfo = document.querySelector('.art-info');
-      artInfo.style.animation = "fadeOut 0.8s forwards";
-      setTimeout(() => {
-        artInfo.remove();
-      }, 800);
-    
-      // 4) On enlève nos eventListeners "spéciaux"
-      nextButton.removeEventListener('click', handleSuccessNext);
-      closeDialogBtn.removeEventListener('click', handleSuccessClose);
-    
-      // 5) On remet l’écouteur normal "showNextDialogue"
-      nextButton.addEventListener('click', showNextDialogue);
-    
-      // 6) On masque « Fermer »
-      closeDialogBtn.classList.add('hidden');
-    
-      // 7) (Facultatif) Rediriger vers le 2ᵉ jeu après un petit délai
-      //    si tu veux automatiquement basculer sur une autre page HTML
-      setTimeout(() => {
-        window.location.href = "second-game.html";
-      }, 1000);
-    }
-    
-  
-    // --- 2) On force « Suivant » visible et on masque « Fermer » au début ---
-    nextButton.classList.remove('hidden');
-    closeDialogBtn.classList.add('hidden');
-  
-    // --- 3) On détache l’événement normal de « Suivant » ---
-    nextButton.removeEventListener('click', showNextDialogue);
-  
-    // --- 4) On attache nos propres événements ---
-    nextButton.addEventListener('click', handleSuccessNext);
-    closeDialogBtn.addEventListener('click', handleSuccessClose);
-  
-    // --- 5) On lance l’affichage de la première page de ce mini-dialogue ---
-    showNextSuccessDialogue();
-  } else if (value === 'palette1') {
-    showDialogBox(
-      "FAUX !\n\nCe n’est pas la bonne palette, elle est plus foncée, mais réessaye encore !", 
-      "PERUGIN, Pietro di Cristoforo Vannucci"
-    );
-  } else if (value === 'palette3') {
-    showDialogBox(
-      "FAUX !\n\nCe n’est pas la bonne palette, mais réessaye encore !", 
-      "PERUGIN, Pietro di Cristoforo Vannucci"
-    );
-  }
-});
+  });
 });

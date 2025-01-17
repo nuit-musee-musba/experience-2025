@@ -1,98 +1,95 @@
-// colorGame.js
-
-// =================== SYSTÈME DE DIALOGUE REUTILISÉ ===================
-const initialDialogues = [
-    "Bienvenue dans le deuxième jeu ! Choisis une couleur pour découvrir sa signification."
-    // Tu peux ajouter d'autres dialogues initiaux si nécessaire
-];
-let currentDialogue = 0;
-let isTyping = false;
-
-// Sélecteurs
-const dialogueText = document.getElementById('dialogueText');
-const nextButton = document.getElementById('nextDialogue');
-const closeDialogBtn = document.getElementById('closeDialog');
-
-// Machine à écrire
-function typeWriter(text, element) {
-  isTyping = true;
-  let index = 0;
-  element.innerHTML = '';
-
-  function addChar() {
-    if (index < text.length) {
-      const span = document.createElement('span');
-      span.textContent = text[index];
-      span.classList.add('char');
-      element.appendChild(span);
-      index++;
-      setTimeout(addChar, 20);
-    } else {
-      isTyping = false;
+// ======================== CONFIGURATION DU JEU ========================
+const rounds = [
+    {
+      name: "Les saints",
+      image: "images/p1renaissance.png",
+      persistentTitle: "Les saints",
+      persistentText: "Les vêtements des saints doivent refléter leur force, \nleur passion et leur sacrifice pour la foi.",
+      correctColor: "#BD5A4E",
+      failTitle: "PERUGIN, Pietro di Cristoforo Vannucci",
+      failText: "Faux ! \n\nAttention, les Saints reflètent la passion du Christ !"
+    },
+    {
+      name: "Les auréoles",
+      image: "images/p2renaissance.png",
+      persistentTitle: "La Vierge",
+      persistentText: "La robe de la Vierge, doit évoquer la sérénité, \nla sagesse et le lien entre le ciel et la terre.",
+      correctColor: "#3C514A",
+      failTitle: "PERUGIN, Pietro di Cristoforo Vannucci",
+      failText: "Faux ! \n\nAttention, La Vierge évoque la sagesse et la spiritualité !"
+    },
+    {
+      name: "La Vierge",
+      image: "images/p3renaissance.png",
+      persistentTitle: "Les auréoles",
+      persistentText: "Les auréoles doivent briller comme un symbole divin, \npour rappeler la pureté et la sainteté des personnages.",
+      correctColor: "#9C8A54",
+      failTitle: "PERUGIN, Pietro di Cristoforo Vannucci",
+      failText: "Faux ! \n\nAttention les auréoles brillent comme des étoiles !"
     }
-  }
-  addChar();
-}
-
-// Fonction pour afficher le dialogue suivant
-function showNextDialogue() {
-  if (isTyping) {
-    dialogueText.innerHTML = `<p class="dialogue-text">${initialDialogues[currentDialogue]}</p>`;
-    isTyping = false;
-    return;
-  }
-
-  currentDialogue++;
-
-  // Si on a atteint la fin des dialogues initiaux
-  if (currentDialogue >= initialDialogues.length) {
-    nextButton.classList.add('hidden');
-    closeDialogBtn.classList.remove('hidden');
-  } else {
-    // Afficher le dialogue suivant
-    dialogueText.innerHTML = '';
-    const p = document.createElement('p');
-    p.classList.add('dialogue-text');
-    dialogueText.appendChild(p);
-    typeWriter(initialDialogues[currentDialogue], p);
-  }
-}
-
-// Initialiser au chargement
-window.addEventListener('load', () => {
-  const p = document.createElement('p');
-  p.classList.add('dialogue-text');
-  dialogueText.appendChild(p);
-  typeWriter(initialDialogues[0], p);
-});
-
-// Clic sur "Suivant"
-nextButton.addEventListener('click', showNextDialogue);
-
-// Clic sur "Fermer" => on cache la dialogbox, le perso et l’overlay
-closeDialogBtn.addEventListener('click', () => {
+  ];
+  
+  const successTitle = "Réussi !";
+  const successText = "Tu as réussi";
+  
+  // ======================== ÉTAT DU JEU ========================
+  let currentRoundIndex = 0;
+  let selectedColor = null; // couleur sélectionnée par l’utilisateur
+  
+  // ======================== SÉLECTION DES ÉLÉMENTS DOM ========================
+  const artworkImage = document.getElementById('artworkImage');
+  const persistentTitle = document.getElementById('persistentTitle');
+  const persistentText = document.getElementById('persistentText');
+  const colorCards = document.querySelectorAll('.color-card');
+  const validateBtn = document.getElementById('validateColor');
+  
+  // Boîte de dialogue en bas de l'écran
   const contentBlock = document.querySelector('.content-block');
-  const character = document.querySelector('.character');
+  const dialogueTextElem = document.getElementById('dialogueText');
+  const titleElement = contentBlock.querySelector('h1');
   const overlay = document.getElementById('overlay');
-
-  // FadeOut animations
-  contentBlock.style.animation = "fadeOutDown 0.8s ease-out forwards";
-  character.style.animation = "slideOutLeft 0.8s ease-out forwards";
-  overlay.style.animation = "fadeOut 0.8s ease-out forwards";
-
-  // Après 0.8s, on masque complètement ces éléments
-  setTimeout(() => {
-    contentBlock.style.display = 'none';
-    character.style.display = 'none';
-    overlay.style.display = 'none';
-  }, 800);
-});
-
-// =================== GESTION DU CHOIX DE COULEUR ===================
-let selectedColor = null;
-const colorCards = document.querySelectorAll('.color-card');
-
-colorCards.forEach(card => {
+  const character = document.querySelector('.character');
+  const perso2Image = document.querySelector('.perso2-image'); // Nouvelle sélection
+  
+  // Boutons dans la boîte de dialogue
+  const nextButton = document.getElementById('nextDialogue');
+  const closeDialogBtn = document.getElementById('closeDialog');
+  
+  // ======================== INITIALISATION ========================
+  window.addEventListener('DOMContentLoaded', () => {
+    // On démarre sur le premier round
+    loadRound(currentRoundIndex);
+  });
+  
+  // ======================== FONCTION : Charger un round ========================
+  function loadRound(index) {
+    const roundData = rounds[index];
+  
+    // Mettre à jour l’image principale
+    fadeToNewImage(artworkImage, roundData.image);
+  
+    // Mettre à jour la *persistent-dialog* (titre et texte)
+    persistentTitle.textContent = roundData.persistentTitle;
+    persistentText.textContent  = roundData.persistentText;
+  
+    // Réinitialiser la sélection de couleur
+    selectedColor = null;
+    colorCards.forEach(c => c.classList.remove('selected'));
+  }
+  
+  // ======================== FONCTION : Fade d’une image à une autre ========================
+  function fadeToNewImage(imgElement, newSrc) {
+    // Transition "fadeOut" puis "fadeIn"
+    imgElement.style.transition = "opacity 0.6s";
+    imgElement.style.opacity = 0;
+    setTimeout(() => {
+      imgElement.src = newSrc;
+      imgElement.style.opacity = 1;
+    }, 600);
+  }
+  
+  // ======================== GESTION DU CHOIX DE COULEUR ========================
+  colorCards.forEach(card => {
     card.addEventListener('click', () => {
       // Retire la classe "selected" sur toutes
       colorCards.forEach(c => c.classList.remove('selected'));
@@ -101,105 +98,168 @@ colorCards.forEach(card => {
       selectedColor = card.dataset.color;
     });
   });
-
-// Clic sur "Valider"
-const validateBtn = document.getElementById('validateColor');
-validateBtn.addEventListener('click', () => {
-  if(!selectedColor) {
-    showDialogBox("Choisis d’abord une couleur en cliquant sur une carte !", "Erreur");
-    return;
-  }
-
-  // Définir les dialogues selon la couleur sélectionnée
-  let colorDialogues = [];
-  let title = "";
-
-  if(selectedColor === '#9C8A54') {
-    title = "Signification de l'Or";
-    colorDialogues = [
-      "Or.\n\nDivin, Sacré, Éternel.\n\nL'or représente la richesse, la gloire et la lumière divine dans l'art de la Renaissance."
-    ];
-  } else if(selectedColor === '#3C514A') {
-    title = "Signification du Bleu/Vert";
-    colorDialogues = [
-      "Bleu/Vert.\n\nSpiritualité, Pureté, Élévation.\n\nCes couleurs symbolisent la foi, l'espoir et la sérénité des saints."
-    ];
-  } else if(selectedColor === '#BD5A4E') {
-    title = "Signification du Rouge";
-    colorDialogues = [
-      "Rouge.\n\nAmour divin, Foi, Sacrifice.\n\nLe rouge incarne la passion, la force et le martyr des saints dans leurs dévotions."
-    ];
-  }
-
-  // Lancer le dialogue
-  launchColorDialogue(title, colorDialogues);
-});
-
-// Fonction pour lancer le dialogue de la couleur choisie
-function launchColorDialogue(title, dialoguesArray) {
-  // Réinitialiser les dialogues
-  currentDialogue = 0;
-  isTyping = false;
-
-  // Définir les nouveaux dialogues
-  const originalDialogues = initialDialogues.slice(); // sauvegarde des dialogues initiaux
-  initialDialogues.length = 0; // vider le tableau initialDialogues
-  initialDialogues.push(...dialoguesArray); // ajouter les nouveaux dialogues
-
-  // Afficher le premier dialogue de la couleur
-  showDialogBox(initialDialogues[0], title);
-
-  // Si plusieurs dialogues, gérer les boutons
-  if (initialDialogues.length > 1) {
-    nextButton.classList.remove('hidden');
-    closeDialogBtn.classList.add('hidden');
-  } else {
+  
+  // ======================== Clic sur "Valider" ========================
+  validateBtn.addEventListener('click', () => {
+    if(!selectedColor) {
+      // Aucune couleur sélectionnée
+      showDialogBox("Choisis d’abord une couleur en cliquant sur une carte !", "Erreur");
+      return;
+    }
+  
+    // Vérifier si la couleur est la bonne pour ce round
+    const roundData = rounds[currentRoundIndex];
+    if(selectedColor === roundData.correctColor) {
+      // Bonne réponse
+      currentRoundIndex++;
+      if(currentRoundIndex < rounds.length) {
+        // Passer au round suivant
+        loadRound(currentRoundIndex);
+      } else {
+        // Il n’y a plus de round => Succès final
+        triggerSuccessState();
+      }
+    } else {
+      // Mauvaise réponse => on affiche le dialogue d’erreur
+      showDialogBox(roundData.failText, roundData.failTitle);
+    }
+  });
+  
+  // ======================== SYSTÈME DE DIALOGUE (réutilisable) ========================
+  function showDialogBox(dialogueText, title) {
+    // Mise à jour du titre
+    if (title) {
+      titleElement.textContent = title;
+    } else {
+      titleElement.textContent = "";
+    }
+  
+    // On vide et on insère le texte
+    dialogueTextElem.innerHTML = "";
+    const p = document.createElement('p');
+    p.classList.add('dialogue-text');
+    dialogueTextElem.appendChild(p);
+  
+    // Machine à écrire
+    typeWriter(dialogueText, p);
+  
+    // On rend la boîte de dialogue visible
+    contentBlock.classList.add('visible');
+  
+    // Overlay
+    overlay.classList.add('visible');
+  
+    // On masque le bouton "Suivant" (pas utile dans ce jeu linéaire)
     nextButton.classList.add('hidden');
+    // On affiche le bouton "Fermer" pour fermer la pop-up
     closeDialogBtn.classList.remove('hidden');
+  
+    // Réafficher le personnage s'il était masqué
+    if (!character.classList.contains('visible')) {
+      character.classList.remove('hidden', 'slideOutLeft');
+      character.classList.add('visible', 'slideInLeft');
+    }
   }
-
-  // Restaurer les dialogues initiaux après avoir terminé
-  // Optionnel : si tu veux permettre de revenir aux dialogues initiaux
-  // Tu peux ajuster cette logique selon tes besoins
-}
-
-// =================== SYSTÈME DE DIALOGUE REUTILISÉ ===================
-function showDialogBox(dialogueTextContent, title) {
-  const contentBlock = document.querySelector('.content-block');
-  const character = document.querySelector('.character');
-  const overlay = document.getElementById('overlay');
-  const dialogueText = document.getElementById('dialogueText');
-  const titleElement = contentBlock.querySelector('h1');
-
-  // Si un 'title' est fourni, on l'affiche dans le h1
-  if (title) {
-    titleElement.textContent = title;
+  
+  // Quand on clique sur "Fermer" dans la boîte de dialogue
+  closeDialogBtn.addEventListener('click', () => {
+    // Masquer la boîte de dialogue
+    contentBlock.classList.remove('visible');
+    // Masquer l'overlay
+    overlay.classList.remove('visible');
+    
+    // Animer le personnage pour le faire disparaître
+    if (character.classList.contains('visible')) {
+      character.classList.remove('slideInLeft');
+      character.classList.add('slideOutLeft');
+  
+      // Après l'animation, masquer le personnage
+      setTimeout(() => {
+        character.classList.remove('visible', 'slideOutLeft');
+        character.classList.add('hidden');
+      }, 800); // Durée de l'animation de sortie (doit correspondre à l'animation CSS)
+    }
+  });
+  
+  // ======================== EFFET "Machine à écrire" ========================
+  let isTyping = false;
+  function typeWriter(text, element) {
+    isTyping = true;
+    let index = 0;
+    element.innerHTML = '';
+  
+    function addChar() {
+      if (index < text.length) {
+        const span = document.createElement('span');
+        span.textContent = text[index];
+        span.classList.add('char');
+        element.appendChild(span);
+        index++;
+        setTimeout(addChar, 20);
+      } else {
+        isTyping = false;
+      }
+    }
+    addChar();
   }
-
-  // Réinitialiser le texte de la boîte de dialogue
-  dialogueText.innerHTML = '';
-  const p = document.createElement('p');
-  p.classList.add('dialogue-text');
-  dialogueText.appendChild(p);
-
-  // Activer la machine à écrire
-  typeWriter(dialogueTextContent, p);
-
-  // Réafficher la boîte de dialogue
-  contentBlock.style.display = 'block';
-  contentBlock.style.animation = 'fadeInUp 0.8s ease-out forwards';
-
-  // Réafficher le personnage si masqué
-  if (character.style.display === 'none' || character.style.opacity === '0') {
-    character.style.display = 'flex';
-    character.style.animation = 'none';
-    character.style.transform = 'translateX(-100%)';
-    void character.offsetWidth; // reflow
-    character.style.animation = 'slideInLeft 1s forwards'; 
-    character.style.opacity = '1';
+  
+  // ======================== FONCTION : Gérer l'État de Succès ========================
+  function triggerSuccessState() {
+    // 1. Remplacer l'image par pfinalerenaissance.png avec un fondu
+    fadeToNewImage(artworkImage, "images/pfinalerenaissance.png");
+  
+    // 2. Déplacer le persistent-dialog avec une animation fluide
+    const persistentDialog = document.querySelector('.persistent-dialog');
+    persistentDialog.classList.add('success');
+  
+    // 3. Déplacer et redimensionner le character avec une animation fluide
+    perso2Image.classList.add('success');
+  
+    // 4. Changer le texte du bouton "Choisir" en "Suivant"
+    validateBtn.textContent = "Suivant";
+    validateBtn.querySelector('#btnText')?.remove(); // Supprimer le span si présent
+    const arrowIcon = validateBtn.querySelector('.arrow-icon');
+    if (arrowIcon) {
+      arrowIcon.remove(); // Supprimer la flèche si présente
+    }
+  
+    // 5. Modifier l'apparence du bouton pour correspondre aux styles de succès
+    document.body.classList.add('success-state');
+  
+    // 6. Ajouter un nouvel écouteur pour rediriger vers end-game.html
+    validateBtn.removeEventListener('click', validateColorHandler); // Supprimer l'ancien écouteur
+    validateBtn.addEventListener('click', () => {
+      window.location.href = "end-game.html";
+    });
   }
-
-  // Réafficher l'overlay
-  overlay.style.display = 'block';
-  overlay.style.animation = 'fadeIn 0.8s ease-out forwards';
-}
+  
+  // ======================== GESTION DES ÉVÉNEMENTS ========================
+  // Séparer le handler pour pouvoir le supprimer plus tard
+  function validateColorHandler() {
+    if(!selectedColor) {
+      // Aucune couleur sélectionnée
+      showDialogBox("Choisis d’abord une couleur en cliquant sur une carte !", "Erreur");
+      return;
+    }
+  
+    // Vérifier si la couleur est la bonne pour ce round
+    const roundData = rounds[currentRoundIndex];
+    if(selectedColor === roundData.correctColor) {
+      // Bonne réponse
+      currentRoundIndex++;
+      if(currentRoundIndex < rounds.length) {
+        // Passer au round suivant
+        loadRound(currentRoundIndex);
+      } else {
+        // Il n’y a plus de round => Succès final
+        triggerSuccessState();
+      }
+    } else {
+      // Mauvaise réponse => on affiche le dialogue d’erreur
+      showDialogBox(roundData.failText, roundData.failTitle);
+    }
+  }
+  
+  // Remplacer l'écouteur initial par le handler séparé
+  validateBtn.removeEventListener('click', validateBtn.onclick);
+  validateBtn.addEventListener('click', validateColorHandler);
