@@ -1,6 +1,6 @@
 import { Transform, Program, Mesh, Triangle } from 'ogl';
 
-export function ObserverShader(gl, texture) {
+export function ApprecierShader(gl, texture) {
     const scene = new Transform();
 
     const geometry = new Triangle(gl);
@@ -53,9 +53,8 @@ export function ObserverShader(gl, texture) {
             } else {
                 texColor = texture2D(uTexture, uv);
             }
-
-            vec4 brownTint = vec4(0.6, 0.4, 0.2, 1.0); // Brown color
-            gl_FragColor = mix(texColor, brownTint, 0.3); // Blend with 10% brown tint
+            
+            gl_FragColor = texColor; // Blend with 10% brown tint
             //gl_FragColor = vec4(texColor.rgb, texColor.a);
         }`,
         uniforms: {
