@@ -110,7 +110,7 @@ const enterExperience = (experienceID) => {
     targetIllustartion.src = targetExperienceData.illustration;
     targetBtn.href = targetExperienceData.link;
 
-    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, {duration: 0.2, delay: 0.5, steps: 10});
+    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, {duration: 0.2, delay: 0.65, steps: 10});
 
 
     // Crée et joue la timeline pour l'animation
@@ -120,49 +120,7 @@ const enterExperience = (experienceID) => {
         .set(experienceIllustration, {
             clipPath: "inset(0 0 100% 0)",
         })
-        .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5},0)
-        .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 },0) 
-        .to(experienceIllustration, {
-            clipPath: "inset(0 0 0% 0)", 
-            duration: 0.5,
-            ease: "power2.inOut",
-        },0)
-        .fromTo(experienceIllustration,
-            {
-                opacity: 0,
-            },
-            {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out",
-            },0
-        )
-        .fromTo(experienceModal,
-            {
-                opacity: 0,
-            },
-            {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out",
-            }, 0
-        )
-        .to(experienceModal,
-            {
-                opacity:1,
-                duration: 0.5,
-                ease: "power2.out",
-            }, 0
-        )
-        .fromTo(targetModalText,{
-            opacity: 0,
-            y: 50,
-        },{
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power2.out",
-        }, "<")
+        .add(leaveHome.play())
         .fromTo(targetPerso, {
             opacity: 0,
             y:1500,
@@ -172,7 +130,43 @@ const enterExperience = (experienceID) => {
             opacity: 1,
             duration: 0.5,
             ease: "power2.out",
-        },0)
+        },0.25)
+        .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.7)', duration: 0.5},0.15)
+        .to(experienceIllustration, {
+            clipPath: "inset(0 0 0% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+        },0.25)
+        .fromTo(experienceIllustration,
+            {
+                opacity: 0,
+            },
+            {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+            },0.25
+        )
+        .fromTo(experienceModal,
+            {
+                opacity: 0,
+            },
+            {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+            }, 0.65
+        )
+        .fromTo(targetModalText,{
+            opacity: 0,
+            y: 50,
+        },{
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        }, 0.65)
+        
        
 };
 
@@ -191,18 +185,20 @@ const leaveExperience = (experienceID) => {
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
-        })
+        },0.15)
         .to(experienceModal,{
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
-        }, "-=0.5")
+        },0.15)
+        .add(leaveHome.reverse(),0.05)
         .set(experienceIllustration,{
             display: 'none',
         })
         .set(experienceModal,{
             display: 'none',
         })
+        
 }
 
 const changeExperience = (experienceID, previousExperienceID) => {
@@ -234,7 +230,7 @@ const changeExperience = (experienceID, previousExperienceID) => {
     targetModalText.innerText = targetExperienceData.description;
     targetBtn.href = targetExperienceData.link;
 
-    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, { duration: 0.2, steps: 10 });
+    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, { duration: 0.2,delay:0.65, steps: 10 });
 
 
     const maskTimeline = gsap.timeline();
@@ -264,7 +260,7 @@ const changeExperience = (experienceID, previousExperienceID) => {
             y: 1500,
             duration: 0.5,
             ease: "power2.out",
-        })
+        },0)
         .fromTo(targetPerso, {
             opacity: 0,
             y: 1500,
@@ -274,6 +270,13 @@ const changeExperience = (experienceID, previousExperienceID) => {
             duration: 0.5,
             ease: "power2.out",
         }, '-=0.5')
+        .fromTo(experienceModal,{
+            opacity: 0,
+        },{
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+        }, 0.65)
         .fromTo(targetModalText, {
             opacity: 0,
             y: 50,
@@ -297,7 +300,6 @@ homeNavItems.forEach((item, index) => {
 
 
         if (!isInExperiencePage) {
-            leaveHome.play();
             enterExperience(experienceID);
             isInExperiencePage = true;
         } else {
@@ -313,15 +315,12 @@ const leaveHome = gsap.timeline({
 
 
 leaveHome
-    // .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5})
     .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 }) 
 
 
 backHome.addEventListener('click', () => {
     leaveExperience(experienceID);
-    setTimeout(() => {
-        leaveHome.reverse();
-    }, 500);
+     
 
     isInExperiencePage = false;
     experienceID = null;
