@@ -2,7 +2,7 @@
 const rounds = [
   {
     name: "L’herbe",
-    image: "images/p1symbolisme.webp",
+    image: "/5-peintures/images/p1symbolisme.webp",
     persistentTitle: "L’herbe",
     persistentText: "L'herbe et le feuillage symbolisent le cycle de la vie, porteurs d'espoir en une renaissance spirituelle.",
     correctColor: "#6E6F58",
@@ -12,7 +12,7 @@ const rounds = [
   },
   {
     name: "Les fleurs",
-    image: "images/p2symbolisme.webp",
+    image: "/5-peintures/images/p2symbolisme.webp",
     persistentTitle: "Les fleurs",
     persistentText: "Regarde attentivement les fleurs, disséminées au pied du saint, ces fleurs rappellent le sang et le sacrifice.",
     correctColor: "#BD5A4E",
@@ -22,7 +22,7 @@ const rounds = [
   },
   {
     name: "Le nuage",
-    image: "images/p3symbolisme.webp",
+    image: "/5-peintures/images/p3symbolisme.webp",
     persistentTitle: "Le nuage",
     persistentText: "Le nuage suggère une atmosphère mystique et irréelle, renforçant le caractère sacré du sacrifice.",
     correctColor: "#604F97",
@@ -32,7 +32,7 @@ const rounds = [
   },
   {
     name: "Le ciel",
-    image: "images/p4symbolisme.webp",
+    image: "/5-peintures/images/p4symbolisme.webp",
     persistentTitle: "Le ciel",
     persistentText: "Le haut du ciel représente la lumière céleste, c’est un symbole d'espoir.",
     correctColor: "#E6BB41",
@@ -190,7 +190,7 @@ function triggerSuccessState() {
         "top 1s cubic-bezier(0.19, 1, 0.22, 1), right 1s cubic-bezier(0.19, 1, 0.22, 1), width 1s cubic-bezier(0.19, 1, 0.22, 1), height 1s cubic-bezier(0.19, 1, 0.22, 1)";
       perso2Image.style.top = "60.25rem"; 
       setTimeout(() => {
-        fadeToNewImage(artworkImage, "images/pfinalesymbolisme.webp");
+        fadeToNewImage(artworkImage, "/5-peintures/images/pfinalesymbolisme.webp");
         persistentDialog.classList.add('success');
         perso2Image.classList.add('success');
         validateBtn.textContent = "Suivant";
@@ -206,12 +206,4 @@ function triggerSuccessState() {
       }, 300); 
     }, { once: true });
   }
-}
-function fadeToNewImage(imgElement, newSrc) {
-  imgElement.style.transition = "opacity 0.6s";
-  imgElement.style.opacity = 0;
-  setTimeout(() => {
-    imgElement.src = newSrc; 
-    imgElement.style.opacity = 1; 
-  }, 600);
 }

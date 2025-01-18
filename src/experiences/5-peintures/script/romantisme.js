@@ -2,7 +2,7 @@
 const rounds = [
   {
     name: "Le corps de la femme",
-    image: "images/p1romantisme.webp",
+    image: "/5-peintures/images/p1romantisme.webp",
     persistentTitle: "Le corps de la femme",
     persistentText: "La peau de la femme représente la pureté et la fragilité.",
     correctColor: "#D0C0A7",
@@ -12,7 +12,7 @@ const rounds = [
   },
   {
     name: "Les draps",
-    image: "images/p2romantisme.webp",
+    image: "/5-peintures/images/p2romantisme.webp",
     persistentTitle: "Les draps",
     persistentText: "J’aimerais attirer l’attention avec les draps, avec un air d'innocence et de vulnérabilité.",
     correctColor: "#D7D7D7",
@@ -22,7 +22,7 @@ const rounds = [
   },
   {
     name: "La couverture",
-    image: "images/p3romantisme.webp",
+    image: "/5-peintures/images/p3romantisme.webp",
     persistentTitle: "La couverture",
     persistentText: "Cette couverture évoque la mélancolie.",
     correctColor: "#637988",
@@ -32,7 +32,7 @@ const rounds = [
   },
   {
     name: "Le corset",
-    image: "images/p4romantisme.webp",
+    image: "/5-peintures/images/p4romantisme.webp",
     persistentTitle: "Le corset",
     persistentText: "Le corset est associé à l’amour et au désir.",
     correctColor: "#853E2F",
@@ -190,7 +190,7 @@ function triggerSuccessState() {
         "top 1s cubic-bezier(0.19, 1, 0.22, 1), right 1s cubic-bezier(0.19, 1, 0.22, 1), width 1s cubic-bezier(0.19, 1, 0.22, 1), height 1s cubic-bezier(0.19, 1, 0.22, 1)";
       perso2Image.style.top = "60.25rem"; 
       setTimeout(() => {
-        fadeToNewImage(artworkImage, "images/pfinaleromantisme.webp");
+        fadeToNewImage(artworkImage, "/5-peintures/images/pfinaleromantisme.webp");
         persistentDialog.classList.add('success');
         perso2Image.classList.add('success');
         validateBtn.textContent = "Suivant";
@@ -206,12 +206,4 @@ function triggerSuccessState() {
       }, 300); 
     }, { once: true });
   }
-}
-function fadeToNewImage(imgElement, newSrc) {
-  imgElement.style.transition = "opacity 0.6s";
-  imgElement.style.opacity = 0;
-  setTimeout(() => {
-    imgElement.src = newSrc; 
-    imgElement.style.opacity = 1; 
-  }, 600);
 }
