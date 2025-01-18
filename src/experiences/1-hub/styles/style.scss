@@ -111,20 +111,24 @@
                 }
             }
         }
-        .experience-content{
-            width: 100%;
-            height: 60vh;
-            position: relative;
-            justify-content: center;
-            top: 25vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            display: none;
+        // .experience-content{
+        //     width: 100%;
+        //     height: 60vh;
+        //     position: relative;
+        //     justify-content: center;
+        //     top: 25vh;
+        //     display: flex;
+        //     flex-direction: column;
+        //     align-items: center;
+        //     display: none;
             .experience-illustartion{
                 height: 1000px;
                 width: 3360px;
                 z-index: -3;
+                margin: 0 auto;
+                display: none;
+                top: 15vh;
+                position: relative;
                 img{
                     width: 100%;
                     height: 100%;
@@ -132,9 +136,10 @@
                 }
             }
             .experience-modal{
+                display: none;
+                margin: 0 auto;
                 transform: translateY(-15vh);
                 background-color: white;
-                display: flex;
                 flex-direction: column;
                 width: 1350px;
                 border: 1px solid black;
@@ -161,7 +166,7 @@
                         color: white;
                     }
                 }
-            }
+            // }
             .experience-navigation{
                 display: flex;
                 align-items: center;

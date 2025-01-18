@@ -24,7 +24,7 @@ const experiencePersonnageContainers = document.querySelectorAll('.experience-pa
 const experienceContent = document.querySelector('.experience-page .experience-content');
 
 // Illustration de l'expérience
-const experienceIllustration = document.querySelector('.experience-page .experience-illustartion img');
+const experienceIllustration = document.querySelector('.experience-page .experience-illustartion');
 
 // Modal d'expérience
 const experienceModal = document.querySelector('.experience-page .experience-modal');
@@ -111,13 +111,21 @@ const enterExperience = (experienceID) => {
 
     // Crée et joue la timeline pour l'animation
     return gsap.timeline({delay:0.5})
-        .set(experienceContent, {display: 'flex'})
-        .to(experienceContent,
+        .set(experienceIllustration, {display: 'flex'})
+        .set(experienceModal, {display: 'flex'})
+        .to(experienceIllustration,
             {
                 opacity:1,
                 duration: 0.5,
                 ease: "power2.out",
             }
+        )
+        .to(experienceModal,
+            {
+                opacity:1,
+                duration: 0.5,
+                ease: "power2.out",
+            }, 0
         )
         .fromTo(targetPerso, {
             opacity: 0,
@@ -162,12 +170,20 @@ const leaveExperience = (experienceID) => {
             duration: 0.5,
             ease: "power2.out",
         })
-        .to(experienceContent,{
+        .to(experienceIllustration,{
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
         })
-        .set(experienceContent,{
+        .to(experienceModal,{
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        }, "-=0.5")
+        .set(experienceIllustration,{
+            display: 'none',
+        })
+        .set(experienceModal,{
             display: 'none',
         })
 }
