@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Accueil</title>
+  <link rel="stylesheet" href="styles/game.css" />
+  <style>
+    /* Animation FadeIn */
+    .fade-in {
+      opacity: 0;
+      animation: fadeInAnimation 1s forwards;
+    }
+
+    @keyframes fadeInAnimation {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Animation FadeOut */
+    .fade-out {
+      opacity: 1;
+      animation: fadeOutAnimation 1s forwards;
+    }
+
+    @keyframes fadeOutAnimation {
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Styles existants */
+    .images-dialog {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .persistent-dialog {
+      background: white;
+      border: 1px solid #000;
+      margin-bottom: 1rem;
+      position: fixed;
+      top: 56rem;
+      right: 27rem;
+      transition: top 1s cubic-bezier(0.19, 1, 0.22, 1);
+      width: 98rem;
+    }
+
+    #home-button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      font-size: 4.5rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      transition: opacity 0.3s ease;
+      font-family: 'NyghtSerif-Light', serif;
+      position: fixed;
+      bottom: 39.25rem;
+      right: 107.25rem;
+    }
+
+    /* Optionnel : Ajout d'un curseur pointer pour les boutons */
+    .back-button, #home-button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="images-dialog">
+      <img id="artworkImage" style="width: 128rem;" src="images/renaissancegroup.webp" alt="Détail Symbolisme">
+      <div class="persistent-dialog">
+          <h1 id="persistentTitle">La Renaissance (s), 15e - 16e siècles</h1>
+          <p id="persistentText">On invente des techniques comme la perspective pour donner de la profondeur aux tableaux, ou de la peinture à l’huile pour des couleurs plus vives. Ce sont des portraits, des scènes religieuses ou mythologiques, avec des corps beaux et parfaits.</p>
+      </div>
+      <button id="home-button">Suivant</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Ajout de la classe fade-in à l'élément body pour l'animation au chargement
+      document.body.classList.add('fade-in');
+      
+      // Sélection du bouton Accueil
+      const homeButton = document.getElementById('home-button');
+
+      homeButton.addEventListener('click', (e) => {
+        e.preventDefault(); // Empêche la navigation immédiate
+
+        // Ajout de la classe fade-out pour démarrer l'animation
+        document.body.classList.add('fade-out');
+
+        // Attendre la fin de l'animation avant de naviguer
+        document.body.addEventListener('animationend', () => {
+          window.location.href = 'start-renaissance.html';
+        }, { once: true }); // L'écouteur est supprimé après la première exécution
+      });
+    });
+  </script>
+</body>
+</html>
