@@ -8,12 +8,12 @@ export default [
         id : "0-0-0",
         emotion : 0,
         text : "Ah, bonjour !\n" +
-            "Mes tableaux m'avaient prédit ta venue... Je suis Tristan, le Gardien des Trésors du MUSBA. J'ai besoin de ton imagination pour créer une exposition extraordinaire avant l’arrivée pressante des visiteurs.\n",
+            "Mes tableaux m'avaient prédit ta venue... Je me nomme Tristan, le Gardien des Trésors du MUSBA. J'ai besoin de ton imagination pour créer une exposition extraordinaire avant l’arrivée pressante des visiteurs.\n",
     },
     {
         id: "0-0-1",
         emotion : 0,
-        text : "Cette salle n’attend que tu la remplisses de magie, mais avant toutes choses, laisse-moi te guider vers un lieu secret. ",
+        text : "Cette salle t'attendais pour que tu la remplisses de magie, mais avant toute chose, laisse-moi te guider vers un lieu secret.",
     },
     {
         id: "0-1-0",
@@ -23,7 +23,7 @@ export default [
     {
         id: "0-1-1",
         emotion : 0,
-        text : "Parmi toutes ces œuvres endormies tu peux prendre ton temps pour parler avec elles. Mais attention : il t’en faut choisir trois qui chanteront en harmonie. Si tu tends bien l'oreille, tu pourras peut-être les entendre te souffler des secrets... ",
+        text : "Parmi toutes ces œuvres endormies tu peux prendre ton temps pour parler avec elles. Mais attention : il t’en faut choisir trois qui chanteront en harmonie. Si tu clique sur un tableau, tu pourras peut-être l'entendre te souffler ses secrets...",
     },
     {
         id : "0-2-0",
@@ -33,7 +33,7 @@ export default [
     {
         id : "0-2-1",
         emotion : 0,
-        text: "Observe comme l'espace d'exposition réagit à ta sélection ! En tant que conservateur, ton rôle est aussi de créer un dialogue entre l'œuvre et son environnement. La scénographie que tu vois s'adapter participe à cette magie."
+        text: "Observe comme l'espace d'exposition réagit à ta sélection ! En tant que conservateur, ton rôle est aussi de créer un dialogue entre l'œuvre et son environnement. La scénographie de la salle s'adapte à cette magie."
     },
     {
         id : "1-2-1",
@@ -53,6 +53,6 @@ export default [
     {
         id : "3-0-0",
         emotion : 0,
-        text: "Souhaites-tu poursuivre ta formation de conservateur et créer une nouvelle exposition ? D'autres histoires attendent d'être révélées par ton regard…"
+        text: "Souhaites-tu poursuivre ta formation de conservateur et créer une nouvelle exposition ? De nombreux tableaux attendent de dévoiler leur histoire"
     },
 ]

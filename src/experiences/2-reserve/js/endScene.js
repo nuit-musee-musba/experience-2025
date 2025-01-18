@@ -13,11 +13,7 @@ export default class EndScene extends Scene {
     constructor() {
         super("end-scene", "/2-reserve/assets/sound/song.mp3");
         this.perspectiveRotation = 1689;
-        
-        this.button = document.createElement("button")
-        this.button.className =`nextButton button normal white rightBottom`;
-        this.button.textContent = "Recommencer";
-        this.button.id = "reload-game";
+
         this.endModal;
     }
 
@@ -29,32 +25,6 @@ export default class EndScene extends Scene {
             this.showDescriptionFinal();
         })
         Game.getInstance().dialogue.listDialogue(["2-2-2", `3-0-0`]);
-        if (this.placeHandler || this.reloadHandler) {
-                    this.button.removeEventListener("click", this.reloadHandler);
-                    document.removeEventListener("click", this.placeHandler); // Changé pour document
-                }
-        
-                this.reloadHandler = () => {
-                    Game.getInstance().resetGame()
-                }
-             
-
-        this.button.addEventListener("click", this.reloadHandler);
-        document.addEventListener("click", this.placeHandler); // Changé pour document
-
-        let vitrail = document.createElement("img");
-        vitrail.style.position = "absolute"
-        vitrail.style.top = "0px"
-        vitrail.src = "./assets/img/elements/vitrail.gif";
-
-        let plante = document.createElement("img");
-        plante.style.position = "absolute"
-        plante.style.top = "0px"
-        plante.src = "./assets/img/elements/plante.gif";
-
-        let page = document.querySelector("#end-scene")
-        page.appendChild(vitrail);
-        page.appendChild(plante);
     }
 
 
@@ -79,18 +49,48 @@ export default class EndScene extends Scene {
             return sortedArr1.every((value, index) => value === sortedArr2[index]);
         }
 
+        this.reloadButton = document.createElement("button")
+        this.reloadButton.className =`nextButton button normal white rightBottom`;
+        this.reloadButton.textContent = "Recommencer";
+        this.reloadButton.id = "reload-game";
+
+        this.closeButton = document.createElement("button")
+        this.closeButton.className =`nextButton button small white`;
+        this.closeButton.textContent = "Fermer";
+        this.closeButton.id = "close-end-modal";
+
         this.endModal = new Modal(description.title, description.description, "modalEnd", parentElement)
-        document.querySelector('.modalEnd').appendChild(this.button);
+        this.buttonContainer = document.createElement('div');
+        this.buttonContainer.style.display = 'flex';
+        this.buttonContainer.style.justifyContent = 'flex-end';
+        this.endModal.modal.appendChild(this.buttonContainer);
+        this.buttonContainer.appendChild(this.closeButton);
+        this.closeButton.style.marginRight = "32px"
+        this.closeButton.style.marginBottom = "32px"
         this.endModal.titleElement.className += 'h3-title-serif'
+        this.elem.appendChild(this.reloadButton);
+        this.closeButton.addEventListener("click", () => {
+            this.endModal.remove()
+            this.endModal = null;
+        });
+
+        if (this.reloadHandler && this.reloadButton !== null) {
+            this.reloadButton.removeEventListener("click", this.reloadHandler);
+        }
+        this.reloadHandler = () => {
+            Game.getInstance().resetGame()
+        }
+        this.reloadButton.addEventListener("click", this.reloadHandler);
     }
 
 
     fetchPaintings() {
         for (let i = 0; i < SelectedPaintings.length; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "end-paintings-container");
+            let sprite = new Sprite(painting.src + ".webp", painting.width, painting.height, painting.position.x, painting.position.y, "end-paintings-container");
             sprite.element.style.zIndex = "1";
-            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
+            sprite.element.className += "imageBorder";
+            this.fixPaintingPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
     }
@@ -143,12 +143,13 @@ export default class EndScene extends Scene {
         if (elementsContainer) {
             elementsContainer.innerHTML = ""; 
         }
-        this.endModal.remove()
-        this.endModal = null;
-    }
+        if (this.endModal) {
+            this.endModal.remove()
+            this.endModal = null;
+        }
 
-        
-    
-    
+        this.reloadButton.remove()
+        this.reloadButton = null
+    }
 }
 

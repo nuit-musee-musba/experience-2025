@@ -84,31 +84,21 @@ export default class ExhibitionScene extends Scene {
         empty3.style.top = "0px"
         empty3.src = "/2-reserve/assets/img/scenes/emplacement_tab_3.png";
 
-
-        let vitrail = document.createElement("img");
-        vitrail.style.position = "absolute"
-        vitrail.style.top = "0px"
-        vitrail.src = "/2-reserve/assets/img/elements/vitrail.gif";
-
-        let plante = document.createElement("img");
-        plante.style.position = "absolute"
-        plante.style.top = "0px"
-        plante.src = "/2-reserve/assets/img/elements/plante.gif";
-
         let container = document.getElementById("empty-container");
         container.appendChild(empty1);
         container.appendChild(empty2);
         container.appendChild(empty3);
 
-        let page = document.querySelector("#scene-exhibition")
-        page.appendChild(vitrail);
-        page.appendChild(plante);
-
         this.canPlacePainting = false;
-        Game.getInstance().dialogue.listDialogue(["0-2-0"]);
-        Game.getInstance().once("onDialogueClosed", () => {
+        if (Game.getInstance().gameProgression < 1) {
+            Game.getInstance().dialogue.listDialogue(["0-2-0"]);
+            Game.getInstance().once("onDialogueClosed", () => {
+                this.canPlacePainting = true;
+            });
+        }
+        else {
             this.canPlacePainting = true;
-        });
+        }
 
         // Attacher les handlers
         this.button.addEventListener("click", this.validateHandler);
@@ -120,14 +110,14 @@ export default class ExhibitionScene extends Scene {
         //On affiche tous les tableaux sauf le dernier sélectionné
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
+            let sprite = new Sprite(painting.src + ".webp", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
             sprite.element.className += "imageBorder";
             this.fixPaintingElementPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
         //Dernier élément sélectionné dans la réserve
         this.currentPainting = SelectedPaintings[SelectedPaintings.length - 1]
-        let painting = new Sprite(this.currentPainting.src + ".jpg", this.currentPainting.width, this.currentPainting.height, 150, 150, "selected-container");
+        let painting = new Sprite(this.currentPainting.src + ".webp", this.currentPainting.width, this.currentPainting.height, 150, 150, "selected-container");
         painting.element.className += "imageBorder";
         if (painting.element) {
             painting.element.classList.add("selected");
@@ -181,12 +171,19 @@ export default class ExhibitionScene extends Scene {
     showElement() {
         let filteredElements = Elements.filter((element) => {
             return element.thematic === this.currentPainting.thematic;
-        });
-        if (filteredElements.length < 1) {
-            return console.error("No element found");
-        }
+        }).filter((element) => {
+            const isAlreadySelected = SelectedElements.some(selectedElement =>
+                selectedElement.id === element.id
+            );
+            return !isAlreadySelected;
+        })
+
         let element = filteredElements[Math.floor(Math.random() * filteredElements.length)];
         let elemDom = document.createElement("img");
+        elemDom.classList.add('fade-in-element');
+        setTimeout(() => {
+            elemDom.classList.add('visible');
+        }, 100);
         elemDom.src = element.src;
         elemDom.classList.add("element");
         elemDom.style.top = element.y;
@@ -262,8 +259,15 @@ export default class ExhibitionScene extends Scene {
 
     fetchElements() {
         SelectedElements.forEach((element) => {
-            let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
-            sprite.element.style.zIndex = element.zIndex;
+            setTimeout(() => {
+                let sprite = new Sprite(element.src, element.width, element.height, element.x, element.y, "elements-container");
+                sprite.element.style.zIndex = element.zIndex;
+
+                sprite.element.classList.add('fade-in-element');
+                setTimeout(() => {
+                    sprite.element.classList.add('visible');
+                }, 100);
+            }, 200)
         })
     }
 

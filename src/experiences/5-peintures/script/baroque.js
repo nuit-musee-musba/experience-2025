@@ -2,7 +2,7 @@
 const rounds = [
   {
     name: "Jésus dans son linceul",
-    image: "images/p1baroque.webp",
+    image: "/5-peintures/images/p1baroque.webp",
     persistentTitle: "Jésus dans son linceul",
     persistentText: "Pour moi la couleur de la peau du Christ représente sa pureté, son innocence et sa vulnérabilité.",
     correctColor: "#F6EAAE",
@@ -12,7 +12,7 @@ const rounds = [
   },
   {
     name: "La Vierge",
-    image: "images/p2baroque.webp",
+    image: "/5-peintures/images/p2baroque.webp",
     persistentTitle: "La Vierge",
     persistentText: "Le vêtement de la vierge évoque la divinité céleste et la compassion.",
     correctColor: "#51617A",
@@ -22,7 +22,7 @@ const rounds = [
   },
   {
     name: "Vêtement",
-    image: "images/p3baroque.webp",
+    image: "/5-peintures/images/p3baroque.webp",
     persistentTitle: "Vêtement",
     persistentText: "Ce vêtement est synonyme de sacrifice.",
     correctColor: "#BF7D65",
@@ -32,7 +32,7 @@ const rounds = [
   },
   {
     name: "L’homme",
-    image: "images/p4baroque.webp",
+    image: "/5-peintures/images/p4baroque.webp",
     persistentTitle: "L’homme",
     persistentText: "L'homme au premier plan contraste avec le blanc, symbolisant le deuil et la gravité.",
     correctColor: "#715C3E",
@@ -190,7 +190,7 @@ function triggerSuccessState() {
         "top 1s cubic-bezier(0.19, 1, 0.22, 1), right 1s cubic-bezier(0.19, 1, 0.22, 1), width 1s cubic-bezier(0.19, 1, 0.22, 1), height 1s cubic-bezier(0.19, 1, 0.22, 1)";
       perso2Image.style.top = "60.25rem"; 
       setTimeout(() => {
-        fadeToNewImage(artworkImage, "images/pfinalebaroque.webp");
+        fadeToNewImage(artworkImage, "/5-peintures/images/pfinalebaroque.webp");
         persistentDialog.classList.add('success');
         perso2Image.classList.add('success');
         validateBtn.textContent = "Suivant";
@@ -206,12 +206,4 @@ function triggerSuccessState() {
       }, 300); 
     }, { once: true });
   }
-}
-function fadeToNewImage(imgElement, newSrc) {
-  imgElement.style.transition = "opacity 0.6s";
-  imgElement.style.opacity = 0;
-  setTimeout(() => {
-    imgElement.src = newSrc; 
-    imgElement.style.opacity = 1; 
-  }, 600);
 }
