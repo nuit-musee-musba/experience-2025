@@ -131,7 +131,7 @@ const enterExperience = (experienceID) => {
             duration: 0.5,
             ease: "power2.out",
         },0.25)
-        .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.7)', duration: 0.5},0.15)
+        .to(projectTitle,{transform: 'translate(-50%, -16vh) scale(0.7)', duration: 0.5},0.15)
         .to(experienceIllustration, {
             clipPath: "inset(0 0 0% 0)", 
             duration: 0.5,
@@ -181,6 +181,7 @@ const leaveExperience = (experienceID) => {
             duration: 0.5,
             ease: "power2.out",
         })
+        .to(projectTitle,{transform: 'translate(-50%, 0vh) scale(1)', duration: 0.5},0.25)
         .to(experienceIllustration,{
             opacity: 0,
             duration: 0.5,

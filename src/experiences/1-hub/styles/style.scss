@@ -16,6 +16,7 @@
     //HOME PAGE
     .back-home{
         position: absolute;
+        background-color: white;
         bottom: 5vh;
         padding: 25px;
         border: 1px solid black;
@@ -124,7 +125,7 @@
                 z-index: -3;
                 margin: 0 auto;
                 display: none;
-                top: 15vh;
+                top: 16vh;
                 position: relative;
                 img{
                     width: 100%;
