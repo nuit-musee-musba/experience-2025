@@ -7,6 +7,11 @@
 Une expérience interactive sur l'écran tactile du MusBA qui a eu lieu lors de la **Nuit Européenne des Musées le samedi 17 mai 2025.**
 Réalisé par la promotion 2025 du MMI Bordeaux.
 
+## Accéder à l'expérience
+> [!NOTE] Le site est fait pour un écran 4k de 1m50 x 1m, lisez #Simulation de l'écran tactile du MusBA ci-dessous
+
+Aller sur https://nuit-du-musba-2025.netlify.app/
+
 
 
 ## Simulation de l'écran tactile du MusBA
@@ -25,7 +30,7 @@ npm i -g pnpm
 pnpm
 
 # 3. Cloner le projet 
-git clone https://github.com/ccadran/MUSBA.git
+git clone https://github.com/nuit-musee-musba/experience-2025.git
 
 # 4. Ouvrir le projet et installer les dépendances
 pnpm i
@@ -51,6 +56,16 @@ pnpm dev
 - Vous avez reçu des commentaires sur votre PR, si ils sont pertinents, corriger votre code et faites un nouveau commit sur la branche concernée
 - Si vous avez une remarque à apporter, laisser une réponse dans la conversation 
 
+## Mettre en production
+
+Pour envoyer en production, créez une PR pour merger `develop` dans `main`.
+
+Une fois mergé, la CI lancera automatiquement :
+
+- le build du bundle
+- le déploiement sur Netlify
+
+**Ce qui est sur `main` est en production, ce qui est sur `develop` non !**
 
 ## Les branches
 
@@ -103,8 +118,32 @@ Chaque groupe à son dossier, libre à vous de créer des sous dossiers `/public
 Les fichiers de config
 
 
-### Protocoles de tests (pas encore à jour)
+## Tester les builds
 
+### Sur le build en production
 
+- hébergement distant : aller sur https://nuit-du-musba-2025.netlify.app/
+- hébergement local : récupérer le [dernier bundle.zip de la dernière release](https://github.com/nuit-musee-musba/experience-2025/releases/latest/download/bundle.zip)
 
-- [Tests d'affichage](https://docs.google.com/document/d/1sBZ3sFOpRg8fPJS0sMHI_C1JK4XoqwRLattG3UdXTCM/edit?usp=drive_link)
+### Sur votre propre build
+
+Pas besoin de merger sur main et d'attendre que la ci se termine pour tester votre fonctionnalité en dev :
+
+```bash
+# Build le dossier dist pour l'hébergement distant
+pnpm build
+
+# Build le dossier bundle/ pour l'hébergement local
+pnpm bundle
+
+# Ou build le fichier bundle.zip pour l'hébergement local
+pnpm bundle:zip
+```
+
+### Démarrer le bundle d'hébergement local
+
+1. Récupérer ou build le bundle.zip
+2. Unziper le fichier
+3. Dans le dossier, éxécuter le script de démarrage correspondant à l'OS (double clic par exemple)
+4. Aller sur http://localhost:3000/
+
