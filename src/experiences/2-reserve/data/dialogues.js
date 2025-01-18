@@ -12,12 +12,12 @@ export default [
     },
     {
         id: "0-0-1",
-        emotion : 1,
+        emotion : 0,
         text : "Cette salle n’attend que tu la remplisses de magie, mais avant toutes choses, laisse-moi te guider vers un lieu secret. ",
     },
     {
         id: "0-1-0",
-        emotion : 1,
+        emotion : 0,
         text : "Bienvenue dans l’un de mes royaumes cachés : la réserve des peintures. C'est ici, dans ces vastes salles secrètes et protégées des regards, que nous conservons précieusement plus de 8 000 œuvres. En tant que régisseur, je suis le gardien de ces trésors mais je le partage aujourd'hui avec toi !\n"
     },
     {
@@ -27,22 +27,22 @@ export default [
     },
     {
         id : "0-2-0",
-        emotion : 1,
+        emotion : 0,
         text: "Place ton tableau sur un des murs de la salle."
     },
     {
         id : "0-2-1",
-        emotion : 1,
+        emotion : 0,
         text: "Observe comme l'espace d'exposition réagit à ta sélection ! En tant que conservateur, ton rôle est aussi de créer un dialogue entre l'œuvre et son environnement. La scénographie que tu vois s'adapter participe à cette magie."
     },
     {
         id : "1-2-1",
-        emotion : 1,
+        emotion : 0,
         text: "Par ma veste en velours étoilé ! On dirait que tu deviens un vrai magicien du musée ! Tu as le don pour faire parler les tableaux entre eux et raconter de belles histoires aux visiteurs."
     },
     {
         id : "2-2-1",
-        emotion : 1,
+        emotion : 0,
         text: "La transformation est complète ! Tu as su donner un nouveau souffle à ces œuvres, les sortir de leur sommeil dans la réserve pour leur offrir la lumière qu'elles méritent."
     },
     {

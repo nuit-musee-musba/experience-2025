@@ -17,15 +17,24 @@
 }
 
 #character {
-  z-index: 5;
+  z-index: 16;
   display: none;
   position: fixed;
   bottom: 0;
-  left: 260px;
+  pointer-events: none;
+
+}
+
+.lumiere{
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .dialogue {
-  z-index: 4;
+  z-index: 15;
   display: none;
   position: fixed;
   bottom: 180px;
@@ -44,6 +53,8 @@
 #container-paintings img {
   width: 400px;
   height: fit-content;
+
+  z-index: 4;
 }
 
 #scene-reserve .selectMode .selectModeImg {
@@ -52,6 +63,7 @@
   height: 100%;
   right: 0;
   top: 50%;
+  z-index: 4;
 }
 
 #scene-reserve .selectMode{
@@ -69,7 +81,7 @@
     border: 1px solid black;
     gap: 100px;
     transform: skew(0deg, 0deg)!important;
-    z-index: 10;
+    z-index: 10 !important;
 }
 
 .selectMode::before{
@@ -83,7 +95,7 @@
     transform: translate(-50%, -50%);
     background-color: #ffffff;
     pointer-events: none;
-    z-index: -1;
+    z-index: 3;
 }
 
 .selectModeDescription {
@@ -110,6 +122,7 @@
   width: 100%;
   height: 100%;
   gap: 78px;
+  z-index: 5;
 }
 
 .containerButton {
@@ -141,22 +154,26 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 5;
 }
 
 #scene-reserve .containerPaintingsOnselectMode {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  z-index: 20!important; 
 }
 
 #container-paintings > div:nth-child(4n + 1),
 #container-paintings > div:nth-child(4n + 3) {
   transform: skew(0deg, -30deg);
+  z-index: 3;
 }
 
 #container-paintings > div:nth-child(4n + 2),
 #container-paintings > div:nth-child(4n + 4) {
   transform: skew(0deg, 30deg);
+  z-index: 3;
 }
 
 .home-button {
@@ -164,6 +181,7 @@
   position: fixed;
   bottom: 100px;
   left: 100px;
+  z-index: 5;
 }
 
 .rightBottom {
@@ -172,6 +190,7 @@
    bottom: 0;
    transform: translateY(20rem);
     z-index: 1000;
+    z-index: 5;
 }
 
 .transitionAnimation {
@@ -200,6 +219,7 @@
     height: 1282px;
     background-color: white;
     z-index: 1000;
+    z-index: 5;
 }
 
 .imageBorder {

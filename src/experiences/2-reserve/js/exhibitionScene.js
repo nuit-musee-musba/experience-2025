@@ -84,10 +84,25 @@ export default class ExhibitionScene extends Scene {
         empty3.style.top = "0px"
         empty3.src = "/2-reserve/assets/img/scenes/emplacement_tab_3.png";
 
+
+        let vitrail = document.createElement("img");
+        vitrail.style.position = "absolute"
+        vitrail.style.top = "0px"
+        vitrail.src = "/2-reserve/assets/img/elements/vitrail.gif";
+
+        let plante = document.createElement("img");
+        plante.style.position = "absolute"
+        plante.style.top = "0px"
+        plante.src = "/2-reserve/assets/img/elements/plante.gif";
+
         let container = document.getElementById("empty-container");
         container.appendChild(empty1);
         container.appendChild(empty2);
         container.appendChild(empty3);
+
+        let page = document.querySelector("#scene-exhibition")
+        page.appendChild(vitrail);
+        page.appendChild(plante);
 
         this.canPlacePainting = false;
         Game.getInstance().dialogue.listDialogue(["0-2-0"]);
