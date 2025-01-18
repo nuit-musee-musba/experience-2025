@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Deuxième Jeu - Renaissance</title>
+  <link rel="stylesheet" href="styles/game.css" />
+</head>
+<body>
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="character hidden">
+    <img src="/5-peintures/images/perso2.webp" alt="Personnage" />
+  </div>
+  <div class="content-block">
+    <h1 id="dialogTitle"></h1> 
+    <div id="dialogueText"></div>
+    <button class="next-dialogue hidden" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="/5-peintures/images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog hidden" id="closeDialog">Fermer</button>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="main-game-screen visible">
+    <div class="main-game-content">
+      <h2>Appuie sur une carte pour découvrir la signification de la couleur et recolorise la partie clé du tableau.</h2>
+      <div class="art-and-palette">
+        <div class="art-info">
+          <img id="artworkImage" src="/5-peintures/images/p1renaissance.webp" alt="Détail Renaissance">
+          <p class="art-title2" id="artworkCaption">
+            PERUGIN (Pietro di Cristoforo Vannucci),<br>
+            Détail du tableau (15e siècle)
+          </p>
+        </div>
+        <div class="right-column">
+          <div class="persistent-dialog">
+            <h1 id="persistentTitle">Les saints</h1>
+            <p id="persistentText">
+              Les vêtements des saints doivent refléter leur force, 
+              leur passion et leur sacrifice pour la foi.
+            </p>
+          </div>
+          <img src="/5-peintures/images/perso2.webp" alt="Personnage 2" class="perso2-image" />
+          <div class="cards-row">
+            <div class="color-card" data-color="#9C8A54">
+              <div class="card-title">Or</div>
+              <div class="card-details">
+                <p>Divin</p>
+                <p>Sacré</p>
+                <p>Éternel</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#3C514A">
+              <div class="card-title">Bleu/vert</div>
+              <div class="card-details">
+                <p>Spiritualité</p>
+                <p>Pureté</p>
+                <p>Élévation</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#BD5A4E">
+              <div class="card-title">Rouge</div>
+              <div class="card-details">
+                <p>Amour divin</p>
+                <p>Foi</p>
+                <p>Sacrifice</p>
+              </div>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+      <button id="validateColor" class="validate-button">Choisir</button>
+    </div> 
+  </div> 
+  <script src="script/renaissance.js" type="module"></script>
+</body>
+</html>

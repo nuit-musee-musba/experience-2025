@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Accueil</title>
+  <link rel="stylesheet" href="styles/game.css" />
+  <style>
+    /* Animation FadeIn */
+    .fade-in {
+      opacity: 0;
+      animation: fadeInAnimation 1s forwards;
+    }
+
+    @keyframes fadeInAnimation {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Animation FadeOut */
+    .fade-out {
+      opacity: 1;
+      animation: fadeOutAnimation 1s forwards;
+    }
+
+    @keyframes fadeOutAnimation {
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* Styles existants */
+    .images-dialog {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .persistent-dialog {
+      background: white;
+      border: 1px solid #000;
+      margin-bottom: 1rem;
+      position: fixed;
+      top: 56rem !important;
+      right: 27rem !important;
+      transition: top 1s cubic-bezier(0.19, 1, 0.22, 1);
+      width: 98rem !important;
+    }
+
+    #home-button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      font-size: 4.5rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      transition: opacity 0.3s ease;
+      font-family: 'NyghtSerif-Light', serif;
+      position: fixed;
+      bottom: 39.25rem !important;
+      right: 107.25rem !important;
+    }
+
+    /* Optionnel : Ajout d'un curseur pointer pour les boutons */
+    .back-button, #home-button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="images-dialog">
+      <img id="artworkImage" style="width: 128rem;" src="/5-peintures//5-peintures/images/renaissancegroup.webp" alt="Détail Symbolisme">
+      <div class="persistent-dialog">
+          <h1 id="persistentTitle">La Renaissance (s), 15e - 16e siècles</h1>
+          <p id="persistentText">On invente des techniques comme la perspective pour donner de la profondeur aux tableaux, ou de la peinture à l’huile pour des couleurs plus vives. Ce sont des portraits, des scènes religieuses ou mythologiques, avec des corps beaux et parfaits.</p>
+      </div>
+      <button id="home-button">Suivant</button>
+  </div>
+  <script src="script/accueil-renaissance.js" type="module"></script>
+</body>
+</html>

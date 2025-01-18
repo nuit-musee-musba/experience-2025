@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Deuxième Jeu - Romantisme</title>
+  <link rel="stylesheet" href="styles/game.css" />
+</head>
+<body>
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="character hidden">
+    <img src="/5-peintures/images/perso-romantisme.webp" alt="Personnage" />
+  </div>
+  <div class="content-block">
+    <h1 id="dialogTitle"></h1> 
+    <div id="dialogueText"></div>
+    <button class="next-dialogue hidden" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="/5-peintures/images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog hidden" id="closeDialog">Fermer</button>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="main-game-screen visible">
+    <div class="main-game-content">
+      <h2>Appuie sur une carte pour découvrir la signification de la couleur et recolorise la partie clé du tableau.</h2>
+      <div class="art-and-palette">
+        <div class="art-info">
+          <img id="artworkImage" src="/5-peintures/images/p1romantisme.webp" alt="Détail romantisme">
+          <p class="art-title2" id="artworkCaption">
+            Henri GERVEX (1852-1929), Rolla, 1878, huile sur toile.
+          </p>
+        </div>
+        <div class="right-column">
+          <div class="persistent-dialog">
+            <h1 id="persistentTitle">Les saints</h1>
+            <p id="persistentText">Les vêtements des saints doivent refléter leur force, leur passion et leur sacrifice pour la foi.
+            </p>
+          </div>
+          <img src="/5-peintures/images/perso-romantisme.webp" alt="Personnage 2" class="perso2-image" />
+          <div class="cards-row">
+            <div class="color-card" data-color="#D7D7D7">
+              <div class="card-title">Blanc</div>
+              <div class="card-details">
+                <p>Éclatante</p>
+                <p>Immaculée</p>
+                <p>Lumineuse</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#D0C0A7">
+              <div class="card-title">Beige</div>
+              <div class="card-details">
+                <p>Délicat</p>
+                <p>Sensible</p>
+                <p>Pure</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#853E2F">
+              <div class="card-title">Rouge</div>
+              <div class="card-details">
+                <p>Passion</p>
+                <p>Décadence</p>
+                <p>Tragédie</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#637988">
+              <div class="card-title">Bleu</div>
+              <div class="card-details">
+                <p>Nostalgie</p>
+                <p>Chagrin</p>
+                <p>Lassitude</p>
+              </div>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+      <button id="validateColor" class="validate-button">Choisir</button>
+    </div> 
+  </div> 
+  <style>
+    .art-info img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      padding-top: 6rem;
+      width: 107rem;
+    }
+    .art-info .art-title2 {
+      padding-right: 32rem;
+    }
+    .persistent-dialog {
+      width: 76rem;
+      margin-top: 5rem;
+    }
+    .perso2-image {
+      top: 26.25rem;
+    }
+    .color-card {
+      width: 24rem;
+    }
+    .content-block {
+      left: 56%;
+    }
+    .perso2-image.success {
+      width: 875px;
+      height: 1000px;
+    }
+    .persistent-dialog.success {
+    top: 38rem;
+    width: 74rem;
+    }
+    .color-card[data-color="#D7D7D7"] {
+    background-color: #D7D7D7;
+    position: fixed;
+    right: 73rem;
+    bottom: 20rem;
+    transform: rotate(-20deg);
+    color: black;
+    }
+    .color-card[data-color="#D0C0A7"] {
+    background-color: #D0C0A7;
+    position: fixed;
+    right: 53.5rem;
+    bottom: 25rem;
+    transform: rotate(-5deg);
+    color: black;
+    }
+    .color-card[data-color="#853E2F"] {
+    background-color: #853E2F;
+    position: fixed;
+    right: 33rem;
+    bottom: 24rem;
+    transform: rotate(11deg);
+    }
+    .color-card[data-color="#637988"] {
+    background-color: #637988;
+    position: fixed;
+    right: 12rem;
+    bottom: 18rem;
+    transform: rotate(22deg);
+    }
+  </style>
+  <script src="script/romantisme.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baroque</title>
+  <link rel="stylesheet" href="styles/game.css" />
+</head>
+<body>
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="character">
+    <img src="/5-peintures/images/perso-baroque.webp" alt="Personnage" />
+  </div>
+  <div class="content-block">
+    <h1>VAN DEN HOECKE Jan</h1>
+    <div id="dialogueText"></div>
+    <button class="next-dialogue hidden" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="/5-peintures/images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog" id="closeDialog">Fermer</button>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="main-game-screen" id="mainGameScreen">
+    <div class="main-game-content">
+      <h2>Trouve la palette que j’ai utilisée pour réaliser ce tableau :</h2>
+      <div class="art-and-palette">
+        <div class="art-info">
+          <img src="/5-peintures/images/baroque.webp" alt="La Déploration du Christ">
+          <p class="art-title">VAN DEN HOECKE Jan, La Déploration du Christ, 17e siecle</p>
+        </div>
+        <div class="color-palette-options">
+          <label>
+            <img src="/5-peintures/images/palette-1-baroque.webp" alt="Palette 1">
+            <input type="radio" name="palette" value="palette1">
+          </label>
+          <label>
+            <img src="/5-peintures/images/palette-2-baroque.webp" alt="Palette 2">
+            <input type="radio" name="palette" value="palette2">
+          </label>
+          <label>
+            <img src="/5-peintures/images/palette-3-baroque.webp" alt="Palette 3">
+            <input type="radio" name="palette" value="palette3">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    /* Appliquer les styles spécifiques si le titre contient "Baroque" */
+    .content-block {
+      left: 57%;
+      bottom: 3%;
+    }
+    .art-info img {
+      max-width: 89%;
+      padding-top: 8rem;
+    }
+    .art-and-palette {
+      padding-top: 4rem;
+    }
+  </style>
+  <script src="script/start-baroque.js" type="module"></script>
+</body>
+</html>
