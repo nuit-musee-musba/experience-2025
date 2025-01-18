@@ -1,12 +1,12 @@
-let draggedImage = null; // Image en cours de déplacement
-let clonedImage = null; // Clone de l'image pour le drag visuel
-let initialTouchPosition = { x: 0, y: 0 }; // Position initiale du toucher
-let currentDialogueIndex = 0; // Index actuel du dialogue
-let currentSequence = []; // Suivi des items droppés dans l'ordre
+let draggedImage = null;
+let clonedImage = null;
+let initialTouchPosition = { x: 0, y: 0 };
+let currentDialogueIndex = 0;
+let currentSequence = [];
 
-const winningSequence = ["ARGILE", "ARGILE", "CIRE", "PLATRE", "TUYAU", "BRONZE", "MARTEAU"]; // Ordre à respecter
+const winningSequence = ["ARGILE", "ARGILE", "CIRE", "PLATRE", "TUYAU", "BRONZE", "MARTEAU"];
 
-// Dialogues pour chaque étape
+
 const dialogues = [
     {
         id: 1,
@@ -115,7 +115,7 @@ const dialogues = [
     }
 ];
 
-// Mapping des images par ID de dialogue
+
 const dialogueImages = {
   3: "./Images/Item_Argile.webp",
   4: "./Images/Sculpture_Etape_1.webp",
@@ -125,7 +125,6 @@ const dialogueImages = {
   8: "./Images/Sculpture_Etape_4.webp",
   9: "./Images/Sculpture_Etape_5.webp",
   10: "./Images/Sculpture_Etape_5.webp",
-  11: "./Images/Sculpture_Etape_6.webp",
   11: "./Images/Sculpture_Etape_6.webp",
   12: "./Images/Sculpture_Etape_7.webp",
   13: "./Images/Sculpture_Etape_8.webp",
@@ -140,7 +139,7 @@ const dialogueImages = {
 
 };
 
-// Met à jour le dialogue et la zone de travail
+
 function updateDialogue() {
     const dialogueElement = document.getElementById("dialogue-text");
     const nextDialogueElement = document.getElementById("next-dialogue");
@@ -148,38 +147,38 @@ function updateDialogue() {
 
     dialogueElement.textContent = dialogue.text;
 
-    // Affiche ou masque le bouton suivant en fonction de l'action
+
     if (dialogue.action === "SUIVANT") {
         nextDialogueElement.style.display = "block";
     } else {
         nextDialogueElement.style.display = "none";
     }
 
-    // Met à jour l'image de la zone de travail en fonction du dialogue
-    const imagePath = dialogueImages[dialogue.id] || null; // Aucune image par défaut
+
+    const imagePath = dialogueImages[dialogue.id] || null;
     updateWorkAreaImage(imagePath);
 
-    updateProgressBar(); // Met à jour la barre de progression
+    updateProgressBar();
 }
 
-// Met à jour la barre de progression
+
 function updateProgressBar() {
     const progressBar = document.getElementById("progress-bar");
     const progressPercentage = ((currentDialogueIndex + 1) / dialogues.length) * 100;
     progressBar.style.width = `${progressPercentage}%`;
 }
 
-// Met à jour l'image dans la zone de travail
+
 function updateWorkAreaImage(imagePath) {
     const workArea = document.getElementById("work-area");
 
-    // Supprime l'image actuelle s'il y en a une
+
     const existingImage = workArea.querySelector("img");
     if (existingImage) {
         existingImage.remove();
     }
 
-    // Ajoute une nouvelle image si un chemin est fourni
+
     if (imagePath) {
         const img = document.createElement("img");
         img.src = imagePath;
@@ -193,7 +192,7 @@ function updateWorkAreaImage(imagePath) {
     }
 }
 
-// Gestionnaire du clic sur "suivant"
+
 document.getElementById("next-dialogue").addEventListener("click", () => {
     const currentAction = dialogues[currentDialogueIndex].action;
 
@@ -203,16 +202,16 @@ document.getElementById("next-dialogue").addEventListener("click", () => {
     }
 });
 
-// Fonction appelée lorsque le toucher se termine
+
 function touchEnd(event) {
     if (clonedImage) {
         const touchX = event.changedTouches[0].clientX;
         const touchY = event.changedTouches[0].clientY;
 
-        // Récupère l'élément sous le doigt
+
         let dropZone = document.elementFromPoint(touchX, touchY);
 
-        // Vérifie si la zone parent est la zone de travail
+
         while (dropZone && dropZone.id !== "work-area" && dropZone.parentElement) {
             dropZone = dropZone.parentElement;
         }
@@ -221,7 +220,7 @@ function touchEnd(event) {
             const itemName = draggedImage.alt.toUpperCase();
             const currentAction = dialogues[currentDialogueIndex].action;
 
-            // Vérifie si l'action correspond à l'item déposé
+
             if (currentAction === `POSER ${itemName}`) {
                 currentSequence.push(itemName);
                 currentDialogueIndex++;
@@ -236,7 +235,7 @@ function touchEnd(event) {
     draggedImage = null;
 }
 
-// Fonction appelée au début du toucher
+
 function touchStart(event) {
     const touch = event.touches[0];
     draggedImage = event.target;
@@ -259,7 +258,7 @@ function touchStart(event) {
     }
 }
 
-// Fonction appelée lorsque le doigt se déplace
+
 function touchMove(event) {
     if (clonedImage) {
         const touch = event.touches[0];
@@ -272,7 +271,10 @@ function touchMove(event) {
     }
 }
 
+document.getElementById("menu-button").addEventListener("click", () => {
+  window.location.href = "./1-hub/index.html"; // Remplacez "menu.html" par le chemin de votre fichier cible
+});
 
 
-// Initialise le premier dialogue
+
 updateDialogue();
