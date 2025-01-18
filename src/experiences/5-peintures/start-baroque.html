@@ -7,16 +7,10 @@
   <link rel="stylesheet" href="styles/game.css" />
 </head>
 <body>
-
-  <!-- Bouton Retour -->
   <a href="index.html" class="back-button">Retour</a>
-
-  <!-- Personnage à gauche -->
   <div class="character">
     <img src="images/perso-baroque.webp" alt="Personnage" />
   </div>
-
-  <!-- Boîte de dialogue en bas -->
   <div class="content-block">
     <h1>VAN DEN HOECKE Jan</h1>
     <div id="dialogueText"></div>
@@ -26,11 +20,7 @@
     </button>
     <button class="close-dialog" id="closeDialog">Fermer</button>
   </div>
-
-  <!-- Overlay noir -->
   <div class="overlay" id="overlay"></div>
-
-  <!-- Écran principal du "jeu" -->
   <div class="main-game-screen" id="mainGameScreen">
     <div class="main-game-content">
       <h2>Trouve la palette que j’ai utilisée pour réaliser ce tableau :</h2>
@@ -56,25 +46,20 @@
       </div>
     </div>
   </div>
-
   <style>
     /* Appliquer les styles spécifiques si le titre contient "Baroque" */
     .content-block {
       left: 57%;
       bottom: 3%;
     }
-
     .art-info img {
       max-width: 89%;
       padding-top: 8rem;
     }
-
     .art-and-palette {
       padding-top: 4rem;
     }
-
   </style>
-
   <script src="script/start-baroque.js"></script>
 </body>
 </html>

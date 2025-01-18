@@ -9,8 +9,6 @@
       font-family: 'NyghtSerif-Light';
       src: url('fonts/NyghtSerif-Light.ttf') format('truetype');
     }
-    
-    /* ------------------------------ RESET DE BASE ------------------------------ */
     * {
       margin: 0;
       padding: 0;
@@ -19,24 +17,19 @@
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       background-color: #f0f0f0;
-      overflow-x: hidden; /* Empêche le scroll horizontal natif */
-      user-select: none; /* Empêche la sélection de texte accidentelle */
-      opacity: 0; /* Opacité initiale pour le fadeIn */
-      transition: opacity 1.5s ease; /* Transition pour fadeIn */
+      overflow-x: hidden; 
+      user-select: none; 
+      opacity: 0; 
+      transition: opacity 1.5s ease; 
+      background-image: url('images/BG_4K_1.webp');
     }
-
-    /* Classe pour déclencher le fadeIn */
     .fade-in {
       opacity: 1;
     }
-
-    /* Classe pour déclencher le fadeOut */
     .fade-out {
       opacity: 0;
-      transition: opacity 2s ease; /* Durée du fadeOut */
+      transition: opacity 2s ease; 
     }
-
-    /* ------------------------------ HEADER ------------------------------ */
     header {
       text-align: center;
       padding: 2rem;
@@ -56,8 +49,6 @@
       font-weight: 400;
       font-family: 'NyghtSerif-Light', serif;
     }
-
-    /* ------------------------------ CAROUSEL CENTRÉ ------------------------------ */
     .infinite-scroll-wrapper {
       position: relative;
       display: flex;
@@ -67,19 +58,16 @@
       width: 100%;
       margin: 2rem 0;
     }
-
-    /* --- CONTENEUR DES CARTES --- */
     .cards-container {
       display: flex;
       gap: 6rem;
-      scroll-behavior: smooth; /* Fluidité du défilement */
+      scroll-behavior: smooth; 
       overflow-x: scroll;
       padding: 2rem 0;
       width: 100%;
-      scroll-snap-type: x mandatory; /* Activation du snapping */
-      -webkit-overflow-scrolling: touch; /* Pour une meilleure expérience sur mobile */
+      scroll-snap-type: x mandatory; 
+      -webkit-overflow-scrolling: touch; 
     }
-
     .card {
       flex: 0 0 auto;
       border-radius: 6px;
@@ -88,31 +76,25 @@
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
       margin-top: 15rem;
-      scroll-snap-align: center; /* Alignement au centre lors du snapping */
+      scroll-snap-align: center; 
       position: relative;
     }
-
     .card img {
       width: 100%;
-      filter: grayscale(100%); /* Images en niveaux de gris */
+      filter: grayscale(100%); 
       border-radius: 4px;
       height: 40rem;
       object-fit: cover;
     }
-
     .card h2 {
       margin-top: 1rem;
-      color: #666; /* Couleur de base pour toutes les cartes */
+      color: #666; 
       font-size: 3rem;
       transition: color 0.3s;
     }
-
-    /* --- CLASSE POUR LA CARTE SÉLECTIONNÉE --- */
     .card.selected h2 {
-      color: #000; /* Texte noir pour la carte sélectionnée */
+      color: #000; 
     }
-
-    /* --- BOUTON CHOISIR --- */
     #startButton {
       display: block;
       margin: 2rem auto;
@@ -126,28 +108,18 @@
       margin-top: 15rem;
       font-family: 'NyghtSerif-Light', serif;
     }
-
     #startButton:hover {
       background-color: #555;
     }
   </style>
 </head>
 <body>
-
-  <!-- -------------------- HEADER -------------------- -->
   <header>
     <h1>Choisis une époque et plonge dans son univers artistique.</h1>
     <h2>Chaque époque révèle des palettes uniques et des symboles fascinants.</h2>
   </header>
-
-  <!-- -------------------- ZONE DE DÉFILEMENT -------------------- -->
   <div class="infinite-scroll-wrapper">
-
-    <!-- Conteneur des Cartes (Carousel) -->
     <div class="cards-container" id="cardsContainer">
-      <!-- Les cartes ne sont plus dupliquées -->
-
-
       <div class="card" data-epoch="renaissance">
         <img src="images/debut/renaissance.webp" alt="Renaissance" />
         <h2>La Renaissance (s), 15e - 16e siècles</h2>
@@ -180,89 +152,58 @@
         <img src="images/debut/symbolisme.webp" alt="Symbolisme" />
         <h2>Le 20e siècle, du Symbolisme au Cubisme</h2>
       </div>
-      <!-- Ajoutez d'autres cartes si nécessaire -->
     </div>
-
   </div>
-
-  <!-- Bouton de validation -->
   <button id="startButton">Choisir</button>
-
-  <!-- -------------------- SCRIPT JAVASCRIPT -------------------- -->
   <script>
     const cardsContainer = document.getElementById('cardsContainer');
     const cards = document.querySelectorAll('.card');
-
-    // Fonction pour définir le padding nécessaire pour centrer les cartes
     function setContainerPadding() {
       const containerWidth = cardsContainer.offsetWidth;
       const cardWidth = cards[0].offsetWidth;
       const gap = parseInt(getComputedStyle(cardsContainer).gap);
-
-      // Calculer le padding gauche et droit
       const padding = (containerWidth / 2) - (cardWidth / 2);
-
-      // Appliquer le padding au début et à la fin du conteneur
       cardsContainer.style.paddingLeft = `${padding}px`;
       cardsContainer.style.paddingRight = `${padding}px`;
     }
-
-    // Fonction pour déterminer la carte centrale
     function setSelectedCard() {
       const containerRect = cardsContainer.getBoundingClientRect();
       const containerCenter = containerRect.left + containerRect.width / 2;
-
       let minDistance = Infinity;
       let selectedCard = null;
-
       cards.forEach(card => {
         const cardRect = card.getBoundingClientRect();
         const cardCenter = cardRect.left + cardRect.width / 2;
         const distance = Math.abs(containerCenter - cardCenter);
-
         if (distance < minDistance) {
           minDistance = distance;
           selectedCard = card;
         }
       });
-
-      // Supprimer la classe 'selected' de toutes les cartes
       cards.forEach(card => card.classList.remove('selected'));
-
-      // Ajouter la classe 'selected' à la carte la plus proche du centre
       if (selectedCard) {
         selectedCard.classList.add('selected');
       }
     }
-
-    // Initialisation : définir le padding et centrer la première carte au chargement
     window.addEventListener('load', () => {
       setContainerPadding();
       setSelectedCard();
-      // Centrer la première carte au chargement
       const firstCard = cards[0];
       const scrollLeft = firstCard.offsetLeft - (cardsContainer.offsetWidth / 2) + (firstCard.offsetWidth / 2);
       cardsContainer.scrollTo({
         left: scrollLeft,
         behavior: 'smooth'
       });
-
-      // Déclencher le fadeIn après un léger délai pour s'assurer que tout est chargé
       setTimeout(() => {
         document.body.classList.add('fade-in');
-      }, 100); // 100ms de délai
+      }, 100); 
     });
-
-    // Recalculer le padding lors du redimensionnement de la fenêtre
     window.addEventListener('resize', () => {
       setContainerPadding();
       setSelectedCard();
     });
-
-    // Détecter le défilement et mettre à jour la carte sélectionnée
     let scrollTimeout;
     cardsContainer.addEventListener('scroll', () => {
-      // Utiliser requestAnimationFrame pour une meilleure performance
       if (!scrollTimeout) {
         scrollTimeout = requestAnimationFrame(() => {
           setSelectedCard();
@@ -270,29 +211,19 @@
         });
       }
     });
-
-    // -------------------- GESTIONNAIRE DE CLICK POUR LE BOUTON --------------------
     document.getElementById('startButton').addEventListener('click', function() {
       const selectedCard = document.querySelector('.card.selected');
       if(selectedCard){
         const epoch = selectedCard.getAttribute('data-epoch').toLowerCase();
         const validEpochs = ['symbolisme', 'renaissance', 'romantisme', 'baroque'];
-        
         if(validEpochs.includes(epoch)){
-          const url = `start-${epoch}.html`;
-          
-          // Ajouter la classe 'fade-out' pour déclencher l'animation
+          const url = `accueil-${epoch}.html`;
           document.body.classList.add('fade-out');
-          
-          // Écouter la fin de la transition pour rediriger avec un délai supplémentaire
           document.body.addEventListener('transitionend', function handler(event) {
-            if (event.propertyName === 'opacity') { // S'assurer que c'est la transition d'opacité
-              // Ajouter un délai supplémentaire avant la redirection
+            if (event.propertyName === 'opacity') { 
               setTimeout(() => {
                 window.location.href = url;
-              }, 500); // 500ms de délai supplémentaire
-              
-              // Supprimer le gestionnaire pour éviter des redirections multiples
+              }, 500); 
               document.body.removeEventListener('transitionend', handler);
             }
           });

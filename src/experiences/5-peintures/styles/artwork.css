@@ -1,13 +1,11 @@
 @import url('https://cdn.jsdelivr.net/npm/helveticaneue@1.0.0/helveticaneue.min.css');
 @import url('https://fonts.cdnfonts.com/css/nyght-serif');
 
-/* Import local font si besoin */
 @font-face {
     font-family: 'NyghtSerif-Light';
     src: url('../fonts/NyghtSerif-Light.ttf') format('truetype');
 }
 
-/* Style général */
 body {
   min-height: 100vh;
   margin: 0;
@@ -17,10 +15,9 @@ body {
   overflow: hidden;
 }
 
-/* --- BOUTONS et lien Retour --- */
 button,
 .back-button {
-  border: 1px solid black; /* Contour noir */
+  border: 1px solid black; 
   background: white;
   color: black;
   cursor: pointer;
@@ -37,7 +34,6 @@ button,
   z-index: 20;
 }
 
-/* Personnage */
 .character {
   position: absolute;
   left: 0;
@@ -64,13 +60,11 @@ button,
   }
 }
 
-/* Image du personnage */
 .character img {
   max-width: 100%;
   height: auto;
 }
 
-/* Boîte de dialogue en bas */
 .content-block {
   position: absolute;
   left: 50%;
@@ -82,7 +76,7 @@ button,
   padding: 20px;
   z-index: 12;
   margin-bottom: 1rem;
-  
+
   height: 13rem; 
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
@@ -109,7 +103,6 @@ button,
   }
 }
 
-
 .content-block h1 {
   margin-top: 0;
   margin-bottom: 20px;
@@ -119,7 +112,6 @@ button,
   padding-bottom: 10px;
 }
 
-/* Texte du dialogue */
 .content-block p {
   font-size: 18px;
   line-height: 1.3;
@@ -132,7 +124,6 @@ button,
 
 }
 
-/* Effet machine à écrire */
 .char {
   opacity: 0;
   animation: fadeInChar 0.05s forwards;
@@ -142,7 +133,6 @@ button,
   to   { opacity: 1; }
 }
 
-/* Bouton "Suivant" (dialogue) */
 .next-dialogue {
   position: absolute;
   bottom: 10px;
@@ -160,11 +150,10 @@ button,
   height: auto;
 }
 
-/* Bouton "Fermer" (dernier dialogue) */
 .close-dialog {
   position: absolute;
   bottom: 10px;
-  right: 10px; /* Même zone que "Suivant" */
+  right: 10px; 
   background: none;
   border: 1px solid black;
   font-size: 16px;
@@ -174,7 +163,6 @@ button,
   display: none;
 }
 
-/* Artwork images */
 .artwork-container {
   position: absolute;
   top: 0;
@@ -213,7 +201,6 @@ button,
   to   { opacity: 1; }
 }
 
-/* Exemples de positionnement */
 .top-left {
   top: 9%;
   left: 3%;
@@ -227,7 +214,7 @@ button,
 .top-right { 
   top: 10%;
   right: 10%;
-  display: none; /* si tu ne veux pas l'afficher */
+  display: none; 
 }
 .bottom-center { 
   bottom: 10%;
@@ -240,14 +227,12 @@ button,
   display: none;
 }
 
-/* FadeOut (appliqué en JS) */
 @keyframes fadeOut {
   to {
     opacity: 0;
   }
 }
 
-/* Overlay noir */
 .overlay {
   position: absolute;
   top: 0; 
@@ -260,7 +245,7 @@ button,
   z-index: 10;
   transition: opacity 1s;
 }
-/* Écran principal */
+
 .main-game-screen {
   position: absolute;
   top: 0;
@@ -290,12 +275,10 @@ button,
   padding: 20px;
   overflow: auto;
 
-  /* Effet FadeInUp au chargement */
   opacity: 0;
   animation: fadeInUpContent 0.8s ease-out forwards;
 }
 
-/* Titre de l'écran principal */
 .main-game-content h2 {
   margin-top: 0;
   font-family: 'NyghtSerif-Light', serif;
@@ -304,15 +287,13 @@ button,
   text-align: center;
 }
 
-/* Conteneur pour l'art et les palettes en flex (gauche/droite) */
 .art-and-palette {
   display: flex;
-  justify-content: space-between; /* ou "space-around"/"space-evenly" si tu préfères */
+  justify-content: space-between; 
   gap: 20px;
-  align-items: center; /* commence aligné en haut */
+  align-items: center; 
 }
 
-/* Bloc infos de l'œuvre */
 .art-info {
   display: flex;
   flex-direction: column;
@@ -338,10 +319,9 @@ button,
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centre horizontalement chaque bloc */
+  align-items: center; 
 }
 
-/* Bloc palettes (à droite) */
 .color-palette-options {
   display: flex;
   flex-direction: column;
@@ -354,22 +334,21 @@ button,
   gap: 0.5rem;
 }
 .color-palette-options label img {
-    width: 14rem;  /* au lieu de 100px */
+    width: 14rem;  
     height: auto;
     border: 1px solid #0003;
 }
 
-/* Radio à droite de l'image => on inverse l’ordre dans le label */
 .color-palette-options label img {
   order: 1;
 }
 .color-palette-options label input[type="radio"] {
-  order: 2; /* radio après l'image */
+  order: 2; 
 }
 
 .color-palette-options input[type="radio"] {
-    transform: scale(1.75);  /* par exemple */
-    margin-left: 10px;      /* petit espace */
+    transform: scale(1.75);  
+    margin-left: 10px;      
 }
 
 .validate-button {
@@ -387,11 +366,8 @@ button,
   color: white;
 }
 
-/* ----------------- Styles Spécifiques au Second Jeu ------------------ */
-
-/* 1) Effet FadeIn pour .main-game-content au chargement */
 .main-game-content {
-  opacity: 0; /* caché au départ */
+  opacity: 0; 
   animation: fadeInUpContent 0.8s ease-out forwards;
 }
 
@@ -406,7 +382,6 @@ button,
   }
 }
 
-/* 2) DialogBox persistante */
 .persistent-dialog {
   background: white;
   border: 1px solid #0003;
@@ -429,47 +404,44 @@ button,
   margin: 0;
   font-size: 16px;
   line-height: 1.3;
-  white-space: pre-line; /* pour gérer les retours à la ligne */
+  white-space: pre-line; 
 }
 
-/* 3) Cartes de couleur en row */
 .cards-row {
   display: flex;
   gap: 1rem;
   justify-content: space-between;
 }
 
-/* 4) Cartes de couleur */
 .color-card {
-  position: relative; /* pour positionner le texte supplémentaire */
+  position: relative; 
   color: white;
   border-radius: 8px;
   flex: 1;
   text-align: center;
   padding: 1rem;
   cursor: pointer;
-  transform-origin: top center;                     /* L'animation partira du haut */
+  transform-origin: top center;                     
   transition: transform 0.4s cubic-bezier(0.19,1,0.22,1),
               box-shadow 0.4s cubic-bezier(0.19,1,0.22,1),
-              padding 0.4s cubic-bezier(0.19,1,0.22,1);  transform-origin: top center;                     /* L'animation partira du haut */
-  /* Ombrage léger pour donner du relief */
+              padding 0.4s cubic-bezier(0.19,1,0.22,1);  transform-origin: top center;                     
+
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding-top: 4rem;
-  overflow: hidden; /* pour contenir les détails lors de l'agrandissement */
+  overflow: hidden; 
 }
 
-/* Couleurs spécifiques */
 .color-card[data-color="#9C8A54"] {
-  background-color: #9C8A54; /* Or */
+  background-color: #9C8A54; 
   transform: rotate(-20deg);
 }
 
 .color-card[data-color="#3C514A"] {
-  background-color: #3C514A; /* Bleu/vert */
+  background-color: #3C514A; 
 }
 
 .color-card[data-color="#BD5A4E"] {
-  background-color: #BD5A4E; /* Rouge */
+  background-color: #BD5A4E; 
   transform: rotate(20deg);
 }
 
@@ -477,16 +449,14 @@ button,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Agrandissement et mise en avant lorsqu'une carte est sélectionnée */
 .color-card.selected {
-  padding-top: 20px;            /* ça "pousse" la carte vers le bas, donc effet “agrandissement par le haut” */
+  padding-top: 20px;            
   z-index: 1;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Détails supplémentaires sur la carte, cachés par défaut */
 .card-details {
-  display: none; /* caché par défaut */
+  display: none; 
   margin-top: 0.5rem;
   font-size: 0.85rem;
   line-height: 1.2;
@@ -494,13 +464,11 @@ button,
   transition: opacity 0.5s ease;
 }
 
-/* Affichage des détails lorsque la carte est sélectionnée */
 .color-card.selected .card-details {
   display: block;
   opacity: 1;
 }
 
-/* Style du bouton Valider fixé en bas à droite */
 .validate-button {
   position: fixed;
   bottom: 20px;
@@ -513,14 +481,13 @@ button,
   font-size: 16px;
   border-radius: 4px;
   transition: background 0.3s ease, color 0.3s ease;
-  z-index: 100; /* Assure qu'il reste au-dessus des autres éléments */
+  z-index: 100; 
 }
 
 .validate-button:hover {
   background: #333;
 }
 
-/* Responsive : Ajustements pour petits écrans */
 @media (max-width: 768px) {
   .art-and-palette {
     flex-direction: column;

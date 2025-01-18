@@ -7,7 +7,7 @@ import SelectedElements from "../data/selectedElements.js";
 
 export default class ExhibitionScene extends Scene {
     constructor() {
-        super("scene-exhibition", "./assets/sound/song.mp3");
+        super("scene-exhibition", "/2-reserve/assets/sound/song.mp3");
 
         this.currentPainting = null;
         this.canPlacePainting = false
@@ -74,20 +74,35 @@ export default class ExhibitionScene extends Scene {
         let empty1 = document.createElement("img")
         empty1.style.position = "absolute"
         empty1.style.top = "0px"
-        empty1.src = "./assets/img/scenes/emplacement_tab_1.png";
+        empty1.src = "/2-reserve/assets/img/scenes/emplacement_tab_1.png";
         let empty2 = document.createElement("img")
         empty2.style.position = "absolute"
         empty2.style.top = "0px"
-        empty2.src = "./assets/img/scenes/emplacement_tab_2.png";
+        empty2.src = "/2-reserve/assets/img/scenes/emplacement_tab_2.png";
         let empty3 = document.createElement("img")
         empty3.style.position = "absolute"
         empty3.style.top = "0px"
-        empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
+        empty3.src = "/2-reserve/assets/img/scenes/emplacement_tab_3.png";
+
+
+        let vitrail = document.createElement("img");
+        vitrail.style.position = "absolute"
+        vitrail.style.top = "0px"
+        vitrail.src = "/2-reserve/assets/img/elements/vitrail.gif";
+
+        let plante = document.createElement("img");
+        plante.style.position = "absolute"
+        plante.style.top = "0px"
+        plante.src = "/2-reserve/assets/img/elements/plante.gif";
 
         let container = document.getElementById("empty-container");
         container.appendChild(empty1);
         container.appendChild(empty2);
         container.appendChild(empty3);
+
+        let page = document.querySelector("#scene-exhibition")
+        page.appendChild(vitrail);
+        page.appendChild(plante);
 
         this.canPlacePainting = false;
         Game.getInstance().dialogue.listDialogue(["0-2-0"]);

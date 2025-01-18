@@ -1,7 +1,5 @@
-/* Hérite du style de base */
 @import 'artwork.css';
 
-/* Styles spécifiques */
 .game-container {
   display: flex;
   gap: 2rem;

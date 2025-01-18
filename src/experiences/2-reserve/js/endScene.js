@@ -11,17 +11,17 @@ import descriptionExposition from "../data/descriptionExposition.js";
 
 export default class EndScene extends Scene {
     constructor() {
-        super("end-scene", "./assets/sound/song.mp3");
+        super("end-scene", "/2-reserve/assets/sound/song.mp3");
         this.perspectiveRotation = 1689;
         
         this.button = document.createElement("button")
-        this.button.className = `nextButton button normal white rightBottom`;
+        this.button.className =`nextButton button normal white rightBottom`;
         this.button.textContent = "Recommencer";
         this.button.id = "reload-game";
-       
+        this.endModal;
     }
 
-    initScene() {
+    initScene(){
         super.initScene()
         this.fetchElements()
         this.fetchPaintings()
@@ -29,16 +29,32 @@ export default class EndScene extends Scene {
             this.showDescriptionFinal();
         })
         Game.getInstance().dialogue.listDialogue(["2-2-2", `3-0-0`]);
-        if (this.reloadHandler) {
-            this.button.removeEventListener("click", this.reloadHandler);
-        }
-
-        this.reloadHandler = () => {
-            Game.getInstance().resetGame()
-        }
-
+        if (this.placeHandler || this.reloadHandler) {
+                    this.button.removeEventListener("click", this.reloadHandler);
+                    document.removeEventListener("click", this.placeHandler); // Changé pour document
+                }
+        
+                this.reloadHandler = () => {
+                    Game.getInstance().resetGame()
+                }
+             
 
         this.button.addEventListener("click", this.reloadHandler);
+        document.addEventListener("click", this.placeHandler); // Changé pour document
+
+        let vitrail = document.createElement("img");
+        vitrail.style.position = "absolute"
+        vitrail.style.top = "0px"
+        vitrail.src = "./assets/img/elements/vitrail.gif";
+
+        let plante = document.createElement("img");
+        plante.style.position = "absolute"
+        plante.style.top = "0px"
+        plante.src = "./assets/img/elements/plante.gif";
+
+        let page = document.querySelector("#end-scene")
+        page.appendChild(vitrail);
+        page.appendChild(plante);
     }
 
 
@@ -63,18 +79,18 @@ export default class EndScene extends Scene {
             return sortedArr1.every((value, index) => value === sortedArr2[index]);
         }
 
-        let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
+        this.endModal = new Modal(description.title, description.description, "modalEnd", parentElement)
         document.querySelector('.modalEnd').appendChild(this.button);
-        modal.titleElement.className += 'h3-title-serif'
+        this.endModal.titleElement.className += 'h3-title-serif'
     }
 
 
     fetchPaintings() {
         for (let i = 0; i < SelectedPaintings.length; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "end-paintings-container");
+            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "end-paintings-container");
             sprite.element.style.zIndex = "1";
-            this.fixPaintingPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
+            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
             this.rotatePainting(sprite.element);
         }
     }
@@ -113,7 +129,7 @@ export default class EndScene extends Scene {
         })
     }
 
-    unloadScene() {
+    unloadScene(){
         super.unloadScene()
         selectedPaintings.splice(0, selectedPaintings.length);
         selectedElements.splice(0, selectedElements.length);
@@ -125,9 +141,14 @@ export default class EndScene extends Scene {
             paintingsContainer.innerHTML = "";
         }
         if (elementsContainer) {
-            elementsContainer.innerHTML = "";
+            elementsContainer.innerHTML = ""; 
         }
+        this.endModal.remove()
+        this.endModal = null;
     }
 
+        
+    
+    
 }
 
