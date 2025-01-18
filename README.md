@@ -96,7 +96,7 @@ Les expériences, chacune dans son dossier. Vous pouvez gérer ce qu'il y a deda
 Les fichiers qui ne sont pas traités par vite (donc autre que js et css en gros)
 Exemple : image, fichier 3D
 
-Chaque groupe à son dossier, libre à vous de créer des sous dossiers `/public/1-hub/images`
+Chaque groupe à son dossier, libre à vous de créer des sous dossiers `/public/1-hub/Images`
 
 ### À la racine `/`
 
