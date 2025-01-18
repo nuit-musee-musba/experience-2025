@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import shuffleTextAnimation from "./utils/ShuffleText";
 
 // Sélection des éléments de la page d'accueil (home)
 // Titre principal
@@ -90,6 +91,7 @@ const enterExperience = (experienceID) => {
     const targetModalText = document.querySelector(`.experience-page .experience-modal p`);
     const targetIllustartion = document.querySelector(`.experience-page .experience-illustartion img`);
     const targetBtn = document.querySelector(`.experience-page .experience-modal button a`);
+
     
 
     if ( !targetPerso) {
@@ -109,6 +111,9 @@ const enterExperience = (experienceID) => {
     targetIllustartion.src = targetExperienceData.illustration;
     targetBtn.href = targetExperienceData.link;
 
+    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, {duration: 0.2, delay: 0.5, steps: 10});
+
+
     // Crée et joue la timeline pour l'animation
     return gsap.timeline({delay:0.5})
         .set(experienceIllustration, {display: 'flex'})
@@ -127,6 +132,15 @@ const enterExperience = (experienceID) => {
                 ease: "power2.out",
             }, 0
         )
+        .fromTo(targetModalText,{
+            opacity: 0,
+            y: 50,
+        },{
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        }, "<")
         .fromTo(targetPerso, {
             opacity: 0,
             y:1500,
@@ -191,23 +205,23 @@ const leaveExperience = (experienceID) => {
 const changeExperience = (experienceID, previousExperienceID) => {
     console.log('change experience');
     
-
     const targetPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${experienceID}"]`);
     const previousPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${previousExperienceID}"]`);
 
     const targetModalTitle = document.querySelector(`.experience-page .experience-modal h3`);
     const targetModalText = document.querySelector(`.experience-page .experience-modal p`);
-    const targetIllustartion = document.querySelector(`.experience-page .experience-illustartion img`);
+    const targetIllustartionContainer = document.querySelector(`.experience-page .experience-illustartion`);
+    const targetIllustartion = targetIllustartionContainer.querySelector("img");
+    const previousIllustartion = document.querySelector(`.experience-page .experience-illustartion img[src="${experienceData.find(exp => exp.id == previousExperienceID)?.illustration}"]`);
+    
     const targetBtn = document.querySelector(`.experience-page .experience-modal button a`);
     
-
-    if ( !targetPerso) {
+    if (!targetPerso || !previousPerso) {
         console.error(`No elements found for experience ID: ${experienceID}`);
         return;
     }
 
     const targetExperienceData = experienceData.find((exp) => exp.id == experienceID);
-
     if (!targetExperienceData) {
         console.error(`No data found for experience ID: ${experienceID}`);
         return;
@@ -215,18 +229,33 @@ const changeExperience = (experienceID, previousExperienceID) => {
 
     targetModalTitle.innerText = targetExperienceData.title;
     targetModalText.innerText = targetExperienceData.description;
-    targetIllustartion.src = targetExperienceData.illustration;
     targetBtn.href = targetExperienceData.link;
 
-    console.log(targetPerso, previousPerso);
-    
+    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, { duration: 0.2, steps: 10 });
 
-    if ( !targetPerso || !previousPerso) {
-        console.error(`No elements found for experience ID: ${experienceID}`);
-        return;
-    }
+    // Masque pour le conteneur de l'illustration
+    const maskTimeline = gsap.timeline();
+    maskTimeline
+        .to(targetIllustartionContainer, {
+            clipPath: "inset(0 0 100% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+                previousIllustartion.src = ""; 
+                targetIllustartion.src = targetExperienceData.illustration; 
+            },
+        })
+        .set(targetIllustartionContainer, {
+            clipPath: "inset(0 0 100% 0)",
+        })
+        .to(targetIllustartionContainer, {
+            clipPath: "inset(0 0 0% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+        });
 
     return gsap.timeline()
+        .add(maskTimeline) 
         .to(previousPerso, {
             opacity: 0,
             y: 1500,
@@ -236,15 +265,22 @@ const changeExperience = (experienceID, previousExperienceID) => {
         .fromTo(targetPerso, {
             opacity: 0,
             y: 1500,
-        },{
+        }, {
             y: 0,
             opacity: 1,
             duration: 0.5,
             ease: "power2.out",
-        },'-=0.5')
-
-
-}
+        }, '-=0.5')
+        .fromTo(targetModalText, {
+            opacity: 0,
+            y: 50,
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        }, "<");
+};
 
 homeNavItems.forEach((item, index) => {
     item.addEventListener('click', () => {
