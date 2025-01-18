@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Deuxième Jeu - Symbolisme</title>
+  <link rel="stylesheet" href="styles/game.css" />
+</head>
+<body>
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="character hidden">
+    <img src="images/perso-symbolisme.webp" alt="Personnage" />
+  </div>
+  <div class="content-block">
+    <h1 id="dialogTitle"></h1> 
+    <div id="dialogueText"></div>
+    <button class="next-dialogue hidden" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog hidden" id="closeDialog">Fermer</button>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="main-game-screen visible">
+    <div class="main-game-content">
+      <h2>Appuie sur une carte pour découvrir la signification de la couleur et recolorise la partie clé du tableau.</h2>
+      <div class="art-and-palette">
+        <div class="art-info">
+          <img id="artworkImage" src="images/p1symbolisme.webp" alt="Détail Symbolisme">
+          <p class="art-title2" id="artworkCaption">
+            Henri Gervex (1840-1916), Saint Sebastien, 1910 (vers), pastel sur papier.
+          </p>
+        </div>
+        <div class="right-column">
+          <div class="persistent-dialog">
+            <h1 id="persistentTitle">Les saints</h1>
+            <p id="persistentText">Les vêtements des saints doivent refléter leur force, leur passion et leur sacrifice pour la foi.
+            </p>
+          </div>
+          <img src="images/perso-symbolisme.webp" alt="Personnage 2" class="perso2-image" />
+          <div class="cards-row">
+            <div class="color-card" data-color="#BD5A4E">
+              <div class="card-title">Rouge</div>
+              <div class="card-details">
+                <p>Douleur</p>
+                <p>Sang</p>
+                <p>Noble</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#6E6F58">
+              <div class="card-title">Vert</div>
+              <div class="card-details">
+                <p>Naturel</p>
+                <p>Vivant</p>
+                <p>Cycle</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#604F97">
+              <div class="card-title">Violet</div>
+              <div class="card-details">
+                <p>Spirituel</p>
+                <p>Surnaturelle</p>
+                <p>Envoûtant</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#E6BB41">
+              <div class="card-title">Jaune</div>
+              <div class="card-details">
+                <p>Pur</p>
+                <p>Lumineux</p>
+                <p>Rayonnant</p>
+              </div>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+      <button id="validateColor" class="validate-button">Choisir</button>
+    </div> 
+  </div> 
+  <style>
+    .art-info img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      padding-top: 6rem;
+      width: 69rem;
+    }
+    .art-info .art-title2 {
+      padding-right: 15rem;
+      padding-left: 19rem;
+    }
+    .persistent-dialog {
+      width: 86rem;
+      margin-top: 5rem;
+    }
+    .perso2-image {
+      top: 26.25rem;
+    }
+    .color-card {
+      width: 24rem;
+    }
+    .content-block {
+      left: 56%;
+    }
+    .perso2-image.success {
+      width: 875px;
+      height: 1000px;
+    }
+    .persistent-dialog.success {
+    top: 38rem;
+    width: 89rem;
+    }
+    .color-card[data-color="#BD5A4E"] {
+    background-color: #BD5A4E;
+    position: fixed;
+    right: 85rem;
+    bottom: 17rem;
+    transform: rotate(-20deg);
+    }
+    .color-card[data-color="#6E6F58"] {
+    background-color: #6E6F58;
+    position: fixed;
+    right: 65.5rem;
+    bottom: 22rem;
+    transform: rotate(-5deg);
+    }
+    .color-card[data-color="#604F97"] {
+    background-color: #604F97;
+    position: fixed;
+    right: 45rem;
+    bottom: 21rem;
+    transform: rotate(11deg);
+    }
+    .color-card[data-color="#E6BB41"] {
+    background-color: #E6BB41;
+    position: fixed;
+    right: 24rem;
+    bottom: 15rem;
+    transform: rotate(22deg);
+    }
+  </style>
+  <script src="script/symbolisme.js"></script>
+</body>
+</html>

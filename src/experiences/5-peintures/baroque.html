@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <title>Deuxième Jeu - Baroque</title>
+  <link rel="stylesheet" href="styles/game.css" />
+</head>
+<body>
+  <a href="index.html" class="back-button">Retour</a>
+  <div class="character hidden">
+    <img src="images/perso-baroque.webp" alt="Personnage" />
+  </div>
+  <div class="content-block">
+    <h1 id="dialogTitle"></h1> 
+    <div id="dialogueText"></div>
+    <button class="next-dialogue hidden" id="nextDialogue">
+      <span id="btnText">Suivant</span>
+      <img src="images/black-arrow.svg" alt="Flèche" class="arrow-icon" />
+    </button>
+    <button class="close-dialog hidden" id="closeDialog">Fermer</button>
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="main-game-screen visible">
+    <div class="main-game-content">
+      <h2>Appuie sur une carte pour découvrir la signification de la couleur et recolorise la partie clé du tableau.</h2>
+      <div class="art-and-palette">
+        <div class="art-info">
+          <img id="artworkImage" src="images/p1baroque.webp" alt="Détail Baroque">
+          <p class="art-title2" id="artworkCaption">
+            VAN DEN HOECKE Jan, La Déploration du Christ, 17e siecle
+          </p>
+        </div>
+        <div class="right-column">
+          <div class="persistent-dialog">
+            <h1 id="persistentTitle">Les saints</h1>
+            <p id="persistentText">Les vêtements des saints doivent refléter leur force, leur passion et leur sacrifice pour la foi.
+            </p>
+          </div>
+          <img src="images/perso-baroque.webp" alt="Personnage 2" class="perso2-image" />
+          <div class="cards-row">
+            <div class="color-card" data-color="#51617A">
+              <div class="card-title">Bleu</div>
+              <div class="card-details">
+                <p>Eternité</p>
+                <p>Loyauté</p>
+                <p>Bienveillance</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#BF7D65">
+              <div class="card-title">Rouge</div>
+              <div class="card-details">
+                <p>Sacrifice</p>
+                <p>Dévouement</p>
+                <p>Consécration</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#F6EAAE">
+              <div class="card-title">Beige</div>
+              <div class="card-details">
+                <p>Sainteté</p>
+                <p>Pureté</p>
+                <p>Élévation</p>
+              </div>
+            </div>
+            <div class="color-card" data-color="#715C3E">
+              <div class="card-title">Marron</div>
+              <div class="card-details">
+                <p>Drame</p>
+                <p>Souffrance</p>
+                <p>Perte</p>
+              </div>
+            </div>
+          </div> 
+        </div> 
+      </div> 
+      <button id="validateColor" class="validate-button">Choisir</button>
+    </div> 
+  </div> 
+  <style>
+    .art-info img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      width: 104rem;
+      padding-top: 11rem;
+    }
+    .art-info .art-title2 {
+      padding-right: 24rem;
+      padding-left: 1rem;
+    }
+    .persistent-dialog {
+      width: 73rem;
+    }
+    .perso2-image {
+      top: 26.25rem;
+    }
+    .color-card {
+      width: 24rem;
+    }
+    .content-block {
+      left: 56%;
+    }
+    .perso2-image.success {
+      width: 875px;
+      height: 1000px;
+    }
+    .persistent-dialog.success {
+    top: 38rem;
+    width: 76rem;
+    }
+  </style>
+  <script src="script/baroque.js"></script>
+</body>
+</html>

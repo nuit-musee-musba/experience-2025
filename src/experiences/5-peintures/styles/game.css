@@ -1,0 +1,592 @@
+@import url('https://cdn.jsdelivr.net/npm/helveticaneue@1.0.0/helveticaneue.min.css');
+@import url('https://fonts.cdnfonts.com/css/nyght-serif');
+
+@font-face {
+    font-family: 'NyghtSerif-Light';
+    src: url('../fonts/NyghtSerif-Light.ttf') format('truetype');
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  background-image: url('../images/BG_4K_1.webp');
+
+}
+
+button,
+.back-button {
+  border: 1px solid black; 
+  background: white;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  z-index: 20;
+}
+
+.character {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30%;
+  display: flex; 
+  align-items: center;
+  z-index: 11;
+}
+
+.character img {
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slideInLeft {
+  animation: slideInLeft 1s forwards;
+}
+
+.slideOutLeft {
+  animation: slideOutLeft 0.8s forwards;
+}
+
+.content-block {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(20px);
+  background: white;
+  width: 50%;
+  border: 1px solid #00000057;
+  z-index: 12;
+  margin-bottom: 1rem;
+  height: 41rem;
+  opacity: 0;
+  display: none; 
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+}
+
+.fadeOutDown {
+  animation: fadeOutDown 0.8s forwards;
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 50%);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 0.8s forwards;
+}
+
+.content-block.fadeOutDown {
+  animation: fadeOutDown 0.8s forwards;
+}
+
+.content-block.fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.overlay.fade-out {
+  animation: fadeOut 0.8s forwards;
+}
+
+.content-block.visible {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.content-block h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: 'NyghtSerif-Light', serif;
+  font-size: 5rem;
+  border-bottom: 1px solid black;
+  padding: 2rem;
+}
+
+.content-block p {
+  font-size: 3rem;
+  line-height: 1.3;
+}
+
+.dialogue-text {
+  margin: 0;
+  padding: 2rem;
+  min-height: 1.5em;
+  white-space: pre-line;
+}
+
+.char {
+  opacity: 0;
+  animation: fadeInChar 0.05s forwards;
+}
+
+@keyframes fadeInChar {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.next-dialogue {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background: none;
+  border: 2px solid black;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 31px;
+  cursor: pointer;
+}
+
+.close-dialog {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background: none;
+  border: 2px solid black;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 31px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.close-dialog.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.arrow-icon {
+  width: 2.5rem;
+  height: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.8s ease-out;
+}
+
+.overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay.fade-out {
+  animation: fadeOut 0.8s forwards;
+}
+
+.main-game-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  z-index: 9; 
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+
+.main-game-screen.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.main-game-content {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  background: white;
+  overflow: auto;
+  background: transparent;
+
+  opacity: 0;
+  animation: fadeInUpContent 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUpContent {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-game-content h2 {
+  margin-top: 0;
+  font-family: 'NyghtSerif-Light', serif;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+.art-and-palette {
+  display: flex;
+  justify-content: space-between; 
+  gap: 20px;
+  align-items: center; 
+}
+
+.art-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+  align-items: center;
+  transition: margin 0.8s ease;
+}
+
+.art-info .art-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.art-info .art-title2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  padding-right: 28rem;
+}
+
+.art-info img {
+  max-width: 76%;
+  height: auto;
+  margin-bottom: 1rem;
+  width: 85rem;
+}
+
+.art-info,
+.color-palette-options,
+.cards-column,
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.color-palette-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-top: 3rem;
+}
+
+.color-palette-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-palette-options label img {
+    width: 35rem;  
+    height: auto;
+    border: 1px solid #0003;
+}
+
+.color-palette-options label img {
+  order: 1;
+}
+
+.color-palette-options label input[type="radio"] {
+  order: 2; 
+}
+
+.color-palette-options input[type="radio"] {
+  transform: scale(5.75);
+  margin-left: 4rem;
+}
+
+.validate-button {
+  margin-top: 1rem;
+  border: 1px solid black; 
+  background: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-family: 'NyghtSerif-Light', serif;
+}
+
+.validate-button:hover {
+  background: black;
+  color: white;
+}
+
+.main-game-content {
+  opacity: 0; 
+  animation: fadeInUpContent 0.8s ease-out forwards;
+}
+
+.persistent-dialog {
+  background: white;
+  border: 1px solid #000;
+  margin-bottom: 1rem;
+  position: fixed;
+  top: 14rem;
+  right: 27rem;
+  transition: top 1s cubic-bezier(0.19, 1, 0.22, 1); 
+}
+
+.persistent-dialog.success {
+  top: 38rem;
+  width: 87rem;
+}
+
+.persistent-dialog h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: 'NyghtSerif-Light', serif;
+  font-size: 5rem;
+  border-bottom: 1px solid black;
+  padding: 3rem;
+}
+
+.persistent-dialog p {
+  margin: 0;
+  font-size: 3rem;
+  padding: 3rem;
+  line-height: 2;
+
+  white-space: pre-line; 
+}
+
+.cards-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-top: 14rem;
+}
+
+.color-card {
+  width: 28rem; 
+  height: 35rem;
+
+  position: relative;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'NyghtSerif-Light', serif;
+
+  overflow: hidden; 
+  transition: 
+    padding-top 0.6s cubic-bezier(0.19,1,0.22,1),
+    box-shadow 0.4s cubic-bezier(0.19,1,0.22,1);
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.color-card[data-color="#9C8A54"] {
+  background-color: #9C8A54;
+  position: fixed;
+  right: 79rem;
+  bottom: 16rem;
+  transform: rotate(-20deg);
+  z-index: 2;
+}
+
+.color-card[data-color="#51617A"] {
+  background-color: #51617A;
+  position: fixed;
+  right: 71rem;
+  bottom: 17rem;
+  transform: rotate(-20deg);
+}
+
+.color-card[data-color="#BF7D65"] {
+  background-color: #BF7D65;
+  position: fixed;
+  right: 51.5rem;
+  bottom: 22rem;
+  transform: rotate(-5deg);
+}
+
+.color-card[data-color="#F6EAAE"] {
+  background-color: #F6EAAE;
+  position: fixed;
+  right: 31rem;
+  bottom: 21rem;
+  transform: rotate(11deg);
+  color: black;
+}
+
+.color-card[data-color="#715C3E"] {
+  background-color: #715C3E;
+  position: fixed;
+  right: 10rem;
+  bottom: 15rem;
+  transform: rotate(22deg);
+}
+
+.color-card[data-color="#3C514A"] {
+  background-color: #3C514A;
+  position: fixed;
+  right: 54rem;
+  bottom: 21rem;
+  z-index: 1;
+}
+
+.color-card[data-color="#BD5A4E"] {
+  background-color: #BD5A4E;
+  position: fixed;
+  right: 29rem;
+  bottom: 16rem;
+  transform: rotate(20deg);
+}
+
+.color-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.color-card.selected {
+  padding-top: 6rem; 
+  z-index: 10;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-details {
+  display: none; 
+  margin-top: 0.5rem;
+  font-size: 2.85rem;
+  line-height: 0.8;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.color-card.selected .card-details {
+  display: block;
+  opacity: 1;
+}
+
+.validate-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 33px;
+  border: 1px solid black;
+  background: black;
+  color: white;
+  padding: 27px 61px;
+  cursor: pointer;
+  font-size: 4.5rem;
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+  z-index: 100;
+}
+
+.validate-button:hover {
+  background: #333;
+}
+
+.perso2-image {
+  position: fixed;
+  top: 20.2rem;
+  right: 8rem;
+  width: 500px;
+  height: 400px;
+  object-fit: cover;
+  object-position: 0px -44px;
+  z-index: 15;
+  transform: scaleX(-1);
+  transition: top 1s cubic-bezier(0.19, 1, 0.22, 1), right 1s cubic-bezier(0.19, 1, 0.22, 1), width 1s cubic-bezier(0.19, 1, 0.22, 1), height 1s cubic-bezier(0.19, 1, 0.22, 1); 
+}
+
+.perso2-image.success {
+  top: 60.2rem;
+  right: -8rem;
+  width: 800px;
+  height: 1000px;
+}
+
+.character.hidden {
+  display: none;
+}
+
+.character.visible {
+  display: flex;
+  align-items: center;
+}
