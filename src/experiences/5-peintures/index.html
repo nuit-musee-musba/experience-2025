@@ -217,7 +217,7 @@
         const epoch = selectedCard.getAttribute('data-epoch').toLowerCase();
         const validEpochs = ['symbolisme', 'renaissance', 'romantisme', 'baroque'];
         if(validEpochs.includes(epoch)){
-          const url = `start-${epoch}.html`;
+          const url = `accueil-${epoch}.html`;
           document.body.classList.add('fade-out');
           document.body.addEventListener('transitionend', function handler(event) {
             if (event.propertyName === 'opacity') { 
