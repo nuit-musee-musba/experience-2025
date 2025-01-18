@@ -1,4 +1,3 @@
-/* Reset des marges et bordures */
 * {
   margin: 0;
   padding: 0;
@@ -8,35 +7,35 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Pas de défilement */
-  background-image: url("/Images/Fond.webp"); /* Image de fond */
-  background-size: cover; /* Couvre toute la fenêtre */
-  background-position: center; /* Centre l'image */
-  background-repeat: no-repeat; /* Pas de répétition de l'image */
+  overflow: hidden;
+  background-image: url("/Images/Fond.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 50% 50%; /* Deux colonnes : gauche et droite */
-  height: 100vh; /* Hauteur de l'écran */
-  width: 100vw;  /* Largeur de l'écran */
+  grid-template-columns: 50% 50%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .left {
   display: grid;
-  grid-template-rows: 75% 25%; /* Zone de travail (80%) en haut, Zone de dialogue (20%) en bas */
+  grid-template-rows: 75% 25%;
 }
 
 .right {
   display: grid;
-  grid-template-rows: 10% 90%; /* Barre de progression (10%) en haut, Inventaire (90%) en bas */
+  grid-template-rows: 10% 90%;
 }
 
 .section {
-  position: relative; /* Pour positionner les éléments internes */
-  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
-  border: 2px solid black; /* Délimitations noires */
-  padding-top: 40px; /* Espace pour le titre */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid black;
+  padding-top: 40px;
 }
 
 .title {
@@ -44,56 +43,54 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
-  text-align: center; /* Titre centré */
-  font-size: 3.6rem; /* Taille x2 par rapport à l'original (1.8rem) */
+  text-align: center;
+  font-size: 3.6rem;
   font-family: Arial, sans-serif;
-  color: black; /* Couleur noire */
-  padding: 10px 0; /* Espacement autour du titre */
-  background-color: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent pour le titre */
-  border-bottom: 2px solid black; /* Ligne de séparation en dessous du titre */
+  color: black;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid black;
 }
 
-/* Grille pour l'inventaire */
 .inventory-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-  grid-template-rows: repeat(2, 1fr);   /* 2 lignes */
-  height: 100%; /* Prend toute la hauteur disponible */
-  align-content: center; /* Centre verticalement les cases */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 100%;
 }
 
 .inventory-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
-  font-size: 1.2rem; /* Taille du texte */
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
   font-family: Arial, sans-serif;
-  color: black; /* Couleur du texte */
-  overflow: hidden; /* Cache tout débordement des images */
-  padding: 10px; /* Padding interne pour que les images ne touchent pas les bords */
+  color: black;
+  overflow: hidden;
+  padding: 10px;
 }
 
 .inventory-item img {
-  width: 100%; /* Prend toute la largeur disponible */
-  height: 100%; /* Prend toute la hauteur disponible */
-  object-fit: contain; /* Maintient les proportions */
-  aspect-ratio: 1 / 1; /* Garde les images carrées */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
 }
 
-/* Zone de Dialogue */
+
 .dialogue-content {
   display: flex;
-  align-items: center; /* Centre verticalement */
-  justify-content: flex-start; /* Positionne le contenu à gauche */
-  height: 100%; /* Prend toute la hauteur disponible */
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
   padding: 20px;
-  gap: 20px; /* Espacement entre les éléments */
+  gap: 20px;
 }
 
 .dialogue-button {
-  width: 100px; /* Taille x2 : 50px x 2 */
-  height: 100px; /* Taille x2 : 50px x 2 */
+  width: 100px;
+  height: 100px;
   background-image: url("/Images/Menu_Button.webp");
   background-size: cover;
   background-repeat: no-repeat;
@@ -103,50 +100,50 @@ html, body {
 }
 
 .dialogue-button:hover {
-  opacity: 0.8; /* Légère transparence au survol */
+  opacity: 0.8;
 }
 
 .character-image img {
   max-width: 100%;
-  max-height: 300px; /* Limite la hauteur de l'image */
-  border-radius: 10px; /* Arrondit les bords */
+  max-height: 300px;
+  border-radius: 10px;
 }
 
 .dialogue-modal {
-  flex: 3; /* Tripler la taille relative de la modal par rapport à l'image */
-  background-color: rgba(240, 240, 240, 0.9); /* Fond blanc semi-transparent */
-  padding: 30px; /* Augmente l'espace interne */
+  flex: 3;
+  background-color: rgba(240, 240, 240, 0.9);
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
-  margin-left: 20px; /* Espacement entre l'image et la modal */
-  height: auto; /* Ajuste automatiquement à la taille du contenu */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  height: auto;
 }
 
 .dialogue-modal p {
-  font-size: 2rem; /* Taille encore plus grande pour le texte */
-  line-height: 2; /* Espacement des lignes encore plus large */
+  font-size: 2rem;
+  line-height: 2;
   color: #333;
 }
 
-/* Conteneur de la barre de progression */
+
 .progress-container {
-  width: 90%; /* Largeur de la barre de progression (carrée) */
-  height: 20%; /* Hauteur égale pour former un carré */
-  background-color: #e0e0e0; /* Couleur de fond de la barre */
-  border: 2px solid #000; /* Bordure noire */
-  margin: auto; /* Centre horizontalement */
+  width: 90%;
+  height: 20%;
+  background-color: #e0e0e0;
+  border: 2px solid #000;
+  margin: auto;
   position: relative;
-  overflow: hidden; /* Cache le débordement de la barre */
-  display: flex; /* Utilisé pour le centrage vertical */
-  align-items: center; /* Centre le contenu verticalement */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-/* Barre de progression interne */
+
 #progress-bar {
-  width: 0%; /* Départ à 0% */
-  height: 100%; /* Prend toute la hauteur du conteneur */
-  background-color: #000; /* Couleur noire pour la progression */
-  transition: width 0.3s ease; /* Animation douce lors de la progression */
+  width: 0%;
+  height: 100%;
+  background-color: #000;
+  transition: width 0.3s ease;
 }
 
 .next-dialogue {
