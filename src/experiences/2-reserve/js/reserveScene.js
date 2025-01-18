@@ -30,7 +30,7 @@ export default class ReserveScene extends Scene {
                 const img = document.createElement("img");
                 let div = document.createElement('div');
         
-                img.src = painting.src + ".jpg";
+                img.src = painting.src + ".webp";
                 img.alt = painting.description || "Image sans description";
                     div.classList.add('paintingContainer', 'imageBorder');
                 conteneurPainting.append(div);

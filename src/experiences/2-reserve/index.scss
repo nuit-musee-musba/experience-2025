@@ -217,7 +217,7 @@
     width: 1837px;
     height: 1282px;
     background-color: white;
-    z-index: 1000;
+    //z-index: 1000;
     z-index: 5;
 }
 
@@ -227,4 +227,13 @@
     &._large {
         border: 8mm ridge rgb(203 189 74);
     }
+}
+
+.fade-in-element {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in-element.visible {
+  opacity: 1;
 }
