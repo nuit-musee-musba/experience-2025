@@ -105,10 +105,15 @@ export default class ExhibitionScene extends Scene {
         page.appendChild(plante);
 
         this.canPlacePainting = false;
-        Game.getInstance().dialogue.listDialogue(["0-2-0"]);
-        Game.getInstance().once("onDialogueClosed", () => {
+        if (Game.getInstance().gameProgression < 1) {
+            Game.getInstance().dialogue.listDialogue(["0-2-0"]);
+            Game.getInstance().once("onDialogueClosed", () => {
+                this.canPlacePainting = true;
+            });
+        }
+        else {
             this.canPlacePainting = true;
-        });
+        }
 
         // Attacher les handlers
         this.button.addEventListener("click", this.validateHandler);

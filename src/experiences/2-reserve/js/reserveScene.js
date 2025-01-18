@@ -17,7 +17,9 @@ export default class ReserveScene extends Scene {
         super.initScene()
         this.loadPaintings("#container-paintings")
         this.scrollToBottom()
-        Game.getInstance().dialogue.listDialogue([`0-1-0`, `0-1-1`]);
+        if (Game.getInstance().gameProgression < 1) {
+            Game.getInstance().dialogue.listDialogue([`0-1-0`, `0-1-1`]);
+        }
     }
 
     loadPaintings(conteneurPaintings) {
