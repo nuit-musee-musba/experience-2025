@@ -2,10 +2,9 @@ import gsap from "gsap";
 import shuffleTextAnimation from "./utils/ShuffleText";
 
 // Sélection des éléments de la page d'accueil (home)
-// Titre principal
 const projectTitle = document.querySelector('.project-title');
 
-// Navigation dans la section home
+// Navigation dans la section
 const homeNav = document.querySelector('.home .nav');
 const homeNavItems = document.querySelectorAll('.home .nav li');
 const backHome = document.querySelector('.back-home');
@@ -115,15 +114,38 @@ const enterExperience = (experienceID) => {
 
 
     // Crée et joue la timeline pour l'animation
-    return gsap.timeline({delay:0.5})
+    return gsap.timeline()
         .set(experienceIllustration, {display: 'flex'})
         .set(experienceModal, {display: 'flex'})
-        .to(experienceIllustration,
+        .set(experienceIllustration, {
+            clipPath: "inset(0 0 100% 0)",
+        })
+        .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5},0)
+        .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 },0) 
+        .to(experienceIllustration, {
+            clipPath: "inset(0 0 0% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+        },0)
+        .fromTo(experienceIllustration,
             {
-                opacity:1,
+                opacity: 0,
+            },
+            {
+                opacity: 1,
                 duration: 0.5,
                 ease: "power2.out",
-            }
+            },0
+        )
+        .fromTo(experienceModal,
+            {
+                opacity: 0,
+            },
+            {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out",
+            }, 0
         )
         .to(experienceModal,
             {
@@ -150,27 +172,8 @@ const enterExperience = (experienceID) => {
             opacity: 1,
             duration: 0.5,
             ease: "power2.out",
-        })
-        .fromTo(experienceIllustration,
-            {
-                opacity: 0,
-            },
-            {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out",
-            },0
-        )
-        .fromTo(experienceModal,
-            {
-                opacity: 0,
-            },
-            {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out",
-            }, 0
-        )
+        },0)
+       
 };
 
 
@@ -233,7 +236,7 @@ const changeExperience = (experienceID, previousExperienceID) => {
 
     shuffleTextAnimation(targetModalTitle, targetExperienceData.title, { duration: 0.2, steps: 10 });
 
-    // Masque pour le conteneur de l'illustration
+
     const maskTimeline = gsap.timeline();
     maskTimeline
         .to(targetIllustartionContainer, {
@@ -310,8 +313,8 @@ const leaveHome = gsap.timeline({
 
 
 leaveHome
-    .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5})
-    .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 },'-=0.5') 
+    // .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5})
+    .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 }) 
 
 
 backHome.addEventListener('click', () => {
@@ -326,4 +329,3 @@ backHome.addEventListener('click', () => {
 })
 
 
-// const enterExperience = gsap.timeline({paused: true})
