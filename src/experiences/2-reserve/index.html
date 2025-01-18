@@ -11,12 +11,12 @@
 <body>
 <!-- Welcome scene -->
 <div id="scene-welcome">
-    <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition">
+    <img src="/2-reserve/assets/img/scenes/exhibition.jpg" alt="exhibition">
 </div>
 
 <!-- Scene 1 -->
 <div id="scene-exhibition">
-    <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition" style="z-index: 0">
+    <img src="/2-reserve/assets/img/scenes/exhibition.jpg" alt="exhibition" style="z-index: 0">
     <div id="empty-container"></div>
     <div id="paintings-container"></div>
     <div id="selected-container"></div>
@@ -27,23 +27,26 @@
 <!-- Scène 2 -->
 <div id="scene-reserve">
     <div id="container-paintings"></div>
-    <img id="reserve-background" src="./assets/img/scenes/reserve.jpg" alt="">
+    <img id="reserve-background" src="/2-reserve/assets/img/scenes/reserve.jpg" alt="">
 </div>
 
 
 <!-- Scène 3 -->
 <div id="end-scene">
-    <img src="./assets/img/scenes/exhibition.jpg" alt="exhibition">
+    <img src="/2-reserve/assets/img/scenes/exhibition.jpg" alt="exhibition">
     <div id="end-paintings-container"></div>
     <div id="end-elements-container"></div>
 </div>
 
 
 <!-- Character -->
-<img id="character" class ="transitionAnimation" src="#" alt="#">
+<img id="character" class="transitionAnimation" src="#" alt="#">
 
 <!-- Music -->
 <audio id="background-music" src="" loop></audio>
-<a href="../../index.html" class="home-button"><img src="./assets/img/backHouse.svg" alt=""></a>
+<audio id="sound-effect" src="/2-reserve/assets/sound/HOME.wav"></audio>
+<button id="home-button">RESERVE
+    <a href="../../index.html" class="home-button"><img src="/2-reserve/assets/img/backHouse.svg" alt=""></a>
+</button>
 </body>
 </html>
