@@ -8,7 +8,7 @@ export default class AudioManager extends EventEmitter {
         }
         this.audioElem = document.querySelector('#background-music')
         this.audioElem.volume = .5;
-        this.canPlaySound = false;
+        this.canPlaySound = true;
         this.waitingSound = null;
     }
 

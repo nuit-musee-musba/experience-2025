@@ -17,7 +17,6 @@ Game.getInstance().loadScene("scene-welcome");
 
 const button = document.getElementById("home-button");
 const audio = document.getElementById("sound-effect");
-console.log(button)
 button.addEventListener("click", () => {
     audio.play();
 })

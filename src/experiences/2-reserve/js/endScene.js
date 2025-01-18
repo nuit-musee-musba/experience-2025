@@ -88,9 +88,9 @@ export default class EndScene extends Scene {
     fetchPaintings() {
         for (let i = 0; i < SelectedPaintings.length; i++) {
             let painting = SelectedPaintings[i];
-            let sprite = new Sprite(painting.src, painting.width, painting.height, painting.x, painting.y, "end-paintings-container");
+            let sprite = new Sprite(painting.src + ".webp", painting.width, painting.height, painting.position.x, painting.position.y, "end-paintings-container");
             sprite.element.style.zIndex = "1";
-            this.fixPaintingPosition(sprite.element, {x: painting.x, y: painting.y});
+            this.fixPaintingPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
     }

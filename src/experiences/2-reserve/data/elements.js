@@ -46,7 +46,7 @@ export default [
         zIndex: "6"
     },
     {
-        id: 4,
+        id: 5,
         src: "/2-reserve/assets/img/elements/canon.gif",
         x: 0,
         y: 0,
@@ -62,7 +62,7 @@ export default [
     //     zIndex: "4"
     // },
     {
-        id: 4,
+        id: 6,
         src: "/2-reserve/assets/img/elements/palmier_eau.gif",
         x: 0,
         y: 0,
@@ -70,7 +70,7 @@ export default [
         zIndex: "5"
     },
     {
-        id: 4,
+        id: 7,
         src: "/2-reserve/assets/img/elements/laurier_colombes.gif",
         x: 0,
         y: 0,
@@ -78,7 +78,7 @@ export default [
         zIndex: "7"
     },
     {
-        id: 4,
+        id: 8,
         src: "/2-reserve/assets/img/elements/tranchee_armure.gif",
         x: 0,
         y: 0,
@@ -86,11 +86,19 @@ export default [
         zIndex: "6"
     },
     {
-        id: 4,
+        id: 9,
         src: "/2-reserve/assets/img/elements/harpe-violon.gif",
         x: 0,
         y: 0,
         thematic: "1",
+        zIndex: "9"
+    },
+    {
+        id: 10,
+        src: "/2-reserve/assets/img/elements/fontaine.gif",
+        x: 0,
+        y: 0,
+        thematic: "4",
         zIndex: "9"
     },
 ]
