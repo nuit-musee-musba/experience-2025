@@ -176,7 +176,6 @@
 }
 
 .home-button {
-  z-index: 20;
   position: fixed;
   bottom: 100px;
   left: 100px;
@@ -184,12 +183,10 @@
 }
 
 .rightBottom {
-    position: absolute;
-   right: 0;
-   bottom: 0;
-   transform: translateY(20rem);
-    z-index: 1000;
-    z-index: 5;
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  z-index: 5;
 }
 
 .transitionAnimation {
@@ -215,7 +212,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 1837px;
-    height: 1282px;
     background-color: white;
     //z-index: 1000;
     z-index: 5;
