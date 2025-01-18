@@ -273,7 +273,7 @@ function touchMove(event) {
 }
 
 document.getElementById("menu-button").addEventListener("click", () => {
-  window.location.href = "menu.html"; // Remplacez "menu.html" par le chemin de votre fichier cible
+  window.location.href = "./1-hub/index.html"; // Remplacez "menu.html" par le chemin de votre fichier cible
 });
 
 
