@@ -41,6 +41,20 @@ export default class EndScene extends Scene {
 
         this.button.addEventListener("click", this.reloadHandler);
         document.addEventListener("click", this.placeHandler); // Changé pour document
+
+        let vitrail = document.createElement("img");
+        vitrail.style.position = "absolute"
+        vitrail.style.top = "0px"
+        vitrail.src = "./assets/img/elements/vitrail.gif";
+
+        let plante = document.createElement("img");
+        plante.style.position = "absolute"
+        plante.style.top = "0px"
+        plante.src = "./assets/img/elements/plante.gif";
+
+        let page = document.querySelector("#end-scene")
+        page.appendChild(vitrail);
+        page.appendChild(plante);
     }
 
 
