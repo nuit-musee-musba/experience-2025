@@ -1,10 +1,10 @@
 import gsap from "gsap";
+import shuffleTextAnimation from "./utils/ShuffleText";
 
 // Sélection des éléments de la page d'accueil (home)
-// Titre principal
 const projectTitle = document.querySelector('.project-title');
 
-// Navigation dans la section home
+// Navigation dans la section
 const homeNav = document.querySelector('.home .nav');
 const homeNavItems = document.querySelectorAll('.home .nav li');
 const backHome = document.querySelector('.back-home');
@@ -24,7 +24,7 @@ const experiencePersonnageContainers = document.querySelectorAll('.experience-pa
 const experienceContent = document.querySelector('.experience-page .experience-content');
 
 // Illustration de l'expérience
-const experienceIllustration = document.querySelector('.experience-page .experience-illustartion img');
+const experienceIllustration = document.querySelector('.experience-page .experience-illustartion');
 
 // Modal d'expérience
 const experienceModal = document.querySelector('.experience-page .experience-modal');
@@ -37,36 +37,36 @@ const experienceData = [
     {
         id: 1,
         title: 'Résérve',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Tristan régisseur du Musba fait appel à toi, gardien des merveilles, pour tisser les fils d'une toute nouvelle exposition enchantée. Plonge dans les trésors des réserves, où chaque peinture murmure des histoires oubliées, et laisse ta créativité illuminer la salle. Ta mission : insuffler une magie unique, transformant cet espace en un royaume vibrant qui émerveillera les âmes et éveillera les rêves.",
+        illustration: '/1-hub/illustrations/reserve.png',
         link: '/experiences/2-reserve/index.html'
     },
     {
         id: 2,
         title: 'Sculpture',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Plongez dans l'univers captivant de la sculpture de bronze avec Ernest Meissonier comme guide ! Découvrez chaque étape du processus, de la modélisation en argile au coulage du bronze, et recréez le chef-d'œuvre Le Voyageur. Dans cette expérience ludique et immersive, apprenez l’art complexe de la sculpture de bronze.",
+        illustration: '/1-hub/illustrations/sculpture.png',
         link: '/experiences/4-sculpture/index.html'
     },
     {
         id: 3,
         title: 'Peinture',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Avec Polychromia, plonge dans l’univers fascinant des couleurs à travers divers mouvements artistiques ! Découvre comment la palette choisie par l’artiste influence la signification de l’œuvre, et recolorise certaines parties clés du tableau pour comprendre l’importance des couleurs dans une œuvre. Grâce à des choix interactifs et guidés, tu apprendras à décoder l’art de manière ludique et captivante !",
+        illustration: '/1-hub/illustrations/peinture.png',
         link: '/experiences/5-peintures/index.html'
     },
     {
         id: 4,
         title: 'Arts Graphiques',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Mesdames et Messieurs, vous avez été sélectionnés pour participer au célèbre quiz CARTES & CARTELS ! Que vous veniez seul ou à plusieurs, préparez-vous à affronter une succession de questions sur ces petits écriteaux descriptifs des œuvres : les cartels. Déduction et connaissances seront vos meilleures armes pour parvenir à vous sortir de cette aventure périlleuse.",
+        illustration: '/1-hub/illustrations/art-graphiques.png',
         link: '/experiences/3-techniques/index.html'
     },
     {
         id: 5,
         title: 'Restauration',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed etiam, si correcte referemus, existentia corporis necesse est ut sit, exsistat autem id, quod est principium motus, id est calor.',
-        illustration: '/1-hub/placeholder.png',
+        description: "Prenez les commandes d’une restauration de tableau et découvrez la beauté de ce métier qui transmet le passé aux générations futures. À travers cette expérience, suivez les conseils du formateur et formez vous avant tout à ce noble métier requérant des notions scientifiques surprenantes. Un métier magique et bien plus exercer que vous ne le pensez.",
+        illustration: '/1-hub/illustrations/restauration.png',
         link: '/experiences/6-restaurations/index.html'
     },
     
@@ -90,6 +90,7 @@ const enterExperience = (experienceID) => {
     const targetModalText = document.querySelector(`.experience-page .experience-modal p`);
     const targetIllustartion = document.querySelector(`.experience-page .experience-illustartion img`);
     const targetBtn = document.querySelector(`.experience-page .experience-modal button a`);
+
     
 
     if ( !targetPerso) {
@@ -109,16 +110,17 @@ const enterExperience = (experienceID) => {
     targetIllustartion.src = targetExperienceData.illustration;
     targetBtn.href = targetExperienceData.link;
 
+    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, {duration: 0.2, delay: 0.65, steps: 10});
+
+
     // Crée et joue la timeline pour l'animation
-    return gsap.timeline({delay:0.5})
-        .set(experienceContent, {display: 'flex'})
-        .to(experienceContent,
-            {
-                opacity:1,
-                duration: 0.5,
-                ease: "power2.out",
-            }
-        )
+    return gsap.timeline()
+        .set(experienceIllustration, {display: 'flex'})
+        .set(experienceModal, {display: 'flex'})
+        .set(experienceIllustration, {
+            clipPath: "inset(0 0 100% 0)",
+        })
+        .add(leaveHome.play())
         .fromTo(targetPerso, {
             opacity: 0,
             y:1500,
@@ -128,7 +130,13 @@ const enterExperience = (experienceID) => {
             opacity: 1,
             duration: 0.5,
             ease: "power2.out",
-        })
+        },0.25)
+        .to(projectTitle,{transform: 'translate(-50%, -16vh) scale(0.7)', duration: 0.5},0.15)
+        .to(experienceIllustration, {
+            clipPath: "inset(0 0 0% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+        },0.25)
         .fromTo(experienceIllustration,
             {
                 opacity: 0,
@@ -137,7 +145,7 @@ const enterExperience = (experienceID) => {
                 opacity: 1,
                 duration: 0.5,
                 ease: "power2.out",
-            },0
+            },0.25
         )
         .fromTo(experienceModal,
             {
@@ -147,8 +155,19 @@ const enterExperience = (experienceID) => {
                 opacity: 1,
                 duration: 0.5,
                 ease: "power2.out",
-            }, 0
+            }, 0.65
         )
+        .fromTo(targetModalText,{
+            opacity: 0,
+            y: 50,
+        },{
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        }, 0.65)
+        
+       
 };
 
 
@@ -162,36 +181,47 @@ const leaveExperience = (experienceID) => {
             duration: 0.5,
             ease: "power2.out",
         })
-        .to(experienceContent,{
+        .to(projectTitle,{transform: 'translate(-50%, 0vh) scale(1)', duration: 0.5},0.25)
+        .to(experienceIllustration,{
             opacity: 0,
             duration: 0.5,
             ease: "power2.out",
-        })
-        .set(experienceContent,{
+        },0.15)
+        .to(experienceModal,{
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        },0.15)
+        .add(leaveHome.reverse(),0.05)
+        .set(experienceIllustration,{
             display: 'none',
         })
+        .set(experienceModal,{
+            display: 'none',
+        })
+        
 }
 
 const changeExperience = (experienceID, previousExperienceID) => {
     console.log('change experience');
     
-
     const targetPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${experienceID}"]`);
     const previousPerso = document.querySelector(`.experience-page .personnage-container[experience-id="${previousExperienceID}"]`);
 
     const targetModalTitle = document.querySelector(`.experience-page .experience-modal h3`);
     const targetModalText = document.querySelector(`.experience-page .experience-modal p`);
-    const targetIllustartion = document.querySelector(`.experience-page .experience-illustartion img`);
+    const targetIllustartionContainer = document.querySelector(`.experience-page .experience-illustartion`);
+    const targetIllustartion = targetIllustartionContainer.querySelector("img");
+    const previousIllustartion = document.querySelector(`.experience-page .experience-illustartion img[src="${experienceData.find(exp => exp.id == previousExperienceID)?.illustration}"]`);
+    
     const targetBtn = document.querySelector(`.experience-page .experience-modal button a`);
     
-
-    if ( !targetPerso) {
+    if (!targetPerso || !previousPerso) {
         console.error(`No elements found for experience ID: ${experienceID}`);
         return;
     }
 
     const targetExperienceData = experienceData.find((exp) => exp.id == experienceID);
-
     if (!targetExperienceData) {
         console.error(`No data found for experience ID: ${experienceID}`);
         return;
@@ -199,36 +229,65 @@ const changeExperience = (experienceID, previousExperienceID) => {
 
     targetModalTitle.innerText = targetExperienceData.title;
     targetModalText.innerText = targetExperienceData.description;
-    targetIllustartion.src = targetExperienceData.illustration;
     targetBtn.href = targetExperienceData.link;
 
-    console.log(targetPerso, previousPerso);
-    
+    shuffleTextAnimation(targetModalTitle, targetExperienceData.title, { duration: 0.2,delay:0.65, steps: 10 });
 
-    if ( !targetPerso || !previousPerso) {
-        console.error(`No elements found for experience ID: ${experienceID}`);
-        return;
-    }
+
+    const maskTimeline = gsap.timeline();
+    maskTimeline
+        .to(targetIllustartionContainer, {
+            clipPath: "inset(0 0 100% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+                previousIllustartion.src = ""; 
+                targetIllustartion.src = targetExperienceData.illustration; 
+            },
+        })
+        .set(targetIllustartionContainer, {
+            clipPath: "inset(0 0 100% 0)",
+        })
+        .to(targetIllustartionContainer, {
+            clipPath: "inset(0 0 0% 0)", 
+            duration: 0.5,
+            ease: "power2.inOut",
+        });
 
     return gsap.timeline()
+        .add(maskTimeline) 
         .to(previousPerso, {
             opacity: 0,
             y: 1500,
             duration: 0.5,
             ease: "power2.out",
-        })
+        },0)
         .fromTo(targetPerso, {
             opacity: 0,
             y: 1500,
-        },{
+        }, {
             y: 0,
             opacity: 1,
             duration: 0.5,
             ease: "power2.out",
-        },'-=0.5')
-
-
-}
+        }, '-=0.5')
+        .fromTo(experienceModal,{
+            opacity: 0,
+        },{
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+        }, 0.65)
+        .fromTo(targetModalText, {
+            opacity: 0,
+            y: 50,
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+        }, "<");
+};
 
 homeNavItems.forEach((item, index) => {
     item.addEventListener('click', () => {
@@ -242,7 +301,6 @@ homeNavItems.forEach((item, index) => {
 
 
         if (!isInExperiencePage) {
-            leaveHome.play();
             enterExperience(experienceID);
             isInExperiencePage = true;
         } else {
@@ -258,15 +316,12 @@ const leaveHome = gsap.timeline({
 
 
 leaveHome
-    .to(projectTitle,{transform: 'translate(-50%, -15vh) scale(0.8)', duration: 0.5})
-    .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 },'-=0.5') 
+    .to(homePersonnageContainers,{y: 1500, opacity:0, duration: 0.5, stagger:0.05 }) 
 
 
 backHome.addEventListener('click', () => {
     leaveExperience(experienceID);
-    setTimeout(() => {
-        leaveHome.reverse();
-    }, 500);
+     
 
     isInExperiencePage = false;
     experienceID = null;
@@ -274,4 +329,3 @@ backHome.addEventListener('click', () => {
 })
 
 
-// const enterExperience = gsap.timeline({paused: true})
