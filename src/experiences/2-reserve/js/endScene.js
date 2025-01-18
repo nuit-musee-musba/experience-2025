@@ -11,14 +11,14 @@ import descriptionExposition from "../data/descriptionExposition.js";
 
 export default class EndScene extends Scene {
     constructor() {
-        super("end-scene", null); 
+        super("end-scene", "/2-reserve/assets/sound/song.mp3");
         this.perspectiveRotation = 1689;
         
         this.button = document.createElement("button")
         this.button.className =`nextButton button normal white rightBottom`;
         this.button.textContent = "Recommencer";
         this.button.id = "reload-game";
-       
+        this.endModal;
     }
 
     initScene(){
@@ -79,9 +79,9 @@ export default class EndScene extends Scene {
             return sortedArr1.every((value, index) => value === sortedArr2[index]);
         }
 
-        console.log('description', description)
-        let modal = new Modal(description.title, description.description, "modalEnd", parentElement)
+        this.endModal = new Modal(description.title, description.description, "modalEnd", parentElement)
         document.querySelector('.modalEnd').appendChild(this.button);
+        this.endModal.titleElement.className += 'h3-title-serif'
     }
 
 
@@ -143,9 +143,12 @@ export default class EndScene extends Scene {
         if (elementsContainer) {
             elementsContainer.innerHTML = ""; 
         }
+        this.endModal.remove()
+        this.endModal = null;
+    }
 
         
-    }
+    
     
 }
 

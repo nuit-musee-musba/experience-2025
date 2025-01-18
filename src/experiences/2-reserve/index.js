@@ -8,7 +8,6 @@ import Dialogue from "./js/dialogue.js";
 import   "./js/paintingChoice.js";
 import EndScene from "./js/endScene.js";
 
-let game = new Game();
 const welcomeScene = new WelcomeScene();
 const exhibitionScene = new ExhibitionScene();
 const reserveScene = new ReserveScene();
@@ -16,4 +15,9 @@ const endScene = new EndScene();
 
 Game.getInstance().loadScene("scene-welcome");
 
-
+const button = document.getElementById("home-button");
+const audio = document.getElementById("sound-effect");
+console.log(button)
+button.addEventListener("click", () => {
+    audio.play();
+})

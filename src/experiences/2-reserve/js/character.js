@@ -20,10 +20,10 @@ export default class Character {
 
         switch (emotion) {
             case  0: //neutral
-                character.src = `./assets/img/tristan/tristan.gif`;
+                character.src = `/2-reserve/assets/img/tristan/tristan.gif`;
                 break;
             case 1 : //showing
-                character.src = `./assets/img/tristan/tristan.gif`;
+                character.src = `/2-reserve/assets/img/tristan/tristan.gif`;
                 break;
             default:
                 this.hideCharacter()

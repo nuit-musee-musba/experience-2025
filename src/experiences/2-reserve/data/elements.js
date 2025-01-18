@@ -7,7 +7,7 @@
 export default [
     // {
     //     id: 0,
-    //     src: "./assets/img/elements/vitrail.gif",
+    //     src: "/2-reserve/assets/img/elements/vitrail.gif",
     //     x: 0,
     //     y: 0,
     //     thematic: "1", // toujours présent
@@ -15,7 +15,7 @@ export default [
     // },
     {
         id: 1,
-        src: "./assets/img/elements/lianes_buisson.gif",
+        src: "/2-reserve/assets/img/elements/lianes_buisson.gif",
         x: 0,
         y: 0,
         thematic: "3",
@@ -23,7 +23,7 @@ export default [
     },
     {
         id: 2,
-        src: "./assets/img/elements/arche-mariage.gif",
+        src: "/2-reserve/assets/img/elements/arche-mariage.gif",
         x: 0,
         y: 0,
         thematic: "4",
@@ -31,7 +31,7 @@ export default [
     },
     {
         id: 3,
-        src: "./assets/img/elements/bougies.gif",
+        src: "/2-reserve/assets/img/elements/bougies.gif",
         x: 0,
         y: 0,
         thematic: "4",
@@ -39,7 +39,7 @@ export default [
     },
     {
         id: 4,
-        src: "./assets/img/elements/fontaine.gif",
+        src: "/2-reserve/assets/img/elements/fontaine.gif",
         x: 0,
         y: 0,
         thematic: "4",
@@ -47,7 +47,7 @@ export default [
     },
     {
         id: 4,
-        src: "./assets/img/elements/canon.gif",
+        src: "/2-reserve/assets/img/elements/canon.gif",
         x: 0,
         y: 0,
         thematic: "4",
@@ -55,7 +55,7 @@ export default [
     },
     // {
     //     id: 4,
-    //     src: "./assets/img/elements/plante.gif",
+    //     src: "/2-reserve/assets/img/elements/plante.gif",
     //     x: 0,
     //     y: 0,
     //     thematic: "3", /// toujours present
@@ -63,7 +63,7 @@ export default [
     // },
     {
         id: 4,
-        src: "./assets/img/elements/palmier_eau.gif",
+        src: "/2-reserve/assets/img/elements/palmier_eau.gif",
         x: 0,
         y: 0,
         thematic: "3",
@@ -71,7 +71,7 @@ export default [
     },
     {
         id: 4,
-        src: "./assets/img/elements/laurier_colombes.gif",
+        src: "/2-reserve/assets/img/elements/laurier_colombes.gif",
         x: 0,
         y: 0,
         thematic: "3",
@@ -79,7 +79,7 @@ export default [
     },
     {
         id: 4,
-        src: "./assets/img/elements/tranchee_armure.gif",
+        src: "/2-reserve/assets/img/elements/tranchee_armure.gif",
         x: 0,
         y: 0,
         thematic: "2",
@@ -87,7 +87,7 @@ export default [
     },
     {
         id: 4,
-        src: "./assets/img/elements/harpe-violon.gif",
+        src: "/2-reserve/assets/img/elements/harpe-violon.gif",
         x: 0,
         y: 0,
         thematic: "1",

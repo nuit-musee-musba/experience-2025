@@ -31,7 +31,7 @@ export default class Mastiquer{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme un ébauchoir et applique la pâte adaptée sur les zones abîmées avec précision.</p>
+                        <p>Utilise ton doigt comme un ébauchoir et applique la pâte adaptée sur les zones abîmées en appuyant sur les cibles.</p>
                     </div>
                 </div>
                 <div class="exp-right">

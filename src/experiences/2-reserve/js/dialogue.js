@@ -5,7 +5,7 @@ import Game from "./Game.js";
 
 export default class Dialogue extends Modal {
     constructor() {
-        super("Tristan le conservateur", "TestContent", "dialogue transitionAnimation _delay")
+        super("Tristan, le Régisseur", "TestContent", "dialogue transitionAnimation _delay")
         this.character = new Character();
 
         this.contentElement.textContent = this.content;
@@ -20,6 +20,7 @@ export default class Dialogue extends Modal {
         this.button.className =`nextButton button small white`;
         this.buttonContainer.appendChild(this.button);
         this.modal.appendChild(this.buttonContainer);
+        this.titleElement.className='h3-title-serif';
     }
 
     listDialogue(arrayDialoguesId) {

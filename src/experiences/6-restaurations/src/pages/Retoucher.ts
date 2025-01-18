@@ -31,7 +31,7 @@ export default class Retoucher{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme un pinceau fin et recrée les teintes de manière harmonieuse sur l’ensemble du tableau.</p>
+                        <p>Utilise ton doigt comme un pinceau et recrée les teintes de manière harmonieuse en glissant ton doigt sur l’ensemble du tableau.</p>
                     </div>
                 </div>
                 <div class="exp-right">

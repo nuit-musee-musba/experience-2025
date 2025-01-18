@@ -6,7 +6,7 @@ export const questions = [
 
     
         //Q1
-        question: "Pour toi, quel outil est utilisé pour réaliser cette œuvre ?", //souligner outils
+        question: "Quel outil est utilisé pour réaliser cette œuvre ?", //souligner outils
         responseDetails: {
             text: "L'appareil photo permet de capturer des images avec précision et de jouer avec la lumière et les angles pour produire une œuvre visuelle unique.",
             media: ""
@@ -59,9 +59,9 @@ export const questions = [
 
     {
         //Q2
-        question: "À toi ! De quel matériau est composée cette œuvre ?", //souligner matériau
+        question: "De quel matériau est composée cette œuvre ?", //souligner matériau
         responseDetails: {
-            text: "Cette œuvre est composée de grès, un matériau robuste et polyvalent souvent utilisé pour sa durabilité et sa texture idéale pour la sculpture ou la céramique.",
+            text: "Cette œuvre est composée de grès, un matériau robuste et polyvalent souvent utilisé pour sa durabilité et sa texture idéale,  notamment en sculpture ou en céramique.",
             media: ""
         },
         media: "img/art/coupeGres.png",
@@ -112,9 +112,9 @@ export const questions = [
     
         {
             //Q3
-            question: "À toi de jouer ! Quel matériau n’entre pas dans la composition de cette œuvre ?", //souligner matériau et pas
+            question: "Quel matériau n’entre pas dans la composition de cette œuvre ?", //souligner matériau et pas
             responseDetails: {
-                text: "Cette œuvre à été réalisée avec de la laine, du chanvre et de la corde.  La texture riche et l'usage habile des fibres mettent en valeur un travail artisanal exceptionnel.",
+                text: "Cette œuvre a été réalisée avec de la laine, du chanvre et de la corde. La texture riche et l'usage habile des fibres mettent en valeur un travail artisanal exceptionnel.",
                 media: ""
             },
             media: "img/art/arbreVie.png",
@@ -163,9 +163,9 @@ export const questions = [
 
     {
         //Q4
-        question: "Selon toi, quelle est la nature de cette œuvre ?", //souligner nature
+        question: "Quelle est la nature de cette œuvre ?", //souligner nature
         responseDetails: {
-            text: "La photogravure permet de graver des images sur des plaques avec une grande précision. C’est une technique parfaite pour capturer des scènes comme celles de Fraternité.",
+            text: "La photogravure permet de graver des images sur des plaques avec une grande précision. C’est une technique parfaite pour capturer des scènes comme celles de Fraternité.", //Fraternité en italic
             media: ""
         },
         media: "img/art/fraternité.png",
@@ -214,9 +214,9 @@ export const questions = [
 
     {
         //Q5
-        question: "C'est ton tour ! Quel est le matériau présent dans cette œuvre ?", //souligner matériau
+        question: "Quel est le matériau présent dans cette œuvre ?", //souligner matériau
         responseDetails: {
-            text: "Le matériau employé est le fer. Il est à la fois solide et esthétique. Cela permet de créer des pièces utiles et décoratives.",
+            text: "Le matériau employé est le fer : il est à la fois solide et esthétique. Cela permet de créer des pièces à la fois utiles et décoratives.",
             media: ""
         },
         media: "img/art/grilleDecorative.png",
@@ -264,7 +264,7 @@ export const questions = [
 
     {
         //Q6
-        question: "Prêts ? Parmi cette liste, quel matériau n’est pas utilisé ?", //souligner matériau et pas
+        question: "Parmi cette liste, quel matériau n’est pas utilisé ?", //souligner matériau et pas
         responseDetails: {
             text: "L’encre de chine, la mine de plomb et la sanguine ont été utilisées pour réaliser cette œuvre. La sanguine est reconnaissable grâce à ses pigments rouge terre.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
             media: ""
@@ -314,7 +314,7 @@ export const questions = [
 
     {
         //Q7
-        question: "Pour toi, sur quel matériau repose cette œuvre ?", //souligner matériau
+        question: "Sur quel matériau repose cette œuvre ?", //souligner matériau
         responseDetails: {
             text: "Cette œuvre repose sur un carton, un support pratique et léger, souvent utilisé pour les esquisses ou les études de paysages.",
             media: ""
@@ -363,7 +363,7 @@ export const questions = [
 
     {
         //Q8
-        question: "C'est ton tour ! Avec quel outil cette œuvre est réalisée ?", //souligner outils
+        question: "Avec quel outil cette œuvre est réalisée ?", //souligner outils
         responseDetails: {
             text: "Cette œuvre a été réalisée avec de l’aquarelle, une technique de peinture fluide qui utilise des pigments dilués dans l’eau pour créer des effets de transparence et de légèreté.",
             media: ""
@@ -415,9 +415,9 @@ export const questions = [
 
     {
         //Q9   
-        question: "Attention ! Quel élément n’est pas employé dans cette œuvre ?", //souligner pas & outils
+        question: "Quel élément n’est pas employé dans cette œuvre ?", //souligner pas & outils
         responseDetails: {
-            text: "Cette œuvre à été réalisée avec de l’aquarelle, de l’encre de chine et du crayon.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
+            text: "Cette œuvre a été réalisée avec de l’aquarelle, de l’encre de chine et du crayon.  L’encre de chine est une encre noire utilisée pour la peinture et l’écriture.",
             media: ""
         },
         media: "img/art/bordeauxPrisVif.png",
@@ -468,7 +468,7 @@ export const questions = [
 
     {
         //Q10   
-        question: "Pour toi, en quel matériau est fabriqué ce médaillon ?", //souligner matériau
+        question: "En quel matériau est fabriqué ce médaillon ?", //souligner matériau
         responseDetails: {
             text: "Ce médaillon est fabriqué en plâtre, un matériau idéal pour les sculptures décoratives et les reliefs détaillés.",
             media: ""
@@ -521,7 +521,7 @@ export const questions = [
         //Q11
         question: "Avec quoi cette œuvre est réalisée ?", //souligner quoi
         responseDetails: {
-            text: "L’œuvre a été réalisée en cire, un matériau malléable et polyvalent prisé par les artistes pour son aptitude à capturer les détails les plus fins.",
+            text: "L’œuvre a été réalisée en cire, un matériau malléable et polyvalent apprécié des artistes pour son aptitude à capturer les détails les plus fins. ",
             media: ""
         },
         media: "img/art/figurineChat.png",
@@ -554,7 +554,7 @@ export const questions = [
             },
             hard: {
                 choices: [
-                    { text: "", image: "img/card/mabre.jpg" },
+                    { text: "", image: "img/card/marbre.jpg" },
                     { text: "", image: "img/card/gres.jpg" },
                     { text: "", image: "img/card/cire.jpg" },
                     { text: "", image: "img/card/platre.jpg" }
@@ -571,7 +571,7 @@ export const questions = [
     
     {
         //Q12
-        question: "Selon toi, quelle est la nature de cette œuvre ?", //souligner nature
+        question: "Quelle est la nature de cette œuvre ?", //souligner nature
         responseDetails: {
             text: "Cette œuvre est un dessin, une création visuelle réalisée à la main avec de l'encre et la technique du lavis.",
             media: ""
@@ -589,7 +589,7 @@ export const questions = [
             easy: {
                 choices: [
                     { text: "", image: "img/card/ceramique.jpg" }, 
-                    { text: "", image: "img/card/ferronerie.jpg" },
+                    { text: "", image: "img/card/ferronnerie.jpg" },
                     { text: "", image: "img/card/dessin.jpg" },
                     { text: "", image: "img/card/verrerie.jpg" } 
                 ],
@@ -625,7 +625,7 @@ export const questions = [
 
     {
         //Q13
-        question: "Pour toi, quel est le matériau principal de cette œuvre ?", //souligner matériau
+        question: "Quel est le matériau principal de cette œuvre ?", //souligner matériau
         responseDetails: {
             text: "Le matériau est le verre, utilisé pour sa transparence, sa luminosité et sa capacité à être façonné sous haute température.",
             media: ""
@@ -677,9 +677,9 @@ export const questions = [
 
     {
         //Q14
-        question: "A toi ! Quel est le matériau de cette œuvre ?", //souligner matériau
+        question: "Quel est le matériau de cette œuvre ?", //souligner matériau
         responseDetails: {
-            text: "L’œuvre a été réalisée en terre cuite, un matériau naturel très apprécié pour la sculpture. La terre cuite est facile à modeler lorsqu’elle est humide et, une fois cuite, elle devient solide et durable",
+            text: "L’œuvre a été réalisée en terre cuite, un matériau naturel très apprécié pour la sculpture. La terre cuite est facile à modeler lorsqu’elle est humide et une fois cuite, elle devient solide et durable.",
             media: ""
         },
         media: "img/art/hebe.png",
@@ -753,7 +753,7 @@ export const questions = [
             },
             medium: {
                 choices: [
-                    { text: "", image: "img/card/ferronerie.jpg" },
+                    { text: "", image: "img/card/ferronnerie.jpg" },
                     { text: "", image: "img/card/verrerie.jpg" },
                     { text: "", image: "img/card/rondeBosse.jpg" },
                     { text: "", image: "img/card/ceramique.jpg" }
@@ -778,9 +778,9 @@ export const questions = [
 
     {
         //Q16
-        question: "Selon toi, où cette peinture à été réalisée ?", //souligner peinture
+        question: "Où cette peinture a été réalisée ?", //souligner peinture
         responseDetails: {
-            text: "L'œuvre Jardin au Pyla d' Albert Marquet est une ode à la simplicité et à la lumière du sud-ouest de la France. Dans ce tableau, Marquet capture la quiétude d'un jardin baigné par la douce lumière côtière du Pyla, près du bassin d'Arcachon. ",
+            text: "L'œuvre Jardin au Pyla d' Albert Marquet est une ode à la simplicité et à la lumière du sud-ouest de la France. Dans ce tableau, Marquet capture la quiétude d'un jardin baigné par la douce lumière côtière du Pyla, près du bassin d'Arcachon. ",//italic le jardin au pyla
             media: ""
         },
         media: "img/art/jardinPyla.png",
@@ -826,9 +826,9 @@ export const questions = [
 
     {
         //Q17
-        question: "À toi de jouer ! Quel est ce bâtiment ?", //souligner batiment
+        question: "Quel est ce bâtiment ?", //souligner batiment
         responseDetails: {
-            text: "L'Église Sainte-Croix est l'abbatiale d'un ancien monastère bénédictin, fondé au 7ᵉ siècle. Le clocher à droite du portail remonte au 12ᵉ siècle, son porche au 11e tandis que le clocher de gauche a été rajouté au 19ᵉ siècle par l'architecte Paul Abadie.",
+            text: "L'Église Sainte-Croix est l'abbatiale d'un ancien monastère bénédictin, fondé au 7ᵉ siècle. Le clocher à droite du portail remonte au 12ᵉ siècle, son porche au 11e tandis que le clocher de gauche a été rajouté au 19ᵉ siècle par l'architecte Paul Abadie.", 
             media: ""
         },
         media: "img/art/egliseSainteCroix.png",
@@ -876,7 +876,7 @@ export const questions = [
 
     {
         //Q18
-        question: "C'est ton tour ! Quel est ce bâtiment ?", //souligner batiment
+        question: "Quel est ce bâtiment ?", //souligner batiment
         responseDetails: {
             text: "Elle a pris le nom de porte d'Aquitaine le 18 novembre 1753 afin d'honorer le second fils de la Dauphine, le duc d'Aquitaine Xavier de France qui venait de naître.",
             media: ""
@@ -927,9 +927,9 @@ export const questions = [
 
     {
         //Q19
-        question: " Quel est le bâtiment représenté ici ?", //souligner batiment
+        question: " Quel est le bâtiment représenté ici?", //souligner batiment
         responseDetails: {
-            text: "La porte Cailhau se dresse sur la place du Palais du côté du fleuve. Située entre les embouchures des deux principales rivières de Bordeaux, le Peugue et la Devèze, c'était la principale entrée dans la ville depuis le port. ",
+            text: "La porte Cailhau se dresse sur la place du Palais du côté du fleuve. Située entre les embouchures des deux principales rivières de Bordeaux, le Peugue et la Devèze, c'était la principale entrée dans la ville depuis le port.",
             media: ""
         },
         media: "img/art/bordeauxPorteCailleau.png",
@@ -979,9 +979,9 @@ export const questions = [
 
     {
         //Q20
-        question: " Qui est la déesse représentée ici ?", //souligner déesse
+        question: "Qui est la déesse représentée ici ?", //souligner déesse
         responseDetails: {
-            text: "L’œuvre représente Diane, la déesse romaine de la chasse et de la nature. Symbole de force et de grâce.",
+            text: "L’œuvre représente Diane, la déesse romaine de la chasse et de la nature. Elle est un symbole de force et de grâce.",
             media: ""
         },
         media: "img/art/dianeChasseresse.jpg",
@@ -1032,7 +1032,7 @@ export const questions = [
         //Q21
         question: "Sous quel nom connaît-on cette peinture à l'huile de Rosa Bonheur ?", //souligner nom
         responseDetails: {
-            text: "L'œuvre La Foulaison du blé en Camargue , réalisée par Rosa Bonheur , met en lumière le travail agricole dans la région de la Camargue avec une maîtrise artistique remarquable. ",
+            text: "L'œuvre La Foulaison du blé en Camargue, réalisée par Rosa Bonheur, met en lumière le travail agricole dans la région de la Camargue avec une maîtrise artistique remarquable. ", //italic foulaison du blé en camargue
             media: ""
         },
         media: "img/art/foulaisonBleCamargue.png",
@@ -1084,7 +1084,7 @@ export const questions = [
         //Q22
         question: "Comment s’appelle le personnage sur ce portrait ? ", //souligner personnage
         responseDetails: {
-            text: "L'œuvre rend hommage à Jean Racine , l'un des plus grands dramaturges français du XVIIᵉ siècle.",
+            text: "L'œuvre rend hommage à Jean Racine, l'un des plus grands dramaturges français du XVIIᵉ siècle.",
             media: ""
         },
         media: "img/art/portraitFillsLouisXIV.png",
@@ -1132,14 +1132,14 @@ export const questions = [
 
     {
         //Q23
-        question: "A toi de jouer ! Qui est le peintre de cette œuvre ? ", //souligner peintre
+        question: "Qui est le peintre de cette œuvre ?", //souligner peintre
         responseDetails: {
-            text: "Odilon Redon est un peintre et graveur symboliste français. Son art explore les aspects de la pensée, la part sombre et ésotérique de l'âme humaine, empreinte des mécanismes du rêve.",
+            text: "Odilon Redon est un peintre et graveur symboliste français. Son art explore les aspects de la pensée et la part sombre de l'âme humaine, empreinte des mécanismes du rêve.",
             media: ""
         },
         media: "img/art/portraitMadameRedon.png",
         cartel: [
-            { id: "artistName", text: " Odilon Redon" },
+            { id: "artistName", text: "Redon Odilon" },
             { id: "artName", text: "Portrait de Madame Redon" },
             { id: "artDate", text: "1911" },
             { id: "useTechnique", text: "Pastel sur papier" },
@@ -1183,9 +1183,9 @@ export const questions = [
 
     {
         //Q24
-        question: "Selon toi ! Qui est le peintre de cette œuvre ?", //souligner peintre
+        question: "Qui est le peintre de cette œuvre ?", //souligner peintre
         responseDetails: {
-            text: "L'œuvre La Chasse aux lions d' Eugène Delacroix illustre avec intensité et mouvement une scène dramatique de chasse dans un paysage exotique. Inspiré par ses voyages en Afrique du Nord, Delacroix capture ici la confrontation entre l'homme et la nature sauvage.",
+            text: "L'œuvre réalisée par Eugène Delacroix illustre avec intensité et mouvement une scène dramatique de chasse dans un paysage exotique. Inspiré par ses voyages en Afrique du Nord, Delacroix capture ici la confrontation entre l'homme et la nature sauvage.",
             media: ""
         },
         media: "img/art/chasseLions.png",
@@ -1235,9 +1235,9 @@ export const questions = [
 
     {
         //Q25
-        question: "À toi de jouer ! Quelle est la nationalité du sculpteur de cette œuvre?", //souligner nationnalité
+        question: "Quelle est la nationalité du sculpteur de cette œuvre ?", //souligner nationnalité
         responseDetails: {
-            text: "Cette œuvre, La Visitation - Élisabeth et la Vierge , est d' origine espagnole . Réalisée entre 1430 et 1470, elle témoigne du savoir-faire des sculpteurs espagnols du XVe siècle, notamment dans le travail de l' albâtre , un matériau pris pour sa finesse et sa capacité à restituer les détails avec élégance.",
+            text: "Cette œuvre est d'origine espagnole. Réalisée entre 1430 et 1470, elle témoigne du savoir-faire des sculpteurs espagnols du XVe siècle, notamment dans le travail de l'albâtre, un matériau choisi pour sa finesse et sa capacité à restituer les détails avec élégance.",
             media: ""
         },
         media: "img/art/visitation.png",
@@ -1285,9 +1285,9 @@ export const questions = [
 
     {
         //Q26
-        question: "Selon toi, quand cette peinture à été réalisée ?", //souligner quand et peinture
+        question: "Quand cette peinture a été réalisée ?", //souligner quand et peinture
         responseDetails: {
-            text: "Cette peinture à été réalisée pendant l’époque contemporaine au 20ᵉ siècle, plus précisément en 1945.",
+            text: "L'œuvre a été réalisée en 1945, ce qui la situe au XXᵉ siècle. Cette période artistique est marquée par une grande diversité de styles et d'expérimentations, influencée par les bouleversements historiques et les courants modernes. ",
             media: ""
         },
         media: "img/art/compositionConstructionsChamps.jpg",
@@ -1335,9 +1335,9 @@ export const questions = [
 
     {
         //Q27
-        question: "Selon toi, quand cette peinture à été réalisée ?", //souligner quand et peinture
+        question: "Quand cette peinture a été réalisée ?", //souligner quand et peinture
         responseDetails: {
-            text: "L'œuvre L'Adoration des bergers d' Abraham Daniëlsz Hondius a été réalisée entre 1658 et 1660 , ce qui la situe au XVIIᵉ siècle . Cette période correspond à l'âge d'or de la peinture baroque, caractérisée par des compositions dynamiques, des contrastes marqués et une grande expressivité.",
+            text: "L'œuvre a été réalisée entre 1658 et 1660, ce qui la situe au XVIIᵉ siècle. Cette période correspond à l'âge d'or de la peinture baroque, caractérisée par des compositions dynamiques, des contrastes marqués et une grande expressivité.",
             media: ""
         },
         media: "img/art/adorationBergers.png",
@@ -1385,9 +1385,9 @@ export const questions = [
 
     {
         //Q28
-        question: "Selon toi, quand cette peinture à été réalisée ?", //souligner quand et peinture
+        question: "Quand cette peinture a été réalisée ?", //souligner quand et peinture
         responseDetails: {
-            text: "L'œuvre Soleil d'hiver de Victoire-Élisabeth Calcagni capture la beauté mélancolique d'un paysage baigné par la lumière douce et froide de l'hiver. Elle a été réalisée entre 1963 et 1964.",
+            text: "L'œuvre de Victoire-Élisabeth Calcagni capture la beauté mélancolique d'un paysage baigné par la lumière douce et froide de l'hiver. Elle a été réalisée entre 1963 et 1964.",
             media: ""
         },
         media: "img/art/soleilHiver.jpg",
@@ -1420,7 +1420,7 @@ export const questions = [
             },
             hard: {
                 choices: [
-                    { text: "", image: "img/card/1900-19020.jpg" },
+                    { text: "", image: "img/card/1900-1920.jpg" },
                     { text: "", image: "img/card/1920–1940.jpg" },
                     { text: "", image: "img/card/1960-1980.jpg" },
                     { text: "", image: "img/card/1940-1960.jpg" }
@@ -1439,9 +1439,9 @@ export const questions = [
 
     {
         //Q29
-        question: "Selon toi, quand cette peinture à été réalisée ?", //souligner quand et peinture
+        question: "Quand cette peinture a été réalisée ?", //souligner quand et peinture
         responseDetails: {
-            text: "L'œuvre Vierge de Pitié entourée de saints de Hans Clot a été réalisée en 1469 , ce qui la situe au XVᵉ siècle . Cette période est marquée par l'art gothique tardif, où l'on retrouve une grande attention aux détails, des expressions empreintes de piété et une mise en scène soignée des figures religieuses. ",
+            text: "L'œuvre a été réalisée en 1469, ce qui la situe au XVᵉ siècle. Cette période est marquée par l'art gothique tardif, où l'on retrouve une grande attention aux détails, des expressions empreintes de piété et une mise en scène soignée des figures religieuses. ",
             media: ""
         },
         media: "img/art/viergePitieSaints.png",
@@ -1458,7 +1458,7 @@ export const questions = [
                 choices: [
                     { text: "", image: "img/card/Antiquite.jpg" },
                     { text: "", image: "img/card/MoyenAge.jpg" },
-                    { text: "", image: "img/card/Préhistoire .jpg" },
+                    { text: "", image: "img/card/Prehistoire.jpg" },
                     { text: "", image: "img/card/EpoqueContemporaine.jpg" }
                 ],
                 correct: "B"
@@ -1494,7 +1494,7 @@ export const questions = [
         //Q30
         question: "Quel domaine est représenté ici ? ", //souligner domaine
         responseDetails: {
-            text: "L'œuvre Les Beaux-Arts de Nicolas Henry Jeaurat de Bertry représente une allégorie des arts, mettant en scène des éléments emblématiques du monde artistique. À travers cette composition, l'artiste illustre l'importance des disciplines telles que la peinture, la sculpture et l'architecture, qui étaient au cœur des préoccupations culturelles du XVIIIᵉ siècle .",
+            text: "L'œuvre Les Beaux-Arts de Nicolas Henry Jeaurat de Bertry représente une allégorie des arts, mettant en scène des éléments emblématiques du monde artistique. À travers cette composition, l'artiste illustre l'importance des disciplines telles que la peinture, la sculpture et l'architecture, qui étaient au cœur des préoccupations culturelles du XVIIIᵉ siècle.", //italic Les Beaus-Arts
             media: ""
         },
         media: "img/art/beauxArts.png",
@@ -1520,7 +1520,7 @@ export const questions = [
                 choices: [
                     { text: "", image: "img/card/Languesetrangeres.jpg" },
                     { text: "", image: "img/card/BeauxArts.jpg" },
-                    { text: "", image: "img/card/Labiologie.jpg" },
+                    { text: "", image: "img/card/Biologie.jpg" },
                     { text: "", image: "img/card/Mathematiques.jpg" }
                 ],
                 correct: "B"
@@ -1545,14 +1545,14 @@ export const questions = [
 
     {
         //Q31
-        question: "Pour toi, sur quel matériau repose cette œuvre ?", //souligner repose
+        question: "Sur quel matériau repose cette œuvre ? ", //souligner repose
         responseDetails: {
-            text: "L'œuvre Saint Sébastien , réalisée par Odilon Redon dit Bertrand Redon , est exécutée sur un support en papier , en utilisant la technique du pastel . Ce choix de support permet d'obtenir des nuances subtiles et des dégradés doux, caractéristiques du travail d'Odilon Redon.",
+            text: "L'œuvre, réalisée par Odilon Redon (dit Bertrand Redon), est exécutée sur un support en papier en utilisant la technique du pastel. Ce choix de support permet d'obtenir des nuances subtiles et des dégradés doux, caractéristiques du travail d'Odilon Redon.",
             media: ""
         },
         media: "img/art/saintSebastian.png",
         cartel: [
-            { id: "artistName", text: "Odilon Redon" },
+            { id: "artistName", text: "Redon Odilon" },
             { id: "artName", text: "Saint Sébastien" },
             { id: "artDate", text: "1910" },
             { id: "useTechnique", text: "Pastel sur papier" },
@@ -1597,9 +1597,9 @@ export const questions = [
 
     {
         //Q32
-        question: "Quels outils est utilisé pour cette œuvre ?", //souligner outils
+        question: "Quel outil est utilisé pour cette œuvre ?", //souligner outil
         responseDetails: {
-            text: "Pour réaliser Nature morte, fruits et fleurs en 1942 , Henri Matisse a utilisé le fusain sur papier. Le fusain , un outil de dessin composé de charbon de bois, permet d'obtenir des tracés à la fois précis et expressifs, ainsi que de riches variations de tons, du noir profond aux nuances plus légères. ",
+            text: "Pour réaliser cette œuvre, Henri Matisse a utilisé le fusain sur papier. Le fusain, un outil de dessin composé de charbon de bois, permet d'obtenir des tracés à la fois précis et expressifs, ainsi que de riches variations de tons, du noir profond aux nuances plus légères.",
             media: ""
         },
         media: "img/art/natureMorte.png",
@@ -1648,9 +1648,9 @@ export const questions = [
 
     {
         //Q33
-        question: "A toi ! Quand cette peinture a-t-elle été réalisée ?", //souligner quand
+        question: "Quand cette peinture a été réalisée ?", //souligner quand
         responseDetails: {
-            text: "Pour réaliser Galerie des rois et des reines en 2019 , Denis Monfleur a utilisé des outils de sculpture adaptés à la pouzzolane de Chambois émaillée et à la lave du Mont-Dore . Ces matériaux volcaniques ont obligatoirement des instruments robustes tels que des ciseaux à pierre, maillets et meules diamantées , permettant de tailler avec précision et de révéler les textures uniques de la roche.",
+            text: "Pour réaliser cette œuvre en 2019, Denis Monfleur a utilisé des outils de sculpture adaptés à la pouzzolane de Chambois émaillée et à la lave du Mont-Dore. Ces matériaux volcaniques sont associés à des instruments robustes tels que des ciseaux à pierre, maillets et meules diamantées, permettant de tailler avec précision et de révéler les textures uniques de la roche.",
             media: ""
         },
         media: "img/art/galerieRoiReine.png",
@@ -1702,9 +1702,9 @@ export const questions = [
 
     {
         //Q34
-        question: "Quels outils est utilisé pour cette œuvre ?", //souligner outils
+        question: "Quel outil est utilisé pour cette œuvre ?", //souligner outil
         responseDetails: {
-            text: "Pour réaliser Projet de mosaïque , Edmond Boissonnet a utilisé la gouache sur papier, une peinture à base d'eau offrant des couleurs intenses et opaques. Il a également travaillé en collage , fixant son dessin sur un deuxième papier pour renforcer l'effet visuel et la composition. ",
+            text: "Pour réaliser cette œuvre, Edmond Boissonnet a utilisé la gouache sur papier, une peinture à base d'eau offrant des couleurs intenses et opaques. Il a également travaillé en collage, fixant son dessin sur un deuxième papier pour renforcer l'effet visuel et la composition.",
             media: ""
         },
         media: "img/art/projetMosaique.png",
@@ -1745,7 +1745,58 @@ export const questions = [
                 correct: "A"
             }
         }
-    },    
+    }, 
+    
 
+
+
+
+
+    {
+        //Q35
+        question: "Quel outil est utilisé pour cette œuvre ?", //souligner outil
+        responseDetails: {
+            text: "L'œuvre représente le dieu Apollon, figure emblématique de la mythologie grecque et romaine. Associé à la lumière, aux arts, à la musique et à la prophétie, Apollon est souvent représenté sous des traits harmonieux et idéalisés, incarnant la jeunesse et la beauté.",
+            media: ""
+        },
+        media: "img/art/apollon.png",
+        cartel: [
+            { id: "artistName", text: "Lemot François Frédéric baron & Cortot Jean Pierre" },
+            { id: "artName", text: "Apollon - Ronde-bosse" },
+            { id: "artDate", text: "1812 ; 1827" },
+            { id: "useTechnique", text: "Ronde bosse en marbre" },
+            { id: "whereMuseum", text: "Exposée" }
+        ],
+        hide: ["artName"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "img/card/Aphrodite.jpg" },
+                    { text: "", image: "img/card/RosaParks.jpg" },
+                    { text: "", image: "img/card/MargotRobbieOeuvre.jpg" },
+                    { text: "", image: "img/card/Apollon.jpg" }
+                ],
+                correct: "D"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "img/card/Aphrodite.jpg" },
+                    { text: "", image: "img/card/Zeus.jpg" },
+                    { text: "", image: "img/card/Hades.jpg" },
+                    { text: "", image: "img/card/Apollon.jpg" }
+                ],
+                correct: "D"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "img/card/Dionysos.jpg" },
+                    { text: "", image: "img/card/Helios.jpg" },
+                    { text: "", image: "img/card/Hermes.jpg" },
+                    { text: "", image: "img/card/Apollon.jpg" }
+                ],
+                correct: "D"
+            }
+        }
+    },
 
 ];

@@ -4,7 +4,7 @@ import AudioManager from "./audioManager.js";
 
 export default class WelcomeScene extends Scene {
     constructor() {
-        super("scene-welcome", "./assets/sound/song.mp3");
+        super("scene-welcome", "/2-reserve/assets/sound/song.mp3");
     }
 
     initScene() {

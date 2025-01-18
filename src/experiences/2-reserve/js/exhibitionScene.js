@@ -7,7 +7,7 @@ import SelectedElements from "../data/selectedElements.js";
 
 export default class ExhibitionScene extends Scene {
     constructor() {
-        super("scene-exhibition", "./assets/sound/song.mp3");
+        super("scene-exhibition", "/2-reserve/assets/sound/song.mp3");
 
         this.currentPainting = null;
         this.canPlacePainting = false
@@ -27,7 +27,7 @@ export default class ExhibitionScene extends Scene {
             },
             {
                 x: 1464,
-                y: 685,
+                y: 712,
                 isOccupied: false
             }
         ]
@@ -59,7 +59,6 @@ export default class ExhibitionScene extends Scene {
 
             this.isPositionSet = true;
             this.currentPainting.position.isOccupied = true;
-            console.log(this.currentPainting);
             this.showElement();
             this.endSceneDialogue()
         }
@@ -75,26 +74,26 @@ export default class ExhibitionScene extends Scene {
         let empty1 = document.createElement("img")
         empty1.style.position = "absolute"
         empty1.style.top = "0px"
-        empty1.src = "./assets/img/scenes/emplacement_tab_1.png";
+        empty1.src = "/2-reserve/assets/img/scenes/emplacement_tab_1.png";
         let empty2 = document.createElement("img")
         empty2.style.position = "absolute"
         empty2.style.top = "0px"
-        empty2.src = "./assets/img/scenes/emplacement_tab_2.png";
+        empty2.src = "/2-reserve/assets/img/scenes/emplacement_tab_2.png";
         let empty3 = document.createElement("img")
         empty3.style.position = "absolute"
         empty3.style.top = "0px"
-        empty3.src = "./assets/img/scenes/emplacement_tab_3.png";
+        empty3.src = "/2-reserve/assets/img/scenes/emplacement_tab_3.png";
 
 
         let vitrail = document.createElement("img");
         vitrail.style.position = "absolute"
         vitrail.style.top = "0px"
-        vitrail.src = "./assets/img/elements/vitrail.gif";
+        vitrail.src = "/2-reserve/assets/img/elements/vitrail.gif";
 
         let plante = document.createElement("img");
         plante.style.position = "absolute"
         plante.style.top = "0px"
-        plante.src = "./assets/img/elements/plante.gif";
+        plante.src = "/2-reserve/assets/img/elements/plante.gif";
 
         let container = document.getElementById("empty-container");
         container.appendChild(empty1);
@@ -121,14 +120,15 @@ export default class ExhibitionScene extends Scene {
         //On affiche tous les tableaux sauf le dernier sélectionné
         for (let i = 0; i < SelectedPaintings.length - 1; i++) {
             let painting = SelectedPaintings[i];
-            console.log(painting);
             let sprite = new Sprite(painting.src + ".jpg", painting.width, painting.height, painting.position.x, painting.position.y, "paintings-container");
+            sprite.element.className += "imageBorder";
             this.fixPaintingElementPosition(sprite.element, {x: painting.position.x, y: painting.position.y});
             this.rotatePainting(sprite.element);
         }
         //Dernier élément sélectionné dans la réserve
         this.currentPainting = SelectedPaintings[SelectedPaintings.length - 1]
         let painting = new Sprite(this.currentPainting.src + ".jpg", this.currentPainting.width, this.currentPainting.height, 150, 150, "selected-container");
+        painting.element.className += "imageBorder";
         if (painting.element) {
             painting.element.classList.add("selected");
         }

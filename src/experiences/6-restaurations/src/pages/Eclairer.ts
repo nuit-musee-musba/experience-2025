@@ -31,7 +31,7 @@ export default class Eclairer{
                     </div>
                     <div class="exp-consigne">
                         <h3>Consigne</h3>
-                        <p>Utilise ton doigt comme une lampe UV et parcoure le tableau afin d'identifier les zones qui devront être restaurées.</p>
+                        <p>Utilise ton doigt comme une lampe UV et parcoure tout le tableau afin d'identifier les zones qui devront être restaurées.</p>
                     </div>
                 </div>
                 <div class="exp-right">

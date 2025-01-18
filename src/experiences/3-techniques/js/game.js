@@ -194,12 +194,12 @@ function askForDifficulty(
         updateBackground("easy");
         showContinueButton();
     });
-    
+
     document.getElementById("medium-btn").addEventListener("click", () => {
         updateBackground("medium")
         showContinueButton();
     });
-    
+
     document.getElementById("hard-btn").addEventListener("click", () => {
         updateBackground("hard");
         showContinueButton();
@@ -208,20 +208,20 @@ function askForDifficulty(
     function showContinueButton() {
         const continueBtn = document.getElementById("continuerDifficulty");
         continueBtn.style.display = "block";
-        
-        continueBtn.onclick = null; 
+
+        continueBtn.onclick = null;
         continueBtn.onclick = () => {
             startQuestionWithDifficulty(selectedDifficulty, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
             continueBtn.style.display = "none";
         };
-        
+
     }
 
     function updateBackground(difficulty) {
         const btnDifficultyEs = document.getElementById("btnDifficultyEs");
         const btnDifficultyMedium = document.getElementById("btnDifficultyMedium");
         const btnDifficultyHard = document.getElementById("btnDifficultyHard");
-        
+
         if (difficulty === "easy") {
             btnDifficultyEs.classList.add("btnDifficultyValidate");
             btnDifficultyMedium.classList.remove("btnDifficultyValidate");
@@ -256,7 +256,7 @@ function startQuestionWithDifficulty(difficulty, questionEl, btnA, btnB, btnC, b
     document.getElementById('difficulty-selector').style.display = 'none';
     loadQuestion(questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
 
-    console.log("la");
+
     startTimer(timerEl, () => {
         handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton);
         questionInProgress = false;
@@ -319,13 +319,33 @@ export function loadQuestion(
 function handleTimeout(activePlayerEl, timerEl, score1El, score2El, questionEl, btnA, btnB, btnC, btnD, mediaContainerDiv, nextButton) {
     if (!hasAnswered) {
         activePlayer = activePlayer === 1 ? 2 : 1;
-        activePlayerEl.textContent = activePlayer;
-        updatePlayerClasses(activePlayer);
-        startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
+
+        const nextTurnPlayerDiv = document.getElementById("NextTurnPlayer");
+        const nextTurnPlayerName = document.getElementById("NextTurnPlayerName");
+        const nextTurnPlayerStart = document.getElementById("NextTurnPlayerStart");
+        const backgroundNextTurnPlayer = document.getElementById("backgroundNextTurnPlayer");
+        backgroundNextTurnPlayer.style.display = "flex";
+        nextTurnPlayerName.textContent = `Au tour du Joueur ${activePlayer} !`;
+        nextTurnPlayerDiv.style.display = "flex";
+
+        if (activePlayer === 2) {
+            backgroundNextTurnPlayer.style.background = "rgba(185, 145, 205, 0.40)";
+        } else if (activePlayer === 1) {
+            backgroundNextTurnPlayer.style.background = "rgba(242, 168, 132, 0.40)";
+        }
+
+        nextTurnPlayerStart.onclick = () => {
+            backgroundNextTurnPlayer.style.display = "none";
+            nextTurnPlayerDiv.style.display = "none";
+            activePlayerEl.textContent = activePlayer;
+            updatePlayerClasses(activePlayer);
+            startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
+        };
     } else {
         nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton);
     }
 }
+
 
 export function handleAnswer(
     choice,
@@ -346,7 +366,6 @@ export function handleAnswer(
     playerNoWin = 0;
     if (choice === correct) {
         correctSound.play();
-
         playerNoWin = 1;
         incrementScore(activePlayer, selectedDifficulty);
         updateScores(score1El, score2El);
@@ -366,24 +385,29 @@ export function handleAnswer(
             hasAnswered = true;
             activePlayer = activePlayer === 1 ? 2 : 1;
             activePlayerEl.textContent = activePlayer;
-            updatePlayerClasses(activePlayer);
-            updateResponseTitle(false);
-            stopTimer()
-            startTimer(timerEl, () =>
-                handleTimeout(
-                    activePlayerEl,
-                    timerEl,
-                    score1El,
-                    score2El,
-                    questionEl,
-                    btnA,
-                    btnB,
-                    btnC,
-                    btnD,
-                    mediaContainerDiv,
-                    nextButton
-                )
-            );
+            const nextTurnPlayerDiv = document.getElementById("NextTurnPlayer");
+            const nextTurnPlayerName = document.getElementById("NextTurnPlayerName");
+            const nextTurnPlayerStart = document.getElementById("NextTurnPlayerStart");
+            const backgroundNextTurnPlayer = document.getElementById("backgroundNextTurnPlayer");
+            backgroundNextTurnPlayer.style.display = "flex";
+            nextTurnPlayerName.textContent = `Au tour du Joueur ${activePlayer} !`;
+            nextTurnPlayerDiv.style.display = "flex";
+
+            if (activePlayer === 2) {
+                backgroundNextTurnPlayer.style.background = "rgba(185, 145, 205, 0.40)";
+            } else if (activePlayer === 2) {
+                backgroundNextTurnPlayer.style.background = "rgba(242, 168, 132, 0.40)";
+            }
+
+            nextTurnPlayerStart.onclick = () => {
+                backgroundNextTurnPlayer.style.display = "none";
+                nextTurnPlayerDiv.style.display = "none";
+                activePlayerEl.textContent = activePlayer;
+                updatePlayerClasses(activePlayer);
+                updateResponseTitle(false);
+                startTimer(timerEl, () => nextTurn(false, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton));
+            };
+            stopTimer();
         } else {
             activePlayer = activePlayer === 1 ? 2 : 1;
             showingAnswer = false;
@@ -404,6 +428,7 @@ export function handleAnswer(
         }
     }
 }
+
 
 
 export function nextTurn(isCorrect, questionEl, btnA, btnB, btnC, btnD, activePlayerEl, mediaContainerDiv, timerEl, score1El, score2El, nextButton) {

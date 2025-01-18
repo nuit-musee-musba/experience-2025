@@ -80,13 +80,14 @@
                     </div>
                 </button>
                 <button class="btn-difficulty-contener" id="hard-btn">
-                    <div class="btn-difficulty"  id="btnDifficultyHard">
+                    <div class="btn-difficulty" id="btnDifficultyHard">
                         <h3>Difficile</h3>
                         <p>4 points</p>
                     </div>
                 </button>
             </div>
-            <div class="continuer-difficulty"><button class="button normal black" id="continuerDifficulty">Commencer</button></div>
+            <div class="continuer-difficulty"><button class="button normal black"
+                    id="continuerDifficulty">Commencer</button></div>
 
         </div>
 
@@ -106,6 +107,7 @@
                 </button>
             </div>
         </div>
+        <button id="validate-btn">Valider</button>
     </div>
     <div class="contener-stepper-text stats-display">
         <div class="title-container">
@@ -116,8 +118,8 @@
     <img id="activePlayer" src="img/RightArrow_AutoLayout.svg" alt="">
     <div class="player-info">
         <div class="stats-display test-css player-active1" id="player1" style="width: fit-content;">
-            <div class="title-container" style="width: 380px">
-                <h3 class="h3-title-serif typo-h3-helvetica">Joueur 1:</h3>
+            <div class="title-container" style="width: 350px">
+                <h3 class="h3-title-serif typo-h3-helvetica">Joueur 1</h3>
             </div>
             <div class="score-container">
                 <h3 id="score1" class="typo-h3-helvetica">00 pts</h3>
@@ -125,8 +127,8 @@
         </div>
 
         <div class="stats-display test-css" id="player2" style="width: fit-content;">
-            <div class="title-container" style="width: 380px">
-                <h3 class="h3-title-serif typo-h3-helvetica">Joueur 2:</h3>
+            <div class="title-container" style="width: 350px">
+                <h3 class="h3-title-serif typo-h3-helvetica">Joueur 2</h3>
             </div>
             <div class="score-container">
                 <h3 id="score2" class="typo-h3-helvetica">00 pts</h3>
@@ -169,6 +171,14 @@
             <a href="game.html" class="button small white" id="button-next-rules">Recommencer</a>
         </div>
     </div>
+
+    <div id="NextTurnPlayer">
+        <h1 id="NextTurnPlayerName"></h1>
+        <div><button id="NextTurnPlayerStart" class="button normal black">Commencer</button></div>
+        
+    </div>
+    <div id="backgroundNextTurnPlayer"></div>
+
     <a href="../../index.html" class="button-retour-menue"><img src="img/backHouse.svg" alt=""></a>
     <audio id="background-music" src="music/game-card.wav" preload="auto" loop></audio>
     <audio id="correct-sound" src="sound/SUCCESS.wav"></audio>
