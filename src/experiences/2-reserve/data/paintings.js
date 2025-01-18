@@ -7,7 +7,7 @@
 export default [
     {
         id: 1,
-        src: "./assets/img/paintings/paix1",
+        src: "/2-reserve/assets/img/paintings/paix1",
         title: "Entre amies",
         thematic: "1",
         author: "Madeleine CARPENTIER",
@@ -18,7 +18,7 @@ export default [
     },
     {
         id: 2,
-        src: "./assets/img/paintings/paix2",
+        src: "/2-reserve/assets/img/paintings/paix2",
         title: "Le déjeuner des enfants, le goûter - Portrait de Liliane et Gérard Lalo enfant",
         thematic: "1",
         author: "Marie BERTGOUDAL",
@@ -29,7 +29,7 @@ export default [
     },
     {
         id: 3,
-        src: "./assets/img/paintings/paix3",
+        src: "/2-reserve/assets/img/paintings/paix3",
         title: "Ronde d’enfants",
         thematic: "1",
         author: "Louise LE VAVASSEUR",
@@ -40,7 +40,7 @@ export default [
     },
     {
         id: 4,
-        src: "./assets/img/paintings/paix4",
+        src: "/2-reserve/assets/img/paintings/paix4",
         title: "Le marchand de babouches",
         thematic: "1",
         author: "SÉBASTIEN (Gabriel Sébasien SIMONET, dit)",
@@ -51,7 +51,7 @@ export default [
     },
     {
         id: 5,
-        src: "./assets/img/paintings/guerre1",
+        src: "/2-reserve/assets/img/paintings/guerre1",
         title: "L'Exode",
         thematic: "2",
         author: "Marcelle LARRIEU",
@@ -62,7 +62,7 @@ export default [
     },
     {
         id: 6,
-        src: "./assets/img/paintings/guerre2",
+        src: "/2-reserve/assets/img/paintings/guerre2",
         title: "Napoléon - Estampe",
         thematic: "2",
         author: "James HOPWOOD le jeune",
@@ -73,7 +73,7 @@ export default [
     },
     {
         id: 7,
-        src: "./assets/img/paintings/guerre3",
+        src: "/2-reserve/assets/img/paintings/guerre3",
         title: "Le Corbeau - Eléonora",
         thematic: "2",
         author: "ODILON REDON",
@@ -84,7 +84,7 @@ export default [
     },
     {
         id: 8,
-        src: "./assets/img/paintings/guerre4",
+        src: "/2-reserve/assets/img/paintings/guerre4",
         title: "La comédie de la mort",
         thematic: "2",
         author: "Rodolphe BRESDIN",
@@ -95,7 +95,7 @@ export default [
     },
     {
         id: 9,
-        src: "./assets/img/paintings/amour1",
+        src: "/2-reserve/assets/img/paintings/amour1",
         title: "Bethsabée au bain",
         thematic: "4",
         author: "Pieter Fransz DE GREBBER",
@@ -106,7 +106,7 @@ export default [
     },
     {
         id: 10,
-        src: "./assets/img/paintings/amour2",
+        src: "/2-reserve/assets/img/paintings/amour2",
         title: "Hercule aux pieds d'Omphale",
         thematic: "4",
         author: "Gaspare DIZIANI",
@@ -117,7 +117,7 @@ export default [
     },
     {
         id: 11,
-        src: "./assets/img/paintings/amour3",
+        src: "/2-reserve/assets/img/paintings/amour3",
         title: "La Course d'Atalante",
         thematic: "4",
         author: "Hermann WEYER",
@@ -128,7 +128,7 @@ export default [
     },
     {
         id: 12,
-        src: "./assets/img/paintings/amour4",
+        src: "/2-reserve/assets/img/paintings/amour4",
         title: "Mars et Vénus",
         thematic: "4",
         author: "ANONYME HOLLANDAIS XVIIème siècle",
@@ -139,7 +139,7 @@ export default [
     },
     {
         id: 13,
-        src: "./assets/img/paintings/amour5",
+        src: "/2-reserve/assets/img/paintings/amour5",
         title: "Le Toucher",
         thematic: "4",
         author: "Philippe MOHLITZ",
@@ -150,7 +150,7 @@ export default [
     },
     {
         id: 14,
-        src: "./assets/img/paintings/nature1",
+        src: "/2-reserve/assets/img/paintings/nature1",
         title: "Rivages",
         thematic: "3",
         author: "Edgar PILLET",
@@ -161,7 +161,7 @@ export default [
     },
     {
         id: 15,
-        src: "./assets/img/paintings/nature2",
+        src: "/2-reserve/assets/img/paintings/nature2",
         title: "Eglantiers en fleurs - Allée fleurie",
         thematic: "3",
         author: "Jeanne AMEN",
@@ -172,7 +172,7 @@ export default [
     },
     {
         id: 16,
-        src: "./assets/img/paintings/nature3",
+        src: "/2-reserve/assets/img/paintings/nature3",
         title: "L'arbre de vie",
         thematic: "3",
         author: "Françoise DUSSEL",
@@ -183,7 +183,7 @@ export default [
     },
     {
         id: 17,
-        src: "./assets/img/paintings/nature4",
+        src: "/2-reserve/assets/img/paintings/nature4",
         title: "Torrent dans une forêt",
         thematic: "3",
         author: "Laura BERNASCONI & Cesare BERNAZZANO",
@@ -194,7 +194,7 @@ export default [
     },
     {
         id: 18,
-        src: "./assets/img/paintings/nature5",
+        src: "/2-reserve/assets/img/paintings/nature5",
         title: "Nature morte aux raisins blancs et noirs",
         thematic: "3",
         author: "Louise HERVIEU",
@@ -205,7 +205,7 @@ export default [
     },
     {
         id: 19,
-        src: "./assets/img/paintings/nature6",
+        src: "/2-reserve/assets/img/paintings/nature6",
         title: "Paysage",
         thematic: "3",
         author: "Maria WAGNER",
@@ -216,7 +216,7 @@ export default [
     },
     {
         id: 20,
-        src: "./assets/img/paintings/nature7",
+        src: "/2-reserve/assets/img/paintings/nature7",
         title: "Décor floral chinois",
         thematic: "3",
         author: "Anna BAUDRY",
