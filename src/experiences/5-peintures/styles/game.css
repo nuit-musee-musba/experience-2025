@@ -1,16 +1,20 @@
-@import url('https://cdn.jsdelivr.net/npm/helveticaneue@1.0.0/helveticaneue.min.css');
-@import url('https://fonts.cdnfonts.com/css/nyght-serif');
+@font-face {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/commons/fonts/Helvetica.ttc') ;
+}
 
 @font-face {
     font-family: 'NyghtSerif-Light';
-    src: url('../fonts/NyghtSerif-Light.ttf') format('truetype');
+    src: url('/commons/fonts/NyghtSerif-Light.woff') format('woff');
 }
 
 body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Helvetica', Arial, sans-serif;
   position: relative;
   overflow: hidden;
   background-image: url('..//5-peintures/images/BG_4K_1.webp');

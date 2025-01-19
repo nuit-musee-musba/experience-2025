@@ -1,12 +1,17 @@
+// script.js
+
+// Variables globales
 let draggedImage = null;
 let clonedImage = null;
 let initialTouchPosition = { x: 0, y: 0 };
 let currentDialogueIndex = 0;
 let currentSequence = [];
+let typewriterInterval; // Variable pour stocker l'intervalle de l'effet typewriter
+let isTyping = false; // Indicateur si le texte est en cours de frappe
 
 const winningSequence = ["ARGILE", "ARGILE", "CIRE", "PLATRE", "TUYAU", "BRONZE", "MARTEAU"];
 
-
+// Dialogues
 const dialogues = [
     {
         id: 1,
@@ -115,45 +120,74 @@ const dialogues = [
     }
 ];
 
-
+// Images de dialogue associées aux étapes
 const dialogueImages = {
-  3: "./Images/Item_Argile.webp",
-  4: "./Images/Sculpture_Etape_1.webp",
-  5: "./Images/Sculpture_Etape_2.webp",
-  6: "./Images/Sculpture_Etape_3.webp",
-  7: "./Images/Sculpture_Etape_3.webp",
-  8: "./Images/Sculpture_Etape_4.webp",
-  9: "./Images/Sculpture_Etape_5.webp",
-  10: "./Images/Sculpture_Etape_5.webp",
-  11: "./Images/Sculpture_Etape_6.webp",
-  12: "./Images/Sculpture_Etape_7.webp",
-  13: "./Images/Sculpture_Etape_8.webp",
-  14: "./Images/Sculpture_Etape_9.webp",
-  15: "./Images/Sculpture_Etape_9.webp",
-  16: "./Images/Sculpture_Etape_10.webp",
-  17: "./Images/Sculpture_Etape_11.webp",
-  18: "./Images/Sculpture_Etape_12.webp",
-  19: "./Images/Sculpture_Etape_13.webp",
-  20: "./Images/Sculpture_Etape_13.webp",
-  21: "./Images/Sculpture_Etape_13.webp",
-
+    3: "/4-sculpture/Images/Item_Argile.webp",
+    4: "/4-sculpture/Images/Sculpture_Etape_1.webp",
+    5: "/4-sculpture/Images/Sculpture_Etape_2.webp",
+    6: "/4-sculpture/Images/Sculpture_Etape_3.webp",
+    7: "/4-sculpture/Images/Sculpture_Etape_3.webp",
+    8: "/4-sculpture/Images/Sculpture_Etape_4.webp",
+    9: "/4-sculpture/Images/Sculpture_Etape_5.webp",
+    10: "/4-sculpture/Images/Sculpture_Etape_5.webp",
+    11: "/4-sculpture/Images/Sculpture_Etape_6.webp",
+    12: "/4-sculpture/Images/Sculpture_Etape_7.webp",
+    13: "/4-sculpture/Images/Sculpture_Etape_8.webp",
+    14: "/4-sculpture/Images/Sculpture_Etape_9.webp",
+    15: "/4-sculpture/Images/Sculpture_Etape_9.webp",
+    16: "/4-sculpture/Images/Sculpture_Etape_10.webp",
+    17: "/4-sculpture/Images/Sculpture_Etape_11.webp",
+    18: "/4-sculpture/Images/Sculpture_Etape_12.webp",
+    19: "/4-sculpture/Images/Sculpture_Etape_13.webp",
+    20: "/4-sculpture/Images/Sculpture_Etape_13.webp",
+    21: "/4-sculpture/Images/Sculpture_Etape_13.webp",
 };
 
+// Fonction pour l'effet Typewriter
+function typeWriter(element, text, speed, callback) {
+    clearInterval(typewriterInterval); // Arrêter tout effet Typewriter existant
+    element.textContent = ''; // Efface le contenu actuel
+    let i = 0;
+    isTyping = true;
+    typewriterInterval = setInterval(() => {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(typewriterInterval); // Arrête l'intervalle une fois le texte complet
+            isTyping = false;
+            if (callback) callback();
+        }
+    }, speed);
+}
 
+// Fonction pour mettre à jour le dialogue affiché
 function updateDialogue() {
     const dialogueElement = document.getElementById("dialogue-text");
     const nextDialogueElement = document.getElementById("next-dialogue");
     const dialogue = dialogues[currentDialogueIndex];
 
-    dialogueElement.textContent = dialogue.text;
+    // Arrêter tout effet Typewriter existant et commencer un nouveau
+    typeWriter(dialogueElement, dialogue.text, 20, () => {
+        // Après la fin de l'effet Typewriter, afficher ou masquer le bouton "Suivant" ou "TERMINER"
+        if (currentDialogueIndex === dialogues.length - 1) {
+            // Si c'est le dernier dialogue
+            nextDialogueElement.textContent = "TERMINER";
+            nextDialogueElement.style.display = "block";
+        } else if (dialogue.action === "SUIVANT") {
+            nextDialogueElement.textContent = "Cliquer pour le dialogue suivant";
+            nextDialogueElement.style.display = "block";
+        } else {
+            nextDialogueElement.style.display = "none";
+        }
+    });
 
-
-    if (dialogue.action === "SUIVANT") {
-        nextDialogueElement.style.display = "block";
-    } else {
-        nextDialogueElement.style.display = "none";
+    // Masquer le bouton "Suivant" pendant l'effet Typewriter si ce n'est pas le dernier dialogue
+    if (currentDialogueIndex !== dialogues.length - 1) {
+        if (dialogue.action !== "SUIVANT") {
+            nextDialogueElement.style.display = "none";
+        }
     }
-
 
     const imagePath = dialogueImages[dialogue.id] || null;
     updateWorkAreaImage(imagePath);
@@ -161,24 +195,24 @@ function updateDialogue() {
     updateProgressBar();
 }
 
-
+// Fonction pour mettre à jour la barre de progression
 function updateProgressBar() {
     const progressBar = document.getElementById("progress-bar");
     const progressPercentage = ((currentDialogueIndex + 1) / dialogues.length) * 100;
     progressBar.style.width = `${progressPercentage}%`;
 }
 
-
+// Fonction pour mettre à jour l'image dans la zone de travail
 function updateWorkAreaImage(imagePath) {
     const workArea = document.getElementById("work-area");
 
-
+    // Supprimer l'image existante
     const existingImage = workArea.querySelector("img");
     if (existingImage) {
         existingImage.remove();
     }
 
-
+    // Ajouter la nouvelle image si un chemin est fourni
     if (imagePath) {
         const img = document.createElement("img");
         img.src = imagePath;
@@ -192,26 +226,63 @@ function updateWorkAreaImage(imagePath) {
     }
 }
 
-
-document.getElementById("next-dialogue").addEventListener("click", () => {
-    const currentAction = dialogues[currentDialogueIndex].action;
-
-    if (currentAction === "SUIVANT") {
+// Fonction pour passer au dialogue suivant en toute sécurité
+function proceedToNextDialogue() {
+    if (currentDialogueIndex < dialogues.length - 1) {
         currentDialogueIndex++;
         updateDialogue();
+    } else {
+        // Optionnel : gérer la fin des dialogues
+        console.log("Tous les dialogues ont été affichés.");
+    }
+}
+
+// Gestionnaire pour le bouton "Suivant" / "TERMINER"
+document.getElementById("next-dialogue").addEventListener("click", () => {
+    if (isTyping) {
+        // Si le texte est en cours de frappe, terminer immédiatement l'effet Typewriter
+        clearInterval(typewriterInterval);
+        const dialogueElement = document.getElementById("dialogue-text");
+        const dialogue = dialogues[currentDialogueIndex];
+        dialogueElement.textContent = dialogue.text;
+        isTyping = false;
+
+        // Afficher ou masquer le bouton "Suivant" / "TERMINER" en fonction de l'action
+        const nextDialogueElement = document.getElementById("next-dialogue");
+        if (currentDialogueIndex === dialogues.length - 1) {
+            nextDialogueElement.textContent = "TERMINER";
+            nextDialogueElement.style.display = "block";
+        } else if (dialogue.action === "SUIVANT") {
+            nextDialogueElement.textContent = "Cliquer pour le dialogue suivant";
+            nextDialogueElement.style.display = "block";
+        } else {
+            nextDialogueElement.style.display = "none";
+        }
+    } else {
+        // Vérifier si c'est le dernier dialogue
+        if (currentDialogueIndex === dialogues.length - 1) {
+            // Rediriger vers "1-hub/index.html"
+            window.location.href = "./1-hub/index.html"; // Assurez-vous que le chemin est correct
+        } else {
+            // Passer au dialogue suivant
+            const currentAction = dialogues[currentDialogueIndex].action;
+
+            if (currentAction === "SUIVANT") {
+                proceedToNextDialogue();
+            }
+        }
     }
 });
 
-
+// Fonction touchEnd
 function touchEnd(event) {
     if (clonedImage) {
         const touchX = event.changedTouches[0].clientX;
         const touchY = event.changedTouches[0].clientY;
 
-
         let dropZone = document.elementFromPoint(touchX, touchY);
 
-
+        // Trouver l'élément avec l'ID "work-area" ou son parent
         while (dropZone && dropZone.id !== "work-area" && dropZone.parentElement) {
             dropZone = dropZone.parentElement;
         }
@@ -220,11 +291,9 @@ function touchEnd(event) {
             const itemName = draggedImage.alt.toUpperCase();
             const currentAction = dialogues[currentDialogueIndex].action;
 
-
             if (currentAction === `POSER ${itemName}`) {
                 currentSequence.push(itemName);
-                currentDialogueIndex++;
-                updateDialogue();
+                proceedToNextDialogue();
             }
         }
 
@@ -235,7 +304,7 @@ function touchEnd(event) {
     draggedImage = null;
 }
 
-
+// Fonction touchStart
 function touchStart(event) {
     const touch = event.touches[0];
     draggedImage = event.target;
@@ -258,7 +327,7 @@ function touchStart(event) {
     }
 }
 
-
+// Fonction touchMove
 function touchMove(event) {
     if (clonedImage) {
         const touch = event.touches[0];
@@ -271,10 +340,49 @@ function touchMove(event) {
     }
 }
 
+// Gestionnaire pour le bouton de menu
 document.getElementById("menu-button").addEventListener("click", () => {
-  window.location.href = "./1-hub/index.html"; // Remplacez "menu.html" par le chemin de votre fichier cible
+    window.location.href = "./1-hub/index.html"; // Remplacez par le chemin correct si nécessaire
 });
 
+// Fonction pour initialiser les écouteurs d'événements
+function initializeEventListeners() {
+    const inventoryImages = document.querySelectorAll('.draggable-item');
 
+    inventoryImages.forEach(img => {
+        img.addEventListener('touchstart', touchStart);
+        img.addEventListener('touchmove', touchMove);
+        img.addEventListener('touchend', touchEnd);
+    });
 
-updateDialogue();
+    // Permettre de cliquer sur le dialogue pour accélérer l'affichage ou rediriger si dernier
+    const dialogueElement = document.getElementById("dialogue-text");
+    dialogueElement.addEventListener('click', () => {
+        if (isTyping) {
+            clearInterval(typewriterInterval);
+            dialogueElement.textContent = dialogues[currentDialogueIndex].text;
+            isTyping = false;
+
+            // Afficher ou masquer le bouton "Suivant" / "TERMINER" en fonction de l'action
+            const nextDialogueElement = document.getElementById("next-dialogue");
+            if (currentDialogueIndex === dialogues.length - 1) {
+                nextDialogueElement.textContent = "TERMINER";
+                nextDialogueElement.style.display = "block";
+            } else {
+                const dialogue = dialogues[currentDialogueIndex];
+                if (dialogue.action === "SUIVANT") {
+                    nextDialogueElement.textContent = "Cliquer pour le dialogue suivant";
+                    nextDialogueElement.style.display = "block";
+                } else {
+                    nextDialogueElement.style.display = "none";
+                }
+            }
+        }
+    });
+}
+
+// Initialiser le dialogue au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    initializeEventListeners();
+    updateDialogue();
+});

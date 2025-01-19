@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/commons/fonts/Helvetica.ttc') ;
+}
+
+@font-face {
+    font-family: 'NyghtSerif-Light';
+    src: url('/commons/fonts/NyghtSerif-Light.woff') format('woff');
+}
+
 html {
   height: 100%;
   margin: 0;
@@ -25,7 +37,7 @@ body {
   background-size: cover;
   background-image: url('..//5-peintures/images/BG_4K_1.webp');
 
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Helvetica', Arial, sans-serif;
   color: #333;
 
   -webkit-user-select: none;
