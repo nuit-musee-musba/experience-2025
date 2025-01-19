@@ -5,8 +5,8 @@ import { StepsDisplay } from "/commons/components/StepsDisplay";
 
 const Step = document.querySelector('.contener-step');
 const stepsDisplay = new StepsDisplay(0, 8, '.contener-step', Step);
-const correctSound = new Audio('sound/SUCCESS.wav');
-const wrongSound = new Audio('sound/WRONG.wav');
+const correctSound = new Audio('/3-techniques/sound/SUCCESS.wav');
+const wrongSound = new Audio('/3-techniques/sound/WRONG.wav');
 
 let questionInProgress = 0;
 
