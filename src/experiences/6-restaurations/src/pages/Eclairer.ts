@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 let percentage = 0;
 
 export default class Eclairer{
@@ -40,7 +42,7 @@ export default class Eclairer{
                             <h3>${percentage}%</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-eclairer.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-eclairer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Cette lumière spéciale vous permettra de détecter des zones traitées par d’anciennes restaurations, mais principalement d’analyser la couche de vernis.</p>
@@ -129,6 +131,7 @@ export default class Eclairer{
         if(percentage >= 96 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
+            audioManager.playWinSound();
             console.log("button element appears")
         }
 
@@ -139,6 +142,7 @@ export default class Eclairer{
 
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/nettoyer"; // Navigate to /#/intro
     };
 

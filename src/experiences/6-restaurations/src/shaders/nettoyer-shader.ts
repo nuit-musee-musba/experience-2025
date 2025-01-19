@@ -1,6 +1,6 @@
 import { Transform, Program, Mesh, Triangle } from 'ogl';
 
-let clean = 0.3
+let clean = 0.5
 
 export function NettoyerShader(gl, texture) {
     const scene = new Transform();
@@ -37,7 +37,7 @@ export function NettoyerShader(gl, texture) {
         }`,
         uniforms: {
             uTexture: { value: texture },
-            uClean: { value: 0.3 },
+            uClean: { value: 0.5 },
             uAspect: { value: gl.canvas.width / gl.canvas.height },
         },
     });
@@ -47,7 +47,7 @@ export function NettoyerShader(gl, texture) {
 
     const handleCleanPaint = (event) => {
         if (event.detail?.scene === 'clean') {
-            clean -= 0.025/2;
+            clean -= 0.0416;
             clean = Math.max(0, clean);
             program.uniforms.uClean.value = clean;
             console.log("clean", clean);

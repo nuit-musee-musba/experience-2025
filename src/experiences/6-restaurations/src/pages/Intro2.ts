@@ -1,4 +1,5 @@
 import { Header } from "../components/Header"
+import { audioManager } from "../main-exp-6"
 
 export default class Intro2{
     container: HTMLElement;
@@ -47,6 +48,7 @@ export default class Intro2{
     }
 
     handleMouseDown(path: string){
+        audioManager.playClickSound();
         window.location.hash = path; // Navigate to /#/intro | "/"
     };
 

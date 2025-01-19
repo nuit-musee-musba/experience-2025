@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 export default class Home{
     container: HTMLElement;
     element: HTMLElement;
@@ -31,6 +33,7 @@ export default class Home{
     }
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/intro"; // Navigate to /#/intro
     };
 

@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 let percentage = 0;
 
 export default class Nettoyer{
@@ -40,7 +42,7 @@ export default class Nettoyer{
                             <h3>${percentage}%</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-nettoyer.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-nettoyer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>La saleté et le vernis jauni peuvent ternir une œuvre et masquer sa beauté.</p>
@@ -133,6 +135,7 @@ export default class Nettoyer{
         if(percentage >= 96 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
+            audioManager.playWinSound();
             console.log("button element appears")
         }
 
@@ -143,6 +146,7 @@ export default class Nettoyer{
 
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/mastiquer"; // Navigate to /#/intro
     };
 
