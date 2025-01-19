@@ -6,6 +6,8 @@ let clonedImage = null;
 let initialTouchPosition = { x: 0, y: 0 };
 let currentDialogueIndex = 0;
 let currentSequence = [];
+let typewriterInterval; // Variable pour stocker l'intervalle de l'effet typewriter
+let isTyping = false; // Indicateur si le texte est en cours de frappe
 
 const winningSequence = ["ARGILE", "ARGILE", "CIRE", "PLATRE", "TUYAU", "BRONZE", "MARTEAU"];
 
@@ -141,19 +143,41 @@ const dialogueImages = {
     21: "/4-sculpture/Images/Sculpture_Etape_13.webp",
 };
 
+// Fonction pour l'effet Typewriter
+function typeWriter(element, text, speed, callback) {
+    element.textContent = ''; // Efface le contenu actuel
+    let i = 0;
+    isTyping = true;
+    typewriterInterval = setInterval(() => {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(typewriterInterval); // Arrête l'intervalle une fois le texte complet
+            isTyping = false;
+            if (callback) callback();
+        }
+    }, speed);
+}
+
 // Fonction pour mettre à jour le dialogue affiché
 function updateDialogue() {
     const dialogueElement = document.getElementById("dialogue-text");
     const nextDialogueElement = document.getElementById("next-dialogue");
     const dialogue = dialogues[currentDialogueIndex];
 
-    dialogueElement.textContent = dialogue.text;
+    // Utilisation de l'effet Typewriter avec une vitesse de 20ms par caractère
+    typeWriter(dialogueElement, dialogue.text, 20, () => {
+        // Après la fin de l'effet Typewriter, afficher ou masquer le bouton "Suivant"
+        if (dialogue.action === "SUIVANT") {
+            nextDialogueElement.style.display = "block";
+        } else {
+            nextDialogueElement.style.display = "none";
+        }
+    });
 
-    if (dialogue.action === "SUIVANT") {
-        nextDialogueElement.style.display = "block";
-    } else {
-        nextDialogueElement.style.display = "none";
-    }
+    // Masquer le bouton "Suivant" pendant l'effet Typewriter
+    nextDialogueElement.style.display = "none";
 
     const imagePath = dialogueImages[dialogue.id] || null;
     updateWorkAreaImage(imagePath);
@@ -194,11 +218,34 @@ function updateWorkAreaImage(imagePath) {
 
 // Gestionnaire pour le bouton "Suivant"
 document.getElementById("next-dialogue").addEventListener("click", () => {
-    const currentAction = dialogues[currentDialogueIndex].action;
+    if (isTyping) {
+        // Si le texte est en cours de frappe, terminer immédiatement l'effet Typewriter
+        clearInterval(typewriterInterval);
+        const dialogueElement = document.getElementById("dialogue-text");
+        const dialogue = dialogues[currentDialogueIndex];
+        dialogueElement.textContent = dialogue.text;
+        isTyping = false;
 
-    if (currentAction === "SUIVANT") {
-        currentDialogueIndex++;
-        updateDialogue();
+        // Afficher ou masquer le bouton "Suivant" en fonction de l'action
+        const nextDialogueElement = document.getElementById("next-dialogue");
+        if (dialogue.action === "SUIVANT") {
+            nextDialogueElement.style.display = "block";
+        } else {
+            nextDialogueElement.style.display = "none";
+        }
+    } else {
+        // Passer au dialogue suivant
+        const currentAction = dialogues[currentDialogueIndex].action;
+
+        if (currentAction === "SUIVANT") {
+            currentDialogueIndex++;
+            if (currentDialogueIndex < dialogues.length) {
+                updateDialogue();
+            } else {
+                // Optionnel : gérer la fin des dialogues
+                console.log("Tous les dialogues ont été affichés.");
+            }
+        }
     }
 });
 
@@ -282,6 +329,25 @@ function initializeEventListeners() {
         img.addEventListener('touchstart', touchStart);
         img.addEventListener('touchmove', touchMove);
         img.addEventListener('touchend', touchEnd);
+    });
+
+    // Permettre de cliquer sur le dialogue pour accélérer l'affichage
+    const dialogueElement = document.getElementById("dialogue-text");
+    dialogueElement.addEventListener('click', () => {
+        if (isTyping) {
+            clearInterval(typewriterInterval);
+            dialogueElement.textContent = dialogues[currentDialogueIndex].text;
+            isTyping = false;
+
+            // Afficher ou masquer le bouton "Suivant" en fonction de l'action
+            const nextDialogueElement = document.getElementById("next-dialogue");
+            const dialogue = dialogues[currentDialogueIndex];
+            if (dialogue.action === "SUIVANT") {
+                nextDialogueElement.style.display = "block";
+            } else {
+                nextDialogueElement.style.display = "none";
+            }
+        }
     });
 }
 
