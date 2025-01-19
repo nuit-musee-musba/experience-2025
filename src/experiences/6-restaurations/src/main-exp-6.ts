@@ -1,6 +1,6 @@
-import './style.scss'
-import { Router } from "./Router"
-import { AudioManager } from "./AudioManager"
+import "./style.scss";
+import { Router } from "./Router";
+import { AudioManager } from "./AudioManager";
 
 /* const app = document.querySelector('#app-exp-6');
 if (app) {
@@ -18,43 +18,48 @@ if (app) {
 export const audioManager = new AudioManager();
 
 document.addEventListener("DOMContentLoaded", () => {
-  const app = document.querySelector('#app-exp-6');
+  const app = document.querySelector("#app-exp-6");
   if (app) {
-      app.innerHTML = `
+    app.innerHTML = `
         <div class="main-container" id="main-container"></div>
-        <a href="../../index.html" class="button-retour-menu"><img src="/6-restaurations/assets/img//backHouse.svg" alt=""></a>
+        <a href="/experiences/1-hub/index.html" class="button-retour-menu"><img src="/6-restaurations/assets/img//backHouse.svg" alt=""></a>
         <canvas id="ogl-canvas"></canvas>
       `;
-      console.log(window.location.pathname)
+    console.log(window.location.pathname);
   } else {
-      console.error('Element #app-exp-6 not found!');
+    console.error("Element #app-exp-6 not found!");
   }
 
-  const mainContainer = document.querySelector("#main-container") as HTMLElement;
+  const mainContainer = document.querySelector(
+    "#main-container"
+  ) as HTMLElement;
   //const homeElement = document.querySelector(".button-retour-menu")
   new Router(mainContainer);
 
-  startMusic()
-  
-  function startMusic(){
-      const start = () => {
-        audioManager.playBackgroundMusic().then(() => {
-            console.log('Background music started');
-            window.removeEventListener('touchstart', start);
-            window.removeEventListener('click', start);
-        }).catch(err => {
-            console.error('Error playing background music:', err);
+  startMusic();
+
+  function startMusic() {
+    const start = () => {
+      audioManager
+        .playBackgroundMusic()
+        .then(() => {
+          console.log("Background music started");
+          window.removeEventListener("touchstart", start);
+          window.removeEventListener("click", start);
+        })
+        .catch((err) => {
+          console.error("Error playing background music:", err);
         });
-      };
+    };
 
-      window.addEventListener('touchstart', start, { once: true });
-      window.addEventListener('click', start, { once: true });
+    window.addEventListener("touchstart", start, { once: true });
+    window.addEventListener("click", start, { once: true });
 
-      console.log('Interaction listeners attached for background music');
+    console.log("Interaction listeners attached for background music");
   }
 
   //homeElement?.addEventListener('touchstar', audioManager.playClickSound);
-/* 
+  /* 
   const backgroundMusic = new Audio('./src/assets/audio/music-back.mp3');
   backgroundMusic.loop = true;
   backgroundMusic.volume = 0.5;
