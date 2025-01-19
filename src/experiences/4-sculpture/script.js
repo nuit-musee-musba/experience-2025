@@ -145,6 +145,7 @@ const dialogueImages = {
 
 // Fonction pour l'effet Typewriter
 function typeWriter(element, text, speed, callback) {
+    clearInterval(typewriterInterval); // Arrêter tout effet Typewriter existant
     element.textContent = ''; // Efface le contenu actuel
     let i = 0;
     isTyping = true;
@@ -166,18 +167,27 @@ function updateDialogue() {
     const nextDialogueElement = document.getElementById("next-dialogue");
     const dialogue = dialogues[currentDialogueIndex];
 
-    // Utilisation de l'effet Typewriter avec une vitesse de 20ms par caractère
+    // Arrêter tout effet Typewriter existant et commencer un nouveau
     typeWriter(dialogueElement, dialogue.text, 20, () => {
-        // Après la fin de l'effet Typewriter, afficher ou masquer le bouton "Suivant"
-        if (dialogue.action === "SUIVANT") {
+        // Après la fin de l'effet Typewriter, afficher ou masquer le bouton "Suivant" ou "TERMINER"
+        if (currentDialogueIndex === dialogues.length - 1) {
+            // Si c'est le dernier dialogue
+            nextDialogueElement.textContent = "TERMINER";
+            nextDialogueElement.style.display = "block";
+        } else if (dialogue.action === "SUIVANT") {
+            nextDialogueElement.textContent = "Cliquer pour le dialogue suivant";
             nextDialogueElement.style.display = "block";
         } else {
             nextDialogueElement.style.display = "none";
         }
     });
 
-    // Masquer le bouton "Suivant" pendant l'effet Typewriter
-    nextDialogueElement.style.display = "none";
+    // Masquer le bouton "Suivant" pendant l'effet Typewriter si ce n'est pas le dernier dialogue
+    if (currentDialogueIndex !== dialogues.length - 1) {
+        if (dialogue.action !== "SUIVANT") {
+            nextDialogueElement.style.display = "none";
+        }
+    }
 
     const imagePath = dialogueImages[dialogue.id] || null;
     updateWorkAreaImage(imagePath);
@@ -216,7 +226,18 @@ function updateWorkAreaImage(imagePath) {
     }
 }
 
-// Gestionnaire pour le bouton "Suivant"
+// Fonction pour passer au dialogue suivant en toute sécurité
+function proceedToNextDialogue() {
+    if (currentDialogueIndex < dialogues.length - 1) {
+        currentDialogueIndex++;
+        updateDialogue();
+    } else {
+        // Optionnel : gérer la fin des dialogues
+        console.log("Tous les dialogues ont été affichés.");
+    }
+}
+
+// Gestionnaire pour le bouton "Suivant" / "TERMINER"
 document.getElementById("next-dialogue").addEventListener("click", () => {
     if (isTyping) {
         // Si le texte est en cours de frappe, terminer immédiatement l'effet Typewriter
@@ -226,24 +247,28 @@ document.getElementById("next-dialogue").addEventListener("click", () => {
         dialogueElement.textContent = dialogue.text;
         isTyping = false;
 
-        // Afficher ou masquer le bouton "Suivant" en fonction de l'action
+        // Afficher ou masquer le bouton "Suivant" / "TERMINER" en fonction de l'action
         const nextDialogueElement = document.getElementById("next-dialogue");
-        if (dialogue.action === "SUIVANT") {
+        if (currentDialogueIndex === dialogues.length - 1) {
+            nextDialogueElement.textContent = "TERMINER";
+            nextDialogueElement.style.display = "block";
+        } else if (dialogue.action === "SUIVANT") {
+            nextDialogueElement.textContent = "Cliquer pour le dialogue suivant";
             nextDialogueElement.style.display = "block";
         } else {
             nextDialogueElement.style.display = "none";
         }
     } else {
-        // Passer au dialogue suivant
-        const currentAction = dialogues[currentDialogueIndex].action;
+        // Vérifier si c'est le dernier dialogue
+        if (currentDialogueIndex === dialogues.length - 1) {
+            // Rediriger vers "1-hub/index.html"
+            window.location.href = "./1-hub/index.html"; // Assurez-vous que le chemin est correct
+        } else {
+            // Passer au dialogue suivant
+            const currentAction = dialogues[currentDialogueIndex].action;
 
-        if (currentAction === "SUIVANT") {
-            currentDialogueIndex++;
-            if (currentDialogueIndex < dialogues.length) {
-                updateDialogue();
-            } else {
-                // Optionnel : gérer la fin des dialogues
-                console.log("Tous les dialogues ont été affichés.");
+            if (currentAction === "SUIVANT") {
+                proceedToNextDialogue();
             }
         }
     }
@@ -268,8 +293,7 @@ function touchEnd(event) {
 
             if (currentAction === `POSER ${itemName}`) {
                 currentSequence.push(itemName);
-                currentDialogueIndex++;
-                updateDialogue();
+                proceedToNextDialogue();
             }
         }
 
@@ -331,7 +355,7 @@ function initializeEventListeners() {
         img.addEventListener('touchend', touchEnd);
     });
 
-    // Permettre de cliquer sur le dialogue pour accélérer l'affichage
+    // Permettre de cliquer sur le dialogue pour accélérer l'affichage ou rediriger si dernier
     const dialogueElement = document.getElementById("dialogue-text");
     dialogueElement.addEventListener('click', () => {
         if (isTyping) {
@@ -339,13 +363,19 @@ function initializeEventListeners() {
             dialogueElement.textContent = dialogues[currentDialogueIndex].text;
             isTyping = false;
 
-            // Afficher ou masquer le bouton "Suivant" en fonction de l'action
+            // Afficher ou masquer le bouton "Suivant" / "TERMINER" en fonction de l'action
             const nextDialogueElement = document.getElementById("next-dialogue");
-            const dialogue = dialogues[currentDialogueIndex];
-            if (dialogue.action === "SUIVANT") {
+            if (currentDialogueIndex === dialogues.length - 1) {
+                nextDialogueElement.textContent = "TERMINER";
                 nextDialogueElement.style.display = "block";
             } else {
-                nextDialogueElement.style.display = "none";
+                const dialogue = dialogues[currentDialogueIndex];
+                if (dialogue.action === "SUIVANT") {
+                    nextDialogueElement.textContent = "Cliquer pour le dialogue suivant";
+                    nextDialogueElement.style.display = "block";
+                } else {
+                    nextDialogueElement.style.display = "none";
+                }
             }
         }
     });
