@@ -111,6 +111,13 @@ h1{
     font-family: ;
 } */
 
+.button-retour-menu{
+    position: absolute;
+    bottom: 128px;
+    left: 128px;
+    z-index: 2;
+}
+
 /* Home */
 .home-container{
     width: 100%;

@@ -1,6 +1,6 @@
 import { Transform, Program, Mesh, Triangle } from 'ogl';
 
-let clean = 1.0
+let clean = 2.0
 
 export function RetoucherShader(gl, texture, sdTexture) {
     const scene = new Transform();
@@ -39,7 +39,7 @@ export function RetoucherShader(gl, texture, sdTexture) {
         uniforms: {
             uTexture: { value: texture },
             uSdTexture: {value: sdTexture },
-            uClean: { value: 1.0 },
+            uClean: { value: 2.0 },
             uAspect: { value: gl.canvas.width / gl.canvas.height },
         },
     });
@@ -49,7 +49,7 @@ export function RetoucherShader(gl, texture, sdTexture) {
 
     const handleCleanPaint = (event) => {
         if (event.detail?.scene === 'clean') {
-            clean -= 0.083;
+            clean -= 0.166;
             clean = Math.max(0, clean);
             program.uniforms.uClean.value = clean;
             console.log("clean", clean);

@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 let counter = 0
 
 export default class Mastiquer{
@@ -40,7 +42,7 @@ export default class Mastiquer{
                             <h3>${counter}/4</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-mastiquer.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-mastiquer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Les fissures, trous et la peinture craquelée sur un tableau peuvent affaiblir sa structure et son apparence. En appliquant le mastic, il faut veiller à reproduire les coups de pinceaux de l’artiste.</p>
@@ -55,23 +57,23 @@ export default class Mastiquer{
             </div>
 
             <div class="select-circle circle-1 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-3 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-4 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-5 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
 
             <div class="mastique-container">
-                <img src="./src/assets/img/mastique-haut.png" alt="" class="opacity-0 mastique-1">
-                <img src="./src/assets/img/mastique-tête.png" alt="" class="opacity-0 mastique-2">
-                <img src="./src/assets/img/mastique-main.png" alt="" class="opacity-0 mastique-3">
-                <img src="./src/assets/img/mastique-robe.png" alt="" class="opacity-0 mastique-4">
+                <img src="/6-restaurations/assets/img/mastique-haut.png" alt="" class="opacity-0 mastique-1">
+                <img src="/6-restaurations/assets/img/mastique-tête.png" alt="" class="opacity-0 mastique-2">
+                <img src="/6-restaurations/assets/img/mastique-main.png" alt="" class="opacity-0 mastique-3">
+                <img src="/6-restaurations/assets/img/mastique-robe.png" alt="" class="opacity-0 mastique-4">
             </div>
 
         `;
@@ -126,6 +128,7 @@ export default class Mastiquer{
     }
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/retoucher"; // Navigate to /#/intro
     };
 
@@ -151,6 +154,7 @@ export default class Mastiquer{
         if(counter == 4 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
+            audioManager.playWinSound();
         }
         
         circle.classList.remove("entry-animation")

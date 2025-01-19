@@ -36,17 +36,17 @@ export class Router {
 
             case "/intro":
                 const { default: Intro } = await import("./pages/Intro");
-                this.currentRoute = new Intro(this.container, "./src/assets/img/perso.png", "Salut à toi, futur restaurateur d’œuvre d'art !</br></br>Je serai ton guide tout au long de cette aventure. Ensemble, nous allons découvrir un univers, où chaque geste, chaque décision, porte en elle la responsabilité de préserver les trésors du passé.","/intro-2");
+                this.currentRoute = new Intro(this.container, "/6-restaurations/assets/img/perso.png", "Salut à toi, futur restaurateur d’œuvre d'art !</br></br>Je serai ton guide tout au long de cette aventure. Ensemble, nous allons découvrir un univers, où chaque geste, chaque décision, porte en elle la responsabilité de préserver les trésors du passé.","/intro-2");
                 break;
 
             case "/intro-2":
                 const { default: Intro2 } = await import("./pages/Intro2");
-                this.currentRoute = new Intro2(this.container, "./src/assets/img/perso2.png", "Cette huille sur toile : La Grèce sur les ruines de Missolonghi de Eugène Delacroix (1826) représente une allégorie de la Grèce après le siège de Missolongi.","/intro-3");
+                this.currentRoute = new Intro2(this.container, "/6-restaurations/assets/img/perso2.png", "Cette huille sur toile : La Grèce sur les ruines de Missolonghi de Eugène Delacroix (1826) représente une allégorie de la Grèce après le siège de Missolongi.","/intro-3");
                 break;
 
             case "/intro-3":
                 const { default: Intro3 } = await import("./pages/Intro3");
-                this.currentRoute = new Intro3(this.container, "./src/assets/img/perso.png", "Tu auras l’opportunité d’effectuer ta première restauration sur cette œuvre.</br></br>Prépare-toi à donner une deuxième vie à son histoire !</br></br>(Cette restauration est fictive et à but informatif uniquement.)","/observer");
+                this.currentRoute = new Intro3(this.container, "/6-restaurations/assets/img/perso.png", "Tu auras l’opportunité d’effectuer ta première restauration sur cette œuvre.</br></br>Prépare-toi à donner une deuxième vie à son histoire !</br></br>(Cette restauration est fictive et à but informatif uniquement.)","/observer");
                 break;
 
             case "/observer":

@@ -1,4 +1,4 @@
-import { AudioManager } from "../AudioManager";
+//import { AudioManager } from "../AudioManager";
 import { audioManager } from "../main-exp-6"
 
 let counter = 0
@@ -45,7 +45,7 @@ export default class Observer{
                             <h3>${counter}/5</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-observer.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-observer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Chaque œuvre d’art, abîmée ou intacte, témoigne de son époque. L’observation est la première étape pour révéler ses secrets. Elle peut être abimée par le transport, l’humidité, ou simplement par le temps.</p>
@@ -60,19 +60,19 @@ export default class Observer{
             </div>
 
             <div class="select-circle circle-1 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-2 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-3 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-4 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
             <div class="select-circle circle-5 obs">
-                <img src="./src/assets/img/select.png" alt="">
+                <img src="/6-restaurations/assets/img/select.png" alt="">
             </div>
 
         `;
@@ -146,7 +146,8 @@ export default class Observer{
 
         if(counter == 5 && buttonElement){
             buttonElement.classList.remove("exit-animation")
-            buttonElement.classList.add("entry-animation"); 
+            buttonElement.classList.add("entry-animation");
+            audioManager.playWinSound();
         }
         
         circle.classList.remove("entry-animation")

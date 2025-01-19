@@ -47,7 +47,7 @@ export function EclairerShader(gl, baseTexture, uvTexture) {
 
             vec4 brownTint = vec4(0.6, 0.4, 0.2, 1.0);
 
-            baseColor = mix(baseColor, brownTint, 0.3);
+            baseColor = mix(baseColor, brownTint, 0.5);
 
             // Blend the two textures based on the blendFactor
             vec4 finalColor = mix(baseColor, uvColor, blendFactor);
