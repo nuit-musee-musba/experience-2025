@@ -1,10 +1,10 @@
 export const questions = [
 
-    
+
 
     {
 
-    
+
         //Q1
         question: "Quel outil est utilisé pour réaliser cette œuvre ?", //souligner outils
         responseDetails: {
@@ -43,7 +43,7 @@ export const questions = [
                 choices: [
                     { text: "", image: "/3-techniques/card/aquarelle.jpg" },
                     { text: "", image: "/3-techniques/card/photo.jpg" },
-                    { text: "", image: "/3-techniques/card/peintureHuile.jpg" }, 
+                    { text: "", image: "/3-techniques/card/peintureHuile.jpg" },
                     { text: "", image: "/3-techniques/card/gouache.jpg" }
                 ],
                 correct: "B"
@@ -108,55 +108,55 @@ export const questions = [
 
 
 
-    
-    
-        {
-            //Q3
-            question: "Quel matériau n’entre pas dans la composition de cette œuvre ?", //souligner matériau et pas
-            responseDetails: {
-                text: "Cette œuvre a été réalisée avec de la laine, du chanvre et de la corde. La texture riche et l'usage habile des fibres mettent en valeur un travail artisanal exceptionnel.",
-                media: ""
-            },
-            media: "/3-techniques/art/arbreVie.png",
-            cartel: [
-                { id: "artistName", text: "Dartois Daniel" },
-                { id: "artName", text: "L'arbre de vie" },
-                { id: "artDate", text: "20ᵉ siècle" },
-                { id: "useTechnique", text: "Tapisserie en laine, chanvre et corde" },
-                { id: "whereMuseum", text: "En réserve" }
-            ],
-            hide: ["useTechnique"],
-            difficulties: {
-                easy: {
-                    choices: [
-                        { text: "", image: "/3-techniques/card/aquarelle.jpg" },
-                        { text: "", image: "/3-techniques/card/corde.jpg" },
-                        { text: "", image: "/3-techniques/card/laine.jpg" },
-                        { text: "", image: "/3-techniques/card/chanvre.jpg" }
-                    ],
-                    correct: "A"
-                },
-                medium: {
-                    choices: [
-                        { text: "", image: "/3-techniques/card/porcelaine.jpg" },
-                        { text: "", image: "/3-techniques/card/corde.jpg" },
-                        { text: "", image: "/3-techniques/card/laine.jpg" },
-                        { text: "", image: "/3-techniques/card/chanvre.jpg" }
-                    ],
-                    correct: "A"
-                },
-                hard: {
-                    choices: [
-                        { text: "", image: "/3-techniques/card/sisal.jpg" },
-                        { text: "", image: "/3-techniques/card/corde.jpg" },
-                        { text: "", image: "/3-techniques/card/laine.jpg" },
-                        { text: "", image: "/3-techniques/card/chanvre.jpg" }
-                    ],
-                    correct: "A"
-                }
-            }
+
+
+    {
+        //Q3
+        question: "Quel matériau n’entre pas dans la composition de cette œuvre ?", //souligner matériau et pas
+        responseDetails: {
+            text: "Cette œuvre a été réalisée avec de la laine, du chanvre et de la corde. La texture riche et l'usage habile des fibres mettent en valeur un travail artisanal exceptionnel.",
+            media: ""
         },
-    
+        media: "/3-techniques/art/arbreVie.png",
+        cartel: [
+            { id: "artistName", text: "Dartois Daniel" },
+            { id: "artName", text: "L'arbre de vie" },
+            { id: "artDate", text: "20ᵉ siècle" },
+            { id: "useTechnique", text: "Tapisserie en laine, chanvre et corde" },
+            { id: "whereMuseum", text: "En réserve" }
+        ],
+        hide: ["useTechnique"],
+        difficulties: {
+            easy: {
+                choices: [
+                    { text: "", image: "/3-techniques/card/aquarelle.jpg" },
+                    { text: "", image: "/3-techniques/card/corde.jpg" },
+                    { text: "", image: "/3-techniques/card/laine.jpg" },
+                    { text: "", image: "/3-techniques/card/chanvre.jpg" }
+                ],
+                correct: "A"
+            },
+            medium: {
+                choices: [
+                    { text: "", image: "/3-techniques/card/porcelaine.jpg" },
+                    { text: "", image: "/3-techniques/card/corde.jpg" },
+                    { text: "", image: "/3-techniques/card/laine.jpg" },
+                    { text: "", image: "/3-techniques/card/chanvre.jpg" }
+                ],
+                correct: "A"
+            },
+            hard: {
+                choices: [
+                    { text: "", image: "/3-techniques/card/sisal.jpg" },
+                    { text: "", image: "/3-techniques/card/corde.jpg" },
+                    { text: "", image: "/3-techniques/card/laine.jpg" },
+                    { text: "", image: "/3-techniques/card/chanvre.jpg" }
+                ],
+                correct: "A"
+            }
+        }
+    },
+
 
 
 
@@ -283,8 +283,8 @@ export const questions = [
                 choices: [
                     { text: "", image: "/3-techniques/card/minePlomb.jpg" },
                     { text: "", image: "/3-techniques/card/sanguine.jpg" },
-                    { text: "", image: "/3-techniques/card/encreChine.jpg" },
-                    { text: "", image: "/3-techniques/card/cristal.jpg" }
+                    { text: "", image: "/3-techniques/card/cristal.jpg" },
+                    { text: "", image: "/3-techniques/card/encreChine.jpg" }
                 ],
                 correct: "C"
             },
@@ -293,7 +293,7 @@ export const questions = [
                     { text: "", image: "/3-techniques/card/minePlomb.jpg" },
                     { text: "", image: "/3-techniques/card/sanguine.jpg" },
                     { text: "", image: "/3-techniques/card/aquarelle.jpg" },
-                    { text: "", image: "/3-techniques/card/cristal.jpg" }
+                    { text: "", image: "/3-techniques/card/encreChine.jpg" }
                 ],
                 correct: "C"
             },
@@ -302,7 +302,7 @@ export const questions = [
                     { text: "", image: "/3-techniques/card/minePlomb.jpg" },
                     { text: "", image: "/3-techniques/card/sanguine.jpg" },
                     { text: "", image: "/3-techniques/card/fusain.jpg" },
-                    { text: "", image: "/3-techniques/card/cristal.jpg" }
+                    { text: "", image: "/3-techniques/card/encreChine.jpg" }
                 ],
                 correct: "C"
             }
@@ -380,7 +380,7 @@ export const questions = [
         difficulties: {
             easy: {
                 choices: [
-                    { text: "", image: "/3-techniques/card/aquarelle.jpg" }, 
+                    { text: "", image: "/3-techniques/card/aquarelle.jpg" },
                     { text: "", image: "/3-techniques/card/photo.jpg" },
                     { text: "", image: "/3-techniques/card/laine.jpg" },
                     { text: "", image: "/3-techniques/card/encreChine.jpg" }
@@ -389,9 +389,9 @@ export const questions = [
             },
             medium: {
                 choices: [
-                    { text: "", image: "/3-techniques/card/aquarelle.jpg" }, 
-                    { text: "", image: "/3-techniques/card/gouache.jpg" }, 
-                    { text: "", image: "/3-techniques/card/crayonConte.jpg" }, 
+                    { text: "", image: "/3-techniques/card/aquarelle.jpg" },
+                    { text: "", image: "/3-techniques/card/gouache.jpg" },
+                    { text: "", image: "/3-techniques/card/crayonConte.jpg" },
                     { text: "", image: "/3-techniques/card/encreChine.jpg" }
                 ],
                 correct: "A"
@@ -566,9 +566,9 @@ export const questions = [
 
 
 
-    
-    
-    
+
+
+
     {
         //Q12
         question: "Quelle est la nature de cette œuvre ?", //souligner nature
@@ -588,16 +588,16 @@ export const questions = [
         difficulties: {
             easy: {
                 choices: [
-                    { text: "", image: "/3-techniques/card/ceramique.jpg" }, 
+                    { text: "", image: "/3-techniques/card/ceramique.jpg" },
                     { text: "", image: "/3-techniques/card/ferronnerie.jpg" },
                     { text: "", image: "/3-techniques/card/dessin.jpg" },
-                    { text: "", image: "/3-techniques/card/verrerie.jpg" } 
+                    { text: "", image: "/3-techniques/card/verrerie.jpg" }
                 ],
                 correct: "C"
             },
             medium: {
                 choices: [
-                    { text: "", image: "/3-techniques/card/photographie.jpg" }, 
+                    { text: "", image: "/3-techniques/card/photographie.jpg" },
                     { text: "", image: "/3-techniques/card/peinture.jpg" },
                     { text: "", image: "/3-techniques/card/dessin.jpg" },
                     { text: "", image: "/3-techniques/card/verrerie.jpg" }
@@ -606,7 +606,7 @@ export const questions = [
             },
             hard: {
                 choices: [
-                    { text: "", image: "/3-techniques/card/photographie.jpg" }, 
+                    { text: "", image: "/3-techniques/card/photographie.jpg" },
                     { text: "", image: "/3-techniques/card/peinture.jpg" },
                     { text: "", image: "/3-techniques/card/dessin.jpg" },
                     { text: "", image: "/3-techniques/card/sculpture.jpg" }
@@ -615,8 +615,8 @@ export const questions = [
             }
         }
     },
-    
-    
+
+
 
 
 
@@ -764,7 +764,7 @@ export const questions = [
                 choices: [
                     { text: "", image: "/3-techniques/card/hautRelief.jpg" },
                     { text: "", image: "/3-techniques/card/basRelief.jpg" },
-                    { text: "", image: "/3-techniques/card/marbre.jpg" },
+                    { text: "", image: "/3-techniques/card/rondeBosse.jpg" },
                     { text: "", image: "/3-techniques/card/ceramique.jpg" }
                 ],
                 correct: "C"
@@ -780,7 +780,7 @@ export const questions = [
         //Q16
         question: "Où cette peinture a été réalisée ?", //souligner peinture
         responseDetails: {
-            text: "L'œuvre Jardin au Pyla d' Albert Marquet est une ode à la simplicité et à la lumière du sud-ouest de la France. Dans ce tableau, Marquet capture la quiétude d'un jardin baigné par la douce lumière côtière du Pyla, près du bassin d'Arcachon. ",//italic le jardin au pyla
+            text: "L'œuvre Jardin au Pyla d' Albert Marquet est une ode à la simplicité et à la lumière du sud-ouest de la France. Dans ce tableau, Marquet capture la quiétude d'un jardin baigné par la douce lumière côtière du Pyla, près du bassin d'Arcachon à la Teste-de-Buch ",//italic le jardin au pyla
             media: ""
         },
         media: "/3-techniques/art/jardinPyla.png",
@@ -828,7 +828,7 @@ export const questions = [
         //Q17
         question: "Quel est ce bâtiment ?", //souligner batiment
         responseDetails: {
-            text: "L'Église Sainte-Croix est l'abbatiale d'un ancien monastère bénédictin, fondé au 7ᵉ siècle. Le clocher à droite du portail remonte au 12ᵉ siècle, son porche au 11e tandis que le clocher de gauche a été rajouté au 19ᵉ siècle par l'architecte Paul Abadie.", 
+            text: "L'Église Sainte-Croix est l'abbatiale d'un ancien monastère bénédictin, fondé au 7ᵉ siècle. Le clocher à droite du portail remonte au 12ᵉ siècle, son porche au 11e tandis que le clocher de gauche a été rajouté au 19ᵉ siècle par l'architecte Paul Abadie.",
             media: ""
         },
         media: "/3-techniques/art/egliseSainteCroix.png",
@@ -1200,10 +1200,10 @@ export const questions = [
         difficulties: {
             easy: {
                 choices: [
-                    { text: "", image: "/3-techniques/card/EugeneDelacroix.jpg" }, 
-                    { text: "", image: "/3-techniques/card/AntoinedeSaintExupery.jpg" }, 
-                    { text: "", image: "/3-techniques/card/EmmanuelMacron.jpg" }, 
-                    { text: "", image: "/3-techniques/card/EmileZola.jpg" }  
+                    { text: "", image: "/3-techniques/card/EugeneDelacroix.jpg" },
+                    { text: "", image: "/3-techniques/card/AntoinedeSaintExupery.jpg" },
+                    { text: "", image: "/3-techniques/card/EmmanuelMacron.jpg" },
+                    { text: "", image: "/3-techniques/card/EmileZola.jpg" }
                 ],
                 correct: "B"
             },
@@ -1642,7 +1642,7 @@ export const questions = [
         }
     },
 
-    
+
 
 
 
@@ -1745,8 +1745,8 @@ export const questions = [
                 correct: "A"
             }
         }
-    }, 
-    
+    },
+
 
 
 
@@ -1754,7 +1754,7 @@ export const questions = [
 
     {
         //Q35
-        question: "Quel outil est utilisé pour cette œuvre ?", //souligner outil
+        question: "Selon toi, quelle est la divinité représentée sur ce tableau?", //souligner outil
         responseDetails: {
             text: "L'œuvre représente le dieu Apollon, figure emblématique de la mythologie grecque et romaine. Associé à la lumière, aux arts, à la musique et à la prophétie, Apollon est souvent représenté sous des traits harmonieux et idéalisés, incarnant la jeunesse et la beauté.",
             media: ""
