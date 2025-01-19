@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 let percentage = 0;
 
 export default class Retoucher{
@@ -40,7 +42,7 @@ export default class Retoucher{
                             <h3>${percentage}%</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-retoucher.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-retoucher.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>La retouche est une étape délicate où chaque coup de pinceau doit respecter l’intention de l’artiste.</p>
@@ -133,6 +135,7 @@ export default class Retoucher{
         if(percentage >= 96 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
+            audioManager.playWinSound();
             console.log("button element appears")
         }
 
@@ -143,6 +146,7 @@ export default class Retoucher{
 
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/vernir"; // Navigate to /#/intro
     };
 

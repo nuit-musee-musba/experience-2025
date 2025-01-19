@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 let counter = 0
 
 export default class Apprecier{
@@ -32,7 +34,7 @@ export default class Apprecier{
                     </div>
                 </div>
                 <div class="exp-right">
-                    <img class="exp-char-img" src="./src/assets/img/perso-apprecier.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-apprecier.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>En temps normal, une restauration peut durer plusieurs semaines, voire plusieurs mois, surtout pour une œuvre comme celle-ci.</p>
@@ -42,7 +44,7 @@ export default class Apprecier{
             </div>
             <div class="button-container">
                 <div class="button-suivant">
-                    <h2>Quitter</h2>
+                    <h2>Retour</h2>
                 </div>
             </div>
         `;
@@ -57,6 +59,8 @@ export default class Apprecier{
     }
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
+        audioManager.pauseBackgroundMusic();
         window.location.hash = "/"; // Navigate to /#/intro
     };
 

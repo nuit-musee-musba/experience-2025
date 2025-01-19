@@ -1,3 +1,5 @@
+import { audioManager } from "../main-exp-6"
+
 let percentage = 0;
 
 export default class Vernir{
@@ -40,7 +42,7 @@ export default class Vernir{
                             <h3>${percentage}%</h3>
                         </div>
                     </div>
-                    <img class="exp-char-img" src="./src/assets/img/perso-vernir.png" alt="">
+                    <img class="exp-char-img" src="/6-restaurations/assets/img/perso-vernir.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Le vernis est la dernière étape, offrant à l’œuvre une protection durable et un éclat retrouvé, presque comme un filtre sur une photo de votre téléphone !</p>
@@ -133,6 +135,7 @@ export default class Vernir{
         if(percentage >= 96 && buttonElement){
             buttonElement.classList.remove("exit-animation")
             buttonElement.classList.add("entry-animation"); 
+            audioManager.playWinSound();
             console.log("button element appears")
         }
 
@@ -143,6 +146,7 @@ export default class Vernir{
 
 
     handleMouseDown = () => {
+        audioManager.playClickSound();
         window.location.hash = "/apprecier"; // Navigate to /#/intro
     };
 

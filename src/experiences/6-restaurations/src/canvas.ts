@@ -20,7 +20,7 @@ export function setupCanvas(element) {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     const paintTexture = new Image();
-    paintTexture.src = './src/assets/textures/endommagé.jpg';
+    paintTexture.src = '/6-restaurations/assets/textures/endommagé.jpg';
 
     const texture = new Texture(gl, {
         wrapS: gl.CLAMP_TO_EDGE,
@@ -34,7 +34,7 @@ export function setupCanvas(element) {
     };
 
     const uvLightTexture = new Image();
-    uvLightTexture.src = './src/assets/textures/uv-light.jpg';
+    uvLightTexture.src = '/6-restaurations/assets/textures/uv-light.jpg';
 
     const textureUvLight = new Texture(gl, {
         wrapS: gl.CLAMP_TO_EDGE,
@@ -47,7 +47,7 @@ export function setupCanvas(element) {
     };
 
     const retoucheTexture = new Image();
-    retoucheTexture.src = './src/assets/textures/retouché.jpg';
+    retoucheTexture.src = '/6-restaurations/assets/textures/retouché.jpg';
 
     const texturedRetoucheTexture = new Texture(gl, {
         wrapS: gl.CLAMP_TO_EDGE,
@@ -56,11 +56,11 @@ export function setupCanvas(element) {
 
     retoucheTexture.onload = () => {
         texturedRetoucheTexture.image = retoucheTexture;
-        console.log("UV light texture loaded");
+        console.log("Retouche texture loaded");
     };
 
     const vernirTexture = new Image();
-    vernirTexture.src = './src/assets/textures/vernir.jpg';
+    vernirTexture.src = '/6-restaurations/assets/textures/vernir.jpg';
 
     const texturedVernirTexture = new Texture(gl, {
         wrapS: gl.CLAMP_TO_EDGE,
@@ -69,7 +69,20 @@ export function setupCanvas(element) {
 
     vernirTexture.onload = () => {
         texturedVernirTexture.image = vernirTexture;
-        console.log("UV light texture loaded");
+        console.log("Vernir texture loaded");
+    };
+
+    const mastiqueTexture = new Image();
+    mastiqueTexture.src = '/6-restaurations/assets/textures/mastique.jpg';
+
+    const textureMastique = new Texture(gl, {
+        wrapS: gl.CLAMP_TO_EDGE,
+        wrapT: gl.CLAMP_TO_EDGE,
+    });
+
+    mastiqueTexture.onload = () => {
+        textureMastique.image = mastiqueTexture;
+        console.log("Mastique texture loaded");
     };
 
     const resize = () => {
@@ -95,7 +108,7 @@ export function setupCanvas(element) {
             currentScene = MastiquerShader(gl, texture);
         }
         if (event.detail?.scene === 'scene5') {
-            currentScene = RetoucherShader(gl, texture, texturedRetoucheTexture);
+            currentScene = RetoucherShader(gl, textureMastique, texturedRetoucheTexture);
         }
         if (event.detail?.scene === 'scene6') {
             currentScene = VernirShader(gl, texturedRetoucheTexture, texturedVernirTexture);
