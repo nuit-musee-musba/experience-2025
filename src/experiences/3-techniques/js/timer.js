@@ -1,6 +1,6 @@
 let timer;
 let timeLeft = 20;
-const timerSound = new Audio('sound/TIMER.mp3');
+const timerSound = new Audio('/3-techniques/sound/TIMER.mp3');
 export function startTimer(timerEl, onTimeout) {
 
     timeLeft = 20;
