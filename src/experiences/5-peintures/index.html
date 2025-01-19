@@ -4,18 +4,25 @@
   <meta charset="UTF-8" />
   <title>Époques Artistiques - Carousel Centré</title>
   <style>
-    @import url('https://cdn.jsdelivr.net/npm/helveticaneue@1.0.0/helveticaneue.min.css');
     @font-face {
-      font-family: 'NyghtSerif-Light';
-      src: url('fonts/NyghtSerif-Light.ttf') format('truetype');
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 400;
+      src: url('/commons/fonts/Helvetica.ttc') ;
     }
+
+    @font-face {
+        font-family: 'NyghtSerif-Light';
+        src: url('/commons/fonts/NyghtSerif-Light.woff') format('woff');
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Helvetica', Arial, sans-serif;
       background-color: #f0f0f0;
       overflow-x: hidden; 
       user-select: none; 
@@ -111,9 +118,29 @@
     #startButton:hover {
       background-color: #555;
     }
+
+    /* Styles pour la flèche retour */
+    .back-arrow {
+      position: fixed;
+      top: 6rem;
+      left: 10rem;
+      height: 6rem;
+      transform: scaleX(-1); /* Flip horizontal */
+      cursor: pointer;
+      z-index: 1000; /* Assurez-vous qu'elle reste au-dessus des autres éléments */
+      transition: opacity 0.3s ease;
+    }
+    .back-arrow:hover {
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
+  <!-- Flèche retour ajoutée -->
+  <a href="1-hub/index.html">
+    <img src="/5-peintures/images/black-arrow.svg" alt="Retour" class="back-arrow">
+  </a>
+
   <header>
     <h1>Choisis une époque et plonge dans son univers artistique.</h1>
     <h2>Chaque époque révèle des palettes uniques et des symboles fascinants.</h2>
