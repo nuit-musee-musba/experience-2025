@@ -1754,7 +1754,7 @@ export const questions = [
 
     {
         //Q35
-        question: "Selon toi, quelle est la divinité représentée sur ce tableau?", //souligner outil
+        question: "Quelle est la divinité représentée sur ce tableau?", //souligner outil
         responseDetails: {
             text: "L'œuvre représente le dieu Apollon, figure emblématique de la mythologie grecque et romaine. Associé à la lumière, aux arts, à la musique et à la prophétie, Apollon est souvent représenté sous des traits harmonieux et idéalisés, incarnant la jeunesse et la beauté.",
             media: ""
