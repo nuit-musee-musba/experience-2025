@@ -20,5 +20,8 @@
     "gsap": "^3.12.7",
     "ogl": "^1.0.10",
     "sass": "^1.83.1"
+  },
+  "optionalDependencies": {
+    "@esbuild/win32-x64": "^0.24.2"
   }
 }

@@ -30,6 +30,10 @@ importers:
       vite:
         specifier: ^6.0.5
         version: 6.0.7(@types/node@22.10.7)(sass@1.83.1)
+    optionalDependencies:
+      '@esbuild/win32-x64':
+        specifier: ^0.24.2
+        version: 0.24.2
 
 packages:
 
