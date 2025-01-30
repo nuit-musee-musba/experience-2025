@@ -179,6 +179,10 @@ export default class ExhibitionScene extends Scene {
         })
 
         let element = filteredElements[Math.floor(Math.random() * filteredElements.length)];
+        if (element == undefined) {
+            console.warn("Can't add undefined element : " + element)
+            return;
+        }
         let elemDom = document.createElement("img");
         elemDom.classList.add('fade-in-element');
         setTimeout(() => {
