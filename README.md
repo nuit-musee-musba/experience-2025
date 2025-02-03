@@ -125,21 +125,6 @@ Les fichiers de config
 - hébergement distant : aller sur https://nuit-du-musba-2025.netlify.app/
 - hébergement local : récupérer le [dernier bundle.zip de la dernière release](https://github.com/nuit-musee-musba/experience-2025/releases/latest/download/bundle.zip)
 
-### Sur votre propre build
-
-Pas besoin de merger sur main et d'attendre que la ci se termine pour tester votre fonctionnalité en dev :
-
-```bash
-# Build le dossier dist pour l'hébergement distant
-pnpm build
-
-# Build le dossier bundle/ pour l'hébergement local
-pnpm bundle
-
-# Ou build le fichier bundle.zip pour l'hébergement local
-pnpm bundle:zip
-```
-
 ### Démarrer le bundle d'hébergement local
 
 1. Récupérer ou build le bundle.zip
