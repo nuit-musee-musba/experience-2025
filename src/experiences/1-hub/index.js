@@ -7,6 +7,14 @@ const projectTitle = document.querySelector(".project-title");
 // Navigation dans la section
 const homeNav = document.querySelector(".home .nav");
 const homeNavItems = document.querySelectorAll(".home .nav li");
+//select each li
+const reserveNavItem = document.querySelector(".home .nav li:nth-child(1)");
+const sculptureNavItem = document.querySelector(".home .nav li:nth-child(2)");
+const peintureNavItem = document.querySelector(".home .nav li:nth-child(3)");
+const artNavItem = document.querySelector(".home .nav li:nth-child(4)");
+const restaurationNavItem = document.querySelector(
+  ".home .nav li:nth-child(5)"
+);
 const backHome = document.querySelector(".back-home");
 
 // Personnages dans la section home
@@ -60,6 +68,7 @@ const experienceData = [
       "Tristan régisseur du Musba fait appel à toi, gardien des merveilles, pour tisser les fils d'une toute nouvelle exposition enchantée. Plonge dans les trésors des réserves, où chaque peinture murmure des histoires oubliées, et laisse ta créativité illuminer la salle. Ta mission : insuffler une magie unique, transformant cet espace en un royaume vibrant qui émerveillera les âmes et éveillera les rêves.",
     illustration: "/1-hub/illustrations/reserve.png",
     link: "/experiences/2-reserve/index.html",
+    navElement: reserveNavItem,
   },
   {
     id: 2,
@@ -68,6 +77,7 @@ const experienceData = [
       "Plongez dans l'univers captivant de la sculpture de bronze avec Ernest Meissonier comme guide ! Découvrez chaque étape du processus, de la modélisation en argile au coulage du bronze, et recréez le chef-d'œuvre Le Voyageur. Dans cette expérience ludique et immersive, apprenez l’art complexe de la sculpture de bronze.",
     illustration: "/1-hub/illustrations/sculpture.png",
     link: "/experiences/4-sculpture/index.html",
+    navElement: sculptureNavItem,
   },
   {
     id: 3,
@@ -76,6 +86,7 @@ const experienceData = [
       "Avec Polychromia, plonge dans l’univers fascinant des couleurs à travers divers mouvements artistiques ! Découvre comment la palette choisie par l’artiste influence la signification de l’œuvre, et recolorise certaines parties clés du tableau pour comprendre l’importance des couleurs dans une œuvre. Grâce à des choix interactifs et guidés, tu apprendras à décoder l’art de manière ludique et captivante !",
     illustration: "/1-hub/illustrations/peinture.png",
     link: "/experiences/5-peintures/index.html",
+    navElement: peintureNavItem,
   },
   {
     id: 4,
@@ -84,6 +95,7 @@ const experienceData = [
       "Mesdames et Messieurs, vous avez été sélectionnés pour participer au célèbre quiz CARTES & CARTELS ! Que vous veniez seul ou à plusieurs, préparez-vous à affronter une succession de questions sur ces petits écriteaux descriptifs des œuvres : les cartels. Déduction et connaissances seront vos meilleures armes pour parvenir à vous sortir de cette aventure périlleuse.",
     illustration: "/1-hub/illustrations/art-graphiques.png",
     link: "/experiences/3-techniques/index.html",
+    navElement: artNavItem,
   },
   {
     id: 5,
@@ -92,6 +104,7 @@ const experienceData = [
       "Prenez les commandes d’une restauration de tableau et découvrez la beauté de ce métier qui transmet le passé aux générations futures. À travers cette expérience, suivez les conseils du formateur et formez vous avant tout à ce noble métier requérant des notions scientifiques surprenantes. Un métier magique et bien plus exercer que vous ne le pensez.",
     illustration: "/1-hub/illustrations/restauration.png",
     link: "/experiences/6-restaurations/index.html",
+    navElement: restaurationNavItem,
   },
 ];
 
@@ -218,7 +231,10 @@ const enterExperience = (experienceID) => {
         ease: "power2.out",
       },
       0.65
-    );
+    )
+    .to(targetExperienceData.navElement, {
+      border: "1px solid #000",
+    });
 };
 
 const leaveExperience = (experienceID) => {
@@ -304,6 +320,9 @@ const changeExperience = (experienceID, previousExperienceID) => {
   const targetExperienceData = experienceData.find(
     (exp) => exp.id == experienceID
   );
+  const previousExperienceData = experienceData.find(
+    (exp) => exp.id == previousExperienceID
+  );
   if (!targetExperienceData) {
     console.error(`No data found for experience ID: ${experienceID}`);
     return;
@@ -338,6 +357,10 @@ const changeExperience = (experienceID, previousExperienceID) => {
       duration: 0.5,
       ease: "power2.inOut",
     });
+  console.log(
+    "targetExperienceData.navElement",
+    targetExperienceData.navElement
+  );
 
   return gsap
     .timeline()
@@ -391,7 +414,13 @@ const changeExperience = (experienceID, previousExperienceID) => {
         ease: "power2.out",
       },
       "<"
-    );
+    )
+    .to(previousExperienceData.navElement, {
+      border: "1px solid #fff",
+    })
+    .to(targetExperienceData.navElement, {
+      border: "1px solid #000",
+    });
 };
 
 homeNavItems.forEach((item, index) => {
