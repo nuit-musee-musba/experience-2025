@@ -144,7 +144,6 @@ const enterExperience = (experienceID) => {
     steps: 10,
   });
 
-  // Crée et joue la timeline pour l'animation
   return gsap
     .timeline()
     .set(experienceIllustration, { display: "flex" })
