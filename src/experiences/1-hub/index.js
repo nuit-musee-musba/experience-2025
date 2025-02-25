@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import shuffleTextAnimation from "./utils/ShuffleText";
+import { Modal } from "../../commons/components/Modal";
 
 // Sélection des éléments de la page d'accueil (home)
 const projectTitle = document.querySelector(".project-title");

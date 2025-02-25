@@ -185,3 +185,46 @@
     }
   }
 }
+
+.modal-width {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 30vh;
+  z-index: 101;
+  padding: 0;
+  background-color: white;
+  border: 1px solid black;
+  padding: 24px;
+  @media screen and (max-width: 768px) {
+    width: 80vw;
+    height: 40vh;
+  }
+  h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+.background-blured {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+@media screen and (min-width: 3840px) {
+  .modal-width {
+    display: none;
+  }
+  .background-blured {
+    display: none;
+  }
+}
