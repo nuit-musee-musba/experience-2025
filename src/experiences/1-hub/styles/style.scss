@@ -31,6 +31,8 @@
       transform: translateX(-50%);
       ul {
         display: flex;
+        border: 2px solid black;
+        position: relative;
         li {
           border: 1px solid white;
           background-color: white;
@@ -39,6 +41,14 @@
           text-align: center;
           padding: 20px 154px;
           align-content: center;
+          min-width: 580px;
+        }
+        .active {
+          border-left: 2px solid black;
+          border-right: 2px solid black;
+          opacity: 0;
+          position: absolute;
+          pointer-events: none;
         }
       }
     }
