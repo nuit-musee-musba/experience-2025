@@ -1,41 +1,27 @@
 import gsap from "gsap";
 import shuffleTextAnimation from "./utils/ShuffleText";
+import { Modal } from "../../commons/components/Modal";
 
 // Sélection des éléments de la page d'accueil (home)
 const projectTitle = document.querySelector(".project-title");
-
-// Navigation dans la section
 const homeNav = document.querySelector(".home .nav");
 const homeNavItems = document.querySelectorAll(".home .nav li");
+const activeNavItem = document.querySelector(".home .nav .active");
 const backHome = document.querySelector(".back-home");
-
-// Personnages dans la section home
-const homePersonnages = document.querySelectorAll(".home .personnage");
 const homePersonnageContainers = document.querySelectorAll(
   ".home .personnage-container"
 );
 
 // Sélection des éléments de la page d'expérience (experience-page)
-
-// Section des personnages
-const experiencePersonnages = document.querySelectorAll(
-  ".experience-page .personnage"
-);
 const experiencePersonnageContainers = document.querySelectorAll(
   ".experience-page .personnage-container"
 );
-
-// Contenu de l'expérience
 const experienceContent = document.querySelector(
   ".experience-page .experience-content"
 );
-
-// Illustration de l'expérience
 const experienceIllustration = document.querySelector(
   ".experience-page .experience-illustartion"
 );
-
-// Modal d'expérience
 const experienceModal = document.querySelector(
   ".experience-page .experience-modal"
 );
@@ -99,73 +85,63 @@ let experienceID;
 let previousExperienceID;
 let isInExperiencePage = false;
 
-// Fonction pour créer l'animation enterExperience
-const enterExperience = (experienceID) => {
-  console.log("enter experience");
+// Fonction pour mettre à jour les styles de l'élément actif
+const updateActiveNavItem = (item) => {
+  console.log(item);
 
+  const { offsetWidth, offsetHeight, offsetLeft, offsetTop } = item;
+  gsap.to(activeNavItem, {
+    width: offsetWidth,
+    height: offsetHeight,
+    x: offsetLeft,
+    y: offsetTop,
+    duration: 0.3,
+    ease: "power2.out",
+  });
+};
+
+// Fonction pour mettre à jour le contenu de la modal
+const updateModalContent = (data, isLong) => {
+  experienceModalTitle.innerText = data.title;
+  experienceModalText.innerText = data.description;
+  experienceModalButton.href = data.link;
+  experienceIllustration.querySelector("img").src = data.illustration;
+
+  shuffleTextAnimation(experienceModalTitle, data.title, {
+    duration: 0.2,
+    delay: isLong ? 0.65 : 0.15,
+    steps: 10,
+  });
+};
+
+// Fonction pour entrer dans une expérience
+const enterExperience = (experienceID) => {
   const targetPerso = document.querySelector(
     `.experience-page .personnage-container[experience-id="${experienceID}"]`
   );
-  const targetModalTitle = document.querySelector(
-    `.experience-page .experience-modal h3`
-  );
-  const targetModalText = document.querySelector(
-    `.experience-page .experience-modal p`
-  );
-  const targetIllustartion = document.querySelector(
-    `.experience-page .experience-illustartion img`
-  );
-  const targetBtn = document.querySelector(
-    `.experience-page .experience-modal button a`
-  );
-
-  if (!targetPerso) {
-    console.error(`No elements found for experience ID: ${experienceID}`);
-    return;
-  }
-
+  activeNavItem.style.opacity = 1;
   const targetExperienceData = experienceData.find(
     (exp) => exp.id == experienceID
   );
 
-  if (!targetExperienceData) {
-    console.error(`No data found for experience ID: ${experienceID}`);
+  if (!targetPerso || !targetExperienceData) {
+    console.error(
+      `No elements or data found for experience ID: ${experienceID}`
+    );
     return;
   }
 
-  targetModalTitle.innerText = targetExperienceData.title;
-  targetModalText.innerText = targetExperienceData.description;
-  targetIllustartion.src = targetExperienceData.illustration;
-  targetBtn.href = targetExperienceData.link;
+  updateModalContent(targetExperienceData, true);
 
-  shuffleTextAnimation(targetModalTitle, targetExperienceData.title, {
-    duration: 0.2,
-    delay: 0.65,
-    steps: 10,
-  });
-
-  // Crée et joue la timeline pour l'animation
-  return gsap
+  gsap
     .timeline()
-    .set(experienceIllustration, { display: "flex" })
-    .set(experienceModal, { display: "flex" })
-    .set(experienceIllustration, {
-      clipPath: "inset(0 0 100% 0)",
-    })
+    .set([experienceIllustration, experienceModal], { display: "flex" })
+    .set(experienceIllustration, { clipPath: "inset(0 0 100% 0)" })
     .add(leaveHome.play())
     .fromTo(
       targetPerso,
-      {
-        opacity: 0,
-        y: 1500,
-      },
-      {
-        display: "block",
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      { opacity: 0, y: 1500 },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
       0.25
     )
     .to(
@@ -175,101 +151,56 @@ const enterExperience = (experienceID) => {
     )
     .to(
       experienceIllustration,
-      {
-        clipPath: "inset(0 0 0% 0)",
-        duration: 0.5,
-        ease: "power2.inOut",
-      },
+      { clipPath: "inset(0 0 0% 0)", duration: 0.5, ease: "power2.inOut" },
       0.25
     )
     .fromTo(
       experienceIllustration,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5, ease: "power2.out" },
       0.25
     )
     .fromTo(
       experienceModal,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5, ease: "power2.out" },
       0.65
     )
     .fromTo(
-      targetModalText,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      experienceModalText,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
       0.65
     );
 };
 
+// Fonction pour quitter une expérience
 const leaveExperience = (experienceID) => {
   const targetPerso = document.querySelector(
     `.experience-page .personnage-container[experience-id="${experienceID}"]`
   );
-
-  return gsap
+  activeNavItem.style.opacity = 1;
+  gsap
     .timeline()
-    .to(targetPerso, {
-      opacity: 0,
-      y: 1500,
-      duration: 0.5,
-      ease: "power2.out",
-    })
+    .to(targetPerso, { opacity: 0, y: 1500, duration: 0.5, ease: "power2.out" })
     .to(
       projectTitle,
       { transform: "translate(-50%, 0vh) scale(1)", duration: 0.5 },
       0.25
     )
+    .to(activeNavItem, { opacity: 0, duration: 0.5, ease: "power2.out" }, 0)
+    .set(activeNavItem, { x: 0 })
     .to(
-      experienceIllustration,
-      {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      },
-      0.15
-    )
-    .to(
-      experienceModal,
-      {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      [experienceIllustration, experienceModal],
+      { opacity: 0, duration: 0.5, ease: "power2.out" },
       0.15
     )
     .add(leaveHome.reverse(), 0.05)
-    .set(experienceIllustration, {
-      display: "none",
-    })
-    .set(experienceModal, {
-      display: "none",
-    });
+    .set([experienceIllustration, experienceModal], { display: "none" });
 };
 
+// Fonction pour changer d'expérience
 const changeExperience = (experienceID, previousExperienceID) => {
-  console.log("change experience");
-
   const targetPerso = document.querySelector(
     `.experience-page .personnage-container[experience-id="${experienceID}"]`
   );
@@ -277,132 +208,77 @@ const changeExperience = (experienceID, previousExperienceID) => {
     `.experience-page .personnage-container[experience-id="${previousExperienceID}"]`
   );
 
-  const targetModalTitle = document.querySelector(
-    `.experience-page .experience-modal h3`
-  );
-  const targetModalText = document.querySelector(
-    `.experience-page .experience-modal p`
-  );
-  const targetIllustartionContainer = document.querySelector(
-    `.experience-page .experience-illustartion`
-  );
-  const targetIllustartion = targetIllustartionContainer.querySelector("img");
-  const previousIllustartion = document.querySelector(
-    `.experience-page .experience-illustartion img[src="${
-      experienceData.find((exp) => exp.id == previousExperienceID)?.illustration
-    }"]`
-  );
-
-  const targetBtn = document.querySelector(
-    `.experience-page .experience-modal button a`
-  );
-
-  if (!targetPerso || !previousPerso) {
-    console.error(`No elements found for experience ID: ${experienceID}`);
-    return;
-  }
-
   const targetExperienceData = experienceData.find(
     (exp) => exp.id == experienceID
   );
-  if (!targetExperienceData) {
-    console.error(`No data found for experience ID: ${experienceID}`);
+
+  if (!targetPerso || !previousPerso || !targetExperienceData) {
+    console.error(
+      `No elements or data found for experience ID: ${experienceID}`
+    );
     return;
   }
-
-  targetModalTitle.innerText = targetExperienceData.title;
-  targetModalText.innerText = targetExperienceData.description;
-  targetBtn.href = targetExperienceData.link;
-
-  shuffleTextAnimation(targetModalTitle, targetExperienceData.title, {
-    duration: 0.2,
-    delay: 0.65,
-    steps: 10,
+  gsap.to(experienceModal, {
+    opacity: 0,
+    duration: 0.5,
+    ease: "power2.out",
+    onComplete: () => {
+      updateModalContent(targetExperienceData, false);
+    },
   });
 
-  const maskTimeline = gsap.timeline();
-  maskTimeline
-    .to(targetIllustartionContainer, {
+  const maskTimeline = gsap
+    .timeline()
+    .to(experienceIllustration, {
       clipPath: "inset(0 0 100% 0)",
       duration: 0.5,
       ease: "power2.inOut",
-      onComplete: () => {
-        previousIllustartion.src = "";
-        targetIllustartion.src = targetExperienceData.illustration;
-      },
     })
-    .set(targetIllustartionContainer, {
-      clipPath: "inset(0 0 100% 0)",
-    })
-    .to(targetIllustartionContainer, {
+    .set(experienceIllustration, { clipPath: "inset(0 0 100% 0)" })
+    .to(experienceIllustration, {
       clipPath: "inset(0 0 0% 0)",
       duration: 0.5,
       ease: "power2.inOut",
     });
 
-  return gsap
+  gsap
     .timeline()
     .add(maskTimeline)
     .to(
       previousPerso,
-      {
-        opacity: 0,
-        y: 1500,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      { opacity: 0, y: 1500, duration: 0.5, ease: "power2.out" },
       0
     )
+
     .fromTo(
       targetPerso,
-      {
-        opacity: 0,
-        y: 1500,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      { opacity: 0, y: 1500 },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
       "-=0.5"
     )
-    .fromTo(
+    .to(
       experienceModal,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+
+      { opacity: 1, duration: 0.5, ease: "power2.out" },
       0.65
     )
     .fromTo(
-      targetModalText,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      },
+      experienceModalText,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
       "<"
     );
 };
 
-homeNavItems.forEach((item, index) => {
+// Gestion des événements de navigation
+homeNavItems.forEach((item) => {
   item.addEventListener("click", () => {
     const newExperienceID = item.getAttribute("experience-id");
-
     if (newExperienceID === experienceID) return;
 
     previousExperienceID = experienceID;
     experienceID = newExperienceID;
+    updateActiveNavItem(item);
 
     if (!isInExperiencePage) {
       enterExperience(experienceID);
@@ -413,20 +289,17 @@ homeNavItems.forEach((item, index) => {
   });
 });
 
-const leaveHome = gsap.timeline({
-  paused: true,
-});
-
-leaveHome.to(homePersonnageContainers, {
+// Animation pour quitter la page d'accueil
+const leaveHome = gsap.timeline({ paused: true }).to(homePersonnageContainers, {
   y: 1500,
   opacity: 0,
   duration: 0.5,
   stagger: 0.05,
 });
 
+// Gestion de l'événement pour revenir à la page d'accueil
 backHome.addEventListener("click", () => {
   leaveExperience(experienceID);
-
   isInExperiencePage = false;
   experienceID = null;
   previousExperienceID = null;
