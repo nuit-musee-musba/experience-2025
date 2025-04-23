@@ -198,6 +198,10 @@ document.getElementById("next-dialogue").addEventListener("click", () => {
 
     if (currentAction === "SUIVANT") {
         currentDialogueIndex++;
+        if (dialogues[currentDialogueIndex - 1].id === 21) {
+            window.location.href = "../1-hub/index.html";
+            return;
+        }
         updateDialogue();
     }
 });
@@ -272,7 +276,7 @@ function touchMove(event) {
 }
 
 document.getElementById("menu-button").addEventListener("click", () => {
-  window.location.href = "./1-hub/index.html"; // Remplacez "menu.html" par le chemin de votre fichier cible
+  window.location.href = "../1-hub/index.html"; // Remplacez "menu.html" par le chemin de votre fichier cible
 });
 
 
