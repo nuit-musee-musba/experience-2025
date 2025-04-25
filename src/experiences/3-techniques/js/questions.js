@@ -778,7 +778,7 @@ export const questions = [
 
     {
         //Q16
-        question: "Où cette peinture a été réalisée ?", //souligner peinture
+        question: "Où cette peinture a-t-elle été réalisée ?", //souligner peinture
         responseDetails: {
             text: "L'œuvre Jardin au Pyla d' Albert Marquet est une ode à la simplicité et à la lumière du sud-ouest de la France. Dans ce tableau, Marquet capture la quiétude d'un jardin baigné par la douce lumière côtière du Pyla, près du bassin d'Arcachon à la Teste-de-Buch ",//italic le jardin au pyla
             media: ""
