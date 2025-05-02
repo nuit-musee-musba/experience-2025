@@ -407,7 +407,7 @@ button,
   margin-bottom: 1rem;
   position: fixed;
   top: 14rem;
-  right: 27rem;
+  right: 14rem;
   transition: top 1s cubic-bezier(0.19, 1, 0.22, 1); 
 }
 
@@ -443,7 +443,7 @@ button,
 
 .color-card {
   width: 28rem; 
-  height: 35rem;
+  height: 32rem;
 
   position: relative;
   color: white;
@@ -477,7 +477,7 @@ button,
 .color-card[data-color="#51617A"] {
   background-color: #51617A;
   position: fixed;
-  right: 71rem;
+  right: 69rem;
   bottom: 17rem;
   transform: rotate(-20deg);
 }
@@ -485,7 +485,7 @@ button,
 .color-card[data-color="#BF7D65"] {
   background-color: #BF7D65;
   position: fixed;
-  right: 51.5rem;
+  right: 48.5rem;
   bottom: 22rem;
   transform: rotate(-5deg);
 }
@@ -493,7 +493,7 @@ button,
 .color-card[data-color="#F6EAAE"] {
   background-color: #F6EAAE;
   position: fixed;
-  right: 31rem;
+  right: 27rem;
   bottom: 21rem;
   transform: rotate(11deg);
   color: black;
@@ -502,7 +502,7 @@ button,
 .color-card[data-color="#715C3E"] {
   background-color: #715C3E;
   position: fixed;
-  right: 10rem;
+  right: 6rem;
   bottom: 15rem;
   transform: rotate(22deg);
 }
@@ -569,7 +569,7 @@ button,
 .perso2-image {
   position: fixed;
   top: 20.2rem;
-  right: 8rem;
+  right: -3rem;
   width: 500px;
   height: 400px;
   object-fit: cover;
