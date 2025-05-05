@@ -36,17 +36,17 @@ export default class Nettoyer{
                         <p>Utilise ton doigt comme un coton imbibé d’un dissolvant adapté et glisse le délicatement sur l’œuvre pour le nettoyer.</p>
                     </div>
                 </div>
-                <div class="exp-right">
-                    <div class="steps">
-                        <div class="counter">
-                            <h3>${percentage}%</h3>
-                        </div>
-                    </div>
+                <div class="exp-right">                    
                     <img class="exp-char-img" src="/6-restaurations/assets/img/perso-nettoyer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>La saleté et le vernis jauni peuvent ternir une œuvre et masquer sa beauté.</p>
                         <p>Par exemple, le célèbre tableau La Joconde a été nettoyé en 2012, mettant en lumière une clarté et des détails que personne n’avait vu depuis des siècles ! Un restaurateur se doit de travailler avec précision pour ne pas endommager les couches inférieures.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="counter">
+                            <h3>${percentage}%</h3>
+                        </div>
                     </div>
                 </div>
             </div>
