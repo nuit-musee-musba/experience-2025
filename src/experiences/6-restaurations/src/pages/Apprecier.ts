@@ -61,7 +61,7 @@ export default class Apprecier{
     handleMouseDown = () => {
         audioManager.playClickSound();
         audioManager.pauseBackgroundMusic();
-        window.location.hash = "/"; // Navigate to /#/intro
+        window.location.hash = "/experiences/1-hub/index.html"; // Navigate to /#/intro
     };
 
     async exit(): Promise<void>{
