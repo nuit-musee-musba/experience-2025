@@ -43,9 +43,9 @@ export default class Apprecier{
                 </div>
             </div>
             <div class="button-container">
-                <div class="button-suivant">
+                <a href="/experiences/1-hub/index.html" class="button-suivant">
                     <h2>Retour</h2>
-                </div>
+                </a>
             </div>
         `;
 
@@ -61,7 +61,7 @@ export default class Apprecier{
     handleMouseDown = () => {
         audioManager.playClickSound();
         audioManager.pauseBackgroundMusic();
-        window.location.hash = "/experiences/1-hub/index.html"; // Navigate to /#/intro
+        //window.location.hash = "/experiences/1-hub/index.html"; // Navigate to /#/intro
     };
 
     async exit(): Promise<void>{
