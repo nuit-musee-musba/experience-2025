@@ -36,17 +36,17 @@ export default class Retoucher{
                         <p>Utilise ton doigt comme un pinceau et recrée les teintes de manière harmonieuse en glissant ton doigt sur l’ensemble du tableau.</p>
                     </div>
                 </div>
-                <div class="exp-right">
-                    <div class="steps">
-                        <div class="counter">
-                            <h3>${percentage}%</h3>
-                        </div>
-                    </div>
+                <div class="exp-right">                    
                     <img class="exp-char-img" src="/6-restaurations/assets/img/perso-retoucher.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>La retouche est une étape délicate où chaque coup de pinceau doit respecter l’intention de l’artiste.</p>
                         <p>Lors de la restauration de La Cène de Léonard de Vinci, les experts ont passé des années à recréer les teintes d’origine tout en laissant visibles certaines zones non restaurées pour montrer l’âge de l’œuvre.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="counter">
+                            <h3>${percentage}%</h3>
+                        </div>
                     </div>
                 </div>
             </div>
