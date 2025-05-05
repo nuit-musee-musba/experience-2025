@@ -41,7 +41,7 @@ export class Router {
 
             case "/intro-2":
                 const { default: Intro2 } = await import("./pages/Intro2");
-                this.currentRoute = new Intro2(this.container, "/6-restaurations/assets/img/perso2.png", "Cette huille sur toile : La Grèce sur les ruines de Missolonghi de Eugène Delacroix (1826) représente une allégorie de la Grèce après le siège de Missolongi.","/intro-3");
+                this.currentRoute = new Intro2(this.container, "/6-restaurations/assets/img/perso2.png", "Cette huille sur toile : La Grèce sur les ruines de Missolonghi de Eugène Delacroix (1826) représente une allégorie de la Grèce après le siège de Missolonghi.","/intro-3");
                 break;
 
             case "/intro-3":

@@ -8,7 +8,7 @@ const rounds = [
     correctColor: "#D0C0A7",
     failTitle: "Henri Gervex",
     failText: "Faux ! \n\nAttention, le corps de la femme représente la délicatesse !",
-    perso2Pos: "25.25rem" 
+    perso2Pos: "24.25rem" 
   },
   {
     name: "Les draps",
@@ -18,7 +18,7 @@ const rounds = [
     correctColor: "#D7D7D7",
     failTitle: "Henri Gervex",
     failText: "Faux ! \n\nAttention, les draps représente la fragilité.",
-    perso2Pos: "25.25rem" 
+    perso2Pos: "24.25rem" 
   },
   {
     name: "La couverture",

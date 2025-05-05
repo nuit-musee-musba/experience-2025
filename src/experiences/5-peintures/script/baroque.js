@@ -8,7 +8,7 @@ const rounds = [
     correctColor: "#F6EAAE",
     failTitle: "VAN DEN HOECKE Jan",
     failText: "Faux ! \n\nAttention, les draps représentent la sainteté !",
-    perso2Pos: "26.25rem" 
+    perso2Pos: "29.25rem" 
   },
   {
     name: "La Vierge",

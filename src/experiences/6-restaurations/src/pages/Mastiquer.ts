@@ -37,16 +37,16 @@ export default class Mastiquer{
                     </div>
                 </div>
                 <div class="exp-right">
-                    <div class="steps">
-                        <div class="counter">
-                            <h3>${counter}/4</h3>
-                        </div>
-                    </div>
                     <img class="exp-char-img" src="/6-restaurations/assets/img/perso-mastiquer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Les fissures, trous et la peinture craquelée sur un tableau peuvent affaiblir sa structure et son apparence. En appliquant le mastic, il faut veiller à reproduire les coups de pinceaux de l’artiste.</p>
                         <p>Les restaurateurs de la Chapelle Sixtine ont découvert des fissures dans le plafond causées par des tremblements de terre et leur masticage a été une prouesse technique.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="counter">
+                            <h3>${counter}/4</h3>
+                        </div>
                     </div>
                 </div>
             </div>

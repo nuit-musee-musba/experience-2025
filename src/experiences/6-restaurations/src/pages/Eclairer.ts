@@ -36,17 +36,17 @@ export default class Eclairer{
                         <p>Utilise ton doigt comme une lampe UV et parcoure tout le tableau afin d'identifier les zones qui devront être restaurées.</p>
                     </div>
                 </div>
-                <div class="exp-right">
-                    <div class="steps">
-                        <div class="counter">
-                            <h3>${percentage}%</h3>
-                        </div>
-                    </div>
+                <div class="exp-right">                    
                     <img class="exp-char-img" src="/6-restaurations/assets/img/perso-eclairer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Cette lumière spéciale vous permettra de détecter des zones traitées par d’anciennes restaurations, mais principalement d’analyser la couche de vernis.</p>
                         <p>Les vernis jaunissent avec le temps, ils brillent différemment sous UV. La lampe peut également révéler des endroits non-vernis ou bien même des traces inattendues témoignant parfois d’un travail moins précautionneux qu’à notre époque.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="counter">
+                            <h3>${percentage}%</h3>
+                        </div>
                     </div>
                 </div>
             </div>

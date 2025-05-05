@@ -40,16 +40,16 @@ export default class Observer{
                     </div>
                 </div>
                 <div class="exp-right">
-                    <div class="steps">
-                        <div class="counter">
-                            <h3>${counter}/5</h3>
-                        </div>
-                    </div>
                     <img class="exp-char-img" src="/6-restaurations/assets/img/perso-observer.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Chaque œuvre d’art, abîmée ou intacte, témoigne de son époque. L’observation est la première étape pour révéler ses secrets. Elle peut être abimée par le transport, l’humidité, ou simplement par le temps.</p>
                         <p>Un restaurateur se doit d’examiner attentivement l’œuvre pour repérer les imperfections : craquelures, tâches ou décolorations. Ces indices sont essentiels pour comprendre les restaurations nécessaires.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="counter">
+                            <h3>${counter}/5</h3>
+                        </div>
                     </div>
                 </div>
             </div>

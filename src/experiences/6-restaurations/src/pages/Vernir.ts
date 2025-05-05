@@ -37,16 +37,16 @@ export default class Vernir{
                     </div>
                 </div>
                 <div class="exp-right">
-                    <div class="steps">
-                        <div class="counter">
-                            <h3>${percentage}%</h3>
-                        </div>
-                    </div>
                     <img class="exp-char-img" src="/6-restaurations/assets/img/perso-vernir.png" alt="">
                     <div class="exp-explication">
                         <h3>Explications</h3>
                         <p>Le vernis est la dernière étape, offrant à l’œuvre une protection durable et un éclat retrouvé, presque comme un filtre sur une photo de votre téléphone !</p>
                         <p>Le tableau La Ronde de Nuit de Rembrandt a reçu un vernis tellement épais au XIXe siècle qu’il semblait terne pendant des décennies. Une restauration récente a corrigé cette erreur.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="counter">
+                            <h3>${percentage}%</h3>
+                        </div>
                     </div>
                 </div>
             </div>
