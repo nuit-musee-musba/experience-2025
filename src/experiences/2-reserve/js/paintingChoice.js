@@ -38,7 +38,6 @@ function addPaintingDetails(img, parentImg, paintingData) {
         ` ${paintingData.author}`,
         `${paintingData.date}`,
         `${paintingData.description}`,
-        `${paintingData.size}`
     ];
     modal.showModalWithHtml(contentArray);
 
