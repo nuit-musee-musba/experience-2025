@@ -47,14 +47,14 @@ const experienceData = [
     illustration: "/1-hub/illustrations/reserve.png",
     link: "/experiences/2-reserve/index.html",
   },
-  {
-    id: 2,
-    title: "Sculpture",
-    description:
-      "Plongez dans l'univers captivant de la sculpture de bronze avec Ernest Meissonier comme guide ! Découvrez chaque étape du processus, de la modélisation en argile au coulage du bronze, et recréez le chef-d'œuvre Le Voyageur. Dans cette expérience ludique et immersive, apprenez l’art complexe de la sculpture de bronze.",
-    illustration: "/1-hub/illustrations/sculpture.png",
-    link: "/experiences/4-sculpture/index.html",
-  },
+  // {
+  //   id: 2,
+  //   title: "Sculpture",
+  //   description:
+  //     "Plongez dans l'univers captivant de la sculpture de bronze avec Ernest Meissonier comme guide ! Découvrez chaque étape du processus, de la modélisation en argile au coulage du bronze, et recréez le chef-d'œuvre Le Voyageur. Dans cette expérience ludique et immersive, apprenez l’art complexe de la sculpture de bronze.",
+  //   illustration: "/1-hub/illustrations/sculpture.png",
+  //   link: "/experiences/4-sculpture/index.html",
+  // },
   {
     id: 3,
     title: "Peinture",
