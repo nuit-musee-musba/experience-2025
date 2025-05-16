@@ -107,7 +107,7 @@ body {
   margin-bottom: 3rem;
 }
 
-#home-button {
+#start-button {
   background-color: #000;
   color: #fff;
   border: none;
@@ -119,6 +119,6 @@ body {
   font-family: 'NyghtSerif-Light', serif;
 }
 
-#home-button:hover {
+#start-button:hover {
   opacity: 0.8;
 }

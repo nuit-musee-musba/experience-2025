@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     document.body.classList.add("fade-in");
-    const homeButton = document.getElementById("home-button");
+    const homeButton = document.getElementById("start-button");
     homeButton.addEventListener("click", function() {
       document.body.classList.add("fade-out");
       setTimeout(function() {
