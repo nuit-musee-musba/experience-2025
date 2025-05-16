@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/game.css" />
 </head>
 <body>
-  <a href="index.html" class="back-button">Retour</a>
+  <a href="/experiences/1-hub/index.html" id="home-button" class="home-button"><img src="/2-reserve/assets/img/backHouse.svg" alt=""></a>
   <div class="character hidden">
     <img src="/5-peintures/images/perso-symbolisme.webp" alt="Personnage" />
   </div>
@@ -87,6 +87,13 @@
     .art-info .art-title2 {
       padding-right: 15rem;
       padding-left: 19rem;
+    }
+
+    .home-button {
+      position: fixed;
+      bottom: 100px;
+      left: 100px;
+      z-index: 1000;
     }
     .persistent-dialog {
       width: 86rem;

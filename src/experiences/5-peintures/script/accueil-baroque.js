@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('fade-in');
     
     // Sélection du bouton Accueil
-    const homeButton = document.getElementById('home-button');
+    const homeButton = document.getElementById('start-button');
 
     homeButton.addEventListener('click', (e) => {
       e.preventDefault(); // Empêche la navigation immédiate

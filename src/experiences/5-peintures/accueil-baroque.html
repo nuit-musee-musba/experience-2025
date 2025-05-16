@@ -49,7 +49,7 @@
       width: 98rem;
     }
 
-    #home-button {
+    #start-button {
       background-color: #000 !important;
       color: #fff;
       border: none;
@@ -65,20 +65,27 @@
     }
 
     /* Optionnel : Ajout d'un curseur pointer pour les boutons */
-    .back-button, #home-button {
+    .back-button, #start-button {
       cursor: pointer;
+    }
+
+    .home-button {
+      position: fixed;
+      bottom: 100px;
+      left: 100px;
+      z-index: 1000;
     }
   </style>
 </head>
 <body class="fade-in">
-  <a href="index.html" class="back-button">Retour</a>
+  <a href="/experiences/1-hub/index.html" id="home-button" class="home-button"><img src="/2-reserve/assets/img/backHouse.svg" alt=""></a>
   <div class="images-dialog">
       <img id="artworkImage" style="width: 114rem;" src="/5-peintures/images/baroquegroup.webp" alt="Détail Symbolisme">
       <div class="persistent-dialog">
           <h1 id="persistentTitle">Le 17e siècle, du Baroque au Classicisme</h1>
           <p id="persistentText">Les couleurs sont très sombres, et les personnages semblent presque sortir des peintures. On peint souvent des scènes religieuses ou mythologiques pour montrer des émotions fortes, comme la joie ou la tristesse.</p>
       </div>
-      <button id="home-button">Suivant</button>
+      <button id="start-button">Suivant</button>
   </div>
 
   <script>
@@ -87,7 +94,7 @@
       document.body.classList.add('fade-in');
       
       // Sélection du bouton Accueil
-      const homeButton = document.getElementById('home-button');
+      const homeButton = document.getElementById('start-button');
 
       homeButton.addEventListener('click', (e) => {
         e.preventDefault(); // Empêche la navigation immédiate

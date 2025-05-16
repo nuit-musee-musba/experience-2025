@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/game.css" />
 </head>
 <body>
-  <a href="index.html" class="back-button">Retour</a>
+  <a href="/experiences/1-hub/index.html" id="home-button" class="home-button"><img src="/2-reserve/assets/img/backHouse.svg" alt=""></a>
   <div class="character hidden">
     <img src="/5-peintures/images/perso-baroque.webp" alt="Personnage" />
   </div>
@@ -111,6 +111,13 @@
 
     .persistent-dialog {
       top: 18rem;
+    }
+
+    .home-button {
+      position: fixed;
+      bottom: 100px;
+      left: 100px;
+      z-index: 1000;
     }
   </style>
   <script src="script/baroque.js" type="module"></script>

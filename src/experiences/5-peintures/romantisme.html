@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/game.css" />
 </head>
 <body>
-  <a href="index.html" class="back-button">Retour</a>
+  <a href="/experiences/1-hub/index.html" id="home-button" class="home-button"><img src="/2-reserve/assets/img/backHouse.svg" alt=""></a>
   <div class="character hidden">
     <img src="/5-peintures/images/perso-romantisme.webp" alt="Personnage" />
   </div>
@@ -117,6 +117,15 @@
     transform: rotate(-20deg);
     color: black;
     }
+
+    .home-button {
+      position: fixed;
+      bottom: 100px;
+      left: 100px;
+      z-index: 1000;
+    }
+
+    
     .color-card[data-color="#D0C0A7"] {
     background-color: #D0C0A7;
     position: fixed;

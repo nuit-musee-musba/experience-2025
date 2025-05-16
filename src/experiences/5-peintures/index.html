@@ -1,327 +1,199 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Époques Artistiques - Carousel Centré</title>
-    <style>
-      @font-face {
-        font-family: "Helvetica";
-        font-style: normal;
-        font-weight: 400;
-        src: url("/commons/fonts/Helvetica.ttc");
-      }
-      @font-face {
-        font-family: "NyghtSerif-Light";
-        src: url("/commons/fonts/NyghtSerif-Light.woff") format("woff");
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>Époques Artistiques - Carousel Centré</title>
+  <style>
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 400;
+      src: url('/commons/fonts/Helvetica.ttc') ;
+    }
+    @font-face {
+      font-family: 'NyghtSerif-Light';
+      src: url('/commons/fonts/NyghtSerif-Light.woff') format('woff');
+    }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Helvetica", Arial, sans-serif;
-        background-color: #f0f0f0;
-        overflow-x: hidden;
-        user-select: none;
-        opacity: 0;
-        transition: opacity 1.5s ease;
-        background-image: url("/5-peintures/images/BG_4K_1.webp");
-      }
-      .fade-in {
-        opacity: 1;
-      }
-      .fade-out {
-        opacity: 0;
-        transition: opacity 2s ease;
-      }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Helvetica',Arial,sans-serif;
+      background-color:#f0f0f0;
+      overflow-x:hidden;
+      user-select:none;
+      opacity:0;
+      transition:opacity 1.5s ease;
+      background-image:url('/5-peintures/images/BG_4K_1.webp');
+    }
+    .fade-in{opacity:1}
+    .fade-out{opacity:0;transition:opacity 2s ease}
 
-      header {
-        text-align: center;
-        padding: 2rem;
-        margin: 11rem 0 1rem;
-      }
-      header h1 {
-        font-size: 4.6rem;
-        margin-bottom: 0.5rem;
-        color: #333;
-        font-weight: 400;
-        font-family: "NyghtSerif-Light", serif;
-      }
-      header h2 {
-        font-size: 4.2rem;
-        color: #555;
-        font-weight: 400;
-        font-family: "NyghtSerif-Light", serif;
-      }
+    header{text-align:center;padding:2rem;margin:11rem 0 1rem}
+    header h1{font-size:4.6rem;margin-bottom:.5rem;color:#333;font-weight:400;font-family:'NyghtSerif-Light',serif}
+    header h2{font-size:4.2rem;color:#555;font-weight:400;font-family:'NyghtSerif-Light',serif}
 
-      .infinite-scroll-wrapper {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        margin: 2rem 0;
-      }
-      .cards-container {
-        display: flex;
-        gap: 6rem;
-        scroll-behavior: smooth;
-        overflow-x: scroll;
-        padding: 2rem 0;
-        width: 100%;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-      }
-      .card {
-        flex: 0 0 auto;
-        border-radius: 6px;
-        width: 45rem;
-        padding: 1rem;
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-        margin-top: 15rem;
-        scroll-snap-align: center;
-        position: relative;
-        cursor: pointer;
-      }
-      .card img {
-        width: 100%;
-        filter: grayscale(100%);
-        border-radius: 4px;
-        height: 40rem;
-        object-fit: cover;
-      }
-      .card h2 {
-        margin-top: 1rem;
-        color: #666;
-        font-size: 3rem;
-        transition: color 0.3s;
-      }
-      .card.selected h2 {
-        color: #000;
-      }
+    .infinite-scroll-wrapper{position:relative;display:flex;justify-content:center;align-items:center;overflow:hidden;width:100%;margin:2rem 0}
+    .cards-container{display:flex;gap:6rem;scroll-behavior:smooth;overflow-x:scroll;padding:2rem 0;width:100%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .card{flex:0 0 auto;border-radius:6px;width:45rem;padding:1rem;text-align:center;transition:transform .3s,box-shadow .3s;margin-top:15rem;scroll-snap-align:center;position:relative;cursor:pointer}
+    .card img{width:100%;filter:grayscale(100%);border-radius:4px;height:40rem;object-fit:cover}
+    .card h2{margin-top:1rem;color:#666;font-size:3rem;transition:color .3s}
+    .card.selected h2{color:#000}
 
-      #startButton {
-        display: block;
-        margin: 15rem auto 2rem;
-        padding: 1.8rem 3.2rem;
-        font-size: 5rem;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        font-family: "NyghtSerif-Light", serif;
-      }
-      #startButton:hover {
-        background-color: #555;
-      }
+    #startButton{display:block;margin:15rem auto 2rem;padding:1.8rem 3.2rem;font-size:5rem;background-color:#333;color:#fff;border:none;cursor:pointer;transition:background-color .3s;font-family:'NyghtSerif-Light',serif}
+    #startButton:hover{background-color:#555}
 
-      .back-arrow {
-        position: fixed;
-        top: 6rem;
-        left: 10rem;
-        height: 6rem;
-        transform: scaleX(-1);
-        cursor: pointer;
-        z-index: 1000;
-        transition: opacity 0.3s ease;
-      }
-      .back-arrow:hover {
-        opacity: 0.7;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Flèche retour -->
-    <a href="/experiences/1-hub/index.html">
-      <img
-        src="/5-peintures/images/black-arrow.svg"
-        alt="Retour"
-        class="back-arrow"
-      />
-    </a>
+    .back-arrow{position:fixed;top:6rem;left:10rem;height:6rem;transform:scaleX(-1);cursor:pointer;z-index:1000;transition:opacity .3s ease}
+    .back-arrow:hover{opacity:.7}
+  </style>
+</head>
+<body>
+  <!-- Flèche retour -->
+  <a href="/experiences/1-hub/index.html">
+    <img src="/5-peintures/images/black-arrow.svg" alt="Retour" class="back-arrow">
+  </a>
 
-    <header>
-      <h1>Choisis une époque et plonge dans son univers artistique.</h1>
-      <h2>
-        Chaque époque révèle des palettes uniques et des symboles fascinants.
-      </h2>
-    </header>
+  <header>
+    <h1>Choisis une époque et plonge dans son univers artistique.</h1>
+    <h2>Chaque époque révèle des palettes uniques et des symboles fascinants.</h2>
+  </header>
 
-    <div class="infinite-scroll-wrapper">
-      <div class="cards-container" id="cardsContainer">
-        <div class="card" data-epoch="renaissance">
-          <img
-            src="/5-peintures/images/debut/renaissance.webp"
-            alt="Renaissance"
-          />
-          <h2>La Renaissance (s), 15e – 16e siècles</h2>
-        </div>
-        <div class="card" data-epoch="baroque">
-          <img src="/5-peintures/images/debut/baroque.webp" alt="Baroque" />
-          <h2>Le 17e siècle, du Baroque au Classicisme</h2>
-        </div>
-        <div class="card" data-epoch="romantisme">
-          <img
-            src="/5-peintures/images/debut/romantisme.webp"
-            alt="Romantisme"
-          />
-          <h2>Le 19e siècle, du Romantisme à l’Impressionnisme</h2>
-        </div>
-        <div class="card" data-epoch="symbolisme">
-          <img
-            src="/5-peintures/images/debut/symbolisme.webp"
-            alt="Symbolisme"
-          />
-          <h2>Le 20e siècle, du Symbolisme au Cubisme</h2>
-        </div>
-        <!-- doublons nécessaires pour l’effet infini -->
-        <div class="card" data-epoch="renaissance">
-          <img
-            src="/5-peintures/images/debut/renaissance.webp"
-            alt="Renaissance"
-          />
-          <h2>La Renaissance (s), 15e – 16e siècles</h2>
-        </div>
-        <div class="card" data-epoch="baroque">
-          <img src="/5-peintures/images/debut/baroque.webp" alt="Baroque" />
-          <h2>Le 17e siècle, du Baroque au Classicisme</h2>
-        </div>
-        <div class="card" data-epoch="romantisme">
-          <img
-            src="/5-peintures/images/debut/romantisme.webp"
-            alt="Romantisme"
-          />
-          <h2>Le 19e siècle, du Romantisme à l’Impressionnisme</h2>
-        </div>
-        <div class="card" data-epoch="symbolisme">
-          <img
-            src="/5-peintures/images/debut/symbolisme.webp"
-            alt="Symbolisme"
-          />
-          <h2>Le 20e siècle, du Symbolisme au Cubisme</h2>
-        </div>
+  <div class="infinite-scroll-wrapper">
+    <div class="cards-container" id="cardsContainer">
+      <div class="card" data-epoch="renaissance">
+        <img src="/5-peintures/images/debut/renaissance.webp" alt="Renaissance" />
+        <h2>La Renaissance (s), 15e – 16e siècles</h2>
+      </div>
+      <div class="card" data-epoch="baroque">
+        <img src="/5-peintures/images/debut/baroque.webp" alt="Baroque" />
+        <h2>Le 17e siècle, du Baroque au Classicisme</h2>
+      </div>
+      <div class="card" data-epoch="romantisme">
+        <img src="/5-peintures/images/debut/romantisme.webp" alt="Romantisme" />
+        <h2>Le 19e siècle, du Romantisme à l’Impressionnisme</h2>
+      </div>
+      <div class="card" data-epoch="symbolisme">
+        <img src="/5-peintures/images/debut/symbolisme.webp" alt="Symbolisme" />
+        <h2>Le 20e siècle, du Symbolisme au Cubisme</h2>
+      </div>
+      <!-- doublons nécessaires pour l’effet infini -->
+      <div class="card" data-epoch="renaissance">
+        <img src="/5-peintures/images/debut/renaissance.webp" alt="Renaissance" />
+        <h2>La Renaissance (s), 15e – 16e siècles</h2>
+      </div>
+      <div class="card" data-epoch="baroque">
+        <img src="/5-peintures/images/debut/baroque.webp" alt="Baroque" />
+        <h2>Le 17e siècle, du Baroque au Classicisme</h2>
+      </div>
+      <div class="card" data-epoch="romantisme">
+        <img src="/5-peintures/images/debut/romantisme.webp" alt="Romantisme" />
+        <h2>Le 19e siècle, du Romantisme à l’Impressionnisme</h2>
+      </div>
+      <div class="card" data-epoch="symbolisme">
+        <img src="/5-peintures/images/debut/symbolisme.webp" alt="Symbolisme" />
+        <h2>Le 20e siècle, du Symbolisme au Cubisme</h2>
       </div>
     </div>
+  </div>
 
-    <button id="startButton">Choisir</button>
+  <button id="startButton">Choisir</button>
 
-    <script>
-      /* ---------- Variables ---------- */
-      const cardsContainer = document.getElementById("cardsContainer");
-      const cards = document.querySelectorAll(".card");
+  <script>
+    /* ---------- Variables ---------- */
+    const cardsContainer = document.getElementById('cardsContainer');
+    const cards          = document.querySelectorAll('.card');
 
-      /* ---------- Helpers ---------- */
-      function setContainerPadding() {
-        const containerWidth = cardsContainer.offsetWidth;
-        const cardWidth = cards[0].offsetWidth;
-        const gap = parseInt(getComputedStyle(cardsContainer).gap);
-        const padding = containerWidth / 2 - cardWidth / 2;
-        cardsContainer.style.paddingLeft = `${padding}px`;
-        cardsContainer.style.paddingRight = `${padding}px`;
-      }
+    /* ---------- Helpers ---------- */
+    function setContainerPadding(){
+      const containerWidth = cardsContainer.offsetWidth;
+      const cardWidth      = cards[0].offsetWidth;
+      const gap            = parseInt(getComputedStyle(cardsContainer).gap);
+      const padding        = (containerWidth / 2) - (cardWidth / 2);
+      cardsContainer.style.paddingLeft  = `${padding}px`;
+      cardsContainer.style.paddingRight = `${padding}px`;
+    }
 
-      function setSelectedCard(explicitCard = null) {
-        const containerRect = cardsContainer.getBoundingClientRect();
-        const containerCenter = containerRect.left + containerRect.width / 2;
+    function setSelectedCard(explicitCard = null){
+      const containerRect   = cardsContainer.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
 
-        let minDistance = Infinity;
-        let selected = null;
+      let minDistance = Infinity;
+      let selected    = null;
 
-        cards.forEach((card) => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.left + cardRect.width / 2;
-          const distance = Math.abs(containerCenter - cardCenter);
-          if (distance < minDistance) {
-            minDistance = distance;
-            selected = card;
-          }
+      cards.forEach(card=>{
+        const cardRect   = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const distance   = Math.abs(containerCenter - cardCenter);
+        if(distance < minDistance){
+          minDistance = distance;
+          selected    = card;
+        }
+      });
+
+      // Si on force une carte (cas du clic), elle gagne
+      if(explicitCard) selected = explicitCard;
+
+      cards.forEach(card => card.classList.remove('selected'));
+      if(selected) selected.classList.add('selected');
+    }
+
+    function centerCard(card){
+      const scrollLeft = card.offsetLeft - (cardsContainer.offsetWidth / 2) + (card.offsetWidth / 2);
+      cardsContainer.scrollTo({left: scrollLeft, behavior: 'smooth'});
+      setSelectedCard(card);                 // marque tout de suite comme sélectionnée
+    }
+
+    /* ---------- Initialisation ---------- */
+    window.addEventListener('load', ()=>{
+      setContainerPadding();
+      setSelectedCard();
+      centerCard(cards[0]);                  // centre la première par défaut
+
+      setTimeout(()=>document.body.classList.add('fade-in'),100);
+    });
+
+    window.addEventListener('resize', ()=>{
+      setContainerPadding();
+      setSelectedCard();
+    });
+
+    /* ---------- Scroll : maj sélection ---------- */
+    let scrollTick;
+    cardsContainer.addEventListener('scroll', ()=>{
+      if(!scrollTick){
+        scrollTick = requestAnimationFrame(()=>{
+          setSelectedCard();
+          scrollTick = null;
         });
-
-        // Si on force une carte (cas du clic), elle gagne
-        if (explicitCard) selected = explicitCard;
-
-        cards.forEach((card) => card.classList.remove("selected"));
-        if (selected) selected.classList.add("selected");
       }
+    });
 
-      function centerCard(card) {
-        const scrollLeft =
-          card.offsetLeft -
-          cardsContainer.offsetWidth / 2 +
-          card.offsetWidth / 2;
-        cardsContainer.scrollTo({ left: scrollLeft, behavior: "smooth" });
-        setSelectedCard(card); // marque tout de suite comme sélectionnée
-      }
+    /* ---------- NEW : Clic sur carte ---------- */
+    cards.forEach(card=>{
+      card.addEventListener('click', ()=> centerCard(card));
+    });
 
-      /* ---------- Initialisation ---------- */
-      window.addEventListener("load", () => {
-        setContainerPadding();
-        setSelectedCard();
-        centerCard(cards[0]); // centre la première par défaut
-
-        setTimeout(() => document.body.classList.add("fade-in"), 100);
-      });
-
-      window.addEventListener("resize", () => {
-        setContainerPadding();
-        setSelectedCard();
-      });
-
-      /* ---------- Scroll : maj sélection ---------- */
-      let scrollTick;
-      cardsContainer.addEventListener("scroll", () => {
-        if (!scrollTick) {
-          scrollTick = requestAnimationFrame(() => {
-            setSelectedCard();
-            scrollTick = null;
+    /* ---------- Bouton Choisir ---------- */
+    document.getElementById('startButton').addEventListener('click', ()=>{
+      const selectedCard = document.querySelector('.card.selected');
+      if(selectedCard){
+        const epoch       = selectedCard.getAttribute('data-epoch').toLowerCase();
+        const validEpochs = ['symbolisme','renaissance','romantisme','baroque'];
+        if(validEpochs.includes(epoch)){
+          const url = `accueil-${epoch}.html`;
+          document.body.classList.add('fade-out');
+          document.body.addEventListener('transitionend', function handler(e){
+            if(e.propertyName === 'opacity'){
+              setTimeout(()=>window.location.href = url, 500);
+              document.body.removeEventListener('transitionend', handler);
+            }
           });
+        }else{
+          alert("Époque non reconnue. Veuillez sélectionner une époque valide.");
         }
-      });
-
-      /* ---------- NEW : Clic sur carte ---------- */
-      cards.forEach((card) => {
-        card.addEventListener("click", () => centerCard(card));
-      });
-
-      /* ---------- Bouton Choisir ---------- */
-      document.getElementById("startButton").addEventListener("click", () => {
-        const selectedCard = document.querySelector(".card.selected");
-        if (selectedCard) {
-          const epoch = selectedCard.getAttribute("data-epoch").toLowerCase();
-          const validEpochs = [
-            "symbolisme",
-            "renaissance",
-            "romantisme",
-            "baroque",
-          ];
-          if (validEpochs.includes(epoch)) {
-            const url = `accueil-${epoch}.html`;
-            document.body.classList.add("fade-out");
-            document.body.addEventListener(
-              "transitionend",
-              function handler(e) {
-                if (e.propertyName === "opacity") {
-                  setTimeout(() => (window.location.href = url), 500);
-                  document.body.removeEventListener("transitionend", handler);
-                }
-              }
-            );
-          } else {
-            alert(
-              "Époque non reconnue. Veuillez sélectionner une époque valide."
-            );
-          }
-        } else {
-          alert(
-            "Aucune carte sélectionnée. Veuillez sélectionner une époque avant de continuer."
-          );
-        }
-      });
-    </script>
-  </body>
+      }else{
+        alert("Aucune carte sélectionnée. Veuillez sélectionner une époque avant de continuer.");
+      }
+    });
+  </script>
+</body>
 </html>
